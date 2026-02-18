@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cf5i1m6ovoftp"]
+
+[ext_resource type="Texture2D" uid="uid://b61rvxmdidviy" path="res://Sprites/slash_sheet.png" id="1_b1hai"]
+[ext_resource type="Script" uid="uid://df75hbjvrst7q" path="res://Source/HitEffect.cs" id="2_0nu70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14rc4"]
+atlas = ExtResource("1_b1hai")
+region = Rect2(0, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvwso"]
+atlas = ExtResource("1_b1hai")
+region = Rect2(8, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivaw1"]
+atlas = ExtResource("1_b1hai")
+region = Rect2(16, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mr0r"]
+atlas = ExtResource("1_b1hai")
+region = Rect2(24, 0, 8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxj52"]
+atlas = ExtResource("1_b1hai")
+region = Rect2(32, 0, 8, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wck7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14rc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvwso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivaw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mr0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxj52")
+}],
+"loop": false,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="Slash" type="AnimatedSprite2D" unique_id=972702167]
+sprite_frames = SubResource("SpriteFrames_wck7e")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_0nu70")
+scaleX = true
+fadeMultiplier = 10.0

@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://caldc77kaw3w2"
+path="res://.godot/imported/quake.webp-f646c2b19aaddb22b75bfafe7e2de3c6.fontdata"
+
+[deps]
+
+source_file="res://Fonts/quake.webp"
+dest_files=["res://.godot/imported/quake.webp-f646c2b19aaddb22b75bfafe7e2de3c6.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("0-127")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=8
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

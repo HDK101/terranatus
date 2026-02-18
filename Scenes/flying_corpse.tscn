@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://chypqswrjao02"]
+
+[ext_resource type="Script" uid="uid://0utpjmugaf5h" path="res://Source/FlyingCorpse.cs" id="1_pqpoe"]
+[ext_resource type="Texture2D" uid="uid://mqi28ujy3ro" path="res://Sprites/particle.png" id="2_afjwl"]
+
+[sub_resource type="Curve" id="Curve_afjwl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mox6j"]
+colors = PackedColorArray(0.7294118, 0.73333335, 0.7294118, 1, 1, 1, 1, 1)
+
+[node name="FlyingCorpse" type="Sprite2D" unique_id=1559752525]
+script = ExtResource("1_pqpoe")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="." unique_id=1242979762]
+amount = 48
+texture = ExtResource("2_afjwl")
+lifetime = 2.0
+explosiveness = 0.09
+randomness = 0.82
+fixed_fps = 60
+draw_order = 1
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 17.1
+scale_amount_curve = SubResource("Curve_afjwl")
+color_initial_ramp = SubResource("Gradient_mox6j")

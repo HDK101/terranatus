@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b6quvi77ho5h4"]
+
+[ext_resource type="Texture2D" uid="uid://7a3cfgdojt55" path="res://Sprites/UI/button.png" id="1_7qu5y"]
+[ext_resource type="Script" uid="uid://unljkpc0sus1" path="res://Source/MenuButton.cs" id="2_aa8xb"]
+[ext_resource type="Texture2D" uid="uid://cxf1e7rv3ywqn" path="res://Sprites/UI/arrow.png" id="2_fmgqn"]
+[ext_resource type="Texture2D" uid="uid://cawyx00ge0vdo" path="res://Sprites/UI/inventory_text.png" id="2_okr3h"]
+
+[node name="InventoryButton" type="TextureRect" unique_id=284240258]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_right = -224.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = ExtResource("1_7qu5y")
+script = ExtResource("2_aa8xb")
+
+[node name="Arrow" type="TextureRect" parent="." unique_id=788157413]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 15.0
+offset_bottom = 11.0
+texture = ExtResource("2_fmgqn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=288603978]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -12.0
+offset_right = 35.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_okr3h")

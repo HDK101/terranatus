@@ -1,0 +1,80 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dqqxk4det7rye"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_pkurl"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_6tamu"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_868j4"]
+animation = &"background_fade_in"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ma7yk"]
+animation = &"background_fade_out"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_vdw86"]
+input_0/name = "On"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Off"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_cxc3n"]
+input_0/name = "On"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Off"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d1rw2"]
+animation = &"slide_in_inventory"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cigxr"]
+animation = &"slide_in_profile"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jpoy"]
+animation = &"slide_out_inventory"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vb8bo"]
+animation = &"slide_out_profile"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_sphie"]
+input_0/name = "Fade In"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Fade Out"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[resource]
+graph_offset = Vector2(-788.7689, -130.05374)
+nodes/output/position = Vector2(280, 20)
+"nodes/Slide Out Inventory/node" = SubResource("AnimationNodeAnimation_7jpoy")
+"nodes/Slide Out Inventory/position" = Vector2(-1180, -80)
+"nodes/Slide In Inventory/node" = SubResource("AnimationNodeAnimation_d1rw2")
+"nodes/Slide In Inventory/position" = Vector2(-1120, -260)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_6tamu")
+nodes/Add2/position = Vector2(-220, 120)
+"nodes/Background Fade In/node" = SubResource("AnimationNodeAnimation_868j4")
+"nodes/Background Fade In/position" = Vector2(-1022.71497, 422.15616)
+nodes/Transition/node = SubResource("AnimationNodeTransition_sphie")
+nodes/Transition/position = Vector2(-521.0545, 314.01746)
+"nodes/Background Fade Out/node" = SubResource("AnimationNodeAnimation_ma7yk")
+"nodes/Background Fade Out/position" = Vector2(-1020, 620)
+nodes/Inventory/node = SubResource("AnimationNodeTransition_vdw86")
+nodes/Inventory/position = Vector2(-860, -180)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_pkurl")
+"nodes/Add2 2/position" = Vector2(-520, -80)
+nodes/Profile/node = SubResource("AnimationNodeTransition_cxc3n")
+nodes/Profile/position = Vector2(-877.938, 135.23317)
+"nodes/Slide In Profile/node" = SubResource("AnimationNodeAnimation_cigxr")
+"nodes/Slide In Profile/position" = Vector2(-1320, 100)
+"nodes/Slide Out Profile/node" = SubResource("AnimationNodeAnimation_vb8bo")
+"nodes/Slide Out Profile/position" = Vector2(-1300, 280)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Add2 2", &"Add2", 1, &"Transition", &"Transition", 0, &"Background Fade In", &"Transition", 1, &"Background Fade Out", &"Inventory", 0, &"Slide In Inventory", &"Inventory", 1, &"Slide Out Inventory", &"Add2 2", 0, &"Inventory", &"Add2 2", 1, &"Profile", &"Profile", 0, &"Slide In Profile", &"Profile", 1, &"Slide Out Profile"]

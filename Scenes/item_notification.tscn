@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://d3lmp7rtr5guf"]
+
+[ext_resource type="Texture2D" uid="uid://b7f0sik3pe4hp" path="res://Sprites/item_notification_base.png" id="1_an45a"]
+[ext_resource type="Script" uid="uid://c5ekd7pihph6q" path="res://Source/ItemNotification.cs" id="2_2l3km"]
+[ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="3_2l3km"]
+[ext_resource type="FontFile" uid="uid://c2g05lwclo5sq" path="res://Fonts/monogram.ttf" id="3_x725k"]
+[ext_resource type="Texture2D" uid="uid://cfrektk7wntfy" path="res://Sprites/Items/item216.png" id="4_oha6k"]
+
+[sub_resource type="Animation" id="Animation_an45a"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(360, -0.25, 0, 0.25, 0, 328, -0.00016666668, -12.000001, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(67, -0.25, 0, 0.25, 0, 67, -0.00016666668, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.001)
+}
+
+[sub_resource type="Animation" id="Animation_2l3km"]
+resource_name = "slide_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(324, 0, 0, 0, 0, 256, -0.8, 1, 0.13333333, 33),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(67, 0, 0, 0, 0, 67, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_x725k"]
+resource_name = "slide_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(256, -0.8, 1, 0.1, 58.5, 324, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(67, -0.25, 0, 0.25, 0, 67, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oha6k"]
+_data = {
+&"RESET": SubResource("Animation_an45a"),
+&"slide_in": SubResource("Animation_2l3km"),
+&"slide_out": SubResource("Animation_x725k")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_x725k"]
+font = ExtResource("3_2l3km")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_biwig"]
+font = ExtResource("3_x725k")
+font_size = 12
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[node name="ItemNotification" type="TextureRect" unique_id=1671357759]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -53.0
+offset_right = 104.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_an45a")
+script = ExtResource("2_2l3km")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2135991856]
+libraries/ = SubResource("AnimationLibrary_oha6k")
+autoplay = &"RESET"
+
+[node name="Label" type="Label" parent="." unique_id=351850439]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 9.0
+text = "Item"
+label_settings = SubResource("LabelSettings_x725k")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=184429775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1681902279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "2 x"
+label_settings = SubResource("LabelSettings_biwig")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1399069109]
+layout_mode = 2
+texture = ExtResource("4_oha6k")
+expand_mode = 2
+stretch_mode = 3

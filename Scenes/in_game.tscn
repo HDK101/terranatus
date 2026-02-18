@@ -1,0 +1,990 @@
+[gd_scene format=4 uid="uid://cq14efv7nxh1q"]
+
+[ext_resource type="Script" uid="uid://ikqovafevqmw" path="res://Source/InGame.cs" id="1_8udo0"]
+[ext_resource type="Script" uid="uid://c3vkax515ryrk" path="res://Source/FloatingNumbers.cs" id="1_drh5t"]
+[ext_resource type="Texture2D" uid="uid://dm5tb1hlyrkq5" path="res://Sprites/health_bar.png" id="1_r382v"]
+[ext_resource type="TileSet" uid="uid://2txley03tqjk" path="res://Resources/grasslands_tile_set.tres" id="1_ssntf"]
+[ext_resource type="Script" uid="uid://cfc34f46adxkm" path="res://Source/Player/Player.cs" id="2_1e0w3"]
+[ext_resource type="Script" uid="uid://dkyq0bb1y6vck" path="res://Source/GameManager.cs" id="2_62am4"]
+[ext_resource type="Texture2D" uid="uid://vg4xq2wgbieu" path="res://Sprites/mana_bar.png" id="2_hrjpy"]
+[ext_resource type="Texture2D" uid="uid://gubt7rhaqe07" path="res://Sprites/char_underwear_idle.png" id="3_0tqgd"]
+[ext_resource type="Texture2D" uid="uid://bswi5srk5jjh7" path="res://Sprites/char_underwear_attack_sword_sheet.png" id="3_16bix"]
+[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/in_game_theme.tres" id="3_ar8se"]
+[ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/GameHud.cs" id="3_iw0lp"]
+[ext_resource type="Texture2D" uid="uid://d37sfg4ge42nv" path="res://Sprites/char_primitive_dress_idle_sheet.png" id="4_5eh6y"]
+[ext_resource type="Texture2D" uid="uid://8uig3b25x3rk" path="res://Sprites/char_underwear_walk.png" id="4_16bix"]
+[ext_resource type="Texture2D" uid="uid://bn54xdo1yr1s3" path="res://Sprites/char_primitive_dress_idle_sword_sheet.png" id="4_qs4b4"]
+[ext_resource type="Texture2D" uid="uid://cshtj24vgk66k" path="res://Sprites/UI/portrait_hud.png" id="6_3hbvq"]
+[ext_resource type="PackedScene" uid="uid://d3lmp7rtr5guf" path="res://Scenes/item_notification.tscn" id="6_ar8se"]
+[ext_resource type="Texture2D" uid="uid://b5i4lkri2qe7h" path="res://Sprites/bar_frame_up.png" id="7_5efe1"]
+[ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
+[ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
+[ext_resource type="PackedScene" uid="uid://dal8t7ouu018h" path="res://Scenes/UI/black_bars.tscn" id="10_vm46j"]
+[ext_resource type="Script" uid="uid://dw2unj3p5t6md" path="res://Source/UI/MenuButtons.cs" id="13_yem81"]
+[ext_resource type="Script" uid="uid://bnl01th6phnfe" path="res://Source/UI/Menu.cs" id="14_q3vwd"]
+[ext_resource type="PackedScene" uid="uid://b6quvi77ho5h4" path="res://Scenes/inventory_button.tscn" id="15_3hbvq"]
+[ext_resource type="Texture2D" uid="uid://8mjok5gga1mq" path="res://Sprites/base_ui.png" id="15_sclw5"]
+[ext_resource type="FontFile" uid="uid://cd55prohd0132" path="res://Fonts/16bfZX.ttf" id="16_773fv"]
+[ext_resource type="PackedScene" uid="uid://c3mbg1oouw2js" path="res://Scenes/slime.tscn" id="17_1kmfr"]
+[ext_resource type="Script" uid="uid://bhwadyacai7n0" path="res://Source/CharacterSprite.cs" id="17_biwig"]
+[ext_resource type="Texture2D" uid="uid://x8h2k1ox1ini" path="res://Sprites/UI/mini_bars.png" id="17_x3573"]
+[ext_resource type="Script" uid="uid://cw2bhjrtta4wy" path="res://Source/Player/PlayerCamera.cs" id="18_fhxaj"]
+[ext_resource type="Texture2D" uid="uid://d3u4qi6yfwtq0" path="res://Sprites/UI/mini_health_bar.png" id="18_goep2"]
+[ext_resource type="Texture2D" uid="uid://525xvt4e6whq" path="res://Sprites/UI/portrait_menu.png" id="19_3hbvq"]
+[ext_resource type="Texture2D" uid="uid://b56e7t2slxxwy" path="res://Sprites/UI/mini_mana_bar.png" id="19_dwcc8"]
+[ext_resource type="Texture2D" uid="uid://62fjx427q14v" path="res://Sprites/UI/base_header.png" id="25_5efe1"]
+[ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="25_feyw5"]
+[ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="25_pkurl"]
+[ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="26_q3vwd"]
+[ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="27_pkurl"]
+[ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="29_6tamu"]
+[ext_resource type="Texture2D" uid="uid://ct6odxyff6m2v" path="res://Sprites/UI/weapon_equip_slot.png" id="29_868j4"]
+[ext_resource type="Texture2D" uid="uid://ct4ier8tpoe0w" path="res://Sprites/UI/armor_equip_slot.png" id="30_ma7yk"]
+[ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
+[ext_resource type="FontFile" uid="uid://db2kmm7kc5wsv" path="res://Fonts/Abaddon Light.ttf" id="32_ma7yk"]
+[ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/DialogBox.cs" id="33_7jpoy"]
+[ext_resource type="Texture2D" uid="uid://dmxgppkrigwhc" path="res://Sprites/UI/portrait.png" id="33_cxc3n"]
+[ext_resource type="FontFile" uid="uid://b8mn3fwcoueg4" path="res://Fonts/Abaddon Bold.ttf" id="34_7jpoy"]
+[ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
+[ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="37_f3vpf"]
+[ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="37_sphie"]
+[ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="39_ygyvt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dr5a8"]
+font = ExtResource("16_773fv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3573"]
+font_size = 8
+outline_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
+shadow_size = 0
+shadow_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vdw86"]
+line_spacing = 0.0
+font = ExtResource("32_ma7yk")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_d1rw2"]
+font = ExtResource("34_7jpoy")
+font_size = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_773fv"]
+atlas = ExtResource("3_16bix")
+region = Rect2(0, 0, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr5a8"]
+atlas = ExtResource("3_16bix")
+region = Rect2(23, 0, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4dh6"]
+atlas = ExtResource("3_16bix")
+region = Rect2(46, 0, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3573"]
+atlas = ExtResource("3_16bix")
+region = Rect2(69, 0, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goep2"]
+atlas = ExtResource("3_16bix")
+region = Rect2(92, 0, 23, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar8se"]
+atlas = ExtResource("3_0tqgd")
+region = Rect2(0, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw0lp"]
+atlas = ExtResource("3_0tqgd")
+region = Rect2(10, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kmfr"]
+atlas = ExtResource("3_0tqgd")
+region = Rect2(20, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biwig"]
+atlas = ExtResource("3_0tqgd")
+region = Rect2(30, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhxaj"]
+atlas = ExtResource("4_16bix")
+region = Rect2(0, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm46j"]
+atlas = ExtResource("4_16bix")
+region = Rect2(13, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62am4"]
+atlas = ExtResource("4_16bix")
+region = Rect2(26, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7kfu"]
+atlas = ExtResource("4_16bix")
+region = Rect2(39, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11smw"]
+atlas = ExtResource("4_16bix")
+region = Rect2(52, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anjpa"]
+atlas = ExtResource("4_16bix")
+region = Rect2(65, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sclw5"]
+atlas = ExtResource("4_16bix")
+region = Rect2(78, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs4b4"]
+atlas = ExtResource("4_5eh6y")
+region = Rect2(0, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tqgd"]
+atlas = ExtResource("4_5eh6y")
+region = Rect2(13, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16bix"]
+atlas = ExtResource("4_5eh6y")
+region = Rect2(26, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl3tg"]
+atlas = ExtResource("4_5eh6y")
+region = Rect2(39, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fron"]
+atlas = ExtResource("4_5eh6y")
+region = Rect2(52, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tikr8"]
+atlas = ExtResource("4_qs4b4")
+region = Rect2(0, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r382v"]
+atlas = ExtResource("4_qs4b4")
+region = Rect2(13, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrjpy"]
+atlas = ExtResource("4_qs4b4")
+region = Rect2(26, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drh5t"]
+atlas = ExtResource("4_qs4b4")
+region = Rect2(39, 0, 13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8udo0"]
+atlas = ExtResource("4_qs4b4")
+region = Rect2(52, 0, 13, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1e0w3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_773fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr5a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4dh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3573")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goep2")
+}],
+"loop": false,
+"name": &"naked_attack_sword",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw0lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kmfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biwig")
+}],
+"loop": true,
+"name": &"naked_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhxaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vm46j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62am4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7kfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11smw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anjpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclw5")
+}],
+"loop": true,
+"name": &"naked_walk",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs4b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tqgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16bix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs4b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tqgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16bix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs4b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tqgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16bix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl3tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fron")
+}],
+"loop": true,
+"name": &"primitive_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tikr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r382v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrjpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tikr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r382v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrjpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tikr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r382v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrjpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drh5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8udo0")
+}],
+"loop": true,
+"name": &"primitive_idle_sword",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eh6y"]
+size = Vector2(14, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tikr8"]
+size = Vector2(20, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8se"]
+size = Vector2(20, 22)
+
+[node name="InGame" type="Node2D" unique_id=959927448 node_paths=PackedStringArray("player", "floatingNumbers", "enemies", "gameHud")]
+script = ExtResource("1_8udo0")
+player = NodePath("Entities/Player")
+floatingNumbers = NodePath("FloatingNumbers")
+enemies = [NodePath("Entities/Slime")]
+gameHud = NodePath("GameHUD")
+
+[node name="GameManager" type="Node" parent="." unique_id=500470528 node_paths=PackedStringArray("entities", "gameHud")]
+process_mode = 3
+script = ExtResource("2_62am4")
+entities = NodePath("../Entities")
+gameHud = NodePath("../GameHUD")
+
+[node name="FloatingNumbers" type="CanvasLayer" parent="." unique_id=1684106791]
+layer = 2
+follow_viewport_enabled = true
+script = ExtResource("1_drh5t")
+
+[node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_combo", "_dialogBox", "_blackBars", "_menu", "player")]
+script = ExtResource("3_iw0lp")
+_combo = NodePath("Combo")
+_dialogBox = NodePath("DialogBox")
+_blackBars = NodePath("BlackBars")
+_menu = NodePath("Menu")
+player = NodePath("../Entities/Player")
+
+[node name="MainUI" type="Control" parent="GameHUD" unique_id=706352056]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ar8se")
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/MainUI" unique_id=1553557013]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 39.0
+offset_bottom = 33.0
+texture = ExtResource("6_3hbvq")
+
+[node name="HealthBar" type="TextureProgressBar" parent="GameHUD/MainUI" unique_id=529685301]
+layout_mode = 1
+offset_left = 34.0
+offset_top = 14.0
+offset_right = 162.0
+offset_bottom = 26.0
+value = 100.0
+texture_over = ExtResource("7_5efe1")
+texture_progress = ExtResource("1_r382v")
+script = ExtResource("7_biwig")
+
+[node name="ManaBar" type="TextureProgressBar" parent="GameHUD/MainUI" unique_id=1107492866]
+layout_mode = 1
+offset_left = 34.0
+offset_top = 21.0
+offset_right = 156.0
+offset_bottom = 33.0
+value = 100.0
+texture_over = ExtResource("10_q3vwd")
+texture_progress = ExtResource("2_hrjpy")
+
+[node name="ItemNotification" parent="GameHUD/MainUI" unique_id=1671357759 instance=ExtResource("6_ar8se")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 360.0
+offset_top = 67.0
+offset_right = 424.0
+offset_bottom = 99.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="BlackBars" parent="GameHUD" unique_id=1045510744 instance=ExtResource("10_vm46j")]
+
+[node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("profile", "menuButtons", "inventory", "background", "itemDetails")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ar8se")
+script = ExtResource("14_q3vwd")
+profile = NodePath("Profile")
+menuButtons = NodePath("Buttons")
+inventory = NodePath("Inventory")
+background = NodePath("Background")
+itemDetails = NodePath("ItemDetails")
+
+[node name="Background" type="ColorRect" parent="GameHUD/Menu" unique_id=1419311277]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Buttons" type="Control" parent="GameHUD/Menu" unique_id=763079906 node_paths=PackedStringArray("InventoryButton", "CharacterButton", "SystemButton")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -27.0
+offset_right = 189.9996
+offset_bottom = 46.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("13_yem81")
+InventoryButton = NodePath("Button")
+CharacterButton = NodePath("Button2")
+SystemButton = NodePath("Button2")
+
+[node name="Button" parent="GameHUD/Menu/Buttons" unique_id=284240258 instance=ExtResource("15_3hbvq")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 96.0
+offset_right = 192.0
+grow_horizontal = 1
+
+[node name="Button2" parent="GameHUD/Menu/Buttons" unique_id=597012100 instance=ExtResource("15_3hbvq")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 32.0
+grow_horizontal = 1
+
+[node name="Profile" type="VBoxContainer" parent="GameHUD/Menu" unique_id=1839354880]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -66.0
+offset_bottom = 66.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Picture" type="TextureRect" parent="GameHUD/Menu/Profile" unique_id=97060762]
+layout_mode = 2
+texture = ExtResource("19_3hbvq")
+stretch_mode = 2
+
+[node name="Control" type="Control" parent="GameHUD/Menu/Profile" unique_id=76276110]
+visible = false
+custom_minimum_size = Vector2(64, 96)
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/Menu/Profile/Control" unique_id=371556352]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_sclw5")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Profile/Control" unique_id=1347490313]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 11.0
+offset_right = -4.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameHUD/Menu/Profile/Control/VBoxContainer" unique_id=2036844855]
+layout_mode = 2
+text = "Tamara
+STR: 12
+DEX: 12"
+label_settings = SubResource("LabelSettings_dr5a8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Profile" unique_id=448986446]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/Profile/VBoxContainer" unique_id=1027151415]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("17_x3573")
+stretch_mode = 2
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/Profile/VBoxContainer/TextureRect" unique_id=310593408]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 4.0
+value = 50.0
+texture_progress = ExtResource("18_goep2")
+
+[node name="ManaProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/Profile/VBoxContainer/TextureRect" unique_id=1281896950]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 63.0
+offset_bottom = 8.0
+value = 50.0
+texture_progress = ExtResource("19_dwcc8")
+
+[node name="ExpText" type="Label" parent="GameHUD/Menu/Profile" unique_id=2147109881]
+layout_mode = 2
+text = "EXP: 1050/2000"
+label_settings = SubResource("LabelSettings_x3573")
+
+[node name="Inventory" type="Control" parent="GameHUD/Menu" unique_id=1447225998 node_paths=PackedStringArray("player", "headerLabel", "leftArrow", "rightArrow", "gridContainer", "selectedOverlay")]
+custom_minimum_size = Vector2(160, 108)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -48.5
+offset_right = 168.0
+offset_bottom = 59.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("25_feyw5")
+player = NodePath("../../../Entities/Player")
+headerLabel = NodePath("VBoxContainer/Header/HBoxContainer/Label")
+leftArrow = NodePath("VBoxContainer/Header/HBoxContainer/LeftArrow")
+rightArrow = NodePath("VBoxContainer/Header/HBoxContainer/RightArrow")
+gridContainer = NodePath("VBoxContainer/GridItems/HBoxContainer/GridContainer")
+selectedOverlay = NodePath("VBoxContainer/GridItems/SelectedOverlay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory" unique_id=1974137368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Header" type="NinePatchRect" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=195348213]
+custom_minimum_size = Vector2(32, 16)
+layout_mode = 2
+texture = ExtResource("25_5efe1")
+patch_margin_left = 16
+patch_margin_right = 16
+axis_stretch_horizontal = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Header" unique_id=1535130499]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=766581060]
+layout_mode = 2
+texture = ExtResource("27_pkurl")
+stretch_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=1732495883]
+layout_mode = 2
+text = "Weapons"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=549659304]
+layout_mode = 2
+texture = ExtResource("27_pkurl")
+stretch_mode = 2
+
+[node name="GridItems" type="Control" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=1892384825]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems" unique_id=1662917861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=1615648409]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("27_pkurl")
+stretch_mode = 2
+flip_h = true
+
+[node name="GridContainer" type="GridContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=1782254161]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 7
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=821741257]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect2" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=2107109315]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect3" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=991936211]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect9" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=426660605]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=986829566]
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("27_pkurl")
+stretch_mode = 2
+
+[node name="SelectedOverlay" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems" unique_id=2037088094]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_right = 25.0
+offset_bottom = 16.0
+texture = ExtResource("29_6tamu")
+
+[node name="Equip" type="VBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=1448293862]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="EquipHeader" type="NinePatchRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip" unique_id=2008336114]
+custom_minimum_size = Vector2(96, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("25_5efe1")
+patch_margin_left = 16
+patch_margin_right = 16
+axis_stretch_horizontal = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipHeader" unique_id=1719811737]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipHeader/HBoxContainer" unique_id=279114682]
+layout_mode = 2
+text = "Equip"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="EquipItems" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip" unique_id=960844856]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponSlot" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1063340821]
+layout_mode = 2
+texture = ExtResource("29_868j4")
+
+[node name="WeaponSlot2" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1463159145]
+layout_mode = 2
+texture = ExtResource("30_ma7yk")
+
+[node name="WeaponSlot3" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1232054264]
+layout_mode = 2
+texture = ExtResource("31_vdw86")
+
+[node name="ItemDetails" type="Control" parent="GameHUD/Menu" unique_id=850293287]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -64.0
+offset_right = -12.0
+offset_bottom = 64.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/ItemDetails" unique_id=78134099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="VBoxContainer" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=1681870098]
+custom_minimum_size = Vector2(40, 11)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 2
+
+[node name="BackButton" type="HBoxContainer" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton" unique_id=618060533]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton/BackButton" unique_id=1679618048]
+layout_mode = 2
+texture = ExtResource("27_pkurl")
+flip_h = true
+
+[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton/BackButton" unique_id=808344448]
+layout_mode = 2
+text = "Back"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton" unique_id=189826372]
+layout_mode = 2
+texture = ExtResource("25_pkurl")
+
+[node name="ItemHeader" type="NinePatchRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=390155592]
+custom_minimum_size = Vector2(96, 16)
+layout_mode = 2
+texture = ExtResource("25_5efe1")
+patch_margin_left = 16
+patch_margin_right = 16
+axis_stretch_horizontal = 1
+
+[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/ItemHeader" unique_id=1847807970]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 4.0
+offset_right = 66.0
+offset_bottom = 12.0
+text = "ITEM"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=1535095948]
+custom_minimum_size = Vector2(112, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+color = Color(0.05490196, 0.02745098, 0.105882354, 0.3372549)
+
+[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/ColorRect" unique_id=695528683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec."
+label_settings = SubResource("LabelSettings_vdw86")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="DialogBox" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "portraitRect")]
+process_mode = 3
+custom_minimum_size = Vector2(320, 68)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_ar8se")
+script = ExtResource("33_7jpoy")
+dialogText = NodePath("ColorRect/RichTextLabel")
+portraitRect = NodePath("ColorRect/TextureRect")
+
+[node name="ColorRect" type="ColorRect" parent="GameHUD/DialogBox" unique_id=1217302484]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.05490196, 0.02745098, 0.105882354, 1)
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/DialogBox/ColorRect" unique_id=413871165]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -52.0
+offset_right = 52.0
+offset_bottom = -4.0
+grow_vertical = 0
+texture = ExtResource("33_cxc3n")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameHUD/DialogBox/ColorRect" unique_id=420923975]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 5.0
+offset_right = 315.0
+offset_bottom = 52.0
+theme_override_fonts/normal_font = ExtResource("32_ma7yk")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[wave]Well now[/wave], i don't know what militia you're from, but i advise you to back down, this is the dominion's armada in the name of..."
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/DialogBox" unique_id=543593805]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 74.0
+offset_bottom = 13.0
+texture = ExtResource("34_d1rw2")
+patch_margin_left = 4
+patch_margin_right = 18
+
+[node name="Label" type="Label" parent="GameHUD/DialogBox/NinePatchRect" unique_id=411433912]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -9.0
+offset_right = 50.0
+offset_bottom = 9.0
+grow_vertical = 2
+text = "Tamara"
+label_settings = SubResource("LabelSettings_d1rw2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Combo" type="VBoxContainer" parent="GameHUD" unique_id=217060030 node_paths=PackedStringArray("comboNumbers")]
+offset_left = -64.0
+offset_top = 96.0
+offset_bottom = 160.0
+theme = ExtResource("3_ar8se")
+script = ExtResource("37_sphie")
+comboNumbers = NodePath("Numbers")
+
+[node name="TextureRect" type="TextureRect" parent="GameHUD/Combo" unique_id=383630659]
+layout_mode = 2
+texture = ExtResource("37_f3vpf")
+
+[node name="Label" type="Label" parent="GameHUD/Combo/TextureRect" unique_id=343139270]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 11.0
+text = "Combo"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Numbers" type="Control" parent="GameHUD/Combo" unique_id=201210544]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+script = ExtResource("39_ygyvt")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1607952946]
+tile_map_data = PackedByteArray("AAADAAgAAAAAAAEAAAADAAkAAAAAAAIAAAADAAoAAAAAAAIAAAADAAsAAAAAAAIAAAADAAwAAAAAAAIAAAADAA0AAAAAAAIAAAADAA4AAAAAAAMAAAAEAAgAAAABAAEAAAAEAAkAAAABAAIAAAAEAAoAAAABAAIAAAAEAAsAAAABAAIAAAAEAAwAAAABAAIAAAAEAA0AAAABAAIAAAAEAA4AAAABAAMAAAAFAAcAAAAAAAEAAAAFAAgAAAABAAIAAAAFAAkAAAABAAIAAAAFAAoAAAABAAIAAAAFAAsAAAABAAIAAAAFAAwAAAABAAIAAAAFAA0AAAABAAIAAAAFAA4AAAABAAMAAAAGAAcAAAABAAEAAAAGAAgAAAABAAIAAAAGAAkAAAABAAIAAAAGAAoAAAABAAIAAAAGAAsAAAABAAIAAAAGAAwAAAABAAIAAAAGAA0AAAABAAIAAAAGAA4AAAABAAMAAAAHAAcAAAABAAEAAAAHAAgAAAABAAIAAAAHAAkAAAABAAIAAAAHAAoAAAABAAIAAAAHAAsAAAABAAIAAAAHAAwAAAABAAIAAAAHAA0AAAABAAIAAAAHAA4AAAABAAMAAAAIAAgAAAABAAIAAAAIAAkAAAABAAIAAAAIAAoAAAABAAIAAAAIAAsAAAABAAIAAAAIAAwAAAABAAIAAAAIAA0AAAABAAIAAAAIAA4AAAABAAMAAAAJAAgAAAABAAIAAAAJAAkAAAABAAIAAAAJAAoAAAABAAIAAAAJAAsAAAABAAIAAAAJAAwAAAABAAIAAAAJAA0AAAABAAIAAAAJAA4AAAABAAMAAAAKAAgAAAABAAIAAAAKAAkAAAABAAIAAAAKAAoAAAABAAIAAAAKAAsAAAABAAIAAAAKAAwAAAABAAIAAAAKAA0AAAABAAIAAAAKAA4AAAABAAMAAAALAAsAAAABAAIAAAALAAwAAAABAAIAAAALAA0AAAABAAIAAAALAA4AAAABAAMAAAAMAAsAAAABAAIAAAAMAAwAAAABAAIAAAAMAA0AAAABAAIAAAAMAA4AAAABAAMAAAANAAsAAAABAAIAAAANAAwAAAABAAIAAAANAA0AAAABAAIAAAANAA4AAAABAAMAAAAOAAsAAAABAAIAAAAOAAwAAAABAAIAAAAOAA0AAAABAAIAAAAOAA4AAAABAAMAAAAPAAsAAAABAAIAAAAPAAwAAAABAAIAAAAPAA0AAAABAAIAAAAPAA4AAAABAAMAAAAQAAwAAAABAAIAAAAQAA0AAAABAAIAAAARAAwAAAABAAIAAAARAA0AAAABAAIAAAAIAAcAAAABAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAIAAAALAAkAAAABAAIAAAALAAoAAAABAAIAAAAMAAgAAAABAAIAAAAMAAkAAAABAAIAAAAMAAoAAAABAAIAAAANAAgAAAABAAIAAAANAAkAAAABAAIAAAANAAoAAAABAAIAAAAOAAgAAAACAAIAAAAOAAkAAAABAAIAAAAOAAoAAAABAAIAAAAQAAsAAAABAAIAAAAQAA4AAAABAAMAAAARAAsAAAABAAEAAAARAA4AAAABAAMAAAASAAsAAAABAAEAAAASAAwAAAABAAIAAAASAA0AAAABAAIAAAASAA4AAAABAAMAAAATAAsAAAACAAEAAAATAAwAAAABAAIAAAATAA0AAAABAAIAAAATAA4AAAACAAMAAAAUAAwAAAABAAEAAAAUAA0AAAABAAMAAAAVAAwAAAACAAEAAAAVAA0AAAACAAMAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAACAAEAAAAQAAoAAAACAAIAAAAQAAkAAAACAAEAAAAPAAoAAAABAAIAAAAPAAkAAAABAAEAAAA=")
+tile_set = ExtResource("1_ssntf")
+
+[node name="Entities" type="Node" parent="." unique_id=1790537701]
+
+[node name="Player" type="CharacterBody2D" parent="Entities" unique_id=1446346469]
+process_mode = 1
+position = Vector2(149, 100)
+collision_mask = 9
+script = ExtResource("2_1e0w3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Entities/Player" unique_id=1843562405]
+sprite_frames = SubResource("SpriteFrames_1e0w3")
+animation = &"naked_attack_sword"
+autoplay = "primitive_idle_sword"
+script = ExtResource("17_biwig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player" unique_id=944175301]
+shape = SubResource("RectangleShape2D_5eh6y")
+
+[node name="Camera2D" type="Camera2D" parent="Entities/Player" unique_id=291890020]
+position = Vector2(1, 0)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1000
+limit_bottom = 1000
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("18_fhxaj")
+
+[node name="HitArea" type="Area2D" parent="Entities/Player" unique_id=1475468883]
+position = Vector2(18, 0)
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player/HitArea" unique_id=809317628]
+shape = SubResource("RectangleShape2D_tikr8")
+
+[node name="ItemArea" type="Area2D" parent="Entities/Player" unique_id=1012537111]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Player/ItemArea" unique_id=1573348455]
+shape = SubResource("RectangleShape2D_ar8se")
+
+[node name="Slime" parent="Entities" unique_id=931501517 instance=ExtResource("17_1kmfr")]
+process_mode = 1
+position = Vector2(218, 87)

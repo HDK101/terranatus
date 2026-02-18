@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemBlueprint" format=3 uid="uid://ceosl530untjy"]
+
+[ext_resource type="Script" uid="uid://bhrqge54gp0fq" path="res://Source/Item/ItemBlueprint.cs" id="1_0drj1"]
+[ext_resource type="Script" uid="uid://dyqtnd3bpu4p7" path="res://Source/Item/Consumable.cs" id="1_aqug4"]
+[ext_resource type="Texture2D" uid="uid://cfrektk7wntfy" path="res://Sprites/Items/item216.png" id="2_lex4r"]
+
+[sub_resource type="Resource" id="Resource_q3v48"]
+script = ExtResource("1_aqug4")
+metadata/_custom_type_script = "uid://dyqtnd3bpu4p7"
+
+[resource]
+script = ExtResource("1_0drj1")
+Id = "APPLE"
+Type = 2
+Consumable = SubResource("Resource_q3v48")
+MaxQuantity = 99
+Texture = ExtResource("2_lex4r")
+metadata/_custom_type_script = "uid://bhrqge54gp0fq"

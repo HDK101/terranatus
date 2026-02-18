@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemBlueprint" format=3 uid="uid://bfvrj3icbohea"]
+
+[ext_resource type="Texture2D" uid="uid://c034t8tsvym37" path="res://Sprites/Items/item4.png" id="1_fm21s"]
+[ext_resource type="Script" uid="uid://bhrqge54gp0fq" path="res://Source/Item/ItemBlueprint.cs" id="1_joomy"]
+[ext_resource type="Script" uid="uid://c0cf3go53sjoq" path="res://Source/DamageBlueprint.cs" id="1_y85oy"]
+[ext_resource type="Script" uid="uid://do3ydr8ggjk84" path="res://Source/Item/MeleeWeapon.cs" id="2_6go4w"]
+
+[sub_resource type="Resource" id="Resource_ks3mg"]
+script = ExtResource("1_y85oy")
+Damages = Dictionary[int, Object]({})
+metadata/_custom_type_script = "uid://c0cf3go53sjoq"
+
+[sub_resource type="Resource" id="Resource_wei64"]
+script = ExtResource("2_6go4w")
+DamageBlueprint = SubResource("Resource_ks3mg")
+metadata/_custom_type_script = "uid://do3ydr8ggjk84"
+
+[resource]
+script = ExtResource("1_joomy")
+Id = "SHORT_SWORD"
+MeleeWeapon = SubResource("Resource_wei64")
+Texture = ExtResource("1_fm21s")
+metadata/_custom_type_script = "uid://bhrqge54gp0fq"
