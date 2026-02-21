@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://drsg3key8e30x"]
+
+[ext_resource type="AudioStream" uid="uid://iof147rcjtke" path="res://Sounds/Attack/gore.wav" id="1_6uwaj"]
+
+[resource]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("1_6uwaj")

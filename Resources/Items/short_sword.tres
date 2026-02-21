@@ -1,13 +1,21 @@
 [gd_resource type="Resource" script_class="ItemBlueprint" format=3 uid="uid://bfvrj3icbohea"]
 
+[ext_resource type="Script" uid="uid://c5m0r84n0o8fy" path="res://Source/DamageRange.cs" id="1_6go4w"]
 [ext_resource type="Texture2D" uid="uid://c034t8tsvym37" path="res://Sprites/Items/item4.png" id="1_fm21s"]
 [ext_resource type="Script" uid="uid://bhrqge54gp0fq" path="res://Source/Item/ItemBlueprint.cs" id="1_joomy"]
 [ext_resource type="Script" uid="uid://c0cf3go53sjoq" path="res://Source/DamageBlueprint.cs" id="1_y85oy"]
 [ext_resource type="Script" uid="uid://do3ydr8ggjk84" path="res://Source/Item/MeleeWeapon.cs" id="2_6go4w"]
 
+[sub_resource type="Resource" id="Resource_a0ha2"]
+script = ExtResource("1_6go4w")
+Max = 1
+metadata/_custom_type_script = "uid://c5m0r84n0o8fy"
+
 [sub_resource type="Resource" id="Resource_ks3mg"]
 script = ExtResource("1_y85oy")
-Damages = Dictionary[int, Object]({})
+Damages = Dictionary[int, Object]({
+0: SubResource("Resource_a0ha2")
+})
 metadata/_custom_type_script = "uid://c0cf3go53sjoq"
 
 [sub_resource type="Resource" id="Resource_wei64"]

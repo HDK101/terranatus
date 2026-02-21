@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://8w8od1gy502q"]
+
+[ext_resource type="Texture2D" uid="uid://c58wwlbs0u750" path="res://Sprites/sword_slash_sheet.png" id="1_wbnc5"]
+[ext_resource type="Script" uid="uid://cpywdaxoi3vv2" path="res://Source/SwordSlash.cs" id="2_1mvnw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbnc5"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(0, 0, 31, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mvnw"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(31, 0, 31, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt0jb"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(62, 0, 31, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q60d"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(93, 0, 31, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yncrr"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(124, 0, 31, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cush2"]
+atlas = ExtResource("1_wbnc5")
+region = Rect2(155, 0, 31, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cush2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbnc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mvnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt0jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q60d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yncrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cush2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 50.0
+}]
+
+[node name="SwordSlash" type="AnimatedSprite2D" unique_id=679736925]
+sprite_frames = SubResource("SpriteFrames_cush2")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("2_1mvnw")

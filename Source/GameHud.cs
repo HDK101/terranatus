@@ -8,9 +8,13 @@ public partial class GameHud : CanvasLayer
 	public BlackBars BlackBars => _blackBars;
 	public Menu Menu => _menu;
 	public Combo Combo => _combo;
+	public LevelUpNotification LevelUpNotification => _levelUpNotification;
 
 	private ItemNotification _itemNotification;
 	private HealthBar _healthBar;
+
+	[Export]
+	private LevelUpNotification _levelUpNotification;
 
 	[Export]
 	private Combo _combo;
@@ -27,6 +31,9 @@ public partial class GameHud : CanvasLayer
 	[Export]
 	private Player player;
 
+	[Export]
+	private GameHudAudioPlayer audioPlayer;
+
     public override void _Ready()
 	{
 		DialogDB dialogDB = GetNode<DialogDB>("/root/DialogDB");
@@ -34,6 +41,8 @@ public partial class GameHud : CanvasLayer
 
 		_menu.UIVisible += _blackBars.ShowBars;
 		_menu.UIHidden += _blackBars.HideBars;
+		_menu.UIVisible += audioPlayer.PlayPause;
+		_menu.UIHidden += audioPlayer.PlayPause;
 		_healthBar = GetNode<HealthBar>("MainUI/HealthBar");
 		_itemNotification = GetNode<ItemNotification>("MainUI/ItemNotification");
 
@@ -47,5 +56,8 @@ public partial class GameHud : CanvasLayer
 		{
 			_dialogBox.PlayTree(tree);
 		};
+
+		_menu.Change += audioPlayer.PlayChange;
+		_menu.Accept += audioPlayer.PlayAccept;
 	}
 }

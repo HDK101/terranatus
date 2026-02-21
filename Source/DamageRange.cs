@@ -1,10 +1,16 @@
+using System;
 using Godot;
 
 [GlobalClass]
 public partial class DamageRange: Resource
 {
     [Export]
-    public double Min;
+    public int Min;
     [Export]
-    public double Max;
+    public int Max;
+
+    public int Rand(RandomNumberGenerator rng)
+    {
+        return rng.RandiRange(Min, Max);
+    }
 }

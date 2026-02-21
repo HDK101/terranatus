@@ -17,17 +17,26 @@ public partial class HitEffect : AnimatedSprite2D
 	{
 		AnimationFinished += QueueFree;
 		Rotation = (float)(2.0 * Math.PI * Random.Shared.NextDouble());
+
+		if (scaleX)
+		{
+			var tweenX = CreateDefaultTween();
+			tweenX.TweenProperty(this, "scale:x", 0.0f, 0.2f);
+		}
+		if (scaleY)
+		{
+			var tweenY = CreateDefaultTween();
+			tweenY.TweenProperty(this, "scale:y", 0.0f, 0.2f);
+		}
+		
+		var tweenAlpha = CreateDefaultTween();
+		tweenAlpha.TweenProperty(this, "modulate", Color.Color8(255, 255, 255, 0), 0.2f);
 	}
 
-    public override void _Process(double delta)
-    {
-		float deltaF = (float)delta;
-		if (scaleX || scaleY)
-		{
-			float scaleValueX = scaleX ? Scale.X - deltaF * fadeMultiplier : 1.0f;
-			float scaleValueY = scaleY ? Scale.Y - deltaF * fadeMultiplier : 1.0f;
-	        Scale = new(scaleValueX, scaleValueY);
-		}
-		Modulate = new (Modulate, Modulate.A - deltaF * fadeMultiplier);
-    }
+	private Tween CreateDefaultTween()
+	{
+		var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
+		tween.SetPauseMode(Tween.TweenPauseMode.Process);
+		return tween;
+	}
 }

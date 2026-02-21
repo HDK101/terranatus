@@ -5,6 +5,12 @@ using System.Linq;
 
 public partial class Menu : Control
 {
+	[Signal]
+	public delegate void ChangeEventHandler();
+
+	[Signal]
+	public delegate void AcceptEventHandler();
+
 	private enum StateVisible
 	{
 		NONE,
@@ -40,7 +46,10 @@ public partial class Menu : Control
 
     public override void _Ready()
     {
-		menuButtons.InventoryButton.Trigger += () => ChangeState(StateVisible.INVENTORY);
+		menuButtons.InventoryButton.Trigger += () => {
+			ChangeState(StateVisible.INVENTORY);
+			EmitSignal(SignalName.Accept);
+		};
     }
 
     public override void _Input(InputEvent @event)
@@ -51,11 +60,13 @@ public partial class Menu : Control
 		{
 			menuButtons.Buttons[selectedIndex].Unselect();
 			menuButtons.Buttons[GetNormalizedIndex(1)].Select();
+			EmitSignal(SignalName.Change);
 		}
 		if (@event.IsActionPressed("ui_up"))
 		{
 			menuButtons.Buttons[selectedIndex].Unselect();
 			menuButtons.Buttons[GetNormalizedIndex(-1)].Select();
+			EmitSignal(SignalName.Change);
 		}
     }
 

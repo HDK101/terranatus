@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dl846yym7cxui"]
+
+[ext_resource type="AudioStream" uid="uid://cpq2856iwyk5u" path="res://Sounds/Attack/punch.wav" id="1_mh4el"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_mh4el")

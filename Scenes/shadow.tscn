@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ceu007sximkdo"]
+
+[ext_resource type="Script" uid="uid://ds5lbhl7g15my" path="res://Source/Shadow.cs" id="1_wjdoq"]
+
+[node name="Shadow" type="Sprite2D" unique_id=1584157044]
+position = Vector2(1, 0)
+script = ExtResource("1_wjdoq")

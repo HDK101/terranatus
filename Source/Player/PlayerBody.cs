@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Godot;
 
-public partial class PlayerBody
+public partial class PlayerBody: RefCounted
 {
     public enum ItemType
     {
@@ -10,6 +11,13 @@ public partial class PlayerBody
     }
 
     private readonly Dictionary<ItemType, Slot> equipped = [];
+
+    public PlayerBody()
+    {
+        equipped[ItemType.WEAPON] = new Slot();
+        equipped[ItemType.ARMOR] = new Slot();
+        equipped[ItemType.RING] = new Slot();
+    }
 
     public void Equip(ItemType slot, ItemBlueprint blueprint)
     {

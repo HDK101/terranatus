@@ -24,7 +24,7 @@ public partial class Combo : Control
 		}
 		currentNumber += 1;
 		comboNumbers.Text = currentNumber.ToString();
-		timeout.Start(2.0);
+		timeout.Start(5.0);
 	}
 
 	public void OnTimeout()
@@ -32,6 +32,7 @@ public partial class Combo : Control
 		var tween = CreateDefaultTween();
 		tween.TweenProperty(this, "position:x", -64.0f, 0.5f);
 		currentNumber = 0;
+		active = false;
 	}
 
 	public override void _Ready()

@@ -52,9 +52,15 @@ public partial class Slime : Enemy
 		{
 			stunned = false;
 		};
+
+		EntitySoundPlayer.PlayHurt();
+
+		var tween = CreateDefaultTween();
+		Scale = new(0.9f, 0.7f);
+		tween.TweenProperty(this, "scale", Vector2.One, 0.5f);
 	}
 
-	public override void _Ready()
+	public override void Start()
 	{
 		ItemDB itemDB = GetNode<ItemDB>("/root/ItemDB");
 		apple = itemDB.Retrieve("APPLE");
@@ -78,7 +84,7 @@ public partial class Slime : Enemy
 		moveTimer.Timeout += RandomlyJump;
 		moveTimer.Start(3.0);
 
-		EXPReward = 5;
+		EXPReward = 5000;
 	}
 
 	public override List<ItemBlueprint> ToDropItems()
@@ -119,7 +125,9 @@ public partial class Slime : Enemy
 	{
 		if (state == State.ATTACK) return;
 
-		GD.Print("Jump!");
+		var tween = CreateDefaultTween();
+		Scale = new(0.8f, 1.2f);
+		tween.TweenProperty(this, "scale", Vector2.One, 0.5f);
 
 		float selectedDirection = randomNumberGenerator.RandfRange(-128.0f, 128.0f);
 
@@ -141,10 +149,11 @@ public partial class Slime : Enemy
 			Player.Hit(new HitPayload()
 			{
 				Damage = 1,
-				Attack = HitPayload.AttackType.PUNCH,
+				Attack = AttackType.PUNCH,
 				Position = Player.Position,
 				Force = new(isRight ? 8f : -8f, 0.0f),
 			});
+			EntitySoundPlayer.PlayAttackSound(AttackType.PUNCH);
 		}
 		state = State.IDLE;
 	}

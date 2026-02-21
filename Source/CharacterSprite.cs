@@ -18,4 +18,13 @@ public partial class CharacterSprite : AnimatedSprite2D
 
 		damageWeight = MathF.Max(0.0f, damageWeight - (float)delta);
 	}
+
+	public Texture2D GetFrameTexture()
+	{
+		var frames = SpriteFrames;
+		string animation = Animation;
+		int frame = Frame;
+
+		return frames.GetFrameTexture(animation, frame);
+	}
 }

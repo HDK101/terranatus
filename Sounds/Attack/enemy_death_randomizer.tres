@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dw0nnt2n8plta"]
+
+[ext_resource type="AudioStream" uid="uid://bcveqvarwkx70" path="res://Sounds/Attack/enemy_death.wav" id="1_n7736"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_n7736")

@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://siuaw5p7brea"
+path="res://.godot/imported/boxy_bold_font_4_0.png-07e2e47e651e0b5cd281f58475d7501e.fontdata"
+
+[deps]
+
+source_file="res://Fonts/boxy_bold_font_4_0.png"
+dest_files=["res://.godot/imported/boxy_bold_font_4_0.png-07e2e47e651e0b5cd281f58475d7501e.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("32-112")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=8
+image_margin=Rect2i(1, 1, 1, 1)
+character_margin=Rect2i(1, 1, 1, 1)
+ascent=0
+descent=0
+fallbacks=[]
+compress=false
+scaling_mode=2

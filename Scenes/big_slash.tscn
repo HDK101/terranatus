@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c24v3vkecmlaw"]
+
+[ext_resource type="Texture2D" uid="uid://cjkv52roixxps" path="res://Sprites/big_slash1.png" id="1_s4ebn"]
+[ext_resource type="Texture2D" uid="uid://bj3h4a2ns3oyl" path="res://Sprites/big_slash2.png" id="2_wvd23"]
+[ext_resource type="Texture2D" uid="uid://msjhds6vfrj0" path="res://Sprites/big_slash3.png" id="3_1ms2j"]
+[ext_resource type="Script" uid="uid://d38a526v0vwu4" path="res://Source/BigSlash.cs" id="4_wvd23"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rcdsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s4ebn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wvd23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1ms2j")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="BigSlash" type="AnimatedSprite2D" unique_id=707926863]
+sprite_frames = SubResource("SpriteFrames_rcdsp")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+flip_v = true
+script = ExtResource("4_wvd23")

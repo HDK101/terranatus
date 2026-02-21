@@ -43,10 +43,12 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 40.0
+"speed": 20.0
 }]
 
 [node name="Slash" type="AnimatedSprite2D" unique_id=972702167]
+process_mode = 3
+position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_wck7e")
 autoplay = "default"
 frame = 4

@@ -3,13 +3,11 @@ using Godot;
 
 public partial class ItemNotification : TextureRect
 {
-	private AnimationPlayer animationPlayer;
 	private Label quantityLabel;
 	private TextureRect itemRect;
 
 	public override void _Ready()
 	{
-		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		quantityLabel = GetNode<Label>("HBoxContainer/Label");
 		itemRect = GetNode<TextureRect>("HBoxContainer/TextureRect");
 	}
@@ -19,12 +17,22 @@ public partial class ItemNotification : TextureRect
 		Show();
 		quantityLabel.Text = $"{quantity} x ";
 		itemRect.Texture = item.Texture;
-		animationPlayer.Play("slide_in");
+		var tween = CreateDefaultTween();
+
+		tween.TweenProperty(this, "position:x", Position.X - Size.X, 0.5f);
 
 		GetTree().CreateTimer(3.0).Timeout += () =>
 		{
-			animationPlayer.Play("slide_out");
+			var tween = CreateDefaultTween();
+			tween.TweenProperty(this, "position:x", Position.X + Size.X, 0.5f);
 		};
+	}
+
+	private Tween CreateDefaultTween()
+	{
+		var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
+		tween.SetPauseMode(Tween.TweenPauseMode.Process);
+		return tween;
 	}
 }
 

@@ -2,44 +2,45 @@
 
 [ext_resource type="Script" uid="uid://b1f4jlna3w417" path="res://Source/Slime.cs" id="1_swwnm"]
 [ext_resource type="Texture2D" uid="uid://dfw8hmq2i4g5o" path="res://Sprites/slime_idle_sheet.png" id="2_aiwxb"]
+[ext_resource type="Script" uid="uid://b5rwe25xq1ndg" path="res://Source/EntitySoundPlayer.cs" id="3_aiwxb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fron"]
-size = Vector2(14, 13)
+size = Vector2(16, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dwcc8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiwxb"]
 atlas = ExtResource("2_aiwxb")
-region = Rect2(0, 0, 16, 12)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yem81"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_paq7w"]
 atlas = ExtResource("2_aiwxb")
-region = Rect2(16, 0, 16, 12)
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_stnn5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4si1"]
 atlas = ExtResource("2_aiwxb")
-region = Rect2(32, 0, 16, 12)
+region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3hbvq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gljc"]
 atlas = ExtResource("2_aiwxb")
-region = Rect2(48, 0, 16, 12)
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5efe1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dwcc8")
+"texture": SubResource("AtlasTexture_aiwxb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yem81")
+"texture": SubResource("AtlasTexture_paq7w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_stnn5")
+"texture": SubResource("AtlasTexture_f4si1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3hbvq")
+"texture": SubResource("AtlasTexture_5gljc")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 15.0
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_swwnm"]
@@ -168,14 +169,14 @@ script = ExtResource("1_swwnm")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=641505049]
-position = Vector2(0, -0.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_2fron")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1422297269]
 sprite_frames = SubResource("SpriteFrames_5efe1")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.9554322
+frame_progress = 0.9200789
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=463164616]
 libraries/ = SubResource("AnimationLibrary_f4si1")
@@ -185,3 +186,7 @@ one_shot = true
 
 [node name="MoveTimer" type="Timer" parent="." unique_id=2017002330]
 autostart = true
+
+[node name="EntitySoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=114521759]
+bus = &"SFX"
+script = ExtResource("3_aiwxb")
