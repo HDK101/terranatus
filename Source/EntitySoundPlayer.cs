@@ -32,4 +32,14 @@ public partial class EntitySoundPlayer : MultipleAudioPlayer2D
     {
         PlayStream(soundDB.HurtRandomizer);
     }
+
+    public void PlayFireRelease()
+    {
+        PlayStream(soundDB.FireReleaseRandomizer);
+    }
+
+    public void PlayPickEXP()
+    {
+        PlayStream(soundDB.PickEXPRandomizer);
+    }
 }

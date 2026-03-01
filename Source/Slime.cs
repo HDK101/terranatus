@@ -75,16 +75,13 @@ public partial class Slime : Enemy
 		bodyForce = new();
 		AddChild(bodyForce);
 
-		Life.Death += () =>
-		{
-			QueueFree();
-		};
-
 		attackTimer.Timeout += Attack;
 		moveTimer.Timeout += RandomlyJump;
 		moveTimer.Start(3.0);
 
-		EXPReward = 5000;
+		EXPReward = 870;
+
+		lifeBar.Position = new (0f, -8f);
 	}
 
 	public override List<ItemBlueprint> ToDropItems()

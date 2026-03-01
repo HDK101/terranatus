@@ -32,14 +32,20 @@ public partial class DialogBox : Control
 
 	public PropertyTweener ShowUI()
 	{
-		var tween = CreateDefaultTween();
+		var tween = CreateDefaultTween().SetParallel();
+
+		portraitRect.Position = new(-160f, -30.0f);
+		portraitRect.Modulate = new(Modulate, 0f);
 
 		return tween.TweenProperty(this, "position:y", 172.0f, 0.5f);
 	}
 
 	public PropertyTweener HideUI()
 	{
-		var tween = CreateDefaultTween();
+		var tween = CreateDefaultTween().SetParallel();
+
+		tween.TweenProperty(portraitRect, "position", new Vector2(-127.0f, -30f), 0.75f);
+		tween.TweenProperty(portraitRect, "modulate:a", 0.0f, 0.5f);
 
 		return tween.TweenProperty(this, "position:y", 252.0f, 0.5f);
 	}
@@ -73,6 +79,9 @@ public partial class DialogBox : Control
 		currentMessage = "";
 		dialogText.Text = "";
 		messageIndex = 0;
+		var tween = CreateDefaultTween().SetParallel();
+		tween.TweenProperty(portraitRect, "position", new Vector2(0f, -30f), 0.75f);
+		tween.TweenProperty(portraitRect, "modulate:a", 1.0f, 0.75f);
 		portraitRect.Texture = content.Portrait;
 		messageTarget = content.Message;
 		isPlaying = true;

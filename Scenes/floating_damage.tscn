@@ -1,25 +1,6 @@
 [gd_scene format=3 uid="uid://bgxdtvyfynhwn"]
 
-[ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="1_l57jn"]
-[ext_resource type="Script" uid="uid://bypntn16jl3iv" path="res://Source/FloatingTextEffect.cs" id="2_l57jn"]
 [ext_resource type="Script" uid="uid://bs5lmsjh0worc" path="res://Source/FloatingNumber.cs" id="2_rdonn"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_da8pb"]
-script = ExtResource("2_l57jn")
-metadata/_custom_type_script = "uid://bypntn16jl3iv"
-
-[node name="FloatingNumber" type="RichTextLabel" unique_id=1649751328]
-offset_left = 1.0
-offset_right = 35.0
-offset_bottom = 13.0
-theme_override_constants/outline_size = 0
-theme_override_fonts/normal_font = ExtResource("1_l57jn")
-theme_override_font_sizes/normal_font_size = 8
-bbcode_enabled = true
-text = "[floating]5EXP[/floating]"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_da8pb")]
+[node name="FloatingNumber" type="Node2D" unique_id=1003251883]
 script = ExtResource("2_rdonn")

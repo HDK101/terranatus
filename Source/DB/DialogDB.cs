@@ -16,7 +16,7 @@ public partial class DialogDB: Node
 
     public override void _Ready()
     {
-        portraits.Add("TAMARA_NAKED_DEFAULT", GD.Load<Texture2D>("res://Sprites/UI/portrait.png"));
+        portraits.Add("AEMILIA_NAKED_DEFAULT", GD.Load<Texture2D>("res://Sprites/Portrait/aemilia_34_view_portrait.png"));
 
         LoadContents();
         LoadTrees();

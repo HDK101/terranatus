@@ -20,8 +20,9 @@ public partial class FloatingNumbers : CanvasLayer
 	public void CreateEXP(Vector2 position, double value)
 	{
 		var instance = floatingNumberPacked.Instantiate<FloatingNumber>();
+		instance.IsEXP = true;
 		instance.Position = position + Vector2.Up * 32f;
-		instance.Start(value + "EXP");
+		instance.Start(value.ToString());
 		AddChild(instance);
 	}
 }

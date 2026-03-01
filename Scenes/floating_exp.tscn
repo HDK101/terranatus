@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://cr1egl61mjhx2"]
 
-[ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="1_api4i"]
+[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="1_wf73s"]
 [ext_resource type="Script" uid="uid://bs5lmsjh0worc" path="res://Source/FloatingNumber.cs" id="3_xydjk"]
 
 [node name="FloatingNumber" type="RichTextLabel" unique_id=1649751328]
-offset_right = 35.0
-offset_bottom = 5.0
+offset_right = 126.0
+offset_bottom = 53.0
 theme_override_constants/outline_size = 4
-theme_override_fonts/normal_font = ExtResource("1_api4i")
+theme_override_fonts/normal_font = ExtResource("1_wf73s")
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "[wave amp=50.0 freq=2.0 connected=1][colorfadein]+100EXP[/colorfadein][/wave]"
+text = "[wave amp=50.0 freq=2.0 connected=1]10000000000EXP[/wave]"
+fit_content = true
 scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_xydjk")

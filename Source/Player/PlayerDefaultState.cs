@@ -31,7 +31,8 @@ public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
 
             if (Input.IsActionJustPressed("jump") && player.IsOnFloor())
             {
-                velocity.Y = Player.JumpVelocity;
+                var jumpVelocity = player.Jump();
+                velocity.Y = jumpVelocity;
             }
 
             player.Direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
@@ -73,13 +74,16 @@ public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
 
             player.ProcessState();
             player.ProcessAttack();
+            player.PlayAnimation();
 
-            if (Input.IsActionJustPressed("skill_one") && player.IsOnFloor())
+            if (Input.IsActionJustPressed("skill_one") && player.IsOnFloor() && player.CurrentState != Player.State.ATTACKING)
             {
-                nextState = new PlayerForwardSlash(playerRef)
-                {
-                    InitialDirection = player.LastDirectionHorizontal,
-                };
+                player.Skills.ForwardSlash.Cast(new());
+            }
+
+            if (Input.IsActionJustPressed("skill_two") && player.CurrentState != Player.State.ATTACKING)
+            {
+                player.Skills.Fireball.Cast(new());
             }
         }
     }

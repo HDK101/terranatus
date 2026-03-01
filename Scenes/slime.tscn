@@ -160,7 +160,7 @@ _data = {
 &"attack_right": SubResource("Animation_paq7w")
 }
 
-[node name="Slime" type="CharacterBody2D" unique_id=931501517]
+[node name="Slime" type="CharacterBody2D" unique_id=931501517 groups=["ENEMY"]]
 collision_layer = 2
 collision_mask = 10
 slide_on_ceiling = false

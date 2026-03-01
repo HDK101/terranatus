@@ -8,8 +8,10 @@ public partial class Player : CharacterBody2D
 	{
 		IDLE,
 		MOVING,
-        ATTACKING,
-    }
+		JUMPING,
+		FALLING,
+		ATTACKING,
+	}
 
 	[Signal]
 	public delegate void SuccessfulHitEventHandler();
@@ -26,17 +28,19 @@ public partial class Player : CharacterBody2D
 	public bool ShadowsActive { get; set; } = false;
 
 	public Life Life { get; init; } = new(5.0);
+	public Mana Mana { get; init; } = new(5);
 	public Inventory Inventory { get; } = new();
 	public Experience Experience { get; } = new();
 	public PlayerBody Body => _body;
 	public Vector2 Direction { get; set; }
-    public State CurrentState { get => currentState; set => currentState = value; }
-    public CharacterSprite AnimatedSprite { get; private set; }
-    public Area2D HitArea { get => hitArea; }
-    public Area2D ForwardSlashArea { get => forwardSlashArea; }
-    public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
+	public State CurrentState { get => currentState; set => currentState = value; }
+	public CharacterSprite AnimatedSprite { get; private set; }
+	public Area2D HitArea { get => hitArea; }
+	public Area2D ForwardSlashArea { get => forwardSlashArea; }
+	public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
+	public Skills Skills => _skills;
 
-    public const float Speed = 100.0f;
+	public const float Speed = 100.0f;
 	public const float JumpVelocity = -175.0f;
 
 	private readonly PlayerBody _body = new();
@@ -63,18 +67,25 @@ public partial class Player : CharacterBody2D
 
 	private PackedScene bigSlashPacked;
 	private PackedScene shadowPacked;
+	private PackedScene jumpFallParticlesPacked;
+
+	private PackedSceneDB packedSceneDB;
 
 	private readonly string[] attackAnimations = [
-		"naked_attack_sword1",
-		"naked_attack_sword2"
+		"aemilia_naked_attack_sword1",
+		"aemilia_naked_attack_sword1"
 	];
 
 	private int attackAnimationIndex = 0;
 
+	private Skills _skills;
+
 	public override void _Ready()
 	{
+		packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
 		bigSlashPacked = GD.Load<PackedScene>("res://Scenes/big_slash.tscn");
 		shadowPacked = GD.Load<PackedScene>("res://Scenes/shadow.tscn");
+		jumpFallParticlesPacked = GD.Load<PackedScene>("res://Scenes/fall_particles.tscn");
 
 		ItemDB itemDB = GetNode<ItemDB>("/root/ItemDB");
 		ItemBlueprint apple = itemDB.Retrieve("APPLE");
@@ -120,31 +131,41 @@ public partial class Player : CharacterBody2D
 
 		Life.Death += OnDeath;
 
-		stateManager = new ();
+		stateManager = new();
 		AddChild(stateManager);
-		stateManager.ChangeState(new PlayerDefaultState(new (this)));
+		stateManager.ChangeState(new PlayerDefaultState(new(this)));
 
 		AnimatedSprite.AnimationChanged += () =>
 		{
 			AnimatedSprite.Offset = new(0, 0);
 			if (IsAttackAnimation())
 			{
-				AnimatedSprite.Offset = new(LastDirectionHorizontal * 2f, -5f);
+				AnimatedSprite.Offset = new(LastDirectionHorizontal * 2f, 0f);
 			}
 		};
 
 		AddChild(shadowTimer);
 		shadowTimer.Start(0.05);
 		shadowTimer.Timeout += CreateShadow;
+
+		_skills = new(new(this))
+		{
+			HasMana = Mana.Has,
+			UseMana = Mana.Use,
+		};
+
+		_skills.Start();
+
+		Experience.Change += entitySoundPlayer.PlayPickEXP;
 	}
 
 	public void Hit(HitPayload hitPayload)
-    {
-        Life.Hit(hitPayload.Damage);
+	{
+		Life.Hit(hitPayload.Damage);
 		AnimatedSprite.Hit();
 		camera.Hit(hitPayload.Force.X);
 		EmitSignal(SignalName.Damaged, hitPayload);
-    }
+	}
 
 	public void ProcessAttack()
 	{
@@ -154,11 +175,6 @@ public partial class Player : CharacterBody2D
 			{
 				PlayDefaultAttackAnimation();
 				CurrentState = State.ATTACKING;
-
-				// var swordSlashPacked = GD.Load<PackedScene>("res://Scenes/sword_slash.tscn");
-				// var swordSlashInstance = swordSlashPacked.Instantiate<SwordSlash>();
-				// AddChild(swordSlashInstance);
-				// swordSlashInstance.Position = new(4.0f, 0.0f);
 			}
 		}
 	}
@@ -182,6 +198,17 @@ public partial class Player : CharacterBody2D
 			return;
 		}
 
+		if (Velocity.Y > 0 && !IsOnFloor())
+		{
+			CurrentState = State.FALLING;
+			return;
+		}
+		else if (Velocity.Y < 0 && !IsOnFloor())
+		{
+			CurrentState = State.JUMPING;
+			return;
+		}
+
 		if (Direction.X != 0.0)
 		{
 			CurrentState = State.MOVING;
@@ -189,15 +216,6 @@ public partial class Player : CharacterBody2D
 		else
 		{
 			CurrentState = State.IDLE;
-		}
-
-		if (CurrentState == State.IDLE)
-		{
-			AnimatedSprite.Play("naked_idle");
-		}
-		else if (CurrentState == State.MOVING)
-		{
-			AnimatedSprite.Play("naked_walk");
 		}
 	}
 
@@ -207,9 +225,94 @@ public partial class Player : CharacterBody2D
 		shadowInstance.Offset = AnimatedSprite.Offset;
 		shadowInstance.Position = Position;
 		shadowInstance.FlipH = Flipped();
-		shadowInstance.InitialColor = new(1.0f, 0.0f, 0.0f, 0.2f);
+		shadowInstance.InitialColor = new(1.0f, 0.7f, 1.0f, 0.4f);
 		shadowInstance.Texture = AnimatedSprite.GetFrameTexture();
 		GetTree().CurrentScene.CallDeferred("add_child", shadowInstance);
+	}
+
+	public void PlayAnimation()
+	{
+		if (CurrentState == State.IDLE)
+		{
+			AnimatedSprite.Play("aemilia_naked_idle");
+		}
+		else if (CurrentState == State.MOVING)
+		{
+			AnimatedSprite.Play("aemilia_naked_walk");
+		}
+		else if (CurrentState == State.JUMPING)
+		{
+			AnimatedSprite.Play("aemilia_naked_jump");
+		}
+		else if (CurrentState == State.FALLING)
+		{
+			AnimatedSprite.Play("aemilia_naked_fall");
+		}
+	}
+
+	public void StartForwardSlash()
+	{
+		stateManager.ChangeState(new PlayerForwardSlash(new(this))
+		{
+			InitialDirection = LastDirectionHorizontal,
+		});
+	}
+
+	public void ForwardSlashAttack()
+	{
+		var bodies = forwardSlashArea.GetOverlappingBodies();
+
+		bool successfulHit = false;
+		foreach (var body in bodies)
+		{
+			if (body is IHittable lifeHolder)
+			{
+				HitPayload hitPayload = new()
+				{
+					Damage = 10.0,
+					Force = new(LastDirectionHorizontal * 128.0f, -128.0f),
+					Position = body.Position,
+					Attack = AttackType.SLASH,
+				};
+				lifeHolder.Hit(hitPayload);
+				EmitSignal(SignalName.Attacked, hitPayload);
+				successfulHit = true;
+			}
+		}
+		if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
+
+		var bigSlashInstance = bigSlashPacked.Instantiate<AnimatedSprite2D>();
+		AddChild(bigSlashInstance);
+		bigSlashInstance.FlipH = Flipped();
+
+		bigSlashInstance.Position = new(LastDirectionHorizontal * 10.0f, 0.0f);
+
+		entitySoundPlayer.PlayForwardSlash();
+	}
+
+	public void CastFireball()
+	{
+		var fireballInstance = packedSceneDB.Fireball.Instantiate<Fireball>();
+		fireballInstance.Position = Position;
+		fireballInstance.Direction = LastDirectionHorizontal;
+
+		entitySoundPlayer.PlayFireRelease();
+
+		GetTree().CurrentScene.CallDeferred("add_child", fireballInstance);
+	}
+
+	public float Jump()
+    {
+		CreateJumpFallParticles();
+		return JumpVelocity;
+    }
+
+	private void CreateJumpFallParticles()
+	{
+		var instance = jumpFallParticlesPacked.Instantiate<GpuParticles2D>();
+		instance.Position = Position + Vector2.Down * 8f;
+		instance.Restart();
+		GetTree().CurrentScene.CallDeferred("add_child", instance);
 	}
 
 	private double CalculateDamage()
@@ -226,7 +329,7 @@ public partial class Player : CharacterBody2D
 				damage += damageEntry.Value;
 			}
 		}
-		
+
 		return damage;
 	}
 
@@ -252,7 +355,7 @@ public partial class Player : CharacterBody2D
 		{
 			if (body is IHittable lifeHolder)
 			{
-				HitPayload hitPayload = new ()
+				HitPayload hitPayload = new()
 				{
 					Damage = damage,
 					Force = new(LastDirectionHorizontal * 64.0f, -64.0f),
@@ -265,38 +368,6 @@ public partial class Player : CharacterBody2D
 			}
 		}
 		if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
-	}
-
-	public void ForwardSlashAttack()
-	{
-		var bodies = forwardSlashArea.GetOverlappingBodies();
-
-		bool successfulHit = false;
-		foreach (var body in bodies)
-		{
-			if (body is IHittable lifeHolder)
-			{
-				HitPayload hitPayload = new ()
-				{
-					Damage = 10.0,
-					Force = new(LastDirectionHorizontal * 128.0f, -128.0f),
-					Position = body.Position,
-					Attack = AttackType.SLASH,
-				};
-				lifeHolder.Hit(hitPayload);
-				EmitSignal(SignalName.Attacked, hitPayload);
-				successfulHit = true;
-			}
-		}
-		if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
-
-		var bigSlashInstance = bigSlashPacked.Instantiate<AnimatedSprite2D>();
-		AddChild(bigSlashInstance);
-		bigSlashInstance.FlipH = Flipped();
-
-		bigSlashInstance.Position = new(LastDirectionHorizontal * 10.0f, 0.0f);
-
-		entitySoundPlayer.PlayForwardSlash();
 	}
 
 	private void OnDeath()

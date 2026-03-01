@@ -7,22 +7,32 @@
 [ext_resource type="Script" uid="uid://dkyq0bb1y6vck" path="res://Source/GameManager.cs" id="2_62am4"]
 [ext_resource type="Texture2D" uid="uid://vg4xq2wgbieu" path="res://Sprites/mana_bar.png" id="2_hrjpy"]
 [ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/in_game_theme.tres" id="3_ar8se"]
-[ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/GameHud.cs" id="3_iw0lp"]
+[ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/UI/GameHud.cs" id="3_iw0lp"]
+[ext_resource type="Texture2D" uid="uid://baiy21twajstl" path="res://Sprites/background_trees_front.png" id="4_55aq7"]
+[ext_resource type="Texture2D" uid="uid://ogs745gqa3kj" path="res://Sprites/background_trees_back.png" id="4_tbblf"]
+[ext_resource type="Texture2D" uid="uid://04fd3ym7m2vq" path="res://Sprites/background_grass_front.png" id="5_55aq7"]
 [ext_resource type="Texture2D" uid="uid://cshtj24vgk66k" path="res://Sprites/UI/portrait_hud.png" id="6_3hbvq"]
+[ext_resource type="Shader" uid="uid://w0anryoqcag6" path="res://Resources/Shaders/fog_shader.gdshader" id="6_55aq7"]
 [ext_resource type="PackedScene" uid="uid://d3lmp7rtr5guf" path="res://Scenes/item_notification.tscn" id="6_ar8se"]
 [ext_resource type="Texture2D" uid="uid://b5i4lkri2qe7h" path="res://Sprites/bar_frame_up.png" id="7_5efe1"]
 [ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
+[ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="7_rcdsp"]
 [ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
 [ext_resource type="PackedScene" uid="uid://dal8t7ouu018h" path="res://Scenes/UI/black_bars.tscn" id="10_vm46j"]
 [ext_resource type="Script" uid="uid://dw2unj3p5t6md" path="res://Source/UI/MenuButtons.cs" id="13_yem81"]
 [ext_resource type="Script" uid="uid://bnl01th6phnfe" path="res://Source/UI/Menu.cs" id="14_q3vwd"]
+[ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="14_ygyvt"]
 [ext_resource type="PackedScene" uid="uid://b6quvi77ho5h4" path="res://Scenes/inventory_button.tscn" id="15_3hbvq"]
+[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_4n6jn"]
 [ext_resource type="Texture2D" uid="uid://8mjok5gga1mq" path="res://Sprites/base_ui.png" id="15_sclw5"]
+[ext_resource type="Texture2D" uid="uid://do80vbu5ovyae" path="res://Sprites/UI/exp_bar_progress.png" id="15_ygyvt"]
+[ext_resource type="Texture2D" uid="uid://7wd4tt2ehua8" path="res://Sprites/UI/exp_bar_frame.png" id="16_7ae67"]
 [ext_resource type="FontFile" uid="uid://cd55prohd0132" path="res://Fonts/16bfZX.ttf" id="16_773fv"]
 [ext_resource type="Texture2D" uid="uid://dpq7ly68wlrfb" path="res://Sprites/UI/level_up_base.png" id="16_gxotq"]
 [ext_resource type="PackedScene" uid="uid://c3mbg1oouw2js" path="res://Scenes/slime.tscn" id="17_1kmfr"]
 [ext_resource type="Script" uid="uid://pboj5bclte7h" path="res://Source/UI/LevelUpNotification.cs" id="17_4n6jn"]
 [ext_resource type="Texture2D" uid="uid://x8h2k1ox1ini" path="res://Sprites/UI/mini_bars.png" id="17_x3573"]
+[ext_resource type="Script" uid="uid://dc1yliuj7jpnb" path="res://Source/UI/EXPBar.cs" id="18_7ae67"]
 [ext_resource type="Texture2D" uid="uid://d3u4qi6yfwtq0" path="res://Sprites/UI/mini_health_bar.png" id="18_goep2"]
 [ext_resource type="Texture2D" uid="uid://525xvt4e6whq" path="res://Sprites/UI/portrait_menu.png" id="19_3hbvq"]
 [ext_resource type="Texture2D" uid="uid://b56e7t2slxxwy" path="res://Sprites/UI/mini_mana_bar.png" id="19_dwcc8"]
@@ -37,14 +47,20 @@
 [ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
 [ext_resource type="FontFile" uid="uid://db2kmm7kc5wsv" path="res://Fonts/Abaddon Light.ttf" id="32_ma7yk"]
 [ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/DialogBox.cs" id="33_7jpoy"]
-[ext_resource type="Texture2D" uid="uid://dmxgppkrigwhc" path="res://Sprites/UI/portrait.png" id="33_cxc3n"]
-[ext_resource type="FontFile" uid="uid://b8mn3fwcoueg4" path="res://Fonts/Abaddon Bold.ttf" id="34_7jpoy"]
 [ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
 [ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="37_f3vpf"]
 [ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="37_sphie"]
 [ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="39_ygyvt"]
-[ext_resource type="Script" uid="uid://cv44117x3ot7r" path="res://Source/GameHudAudioPlayer.cs" id="42_d1rw2"]
+[ext_resource type="Script" uid="uid://cv44117x3ot7r" path="res://Source/UI/GameHudAudioPlayer.cs" id="42_d1rw2"]
 [ext_resource type="PackedScene" uid="uid://b2euac84uhc1i" path="res://Scenes/player.tscn" id="43_sphie"]
+[ext_resource type="Texture2D" uid="uid://dd4efw6iiqk78" path="res://Sprites/Portrait/aemilia_34_view_portrait.png" id="45_ygyvt"]
+[ext_resource type="Texture2D" uid="uid://crnb3n40wynsq" path="res://Sprites/forest_background.png" id="46_7jpoy"]
+[ext_resource type="FontFile" uid="uid://dqh623r5j7kns" path="res://Fonts/Seraphimb1.ttf" id="46_hwnf3"]
+[ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="54_hs3dq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwnf3"]
+font = ExtResource("15_4n6jn")
+font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxotq"]
 font_size = 8
@@ -68,15 +84,79 @@ font = ExtResource("32_ma7yk")
 font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1rw2"]
-font = ExtResource("34_7jpoy")
-font_size = 12
+font = ExtResource("46_hwnf3")
 
-[node name="InGame" type="Node2D" unique_id=959927448 node_paths=PackedStringArray("player", "floatingNumbers", "enemies", "gameHud")]
+[sub_resource type="Gradient" id="Gradient_7ae67"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.64705884, 0.84313726, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.65882355, 1, 1, 1, 0.45490196, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ukyrk"]
+gradient = SubResource("Gradient_7ae67")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rcdsp"]
+frequency = 0.0076
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7sovq"]
+width = 320
+height = 240
+noise = SubResource("FastNoiseLite_rcdsp")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcdsp"]
+shader = ExtResource("6_55aq7")
+shader_parameter/fog_texture = SubResource("NoiseTexture2D_7sovq")
+
+[node name="InGame" type="Node2D" unique_id=959927448 node_paths=PackedStringArray("targetScene", "player", "floatingNumbers", "enemies", "gameHud")]
 script = ExtResource("1_8udo0")
+targetScene = NodePath(".")
 player = NodePath("Entities/Player")
 floatingNumbers = NodePath("FloatingNumbers")
 enemies = [NodePath("Entities/Slime")]
 gameHud = NodePath("GameHUD")
+
+[node name="BackgroundDeep" type="Parallax2D" parent="." unique_id=1102784234]
+modulate = Color(0.49, 0.49, 0.49, 1)
+scroll_scale = Vector2(0.1, 0)
+scroll_offset = Vector2(-320, 0)
+repeat_size = Vector2(320, 240)
+repeat_times = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundDeep" unique_id=2051838500]
+position = Vector2(160, 120)
+texture = ExtResource("46_7jpoy")
+
+[node name="BackgroundTreesBack" type="Parallax2D" parent="." unique_id=1152696650]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(320, 240)
+repeat_times = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundTreesBack" unique_id=487270316]
+position = Vector2(160, 120)
+texture = ExtResource("4_tbblf")
+
+[node name="BackgroundTreesFront" type="Parallax2D" parent="." unique_id=590971373]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(320, 240)
+repeat_times = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundTreesFront" unique_id=1687341184]
+position = Vector2(160, 120)
+texture = ExtResource("4_55aq7")
+
+[node name="BackgroundGrassFront" type="Parallax2D" parent="." unique_id=449900396]
+scroll_scale = Vector2(0.6, 0)
+repeat_size = Vector2(320, 240)
+repeat_times = 25
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundGrassFront" unique_id=823200137]
+position = Vector2(160, 120)
+texture = ExtResource("5_55aq7")
 
 [node name="GameManager" type="Node" parent="." unique_id=500470528 node_paths=PackedStringArray("entities", "gameHud")]
 process_mode = 3
@@ -120,12 +200,20 @@ texture = ExtResource("6_3hbvq")
 layout_mode = 1
 offset_left = 34.0
 offset_top = 14.0
-offset_right = 162.0
-offset_bottom = 26.0
+offset_right = 151.0
+offset_bottom = 21.0
 value = 100.0
 texture_over = ExtResource("7_5efe1")
 texture_progress = ExtResource("1_r382v")
 script = ExtResource("7_biwig")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/HealthBar" unique_id=620297076]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -10.0
+offset_right = 73.0
+text = "10/10"
+label_settings = SubResource("LabelSettings_hwnf3")
 
 [node name="ManaBar" type="TextureProgressBar" parent="GameHUD/MainUI" unique_id=1107492866]
 layout_mode = 1
@@ -136,6 +224,35 @@ offset_bottom = 33.0
 value = 100.0
 texture_over = ExtResource("10_q3vwd")
 texture_progress = ExtResource("2_hrjpy")
+script = ExtResource("14_ygyvt")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/ManaBar" unique_id=1277931544]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 73.0
+offset_bottom = 17.0
+text = "10/10"
+label_settings = SubResource("LabelSettings_hwnf3")
+
+[node name="EXPBar" type="TextureProgressBar" parent="GameHUD/MainUI" unique_id=126159202]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 51.0
+offset_right = 147.0
+offset_bottom = 56.0
+value = 50.0
+texture_over = ExtResource("16_7ae67")
+texture_progress = ExtResource("15_ygyvt")
+script = ExtResource("18_7ae67")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/EXPBar" unique_id=1559745204]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -10.0
+offset_right = 75.0
+text = "EXP:123"
+label_settings = SubResource("LabelSettings_hwnf3")
 
 [node name="ItemNotification" parent="GameHUD/MainUI" unique_id=1671357759 instance=ExtResource("6_ar8se")]
 layout_mode = 1
@@ -631,14 +748,16 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
 offset_top = 12.0
+offset_right = 1.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_ar8se")
 script = ExtResource("33_7jpoy")
 dialogText = NodePath("ColorRect/RichTextLabel")
-portraitRect = NodePath("ColorRect/TextureRect")
+portraitRect = NodePath("PortraitRect")
 
 [node name="ColorRect" type="ColorRect" parent="GameHUD/DialogBox" unique_id=1217302484]
 custom_minimum_size = Vector2(0, 56)
@@ -651,51 +770,59 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.05490196, 0.02745098, 0.105882354, 1)
 
-[node name="TextureRect" type="TextureRect" parent="GameHUD/DialogBox/ColorRect" unique_id=413871165]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -52.0
-offset_right = 52.0
-offset_bottom = -4.0
-grow_vertical = 0
-texture = ExtResource("33_cxc3n")
-
 [node name="RichTextLabel" type="RichTextLabel" parent="GameHUD/DialogBox/ColorRect" unique_id=420923975]
 layout_mode = 0
-offset_left = 57.0
+offset_left = 126.0
 offset_top = 5.0
 offset_right = 315.0
 offset_bottom = 52.0
-theme_override_fonts/normal_font = ExtResource("32_ma7yk")
-theme_override_font_sizes/normal_font_size = 12
+theme_override_fonts/normal_font = ExtResource("46_hwnf3")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave]Well now[/wave], i don't know what militia you're from, but i advise you to back down, this is the dominion's armada in the name of..."
+scroll_active = false
+autowrap_mode = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/DialogBox" unique_id=543593805]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -85.0
 offset_top = -2.0
-offset_right = 74.0
 offset_bottom = 13.0
+grow_horizontal = 0
 texture = ExtResource("34_d1rw2")
 patch_margin_left = 4
 patch_margin_right = 18
 
 [node name="Label" type="Label" parent="GameHUD/DialogBox/NinePatchRect" unique_id=411433912]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -9.0
-offset_right = 50.0
-offset_bottom = 9.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = -15.0
+grow_horizontal = 2
 grow_vertical = 2
 text = "Tamara"
 label_settings = SubResource("LabelSettings_d1rw2")
-horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
+
+[node name="PortraitRect" type="TextureRect" parent="GameHUD/DialogBox" unique_id=1437408591]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -132.0
+offset_right = -21.0
+offset_bottom = 38.0
+grow_vertical = 0
+texture = ExtResource("45_ygyvt")
 
 [node name="GameHUDAudioPlayer" type="AudioStreamPlayer" parent="GameHUD" unique_id=1621495307]
 process_mode = 3
@@ -704,8 +831,20 @@ playback_type = 1
 script = ExtResource("42_d1rw2")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1607952946]
-tile_map_data = PackedByteArray("AAADAAgAAAAAAAEAAAADAAkAAAAAAAIAAAADAAoAAAAAAAIAAAADAAsAAAAAAAIAAAADAAwAAAAAAAIAAAADAA0AAAAAAAIAAAADAA4AAAAAAAMAAAAEAAgAAAABAAEAAAAEAAkAAAABAAIAAAAEAAoAAAABAAIAAAAEAAsAAAABAAIAAAAEAAwAAAABAAIAAAAEAA0AAAABAAIAAAAEAA4AAAABAAMAAAAFAAcAAAAAAAEAAAAFAAgAAAABAAIAAAAFAAkAAAABAAIAAAAFAAoAAAABAAIAAAAFAAsAAAABAAIAAAAFAAwAAAABAAIAAAAFAA0AAAABAAIAAAAFAA4AAAABAAMAAAAGAAcAAAABAAEAAAAGAAgAAAABAAIAAAAGAAkAAAABAAIAAAAGAAoAAAABAAIAAAAGAAsAAAABAAIAAAAGAAwAAAABAAIAAAAGAA0AAAABAAIAAAAGAA4AAAABAAMAAAAHAAcAAAABAAEAAAAHAAgAAAABAAIAAAAHAAkAAAABAAIAAAAHAAoAAAABAAIAAAAHAAsAAAABAAIAAAAHAAwAAAABAAIAAAAHAA0AAAABAAIAAAAHAA4AAAABAAMAAAAIAAgAAAABAAIAAAAIAAkAAAABAAIAAAAIAAoAAAABAAIAAAAIAAsAAAABAAIAAAAIAAwAAAABAAIAAAAIAA0AAAABAAIAAAAIAA4AAAABAAMAAAAJAAgAAAABAAIAAAAJAAkAAAABAAIAAAAJAAoAAAABAAIAAAAJAAsAAAABAAIAAAAJAAwAAAABAAIAAAAJAA0AAAABAAIAAAAJAA4AAAABAAMAAAAKAAgAAAABAAIAAAAKAAkAAAABAAIAAAAKAAoAAAABAAIAAAAKAAsAAAABAAIAAAAKAAwAAAABAAIAAAAKAA0AAAABAAIAAAAKAA4AAAABAAMAAAALAAsAAAABAAIAAAALAAwAAAABAAIAAAALAA0AAAABAAIAAAALAA4AAAABAAMAAAAMAAsAAAABAAIAAAAMAAwAAAABAAIAAAAMAA0AAAABAAIAAAAMAA4AAAABAAMAAAANAAsAAAABAAIAAAANAAwAAAABAAIAAAANAA0AAAABAAIAAAANAA4AAAABAAMAAAAOAAsAAAABAAIAAAAOAAwAAAABAAIAAAAOAA0AAAABAAIAAAAOAA4AAAABAAMAAAAPAAsAAAABAAIAAAAPAAwAAAABAAIAAAAPAA0AAAABAAIAAAAPAA4AAAABAAMAAAAQAAwAAAABAAIAAAAQAA0AAAABAAIAAAARAAwAAAABAAIAAAARAA0AAAABAAIAAAAIAAcAAAABAAEAAAAJAAcAAAABAAEAAAAKAAcAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAIAAAALAAkAAAABAAIAAAALAAoAAAABAAIAAAAMAAgAAAABAAIAAAAMAAkAAAABAAIAAAAMAAoAAAABAAIAAAANAAgAAAABAAIAAAANAAkAAAABAAIAAAANAAoAAAABAAIAAAAOAAgAAAACAAIAAAAOAAkAAAABAAIAAAAOAAoAAAABAAIAAAAQAAsAAAABAAIAAAAQAA4AAAABAAMAAAARAAsAAAABAAEAAAARAA4AAAABAAMAAAASAAsAAAABAAEAAAASAAwAAAABAAIAAAASAA0AAAABAAIAAAASAA4AAAABAAMAAAATAAsAAAACAAEAAAATAAwAAAABAAIAAAATAA0AAAABAAIAAAATAA4AAAACAAMAAAAUAAwAAAABAAEAAAAUAA0AAAABAAMAAAAVAAwAAAACAAEAAAAVAA0AAAACAAMAAAAMAAcAAAABAAEAAAANAAcAAAABAAEAAAAOAAcAAAACAAEAAAAQAAoAAAACAAIAAAAQAAkAAAACAAEAAAAPAAoAAAABAAIAAAAPAAkAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAADAAgAAQADAAIAAAADAAkAAQABAAEAAAADAAoAAQABAAEAAAADAAsAAQABAAEAAAADAAwAAQABAAEAAAADAA0AAQABAAEAAAADAA4AAQABAAEAAAAEAAkAAQABAAEAAAAEAAoAAQABAAEAAAAEAAsAAQABAAEAAAAEAAwAAQABAAEAAAAEAA0AAQABAAEAAAAEAA4AAQABAAEAAAAFAAkAAQADAAIAAAAFAAoAAQABAAEAAAAFAAsAAQABAAEAAAAFAAwAAQABAAEAAAAFAA0AAQABAAEAAAAFAA4AAQABAAEAAAAGAAkAAQABAAAAAAAGAAoAAQABAAEAAAAGAAsAAQABAAEAAAAGAAwAAQABAAEAAAAGAA0AAQABAAEAAAAGAA4AAQABAAEAAAAHAAkAAQABAAAAAAAHAAoAAQABAAEAAAAHAAsAAQABAAEAAAAHAAwAAQABAAEAAAAHAA0AAQABAAEAAAAHAA4AAQABAAEAAAAIAAkAAQABAAAAAAAIAAoAAQABAAEAAAAIAAsAAQABAAEAAAAIAAwAAQABAAEAAAAIAA0AAQABAAEAAAAIAA4AAQABAAEAAAAJAAkAAQACAAAAAAAJAAoAAQADAAIAAAAJAAsAAQABAAEAAAAJAAwAAQABAAEAAAAJAA0AAQABAAEAAAAJAA4AAQABAAEAAAAKAAoAAQACAAAAAAAKAAsAAQACAAEAAAAKAAwAAQADAAIAAAAKAA0AAQABAAEAAAAKAA4AAQABAAEAAAALAAwAAQABAAAAAAALAA0AAQABAAEAAAALAA4AAQABAAEAAAAMAAwAAQABAAAAAAAMAA0AAQABAAEAAAAMAA4AAQABAAEAAAANAAwAAQABAAAAAAANAA0AAQABAAEAAAANAA4AAQABAAEAAAAOAAsAAQAAAAAAAAAOAAwAAQAEAAIAAAAOAA0AAQABAAEAAAAOAA4AAQABAAEAAAAPAAsAAQAEAAIAAAAPAAwAAQABAAEAAAAPAA0AAQABAAEAAAAPAA4AAQABAAEAAAAQAAwAAQABAAEAAAAQAA0AAQABAAEAAAARAAwAAQABAAEAAAARAA0AAQABAAEAAAAQAAsAAQABAAEAAAAQAA4AAQABAAEAAAARAAsAAQABAAEAAAARAA4AAQABAAEAAAASAAsAAQABAAEAAAASAAwAAQABAAEAAAASAA0AAQABAAEAAAASAA4AAQABAAEAAAATAAsAAQABAAEAAAATAAwAAQABAAEAAAATAA0AAQABAAEAAAATAA4AAQABAAEAAAAUAAwAAQABAAEAAAAUAA0AAQABAAEAAAAVAAwAAQABAAEAAAAVAA0AAQABAAEAAAAQAAoAAQABAAEAAAAQAAkAAQAEAAIAAAAVAA8AAQABAAIAAAAVAA4AAQABAAEAAAAVAAsAAQABAAEAAAAVAAoAAQABAAEAAAAVAAkAAQADAAIAAAAVAAgAAQACAAEAAAAVAAcAAQACAAAAAAAUAA8AAQABAAIAAAAUAA4AAQABAAEAAAAUAAsAAQABAAEAAAAUAAoAAQABAAEAAAAUAAkAAQABAAEAAAAUAAgAAQABAAEAAAAUAAcAAQABAAAAAAATAA8AAQABAAIAAAATAAoAAQABAAEAAAATAAkAAQABAAEAAAATAAgAAQABAAEAAAATAAcAAQABAAAAAAASAA8AAQABAAIAAAASAAoAAQABAAEAAAASAAkAAQABAAEAAAASAAgAAQAEAAIAAAASAAcAAQAAAAAAAAARAA8AAQABAAIAAAARAAoAAQABAAEAAAARAAkAAQABAAEAAAARAAgAAQABAAAAAAAQAA8AAQABAAIAAAAQAAgAAQAAAAAAAAAPAA8AAQABAAIAAAAOAA8AAQABAAIAAAANAA8AAQABAAIAAAAMAA8AAQABAAIAAAALAA8AAQABAAIAAAAKAA8AAQABAAIAAAAJAA8AAQABAAIAAAAIAA8AAQABAAIAAAAHAA8AAQABAAIAAAAGAA8AAQABAAIAAAAFAA8AAQABAAIAAAAEAA8AAQABAAIAAAADAA8AAQABAAIAAAADAAcAAQACAAAAAAACAA8AAQABAAIAAAACAA4AAQABAAEAAAACAA0AAQABAAEAAAACAAwAAQABAAEAAAACAAsAAQABAAEAAAACAAoAAQABAAEAAAACAAkAAQABAAEAAAACAAgAAQABAAEAAAACAAcAAQADAAIAAAABAA8AAQABAAIAAAABAA4AAQABAAEAAAABAA0AAQABAAEAAAABAAwAAQABAAEAAAABAAsAAQABAAEAAAABAAoAAQABAAEAAAABAAkAAQABAAEAAAABAAgAAQABAAEAAAABAAcAAQABAAEAAAAAAA8AAQAAAAIAAAAAAA4AAQAAAAEAAAAAAA0AAQAAAAEAAAAAAAwAAQAAAAEAAAAAAAsAAQAAAAEAAAAAAAoAAQAAAAEAAAAAAAkAAQAAAAEAAAAAAAgAAQAAAAEAAAAAAAcAAQAAAAEAAAAdAA4AAQABAAEAAAAdAA0AAQABAAEAAAAdAAwAAQABAAEAAAAdAAsAAQADAAIAAAAdAAoAAQACAAEAAAAdAAkAAQACAAAAAAAcAA4AAQABAAEAAAAcAA0AAQABAAEAAAAcAAwAAQABAAEAAAAcAAsAAQABAAEAAAAcAAoAAQABAAEAAAAcAAkAAQABAAAAAAAbAA4AAQABAAEAAAAbAA0AAQABAAEAAAAbAAwAAQABAAEAAAAbAAsAAQABAAEAAAAbAAoAAQABAAEAAAAbAAkAAQABAAAAAAAaAA4AAQABAAEAAAAaAA0AAQABAAEAAAAaAAwAAQABAAEAAAAaAAsAAQABAAEAAAAaAAoAAQABAAEAAAAaAAkAAQABAAAAAAAZAA4AAQABAAEAAAAZAA0AAQABAAEAAAAZAAwAAQABAAEAAAAZAAsAAQABAAEAAAAZAAoAAQABAAEAAAAZAAkAAQABAAAAAAAYAA4AAQABAAEAAAAYAA0AAQABAAEAAAAYAAwAAQABAAEAAAAYAAsAAQABAAEAAAAYAAoAAQABAAEAAAAYAAkAAQABAAAAAAAXAA4AAQABAAEAAAAXAA0AAQABAAEAAAAXAAwAAQABAAEAAAAXAAsAAQABAAEAAAAXAAoAAQABAAEAAAAXAAkAAQABAAAAAAAWAA4AAQABAAEAAAAWAA0AAQABAAEAAAAWAAwAAQABAAEAAAAWAAsAAQABAAEAAAAWAAoAAQABAAEAAAAWAAkAAQABAAAAAAABAAYAAQABAAEAAAABAAUAAQABAAEAAAABAAQAAQABAAEAAAABAAMAAQABAAEAAAABAAIAAQABAAEAAAABAAEAAQABAAEAAAABAAAAAQABAAEAAAAAAAYAAQAAAAEAAAAAAAUAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAAAAQAAAAEAAAACAAYAAQACAAEAAAACAAUAAQACAAEAAAACAAQAAQACAAEAAAACAAMAAQACAAEAAAACAAIAAQACAAEAAAACAAEAAQACAAEAAAACAAAAAQACAAEAAAACAP//AQACAAEAAAACAP7/AQACAAEAAAACAP3/AQACAAAAAAABAP//AQABAAEAAAABAP7/AQABAAEAAAABAP3/AQABAAAAAAAAAP//AQAAAAEAAAAAAP7/AQAAAAEAAAAAAP3/AQAAAAAAAAAnAAwAAQABAAEAAAAnAAsAAQABAAEAAAAmAAwAAQABAAEAAAAmAAsAAQABAAEAAAAlAAwAAQABAAEAAAAlAAsAAQABAAEAAAAkAAwAAQABAAEAAAAkAAsAAQABAAEAAAAjAAwAAQABAAEAAAAjAAsAAQABAAEAAAAiAAwAAQABAAEAAAAiAAsAAQABAAEAAAAhAAwAAQABAAEAAAAhAAsAAQAEAAIAAAAgAAwAAQABAAEAAAAgAAsAAQABAAAAAAAfAAwAAQABAAEAAAAfAAsAAQABAAAAAAAeAAwAAQABAAEAAAAeAAsAAQABAAAAAAApAA8AAQABAAIAAAApAA4AAQABAAEAAAApAA0AAQABAAEAAAApAAwAAQADAAIAAAApAAsAAQACAAEAAAAoAA8AAQABAAIAAAAoAA4AAQABAAEAAAAoAA0AAQABAAEAAAAoAAwAAQABAAEAAAAoAAsAAQABAAEAAAAnAA8AAQABAAIAAAAnAA4AAQABAAEAAAAnAA0AAQABAAEAAAAmAA8AAQABAAIAAAAmAA4AAQABAAEAAAAmAA0AAQABAAEAAAAlAA8AAQABAAIAAAAlAA4AAQABAAEAAAAlAA0AAQABAAEAAAAkAA8AAQABAAIAAAAkAA4AAQABAAEAAAAkAA0AAQABAAEAAAAjAA8AAQABAAIAAAAjAA4AAQABAAEAAAAjAA0AAQABAAEAAAAiAA8AAQABAAIAAAAiAA4AAQABAAEAAAAiAA0AAQABAAEAAAAhAA8AAQABAAIAAAAhAA4AAQABAAEAAAAhAA0AAQABAAEAAAAgAA8AAQABAAIAAAAgAA4AAQABAAEAAAAgAA0AAQABAAEAAAAfAA8AAQABAAIAAAAfAA4AAQABAAEAAAAfAA0AAQABAAEAAAAeAA8AAQABAAIAAAAeAA4AAQABAAEAAAAeAA0AAQABAAEAAAAdAA8AAQABAAIAAAAcAA8AAQABAAIAAAAbAA8AAQABAAIAAAAaAA8AAQABAAIAAAAZAA8AAQABAAIAAAAYAA8AAQABAAIAAAAXAA8AAQABAAIAAAAWAA8AAQABAAIAAAAoAAoAAQABAAEAAAAoAAkAAQABAAAAAAAnAAoAAQABAAEAAAAnAAkAAQABAAAAAAAmAAoAAQABAAEAAAAmAAkAAQABAAAAAAAlAAoAAQABAAEAAAAlAAkAAQABAAAAAAAkAAoAAQABAAEAAAAkAAkAAQABAAAAAAAjAAoAAQABAAEAAAAjAAkAAQABAAAAAAAiAAoAAQABAAEAAAAiAAkAAQABAAAAAAAhAAoAAQAAAAEAAAAhAAkAAQAAAAAAAAApAAoAAQACAAEAAAApAAkAAQACAAAAAAA4AA8AAQACAAIAAAA4AA4AAQACAAEAAAA4AA0AAQACAAEAAAA4AAwAAQACAAAAAAA3AA8AAQABAAIAAAA3AA4AAQABAAEAAAA3AA0AAQABAAEAAAA3AAwAAQABAAAAAAA2AA8AAQABAAIAAAA2AA4AAQABAAEAAAA2AA0AAQABAAEAAAA2AAwAAQABAAAAAAA1AA8AAQABAAIAAAA1AA4AAQABAAEAAAA1AA0AAQABAAEAAAA1AAwAAQABAAAAAAA0AA8AAQABAAIAAAA0AA4AAQABAAEAAAA0AA0AAQABAAEAAAA0AAwAAQABAAAAAAAzAA8AAQABAAIAAAAzAA4AAQABAAEAAAAzAA0AAQABAAEAAAAzAAwAAQABAAAAAAAyAA8AAQABAAIAAAAyAA4AAQABAAEAAAAyAA0AAQABAAEAAAAyAAwAAQABAAAAAAAxAA8AAQABAAIAAAAxAA4AAQABAAEAAAAxAA0AAQABAAEAAAAxAAwAAQABAAAAAAAwAA8AAQABAAIAAAAwAA4AAQABAAEAAAAwAA0AAQABAAEAAAAwAAwAAQABAAAAAAAvAA8AAQABAAIAAAAvAA4AAQABAAEAAAAvAA0AAQABAAEAAAAvAAwAAQABAAAAAAAuAA8AAQABAAIAAAAuAA4AAQABAAEAAAAuAA0AAQABAAEAAAAuAAwAAQABAAAAAAAtAA8AAQABAAIAAAAtAA4AAQABAAEAAAAtAA0AAQABAAEAAAAtAAwAAQABAAAAAAAsAA8AAQABAAIAAAAsAA4AAQABAAEAAAAsAA0AAQABAAEAAAAsAAwAAQABAAAAAAArAA8AAQABAAIAAAArAA4AAQABAAEAAAArAA0AAQABAAEAAAArAAwAAQABAAAAAAAqAA8AAQABAAIAAAAqAA4AAQABAAEAAAAqAA0AAQABAAEAAAAqAAwAAQABAAAAAAAvAAsAAQAFAAIAAAAwAAsAAQADAAAAAAAyAAsAAQAHAAEAAAAzAAsAAQAIAAEAAAAxAAsAAQAEAAAAAAAlAAgAAQADAAAAAAAmAAgAAQADAAAAAAAhAAgAAQADAAAAAAAiAAgAAQAFAAEAAAAdAAgAAQADAAAAAAAaAAgAAQADAAAAAAAWAAgAAQAHAAAAAAATAAYAAQAHAAEAAAAUAAYAAQAIAAEAAAAFAAgAAQACAAAAAAAEAAgAAQABAAAAAAAPAAkAAQAAAAAAAAAPAAoAAQAAAAEAAAAMAAsAAQAFAAIAAAANAAsAAQADAAAAAAAHAAgAAQAIAAEAAAAEAAcAAQAEAAAAAAAFAAcAAQAEAAAAAAARAAcAAQAGAAEAAAAQAAcAAQAFAAEAAAAZAAgAAQAEAAAAAAAYAAgAAQAEAAAAAAAjAAgAAQAGAAEAAAAgAAoAAQAFAAIAAAAoAAgAAQAFAAIAAAAGAAgAAQAHAAEAAAArAAsAAQAHAAEAAAAsAAsAAQAIAAEAAAA2AAsAAQAHAAEAAAA3AAsAAQAIAAEAAAA0AAsAAQAFAAIAAAAiAAcAAQAFAAAAAAAjAAcAAQAGAAAAAAAQAAYAAQAFAAAAAAARAAYAAQAGAAAAAAA=")
 tile_set = ExtResource("1_ssntf")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1841871882]
+color = Color(0, 0.02745098, 0.54901963, 1)
+energy = 0.5
+blend_mode = 2
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=673938175]
+visible = false
+position = Vector2(299, 100)
+color = Color(0.0333333, 0, 1, 1)
+energy = 2.0
+texture = SubResource("GradientTexture2D_ukyrk")
 
 [node name="Entities" type="Node" parent="." unique_id=1790537701]
 
@@ -715,3 +854,21 @@ position = Vector2(149, 100)
 [node name="Slime" parent="Entities" unique_id=931501517 instance=ExtResource("17_1kmfr")]
 process_mode = 1
 position = Vector2(218, 87)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=526926991]
+bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=240127051]
+process_mode = 3
+stream = ExtResource("54_hs3dq")
+bus = &"Music"
+parameters/looping = true
+
+[node name="ForegroundFog" type="Parallax2D" parent="." unique_id=444385624]
+repeat_size = Vector2(320, 240)
+repeat_times = 25
+
+[node name="Fog" type="Sprite2D" parent="ForegroundFog" unique_id=664263605]
+material = SubResource("ShaderMaterial_rcdsp")
+position = Vector2(160, 121)
+texture = ExtResource("7_rcdsp")

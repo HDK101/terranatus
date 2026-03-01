@@ -4,4 +4,5 @@ public enum AttackType
     SLASH,
     PIERCE,
     BLUNT,
+    FIRE,
 }

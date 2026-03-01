@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://7lpbcbrslsic"]
+
+[ext_resource type="Texture2D" uid="uid://boo4kd4tnw8mm" path="res://Sprites/fireball_particle.png" id="1_ejj5x"]
+
+[sub_resource type="Gradient" id="Gradient_tbblf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_55aq7"]
+gradient = SubResource("Gradient_tbblf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_55aq7"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4, 1, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.19999999
+scale_max = 0.79999995
+color_ramp = SubResource("GradientTexture1D_55aq7")
+
+[node name="FallParticles" type="GPUParticles2D" unique_id=1892084543]
+emitting = false
+amount = 16
+texture = ExtResource("1_ejj5x")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_55aq7")

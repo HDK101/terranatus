@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dkjhl7tjw1muf"]
+
+[ext_resource type="AudioStream" uid="uid://dfd2uc76kwvnh" path="res://Sounds/Misc/Items - Pickup - Health 016.wav" id="1_smgvu"]
+
+[resource]
+random_pitch = 1.0233738
+streams_count = 1
+stream_0/stream = ExtResource("1_smgvu")

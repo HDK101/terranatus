@@ -12,14 +12,20 @@ public abstract partial class Enemy: CharacterBody2D, ILifeHolder, IHittable
 
     public int EXPReward { get; protected set; }
 
+    protected EnemyLifeBar lifeBar;
+
     public override void _Ready()
     {
+        var packedLifeBar = GD.Load<PackedScene>("res://Scenes/enemy_life_bar.tscn");
+        lifeBar = packedLifeBar.Instantiate<EnemyLifeBar>();
+        AddChild(lifeBar);
         EntitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
         Start();
     }
 
     public virtual void Hit(HitPayload payload)
     {
+        lifeBar.Update(Life.Value, Life.MaxValue);
         Life.Hit(payload.Damage);
         PostHit(payload);
         EmitSignal(SignalName.Damaged, payload);

@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://c01ogiy2kxx8y"
+path="res://.godot/imported/boxy_selected_chars.png-2a6cfc82932b94c4643be8fdef94edd0.fontdata"
+
+[deps]
+
+source_file="res://Fonts/boxy_selected_chars.png"
+dest_files=["res://.godot/imported/boxy_selected_chars.png-2a6cfc82932b94c4643be8fdef94edd0.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\'0\'-\'9\'", "\' \',\'L\',\'V\',\'E\',\'X\',\'P\',\':\',\'/\'")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=2
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=false
+scaling_mode=1

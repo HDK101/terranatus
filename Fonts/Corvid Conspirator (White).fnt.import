@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://2pfc4t0xicm7"
+path="res://.godot/imported/Corvid Conspirator (White).fnt-7205edc4e11bb207a7deb00eda38b58f.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Corvid Conspirator (White).fnt"
+dest_files=["res://.godot/imported/Corvid Conspirator (White).fnt-7205edc4e11bb207a7deb00eda38b58f.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=false
+scaling_mode=1

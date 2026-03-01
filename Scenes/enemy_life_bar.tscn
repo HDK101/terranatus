@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b7srxhiinjvr2"]
+
+[ext_resource type="Texture2D" uid="uid://bg2lx62plbucr" path="res://Sprites/enemy_bar_frame.png" id="1_lopxb"]
+[ext_resource type="Script" uid="uid://d3jdkhmbkt51q" path="res://Source/EnemyLifeBar.cs" id="2_8vcvo"]
+[ext_resource type="Shader" uid="uid://b30j0bakva8f0" path="res://Resources/Shaders/progress_shader.gdshader" id="3_p5skp"]
+[ext_resource type="Texture2D" uid="uid://cpfiv2kjwews4" path="res://Sprites/enemy_bar_progress.png" id="4_1bwgj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1b32c"]
+shader = ExtResource("3_p5skp")
+shader_parameter/ratio = 1.0
+
+[node name="EnemyLifeBar" type="Sprite2D" unique_id=279991189]
+texture = ExtResource("1_lopxb")
+script = ExtResource("2_8vcvo")
+
+[node name="Progress" type="Sprite2D" parent="." unique_id=1823585870]
+material = SubResource("ShaderMaterial_1b32c")
+texture = ExtResource("4_1bwgj")

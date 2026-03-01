@@ -23,28 +23,34 @@ public partial class InGame : Node2D
 	private PackedScene packedDroppableItem;
 	private PackedScene packedSlash;
 	private PackedScene packedPunch;
+	private PackedScene packedEXP;
 
 	private Texture2D appleTexture;
 
 	private SoundDB soundDB;
 
+	private RandomNumberGenerator rng = new();
+	private AudioStreamPlayer audioStreamPlayer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		rng.Randomize();
+
+		audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audioStreamPlayer.Stream = new AudioStreamPolyphonic();
+		audioStreamPlayer.Play();
+
 		soundDB = GetNode<SoundDB>("/root/SoundDB");
 		packedFlyingCorpse = GD.Load<PackedScene>("res://Scenes/flying_corpse.tscn");
 		packedDroppableItem = GD.Load<PackedScene>("res://Scenes/droppable_item.tscn");
 		packedSlash = GD.Load<PackedScene>("res://Scenes/slash.tscn");
 		packedPunch = GD.Load<PackedScene>("res://Scenes/punch.tscn");
+		packedEXP = GD.Load<PackedScene>("res://Scenes/exp_particle.tscn");
 		appleTexture = GD.Load<Texture2D>("res://Sprites/Items/item216.png");
 		gameHud = GetNode<GameHud>("GameHUD");
 		InitializeEnemies();
 		InitializePlayer();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 
 	public void Delay()
@@ -68,7 +74,7 @@ public partial class InGame : Node2D
 	{
 		player.Attacked += OnPlayerAttack;
 		player.Damaged += payload => CallDeferred(nameof(OnPlayerHit), payload);
-		player.ItemPicked += gameHud.ItemNotification.ShowItem;
+		player.ItemPicked += OnPickItem;
 		player.Experience.Leveled += gameHud.LevelUpNotification.Notificate;
 		player.SuccessfulHit += Delay;
 	}
@@ -79,9 +85,15 @@ public partial class InGame : Node2D
 		{
 			enemy.Damaged += payload => OnEnemyHit(enemy, payload);
 			enemy.Player = player;
-			enemy.Life.Death += () => OnEnemyDeath(enemy);
+			enemy.Life.Death += () => CallDeferred(nameof(OnEnemyDeath), enemy);
 		}
 	}
+
+	private void OnPickItem(ItemBlueprint itemBlueprint, int quantity)
+	{
+		gameHud.ItemNotification.ShowItem(itemBlueprint, quantity);
+		PlaySound(soundDB.PickupRandomizer);
+	} 
 
 	private void OnPlayerHit(HitPayload hitPayload)
 	{
@@ -103,15 +115,37 @@ public partial class InGame : Node2D
 		CreateCorpse(enemy);
 		PlaySound2D(soundDB.EnemyDeathRandomizer, enemy.Position);
 
+		CreateEXP(enemy);
+		
 		var items = enemy.ToDropItems();
 		foreach (var item in items)
 		{
 			var itemInstance = packedDroppableItem.Instantiate<DroppableItem>();
 			itemInstance.PreStart(enemy.Position, item, 1);
 			targetScene.AddChild(itemInstance);
+			itemInstance.Picked += () => PlaySound(soundDB.PickupRandomizer);
 		}
+
+		enemy.QueueFree();
+	}
+
+	private void CreateEXP(Enemy enemy)
+	{
+		int totalReward = enemy.EXPReward;
+
+		while (totalReward > 0)
+		{
+			int currentReward = totalReward < 10 ? totalReward : 10;
+			totalReward -= currentReward;
+			EXPParticle expParticle = packedEXP.Instantiate<EXPParticle>();
+			expParticle.Position = enemy.Position;
+			expParticle.Player = player;
+			expParticle.EXP = currentReward;
+			expParticle.RNG = rng;
+			targetScene.AddChild(expParticle);
+		}
+
 		floatingNumbers.CreateEXP(enemy.Position, enemy.EXPReward);
-		player.Experience.Gain(enemy.EXPReward);
 	}
 
 	private void OnPlayerAttack(HitPayload payload)
@@ -121,7 +155,7 @@ public partial class InGame : Node2D
 			floatingNumbers.CreateDamage(payload.Position, payload.Damage);
 			var slashInstance = packedSlash.Instantiate<HitEffect>();
 			slashInstance.Position = payload.Position;
-			CallDeferred("add_child", slashInstance);
+			targetScene.AddChild(slashInstance);
 		}
 	}
 
@@ -135,5 +169,13 @@ public partial class InGame : Node2D
 		audioStreamPlayer.Finished += audioStreamPlayer.QueueFree;
 		targetScene.AddChild(audioStreamPlayer);
 		audioStreamPlayer.Play();
+	}
+
+	private void PlaySound(AudioStream stream)
+	{
+		if (audioStreamPlayer.GetStreamPlayback() is AudioStreamPlaybackPolyphonic polyphonic)
+		{
+			polyphonic.PlayStream(stream);
+		}
 	}
 }

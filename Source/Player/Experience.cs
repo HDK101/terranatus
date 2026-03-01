@@ -5,9 +5,13 @@ public partial class Experience: RefCounted
 {
     [Signal]
     public delegate void LeveledEventHandler();
+    [Signal]
+    public delegate void ChangeEventHandler();
 
     public int Level { get; private set; } = 1;
     public int EXP { get; private set; } = 0;
+
+
 
     public void Gain(int amount)
     {
@@ -22,6 +26,7 @@ public partial class Experience: RefCounted
             Level += 1;
             EmitSignal(SignalName.Leveled);
         }
+        EmitSignal(SignalName.Change);
     }
 
     public int GetEXPCeil()

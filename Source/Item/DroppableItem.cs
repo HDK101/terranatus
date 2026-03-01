@@ -42,6 +42,11 @@ public partial class DroppableItem: RigidBody2D
         torqueForce = (float)Random.Shared.NextDouble() * 32.0f;
     }
 
+    public void Pick()
+    {
+        EmitSignal(SignalName.Picked);
+    }
+
     public void Start()
     {
         ApplyTorque(torqueForce);
