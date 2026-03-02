@@ -89,10 +89,13 @@ public partial class Menu : Control
 
 	public void ShowProfile()
 	{
+		Vector2 menuButtonsSize = menuButtons.Size;
+		Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+
 		var tweenProfile = CreateDefaultTween();
 		var tweenButtons = CreateDefaultTween();
 		tweenProfile.TweenProperty(profile, "position:x", 4.0f, 0.5f);
-		tweenButtons.TweenProperty(menuButtons, "position:x", 130.0f, 0.5f);
+		tweenButtons.TweenProperty(menuButtons, "position:x", screenSize.X - menuButtonsSize.X - 8f, 0.5f);
 	}
 
 	public void HideProfile()
@@ -117,7 +120,7 @@ public partial class Menu : Control
 	public void FadeInBackground()
 	{
 		var tween = CreateDefaultTween();
-		tween.TweenProperty(background, "color:a", 0.2f, 0.5f);
+		tween.TweenProperty(background, "color:a", 0.8f, 0.5f);
 	}
 	public void FadeOutBackground()
 	{

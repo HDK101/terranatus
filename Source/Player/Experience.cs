@@ -16,7 +16,6 @@ public partial class Experience: RefCounted
     public void Gain(int amount)
     {
         EXP += amount;
-        GD.Print(EXP);
 
         int requiredExp = GetEXPCeil();
 

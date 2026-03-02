@@ -12,10 +12,10 @@ dest_files=["res://.godot/imported/boxy_selected_chars.png-2a6cfc82932b94c4643be
 
 [params]
 
-character_ranges=PackedStringArray("\'0\'-\'9\'", "\' \',\'L\',\'V\',\'E\',\'X\',\'P\',\':\',\'/\'")
+character_ranges=PackedStringArray("\'0\'-\'9\'", "\' \',\'L\',\'V\',\'E\',\'X\',\'P\',\':\',\'/\',\'Z\',\'A\'", "\'S\'")
 kerning_pairs=PackedStringArray()
 columns=10
-rows=2
+rows=3
 image_margin=Rect2i(0, 0, 0, 0)
 character_margin=Rect2i(0, 0, 0, 0)
 ascent=0

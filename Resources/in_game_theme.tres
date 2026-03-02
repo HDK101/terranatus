@@ -1,6 +1,15 @@
 [gd_resource type="Theme" format=3 uid="uid://cxq0j2ycallbq"]
 
 [ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="1_qsscp"]
+[ext_resource type="Texture2D" uid="uid://rgn5gcxxvk1c" path="res://Sprites/UI/base_ui.png" id="2_vqkj5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dohx2"]
+texture = ExtResource("2_vqkj5")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
 
 [resource]
 default_font = ExtResource("1_qsscp")
@@ -8,3 +17,4 @@ default_font_size = 8
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_qsscp")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_dohx2")

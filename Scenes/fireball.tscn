@@ -179,7 +179,7 @@ color = Color(1, 0.9003333, 0.53999996, 1)
 blend_mode = 2
 texture = SubResource("GradientTexture2D_gxotq")
 
-[node name="SmokePaticles" type="GPUParticles2D" parent="." unique_id=939239953]
+[node name="SmokeParticles" type="GPUParticles2D" parent="." unique_id=939239953]
 amount = 128
 texture = ExtResource("2_hcgvv")
 lifetime = 0.5

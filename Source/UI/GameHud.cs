@@ -7,7 +7,6 @@ public partial class GameHud : CanvasLayer
 	public HealthBar HealthBar => _healthBar;
 	public ManaBar ManaBar => _manaBar;
 	public EXPBar EXPBar => _expBar;
-	public BlackBars BlackBars => _blackBars;
 	public Menu Menu => _menu;
 	public Combo Combo => _combo;
 	public LevelUpNotification LevelUpNotification => _levelUpNotification;
@@ -24,10 +23,7 @@ public partial class GameHud : CanvasLayer
 	private Combo _combo;
 
 	[Export]
-	private DialogBox _dialogBox;
-
-	[Export]
-	private BlackBars _blackBars;
+	private Dialog _dialogBox;
 
 	[Export]
 	private Menu _menu;
@@ -43,8 +39,6 @@ public partial class GameHud : CanvasLayer
 		DialogDB dialogDB = GetNode<DialogDB>("/root/DialogDB");
 		DialogTree tree = dialogDB.RetrieveTree("BASIC_TREE");
 
-		_menu.UIVisible += _blackBars.ShowBars;
-		_menu.UIHidden += _blackBars.HideBars;
 		_menu.UIVisible += audioPlayer.PlayPause;
 		_menu.UIHidden += audioPlayer.PlayPause;
 		_healthBar = GetNode<HealthBar>("MainUI/HealthBar");

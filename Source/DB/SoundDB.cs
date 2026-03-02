@@ -12,6 +12,7 @@ public partial class SoundDB : Node
 	public AudioStreamRandomizer FireReleaseRandomizer { get; private set; }
 	public AudioStreamRandomizer PickupRandomizer { get; private set; }
 	public AudioStreamRandomizer PickEXPRandomizer { get; private set; }
+	public AudioStreamRandomizer JumpRandomizer { get; private set; }
 
 	public override void _Ready()
 	{
@@ -24,5 +25,6 @@ public partial class SoundDB : Node
 		FireReleaseRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Attack/fire_release_randomizer.tres");
 		PickupRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/UI/pickup_randomizer.tres");
 		PickEXPRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Misc/pick_exp_randomizer.tres");
+		JumpRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Player/jump_randomizer.tres");
 	}
 }

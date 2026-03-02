@@ -1,6 +1,9 @@
 {
 	"id": "EXAMPLE2",
 	"portrait": "AEMILIA_NAKED_DEFAULT",
+	"name": {
+		"en_US": "Aemilia"
+	},
 	"content": {
 		"en_US": "..."
 	}

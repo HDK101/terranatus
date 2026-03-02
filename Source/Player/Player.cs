@@ -39,8 +39,12 @@ public partial class Player : CharacterBody2D
 	public Area2D ForwardSlashArea { get => forwardSlashArea; }
 	public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
 	public Skills Skills => _skills;
+	public bool IsWalking => Velocity.X != 0;
+	public bool IsAttacking { get; private set; } = false;
 
-	public const float Speed = 100.0f;
+    public PlayerView View { get; set; }
+
+    public const float Speed = 100.0f;
 	public const float JumpVelocity = -175.0f;
 
 	private readonly PlayerBody _body = new();
@@ -96,22 +100,8 @@ public partial class Player : CharacterBody2D
 		entitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
 		itemArea = GetNode<Area2D>("ItemArea");
 		camera = GetNode<PlayerCamera>("Camera2D");
-		AnimatedSprite.AnimationFinished += () =>
-		{
-			if (IsAttackAnimation())
-			{
-				CurrentState = State.IDLE;
-			}
-		};
-
-		AnimatedSprite.FrameChanged += () =>
-		{
-			if (IsAttackAnimation())
-			{
-				if (AnimatedSprite.Frame == 2) entitySoundPlayer.PlayAttackSound(AttackType.SLASH);
-				else if (AnimatedSprite.Frame == 5) Attack();
-			}
-		};
+		View = new(GetNode<AnimationTree>("AnimationTree"), GetNode<Sprite2D>("Sprite2D"));
+		View.Start();
 
 		itemArea.BodyEntered += (body) =>
 		{
@@ -135,18 +125,9 @@ public partial class Player : CharacterBody2D
 		AddChild(stateManager);
 		stateManager.ChangeState(new PlayerDefaultState(new(this)));
 
-		AnimatedSprite.AnimationChanged += () =>
-		{
-			AnimatedSprite.Offset = new(0, 0);
-			if (IsAttackAnimation())
-			{
-				AnimatedSprite.Offset = new(LastDirectionHorizontal * 2f, 0f);
-			}
-		};
-
-		AddChild(shadowTimer);
-		shadowTimer.Start(0.05);
-		shadowTimer.Timeout += CreateShadow;
+		// AddChild(shadowTimer);
+		// shadowTimer.Start(0.05);
+		// shadowTimer.Timeout += CreateShadow;
 
 		_skills = new(new(this))
 		{
@@ -167,56 +148,39 @@ public partial class Player : CharacterBody2D
 		EmitSignal(SignalName.Damaged, hitPayload);
 	}
 
-	public void ProcessAttack()
-	{
-		if (CurrentState != State.ATTACKING)
-		{
-			if (Input.IsActionJustPressed("attack"))
-			{
-				PlayDefaultAttackAnimation();
-				CurrentState = State.ATTACKING;
-			}
-		}
-	}
-
 	public void PlayDefaultAttackAnimation()
 	{
-		AnimatedSprite.Play(attackAnimations[attackAnimationIndex]);
-		attackAnimationIndex += 1;
-		attackAnimationIndex %= 2;
+		View.Attack();
 	}
 
 	public void PlayForwardSlashAnimation()
 	{
-		AnimatedSprite.Play("naked_forward_slash");
+		View.Attack();
 	}
 
-	public void ProcessState()
+	public void StartAttackOffset()
 	{
-		if (CurrentState == State.ATTACKING)
+		if (View.FlipH)
 		{
+			View.SpriteOffset = new(-2.0f, 0.0f);
 			return;
 		}
+		View.SpriteOffset = new(2.0f, 0.0f);
+	}
 
-		if (Velocity.Y > 0 && !IsOnFloor())
-		{
-			CurrentState = State.FALLING;
-			return;
-		}
-		else if (Velocity.Y < 0 && !IsOnFloor())
-		{
-			CurrentState = State.JUMPING;
-			return;
-		}
+	public void StartAttack()
+	{
+		IsAttacking = true;
+	}
 
-		if (Direction.X != 0.0)
-		{
-			CurrentState = State.MOVING;
-		}
-		else
-		{
-			CurrentState = State.IDLE;
-		}
+	public void EndAttack()
+	{
+		IsAttacking = false;
+	}
+
+	public void ResetViewOffset()
+	{
+		View.SpriteOffset = Vector2.Zero;
 	}
 
 	public void CreateShadow()
@@ -228,26 +192,6 @@ public partial class Player : CharacterBody2D
 		shadowInstance.InitialColor = new(1.0f, 0.7f, 1.0f, 0.4f);
 		shadowInstance.Texture = AnimatedSprite.GetFrameTexture();
 		GetTree().CurrentScene.CallDeferred("add_child", shadowInstance);
-	}
-
-	public void PlayAnimation()
-	{
-		if (CurrentState == State.IDLE)
-		{
-			AnimatedSprite.Play("aemilia_naked_idle");
-		}
-		else if (CurrentState == State.MOVING)
-		{
-			AnimatedSprite.Play("aemilia_naked_walk");
-		}
-		else if (CurrentState == State.JUMPING)
-		{
-			AnimatedSprite.Play("aemilia_naked_jump");
-		}
-		else if (CurrentState == State.FALLING)
-		{
-			AnimatedSprite.Play("aemilia_naked_fall");
-		}
 	}
 
 	public void StartForwardSlash()
@@ -304,6 +248,8 @@ public partial class Player : CharacterBody2D
 	public float Jump()
     {
 		CreateJumpFallParticles();
+		entitySoundPlayer.Jump();
+		View.Jump();
 		return JumpVelocity;
     }
 

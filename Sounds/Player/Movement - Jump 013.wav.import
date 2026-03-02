@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cs2otoo5qw8qd"
+path="res://.godot/imported/Movement - Jump 013.wav-ae133f1e495bf873dc62890429637c87.sample"
+
+[deps]
+
+source_file="res://Sounds/Player/Movement - Jump 013.wav"
+dest_files=["res://.godot/imported/Movement - Jump 013.wav-ae133f1e495bf873dc62890429637c87.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

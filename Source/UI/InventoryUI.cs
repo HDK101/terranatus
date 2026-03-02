@@ -175,8 +175,6 @@ public partial class InventoryUI : Control
 			movedHorizontal = true;
 		}
 
-		GD.Print(selectedSlotIndex);
-
 		if (movedHorizontal)
 		{
 			if (selectedSlotIndex < 0)

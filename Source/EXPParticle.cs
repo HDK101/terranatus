@@ -11,11 +11,9 @@ public partial class EXPParticle : Area2D
 
 	private Vector2 initialDirection = Vector2.Zero;
 	private float initialSpeed = 128.0f;
-	private GpuParticles2D particles;
 
 	public override void _Ready()
 	{
-		particles = GetNode<GpuParticles2D>("GPUParticles2D");
 		BodyEntered += OnBodyEntered;
 
 		initialDirection = Vector2.FromAngle(RNG.RandfRange(0.0f, Mathf.Pi * 2));
@@ -40,8 +38,6 @@ public partial class EXPParticle : Area2D
 		{	
 			Player.Experience.Gain(EXP);
 			QueueFree();
-			RemoveChild(particles);
-			GetParent().AddChild(particles);
 		}
 	}
 }

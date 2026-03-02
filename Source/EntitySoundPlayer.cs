@@ -42,4 +42,9 @@ public partial class EntitySoundPlayer : MultipleAudioPlayer2D
     {
         PlayStream(soundDB.PickEXPRandomizer);
     }
+
+    public void Jump()
+    {
+        PlayStream(soundDB.JumpRandomizer);
+    }
 }

@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/Corvid Conspirator (White).fnt-7205edc4e11bb2
 [params]
 
 fallbacks=[]
-compress=false
-scaling_mode=1
+compress=true
+scaling_mode=2

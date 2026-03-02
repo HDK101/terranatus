@@ -57,21 +57,32 @@ public partial class DialogDB: Node
         FileAccess fileContent = FileAccess.Open(v, FileAccess.ModeFlags.Read);
         var contentJson = Json.ParseString(fileContent.GetAsText()).AsGodotDictionary();
         Texture2D portrait = portraits[contentJson["portrait"].AsString()];
+
+        var contentDict = contentJson["content"].AsGodotDictionary();
+        var nameDict = contentJson["name"].AsGodotDictionary();
+
+        string locale = TranslationServer.GetLocale();
+        string defaultLocale = "en_US";
+
+        var retrievedContent = contentDict.ContainsKey(locale) ? contentDict[locale] : contentDict[defaultLocale];
+        var retrievedName = nameDict.ContainsKey(locale) ? nameDict[locale] : nameDict[defaultLocale];
+
+        GD.Print(retrievedName);
+
         var content = new DialogContent()
         {
             Id = contentJson["id"].AsString(),
-            Message = contentJson["content"].AsGodotDictionary()["en_US"].AsString(),
+            Message = retrievedContent.AsString(),
             Portrait = portrait,
+            Name = retrievedName.AsString(),
         };
         contents.Add(content.Id, content);
     }
 
     private void LoadTreeFromPath(string v)
     {
-        GD.Print(v);
         FileAccess fileContent = FileAccess.Open(v, FileAccess.ModeFlags.Read);
         var treeJson = Json.ParseString(fileContent.GetAsText()).AsGodotDictionary();
-        GD.Print(treeJson);
         string[] nodeIds = treeJson["nodes"].AsStringArray();
 
         Queue<DialogContent> stackNodes = [];

@@ -18,11 +18,9 @@
 [ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
 [ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="7_rcdsp"]
 [ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
-[ext_resource type="PackedScene" uid="uid://dal8t7ouu018h" path="res://Scenes/UI/black_bars.tscn" id="10_vm46j"]
 [ext_resource type="Script" uid="uid://dw2unj3p5t6md" path="res://Source/UI/MenuButtons.cs" id="13_yem81"]
 [ext_resource type="Script" uid="uid://bnl01th6phnfe" path="res://Source/UI/Menu.cs" id="14_q3vwd"]
 [ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="14_ygyvt"]
-[ext_resource type="PackedScene" uid="uid://b6quvi77ho5h4" path="res://Scenes/inventory_button.tscn" id="15_3hbvq"]
 [ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_4n6jn"]
 [ext_resource type="Texture2D" uid="uid://8mjok5gga1mq" path="res://Sprites/base_ui.png" id="15_sclw5"]
 [ext_resource type="Texture2D" uid="uid://do80vbu5ovyae" path="res://Sprites/UI/exp_bar_progress.png" id="15_ygyvt"]
@@ -34,20 +32,24 @@
 [ext_resource type="Texture2D" uid="uid://x8h2k1ox1ini" path="res://Sprites/UI/mini_bars.png" id="17_x3573"]
 [ext_resource type="Script" uid="uid://dc1yliuj7jpnb" path="res://Source/UI/EXPBar.cs" id="18_7ae67"]
 [ext_resource type="Texture2D" uid="uid://d3u4qi6yfwtq0" path="res://Sprites/UI/mini_health_bar.png" id="18_goep2"]
-[ext_resource type="Texture2D" uid="uid://525xvt4e6whq" path="res://Sprites/UI/portrait_menu.png" id="19_3hbvq"]
 [ext_resource type="Texture2D" uid="uid://b56e7t2slxxwy" path="res://Sprites/UI/mini_mana_bar.png" id="19_dwcc8"]
 [ext_resource type="Texture2D" uid="uid://62fjx427q14v" path="res://Sprites/UI/base_header.png" id="25_5efe1"]
 [ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="25_feyw5"]
 [ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="25_pkurl"]
 [ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="26_q3vwd"]
+[ext_resource type="Texture2D" uid="uid://cc5nl7yi8fkk" path="res://Sprites/default_attack_skill.png" id="27_7sovq"]
 [ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="27_pkurl"]
+[ext_resource type="Texture2D" uid="uid://bs1u8ilp3gu8s" path="res://Sprites/default_jump_skill.png" id="28_3i6n3"]
 [ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="29_6tamu"]
+[ext_resource type="Texture2D" uid="uid://cwnwx1m0ka0m0" path="res://Sprites/Skills/fireball_skill_ingame.png" id="29_65n2t"]
 [ext_resource type="Texture2D" uid="uid://ct6odxyff6m2v" path="res://Sprites/UI/weapon_equip_slot.png" id="29_868j4"]
+[ext_resource type="Texture2D" uid="uid://dv1xsufb8duxk" path="res://Sprites/Skills/forward_slash_skill_ingame.png" id="30_dgkwl"]
 [ext_resource type="Texture2D" uid="uid://ct4ier8tpoe0w" path="res://Sprites/UI/armor_equip_slot.png" id="30_ma7yk"]
 [ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
 [ext_resource type="FontFile" uid="uid://db2kmm7kc5wsv" path="res://Fonts/Abaddon Light.ttf" id="32_ma7yk"]
-[ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/DialogBox.cs" id="33_7jpoy"]
+[ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/Dialog.cs" id="33_7jpoy"]
 [ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
+[ext_resource type="PackedScene" uid="uid://cf2xowkrvj8wq" path="res://Scenes/UI/menu_button.tscn" id="34_fv26l"]
 [ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="37_f3vpf"]
 [ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="37_sphie"]
 [ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="39_ygyvt"]
@@ -68,11 +70,15 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.5294118)
 shadow_offset = Vector2(0, 0.9)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7sovq"]
+font = ExtResource("15_4n6jn")
+font_size = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_dr5a8"]
 font = ExtResource("16_773fv")
 
 [sub_resource type="LabelSettings" id="LabelSettings_x3573"]
-font_size = 8
+font_size = 9
 outline_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
 shadow_size = 0
 shadow_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
@@ -169,12 +175,11 @@ layer = 2
 follow_viewport_enabled = true
 script = ExtResource("1_drh5t")
 
-[node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_levelUpNotification", "_combo", "_dialogBox", "_blackBars", "_menu", "player", "audioPlayer")]
+[node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_levelUpNotification", "_combo", "_dialogBox", "_menu", "player", "audioPlayer")]
 script = ExtResource("3_iw0lp")
 _levelUpNotification = NodePath("MainUI/LevelUpNotification")
 _combo = NodePath("MainUI/Combo")
-_dialogBox = NodePath("DialogBox")
-_blackBars = NodePath("BlackBars")
+_dialogBox = NodePath("Dialog")
 _menu = NodePath("Menu")
 player = NodePath("../Entities/Player")
 audioPlayer = NodePath("GameHUDAudioPlayer")
@@ -327,7 +332,81 @@ grow_vertical = 2
 text = "Level Up!"
 label_settings = SubResource("LabelSettings_gxotq")
 
-[node name="BlackBars" parent="GameHUD" unique_id=1045510744 instance=ExtResource("10_vm46j")]
+[node name="SkillButtons" type="Control" parent="GameHUD/MainUI" unique_id=1045076172]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 32.0
+grow_vertical = 0
+
+[node name="Jump" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=306783224]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 32.0
+offset_bottom = 26.0
+texture = ExtResource("28_3i6n3")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Jump" unique_id=1687869910]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 26.0
+text = "Z"
+label_settings = SubResource("LabelSettings_7sovq")
+
+[node name="DefaultAttack" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1283703208]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 62.0
+offset_bottom = 26.0
+texture = ExtResource("27_7sovq")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/DefaultAttack" unique_id=33142819]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 26.0
+text = "X"
+label_settings = SubResource("LabelSettings_7sovq")
+
+[node name="Skill1" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1748374934]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -29.0
+offset_right = 32.0
+offset_bottom = -3.0
+texture = ExtResource("29_65n2t")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Skill1" unique_id=568309345]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 26.0
+text = "A"
+label_settings = SubResource("LabelSettings_7sovq")
+
+[node name="Skill2" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1373760188]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -29.0
+offset_right = 61.0
+offset_bottom = -3.0
+texture = ExtResource("30_dgkwl")
+
+[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Skill2" unique_id=79559165]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 26.0
+text = "S"
+label_settings = SubResource("LabelSettings_7sovq")
 
 [node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("profile", "menuButtons", "inventory", "background", "itemDetails")]
 process_mode = 3
@@ -354,42 +433,38 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Buttons" type="Control" parent="GameHUD/Menu" unique_id=763079906 node_paths=PackedStringArray("InventoryButton", "CharacterButton", "SystemButton")]
+[node name="Buttons" type="PanelContainer" parent="GameHUD/Menu" unique_id=1268984708 node_paths=PackedStringArray("InventoryButton", "CharacterButton", "SystemButton")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 2.0
 offset_top = -27.0
-offset_right = 189.9996
+offset_right = 82.0
 offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("13_yem81")
-InventoryButton = NodePath("Button")
-CharacterButton = NodePath("Button2")
-SystemButton = NodePath("Button2")
+InventoryButton = NodePath("VBoxContainer/MenuButton")
+CharacterButton = NodePath("VBoxContainer/MenuButton2")
+SystemButton = NodePath("VBoxContainer/MenuButton3")
 
-[node name="Button" parent="GameHUD/Menu/Buttons" unique_id=284240258 instance=ExtResource("15_3hbvq")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 96.0
-offset_right = 192.0
-grow_horizontal = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Buttons" unique_id=1600903215]
+layout_mode = 2
 
-[node name="Button2" parent="GameHUD/Menu/Buttons" unique_id=597012100 instance=ExtResource("15_3hbvq")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_right = 0.0
-offset_left = 80.0
-offset_top = 16.0
-offset_right = 176.0
-offset_bottom = 32.0
-grow_horizontal = 1
+[node name="MenuButton" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+Text = "Inventory"
+
+[node name="MenuButton2" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+Text = "Character"
+
+[node name="MenuButton3" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+Text = "System"
 
 [node name="Profile" type="VBoxContainer" parent="GameHUD/Menu" unique_id=1839354880]
 layout_mode = 1
@@ -401,11 +476,6 @@ offset_top = -66.0
 offset_bottom = 66.0
 grow_vertical = 2
 alignment = 1
-
-[node name="Picture" type="TextureRect" parent="GameHUD/Menu/Profile" unique_id=97060762]
-layout_mode = 2
-texture = ExtResource("19_3hbvq")
-stretch_mode = 2
 
 [node name="Control" type="Control" parent="GameHUD/Menu/Profile" unique_id=76276110]
 visible = false
@@ -740,26 +810,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="DialogBox" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "portraitRect")]
+[node name="Dialog" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "nameText", "portraitRect", "dialogBox")]
 process_mode = 3
 custom_minimum_size = Vector2(320, 68)
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ar8se")
+script = ExtResource("33_7jpoy")
+dialogText = NodePath("DialogBox/ColorRect/RichTextLabel")
+nameText = NodePath("DialogBox/NinePatchRect/Label")
+portraitRect = NodePath("PortraitRect")
+dialogBox = NodePath("DialogBox")
+
+[node name="DialogBox" type="Control" parent="GameHUD/Dialog" unique_id=1939094083]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 12.0
-offset_right = 1.0
-offset_bottom = 80.0
+offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("3_ar8se")
-script = ExtResource("33_7jpoy")
-dialogText = NodePath("ColorRect/RichTextLabel")
-portraitRect = NodePath("PortraitRect")
 
-[node name="ColorRect" type="ColorRect" parent="GameHUD/DialogBox" unique_id=1217302484]
+[node name="ColorRect" type="ColorRect" parent="GameHUD/Dialog/DialogBox" unique_id=1217302484]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 1
 anchors_preset = 12
@@ -770,7 +847,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.05490196, 0.02745098, 0.105882354, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GameHUD/DialogBox/ColorRect" unique_id=420923975]
+[node name="RichTextLabel" type="RichTextLabel" parent="GameHUD/Dialog/DialogBox/ColorRect" unique_id=420923975]
 layout_mode = 0
 offset_left = 126.0
 offset_top = 5.0
@@ -783,20 +860,20 @@ text = "[wave]Well now[/wave], i don't know what militia you're from, but i advi
 scroll_active = false
 autowrap_mode = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/DialogBox" unique_id=543593805]
+[node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/Dialog/DialogBox" unique_id=543593805]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -85.0
-offset_top = -2.0
-offset_bottom = 13.0
+offset_bottom = 15.0
 grow_horizontal = 0
 texture = ExtResource("34_d1rw2")
 patch_margin_left = 4
 patch_margin_right = 18
 
-[node name="Label" type="Label" parent="GameHUD/DialogBox/NinePatchRect" unique_id=411433912]
+[node name="Label" type="Label" parent="GameHUD/Dialog/DialogBox/NinePatchRect" unique_id=411433912]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -806,21 +883,18 @@ offset_top = 1.0
 offset_right = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Tamara"
 label_settings = SubResource("LabelSettings_d1rw2")
 vertical_alignment = 1
 uppercase = true
 
-[node name="PortraitRect" type="TextureRect" parent="GameHUD/DialogBox" unique_id=1437408591]
+[node name="PortraitRect" type="TextureRect" parent="GameHUD/Dialog" unique_id=1437408591]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -132.0
-offset_right = -21.0
-offset_bottom = 38.0
+offset_left = -100.0
+offset_top = -100.0
 grow_vertical = 0
 texture = ExtResource("45_ygyvt")
 
@@ -861,6 +935,7 @@ bus = &"SFX"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=240127051]
 process_mode = 3
 stream = ExtResource("54_hs3dq")
+autoplay = true
 bus = &"Music"
 parameters/looping = true
 

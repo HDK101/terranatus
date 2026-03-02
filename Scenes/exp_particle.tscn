@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://rfmer8sr0evh" path="res://Sprites/exp_particle.png" id="1_ffu6s"]
 [ext_resource type="Script" uid="uid://d1lm40cldcyun" path="res://Source/EXPParticle.cs" id="2_fjvwf"]
-[ext_resource type="Texture2D" uid="uid://boo4kd4tnw8mm" path="res://Sprites/fireball_particle.png" id="3_l0ota"]
 
 [sub_resource type="Gradient" id="Gradient_fjvwf"]
 interpolation_mode = 1
@@ -61,31 +60,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjvwf"]
 radius = 4.1231055
 
-[sub_resource type="Gradient" id="Gradient_l0ota"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xx8ms"]
-gradient = SubResource("Gradient_l0ota")
-
-[sub_resource type="Curve" id="Curve_l0ota"]
-_data = [Vector2(0.38709676, 0.73033714), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_xx8ms"]
-curve = SubResource("Curve_l0ota")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e847j"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = 119.999985
-gravity = Vector3(0, 10, 0)
-linear_accel_min = -2.2351742e-06
-linear_accel_max = -2.2351742e-06
-scale_curve = SubResource("CurveTexture_xx8ms")
-color = Color(1, 0.966, 0.88, 0.4862745)
-color_ramp = SubResource("GradientTexture1D_xx8ms")
-
 [node name="EXPParticle" type="Area2D" unique_id=338294427]
 script = ExtResource("2_fjvwf")
 
@@ -101,9 +75,3 @@ frame_progress = 0.4813211
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846454920]
 shape = SubResource("CircleShape2D_fjvwf")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=798750109]
-amount = 32
-texture = ExtResource("3_l0ota")
-lifetime = 10.0
-process_material = SubResource("ParticleProcessMaterial_e847j")

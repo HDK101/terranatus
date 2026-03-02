@@ -10,11 +10,20 @@ public partial class Fireball : Area2D
 	private readonly float EXPLOSION_RADIUS = 64.0f;
 	private RandomNumberGenerator randomNumberGenerator;
 
+	private GpuParticles2D fireParticles;
+	private GpuParticles2D smokeParticles;
+
+	private PackedScene explosionPacked;
+
 	public override void _Ready()
 	{
+		var packedSceneDb = GetNode<PackedSceneDB>("/root/PackedSceneDB");
+		explosionPacked = packedSceneDb.FireExplosion;
 		randomNumberGenerator = new();
 		randomNumberGenerator.Randomize();
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		fireParticles = GetNode<GpuParticles2D>("FireballParticles");
+		smokeParticles = GetNode<GpuParticles2D>("SmokeParticles");
 
 		BodyEntered += OnBodyEnter;
 	}
@@ -40,7 +49,35 @@ public partial class Fireball : Area2D
 			Radius = EXPLOSION_RADIUS,
 			Position = Position,
 		});
+
+		var instance = explosionPacked.Instantiate<FireballExplosion>();
+
+		RemoveChild(fireParticles);
+		RemoveChild(smokeParticles);
+
+		CallDeferred(nameof(DetachParticles));
+		CallDeferred(nameof(CreateExplosion));
+
 		QueueFree();
+	}
+
+	private void DetachParticles()
+	{
+		fireParticles.Emitting = false;
+		smokeParticles.Emitting = false;
+
+		GetTree().CurrentScene.AddChild(fireParticles);
+		GetTree().CurrentScene.AddChild(smokeParticles);
+
+		fireParticles.Position = Position;
+		smokeParticles.Position = Position;
+	}
+
+	private void CreateExplosion()
+	{
+		var instance = explosionPacked.Instantiate<FireballExplosion>();
+		GetTree().CurrentScene.AddChild(instance);
+		instance.Position = Position;
 	}
 
 	private void Explode(PlayerExplosionPayload payload)

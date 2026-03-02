@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://burwpntsjhile"]
+
+[ext_resource type="AudioStream" uid="uid://co1pvdphpqqep" path="res://Sounds/Attack/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-001.wav" id="1_w26ms"]
+
+[resource]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("1_w26ms")
