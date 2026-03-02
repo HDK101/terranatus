@@ -4,30 +4,30 @@ using System.Collections.Generic;
 
 public partial class MenuButtons : Control
 {
-	[Export]
-	public MenuButton InventoryButton { get; set; }
-	[Export]
-	public MenuButton CharacterButton { get; set; }
-	[Export]
-	public MenuButton SystemButton { get; set; }
+    [Export]
+    public MenuButton InventoryButton { get; set; }
+    [Export]
+    public MenuButton CharacterButton { get; set; }
+    [Export]
+    public MenuButton SystemButton { get; set; }
 
-	public List<MenuButton> Buttons { get; private set; }
+    public List<MenuButton> Buttons { get; private set; }
 
     public override void _Ready()
     {
-		Buttons = [InventoryButton, CharacterButton, SystemButton];
+        Buttons = [InventoryButton, CharacterButton, SystemButton];
     }
 
-	public void ShowButtons()
-	{
-		InventoryButton.Select();
-	}
+    public void ShowButtons()
+    {
+        InventoryButton.Select();
+    }
 
-	public void HideButtons()
-	{
-		foreach (var button in Buttons)
-		{
-			button.Unselect();
-		}
-	}
+    public void HideButtons()
+    {
+        foreach (var button in Buttons)
+        {
+            button.Unselect();
+        }
+    }
 }

@@ -1,7 +1,7 @@
-using System;
 using Godot;
+using System;
 
-public partial class Life(double initialValue = 1.0): RefCounted
+public partial class Life(double initialValue = 1.0) : RefCounted
 {
     [Signal]
     public delegate void DeathEventHandler();

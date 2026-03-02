@@ -1,8 +1,8 @@
-using System;
 using Godot;
+using System;
 
 [GlobalClass]
-public partial class DamageRange: Resource
+public partial class DamageRange : Resource
 {
     [Export]
     public int Min;

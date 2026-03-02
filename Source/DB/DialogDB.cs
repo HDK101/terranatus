@@ -1,10 +1,10 @@
+using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
-using Godot.Collections;
 
-public partial class DialogDB: Node
+public partial class DialogDB : Node
 {
     private readonly string BASE_PATH = "res://Resources/Dialogs";
     private readonly string BASE_CONTENT_PATH = "res://Resources/Dialogs/Content";

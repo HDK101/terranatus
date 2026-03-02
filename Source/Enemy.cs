@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Godot;
+using System.Collections.Generic;
 
-public abstract partial class Enemy: CharacterBody2D, ILifeHolder, IHittable
+public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
 {
     [Signal]
     public delegate void DamagedEventHandler(HitPayload payload);
@@ -42,15 +42,15 @@ public abstract partial class Enemy: CharacterBody2D, ILifeHolder, IHittable
         return [];
     }
 
-	protected bool IsPlayerNear(float distance)
+    protected bool IsPlayerNear(float distance)
     {
         return Player.Position.DistanceTo(Position) <= distance;
     }
 
     protected Tween CreateDefaultTween()
-	{
-		var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
-		tween.SetPauseMode(Tween.TweenPauseMode.Process);
-		return tween;
-	}
+    {
+        var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
+        tween.SetPauseMode(Tween.TweenPauseMode.Process);
+        return tween;
+    }
 }

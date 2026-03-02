@@ -1,5 +1,5 @@
-using System;
 using Godot;
+using System;
 
 public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
 {

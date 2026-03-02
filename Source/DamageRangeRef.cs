@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class DamageRangeRef(int min, int max): RefCounted
+public partial class DamageRangeRef(int min, int max) : RefCounted
 {
     public int Rand(RandomNumberGenerator rng)
     {

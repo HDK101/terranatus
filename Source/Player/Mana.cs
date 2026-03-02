@@ -1,7 +1,7 @@
-using System;
 using Godot;
+using System;
 
-public partial class Mana(int initialValue = 1): RefCounted
+public partial class Mana(int initialValue = 1) : RefCounted
 {
     [Signal]
     public delegate void ChangeEventHandler();

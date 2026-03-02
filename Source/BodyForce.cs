@@ -1,7 +1,7 @@
-using System;
 using Godot;
+using System;
 
-public partial class BodyForce: Node
+public partial class BodyForce : Node
 {
     public Vector2 Force { get; set; }
 
@@ -16,7 +16,7 @@ public partial class BodyForce: Node
         Force *= (1.0f - deltaF);
 
         if (Force.LengthSquared() < 1e-4f)
-			Force = Vector2.Zero;
+            Force = Vector2.Zero;
     }
 
     public void Reset()

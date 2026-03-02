@@ -3,136 +3,136 @@ using System.Collections.Generic;
 
 public partial class Dialog : Control
 {
-	[Export]
-	private RichTextLabel dialogText;
-	[Export]
-	private Label nameText;
-	[Export]
-	private TextureRect portraitRect;
-	[Export]
-	private Control dialogBox;
+    [Export]
+    private RichTextLabel dialogText;
+    [Export]
+    private Label nameText;
+    [Export]
+    private TextureRect portraitRect;
+    [Export]
+    private Control dialogBox;
 
-	private Timer timer;
+    private Timer timer;
 
-	private bool isPlaying = false;
-	private string messageTarget = "";
-	private string currentMessage = "";
-	private int messageIndex = 0;
-	private Queue<DialogContent> nodes = [];
-	private DialogContent queuedToPlay = null;
+    private bool isPlaying = false;
+    private string messageTarget = "";
+    private string currentMessage = "";
+    private int messageIndex = 0;
+    private Queue<DialogContent> nodes = [];
+    private DialogContent queuedToPlay = null;
 
-	private bool active = false;
+    private bool active = false;
 
-	public override void _Ready()
-	{
-		timer = new()
-		{
-			Autostart = false,
-			OneShot = false,
-		};
-		timer.Timeout += TickMessage;
-		AddChild(timer);
-	}
+    public override void _Ready()
+    {
+        timer = new()
+        {
+            Autostart = false,
+            OneShot = false,
+        };
+        timer.Timeout += TickMessage;
+        AddChild(timer);
+    }
 
-	public PropertyTweener ShowUI()
-	{
-		var tween = CreateDefaultTween().SetParallel();
+    public PropertyTweener ShowUI()
+    {
+        var tween = CreateDefaultTween().SetParallel();
 
-		portraitRect.Position = new(-portraitRect.Size.X, portraitRect.Position.Y);
-		portraitRect.Modulate = new(Modulate, 0f);
+        portraitRect.Position = new(-portraitRect.Size.X, portraitRect.Position.Y);
+        portraitRect.Modulate = new(Modulate, 0f);
 
-		return tween.TweenProperty(dialogBox, "position:y", 172.0f, 0.5f);
-	}
+        return tween.TweenProperty(dialogBox, "position:y", 172.0f, 0.5f);
+    }
 
-	public PropertyTweener HideUI()
-	{
-		var tween = CreateDefaultTween().SetParallel();
+    public PropertyTweener HideUI()
+    {
+        var tween = CreateDefaultTween().SetParallel();
 
-		tween.TweenProperty(portraitRect, "position:x", -portraitRect.Size.X, 0.75f);
-		tween.TweenProperty(portraitRect, "modulate:a", 0.0f, 0.5f);
-		tween.TweenProperty(nameText, "modulate:a", 0.0f, 0.75f);
+        tween.TweenProperty(portraitRect, "position:x", -portraitRect.Size.X, 0.75f);
+        tween.TweenProperty(portraitRect, "modulate:a", 0.0f, 0.5f);
+        tween.TweenProperty(nameText, "modulate:a", 0.0f, 0.75f);
 
-		return tween.TweenProperty(dialogBox, "position:y", 252.0f, 0.5f);
-	}
+        return tween.TweenProperty(dialogBox, "position:y", 252.0f, 0.5f);
+    }
 
-	public void PlayContent(DialogContent content)
-	{
-		if (!active)
-		{
-			ShowUI().Finished += () => StartContent(content);
-		}
-		else
-		{
-			StartContent(content);
-		}
-	}
+    public void PlayContent(DialogContent content)
+    {
+        if (!active)
+        {
+            ShowUI().Finished += () => StartContent(content);
+        }
+        else
+        {
+            StartContent(content);
+        }
+    }
 
-	public void PlayTree(DialogTree tree)
-	{
-		messageIndex = 0;
-		dialogText.Text = "";
-		portraitRect.Texture = null;
-		messageTarget = "";
-		dialogText.Text = "";
-		nameText.Text = "";
-		currentMessage = "";
-		nodes = tree.Nodes;
-		PlayContent(nodes.Dequeue());
-	}
+    public void PlayTree(DialogTree tree)
+    {
+        messageIndex = 0;
+        dialogText.Text = "";
+        portraitRect.Texture = null;
+        messageTarget = "";
+        dialogText.Text = "";
+        nameText.Text = "";
+        currentMessage = "";
+        nodes = tree.Nodes;
+        PlayContent(nodes.Dequeue());
+    }
 
-	private void StartContent(DialogContent content)
-	{
-		currentMessage = "";
-		dialogText.Text = "";
-		messageIndex = 0;
-		var tween = CreateDefaultTween().SetParallel();
-		tween.TweenProperty(portraitRect, "position:x", 0.0f, 0.75f);
-		tween.TweenProperty(nameText, "modulate:a", 1.0f, 0.75f);
-		tween.TweenProperty(portraitRect, "modulate:a", 1.0f, 0.75f);
-		portraitRect.Texture = content.Portrait;
-		messageTarget = content.Message;
-		nameText.Text = content.Name;
-		isPlaying = true;
-		timer.Start(0.05);
-		active = true;
-	}
+    private void StartContent(DialogContent content)
+    {
+        currentMessage = "";
+        dialogText.Text = "";
+        messageIndex = 0;
+        var tween = CreateDefaultTween().SetParallel();
+        tween.TweenProperty(portraitRect, "position:x", 0.0f, 0.75f);
+        tween.TweenProperty(nameText, "modulate:a", 1.0f, 0.75f);
+        tween.TweenProperty(portraitRect, "modulate:a", 1.0f, 0.75f);
+        portraitRect.Texture = content.Portrait;
+        messageTarget = content.Message;
+        nameText.Text = content.Name;
+        isPlaying = true;
+        timer.Start(0.05);
+        active = true;
+    }
 
-	private Tween CreateDefaultTween()
-	{
-		var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
-		tween.SetPauseMode(Tween.TweenPauseMode.Process);
-		return tween;
-	}
+    private Tween CreateDefaultTween()
+    {
+        var tween = GetTree().CreateTween().SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.InOut);
+        tween.SetPauseMode(Tween.TweenPauseMode.Process);
+        return tween;
+    }
 
-	private void TickMessage()
-	{
-		if (isPlaying)
-		{
-			if (messageIndex < messageTarget.Length)
-			{
-				currentMessage += messageTarget[messageIndex];
-				dialogText.Text = currentMessage;
-				messageIndex += 1;
-			}
-			else
-			{
-				FinishOrPlayNext();
-			}
-		}
-	}
+    private void TickMessage()
+    {
+        if (isPlaying)
+        {
+            if (messageIndex < messageTarget.Length)
+            {
+                currentMessage += messageTarget[messageIndex];
+                dialogText.Text = currentMessage;
+                messageIndex += 1;
+            }
+            else
+            {
+                FinishOrPlayNext();
+            }
+        }
+    }
 
-	private void FinishOrPlayNext()
-	{
-		isPlaying = false;
-		timer.Stop();
+    private void FinishOrPlayNext()
+    {
+        isPlaying = false;
+        timer.Stop();
 
-		if (nodes.Count > 0)
-		{
-			var content = nodes.Dequeue();
-			GetTree().CreateTimer(2.0).Timeout += () => PlayContent(content);
-			return;
-		}
+        if (nodes.Count > 0)
+        {
+            var content = nodes.Dequeue();
+            GetTree().CreateTimer(2.0).Timeout += () => PlayContent(content);
+            return;
+        }
 
-		GetTree().CreateTimer(2.0).Timeout += () => HideUI();
-	}
+        GetTree().CreateTimer(2.0).Timeout += () => HideUI();
+    }
 }

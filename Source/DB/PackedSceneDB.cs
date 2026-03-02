@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class PackedSceneDB: Node
+public partial class PackedSceneDB : Node
 {
     public PackedScene Fireball { get; private set; }
     public PackedScene JumpFallParticles { get; private set; }

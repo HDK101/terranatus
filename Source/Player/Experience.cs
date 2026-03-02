@@ -1,7 +1,7 @@
-using System;
 using Godot;
+using System;
 
-public partial class Experience: RefCounted
+public partial class Experience : RefCounted
 {
     [Signal]
     public delegate void LeveledEventHandler();

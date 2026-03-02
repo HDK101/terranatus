@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class StateManager: Node
+public partial class StateManager : Node
 {
     private IState state;
 

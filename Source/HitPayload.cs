@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HitPayload: RefCounted
+public partial class HitPayload : RefCounted
 {
     public required double Damage { get; set; }
     public Vector2 Force { get; set; }

@@ -1,19 +1,19 @@
-using System;
 using Godot;
+using System;
 
 public partial class EXPBar : TextureProgressBar
 {
-	private Label label;
+    private Label label;
 
-	public void Update(double value, double maxValue)
-	{
-		Value = value;
-		MaxValue = maxValue;
-		label.Text = $"EXP: {value}/{maxValue}";
-	}
+    public void Update(double value, double maxValue)
+    {
+        Value = value;
+        MaxValue = maxValue;
+        label.Text = $"EXP: {value}/{maxValue}";
+    }
 
     public override void _Ready()
-	{
-		label = GetNode<Label>("Label");
-	}
+    {
+        label = GetNode<Label>("Label");
+    }
 }

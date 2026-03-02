@@ -12,7 +12,7 @@ public partial class EntitySoundPlayer : MultipleAudioPlayer2D
 
     public void PlayAttackSound(AttackType type)
     {
-        switch(type)
+        switch (type)
         {
             case AttackType.SLASH:
                 PlayStream(soundDB.SlashRandomizer);

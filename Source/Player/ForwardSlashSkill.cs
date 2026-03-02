@@ -7,9 +7,9 @@ public partial class ForwardSlashSkill(WeakReference<Player> playerRef) : Active
 
     protected override void Action(CastSkillPayload payload)
     {
-		if (playerRef.TryGetTarget(out Player player))
-		{
-			player.StartForwardSlash();
-		}
+        if (playerRef.TryGetTarget(out Player player))
+        {
+            player.StartForwardSlash();
+        }
     }
 }

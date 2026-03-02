@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Godot;
+using System.Collections.Generic;
 
-public partial class PlayerBody: RefCounted
+public partial class PlayerBody : RefCounted
 {
     public enum ItemType
     {

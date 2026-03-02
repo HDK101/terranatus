@@ -18,7 +18,8 @@ public partial class Inventory
         if (blueprint.Type == ItemTypes.WEAPON)
         {
             _weapons.Add(slot);
-        } else if (blueprint.Type == ItemTypes.CONSUMABLE)
+        }
+        else if (blueprint.Type == ItemTypes.CONSUMABLE)
         {
             _consumables.Add(slot);
         }

@@ -1,5 +1,5 @@
-using System;
 using Godot;
+using System;
 
 public partial class PlayerForwardSlash(WeakReference<Player> playerRef) : RefCounted, IState
 {
