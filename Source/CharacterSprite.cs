@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CharacterSprite : AnimatedSprite2D
+public partial class CharacterSprite : Sprite2D
 {
     private float damageWeight = 0.0f;
 
@@ -17,14 +17,5 @@ public partial class CharacterSprite : AnimatedSprite2D
         Modulate = Color.Color8(255, colorByte, colorByte);
 
         damageWeight = MathF.Max(0.0f, damageWeight - (float)delta);
-    }
-
-    public Texture2D GetFrameTexture()
-    {
-        var frames = SpriteFrames;
-        string animation = Animation;
-        int frame = Frame;
-
-        return frames.GetFrameTexture(animation, frame);
     }
 }

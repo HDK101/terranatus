@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dlchcv8v7sx5t"
+path="res://.godot/imported/Varnished (White).fnt-5488335786f8ba45ef5f4f6b3ffe397e.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Varnished (White).fnt"
+dest_files=["res://.godot/imported/Varnished (White).fnt-5488335786f8ba45ef5f4f6b3ffe397e.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=false
+scaling_mode=1

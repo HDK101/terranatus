@@ -5,8 +5,17 @@ using System;
 [Tool]
 public partial class MenuButton : Control
 {
+    public enum Button
+    {
+        INVENTORY,
+        CHARACTER,
+        SKILLS,
+        SYSTEM,
+    }
+    
     [Export]
-    public string Text { get; set; }
+    public Button AssignedButton { get; set; }
+
     public Action Trigger { get; set; }
 
     private TextureRect arrow;
@@ -18,7 +27,7 @@ public partial class MenuButton : Control
     {
         arrow = GetNode<TextureRect>("Arrow");
         label = GetNode<Label>("Label");
-        label.Text = Text;
+        InitializeText();
     }
 
     public override void _Input(InputEvent @event)
@@ -39,5 +48,24 @@ public partial class MenuButton : Control
     {
         arrow.Hide();
         selected = false;
+    }
+
+    private void InitializeText()
+    {
+        switch (AssignedButton)
+        {
+            case Button.INVENTORY:
+                label.Text = "Inventory";
+                break;
+            case Button.CHARACTER:
+                label.Text = "Character";
+                break;
+            case Button.SKILLS:
+                label.Text = "Skills";
+                break;
+            case Button.SYSTEM:
+                label.Text = "System";
+                break;
+        }
     }
 }

@@ -33,31 +33,29 @@ public partial class Player : CharacterBody2D
     public Experience Experience { get; } = new();
     public PlayerBody Body => _body;
     public Vector2 Direction { get; set; }
-    public State CurrentState { get => currentState; set => currentState = value; }
-    public CharacterSprite AnimatedSprite { get; private set; }
+    public CharacterSprite Sprite { get; private set; }
     public Area2D HitArea { get => hitArea; }
     public Area2D ForwardSlashArea { get => forwardSlashArea; }
     public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
     public Skills Skills => _skills;
     public bool IsWalking => Velocity.X != 0;
+    public bool IsFalling => Velocity.Y < 0;
+    public bool IsJumping => Velocity.Y > 0;
     public bool IsAttacking { get; private set; } = false;
 
     public PlayerView View { get; set; }
-
-    public const float Speed = 100.0f;
-    public const float JumpVelocity = -175.0f;
-
     private readonly PlayerBody _body = new();
     private PlayerCamera camera;
     private StateManager stateManager;
+
+    public const float Speed = 100.0f;
+    public const float JumpVelocity = -175.0f;
 
     private Timer shadowTimer = new()
     {
         OneShot = false,
         Autostart = true,
     };
-
-    private State currentState = State.IDLE;
 
     private Area2D hitArea;
     private Area2D forwardSlashArea;
@@ -71,7 +69,6 @@ public partial class Player : CharacterBody2D
 
     private PackedScene bigSlashPacked;
     private PackedScene shadowPacked;
-    private PackedScene jumpFallParticlesPacked;
 
     private PackedSceneDB packedSceneDB;
 
@@ -80,8 +77,6 @@ public partial class Player : CharacterBody2D
         "aemilia_naked_attack_sword1"
     ];
 
-    private int attackAnimationIndex = 0;
-
     private Skills _skills;
 
     public override void _Ready()
@@ -89,18 +84,17 @@ public partial class Player : CharacterBody2D
         packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
         bigSlashPacked = GD.Load<PackedScene>("res://Scenes/big_slash.tscn");
         shadowPacked = GD.Load<PackedScene>("res://Scenes/shadow.tscn");
-        jumpFallParticlesPacked = GD.Load<PackedScene>("res://Scenes/fall_particles.tscn");
 
         ItemDB itemDB = GetNode<ItemDB>("/root/ItemDB");
         ItemBlueprint apple = itemDB.Retrieve("APPLE");
         shortSwordBlueprint = GD.Load<ItemBlueprint>("res://Resources/Items/short_sword.tres");
-        AnimatedSprite = GetNode<CharacterSprite>("AnimatedSprite2D");
+        Sprite = GetNode<CharacterSprite>("Sprite2D");
         hitArea = GetNode<Area2D>("HitArea");
         forwardSlashArea = GetNode<Area2D>("ForwardSlashArea");
         entitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
         itemArea = GetNode<Area2D>("ItemArea");
         camera = GetNode<PlayerCamera>("Camera2D");
-        View = new(GetNode<AnimationTree>("AnimationTree"), GetNode<Sprite2D>("Sprite2D"));
+        View = new(GetNode<AnimationTree>("AnimationTree"), Sprite);
         View.Start();
 
         itemArea.BodyEntered += (body) =>
@@ -125,17 +119,11 @@ public partial class Player : CharacterBody2D
         AddChild(stateManager);
         stateManager.ChangeState(new PlayerDefaultState(new(this)));
 
-        // AddChild(shadowTimer);
-        // shadowTimer.Start(0.05);
-        // shadowTimer.Timeout += CreateShadow;
+        AddChild(shadowTimer);
+        shadowTimer.Start(0.05);
+        shadowTimer.Timeout += CreateShadow;
 
-        _skills = new(new(this))
-        {
-            HasMana = Mana.Has,
-            UseMana = Mana.Use,
-        };
-
-        _skills.Start();
+        CreateSkills();
 
         Experience.Change += entitySoundPlayer.PlayPickEXP;
     }
@@ -143,7 +131,7 @@ public partial class Player : CharacterBody2D
     public void Hit(HitPayload hitPayload)
     {
         Life.Hit(hitPayload.Damage);
-        AnimatedSprite.Hit();
+        Sprite.Hit();
         camera.Hit(hitPayload.Force.X);
         EmitSignal(SignalName.Damaged, hitPayload);
     }
@@ -165,7 +153,7 @@ public partial class Player : CharacterBody2D
             View.SpriteOffset = new(-2.0f, 0.0f);
             return;
         }
-        View.SpriteOffset = new(2.0f, 0.0f);
+        View.SpriteOffset = new(3.0f, 0.0f);
     }
 
     public void StartAttack()
@@ -185,13 +173,57 @@ public partial class Player : CharacterBody2D
 
     public void CreateShadow()
     {
+        if (!ShadowsActive) return;
+
         var shadowInstance = shadowPacked.Instantiate<Shadow>();
-        shadowInstance.Offset = AnimatedSprite.Offset;
+        shadowInstance.Offset = Sprite.Offset;
         shadowInstance.Position = Position;
         shadowInstance.FlipH = Flipped();
         shadowInstance.InitialColor = new(1.0f, 0.7f, 1.0f, 0.4f);
-        shadowInstance.Texture = AnimatedSprite.GetFrameTexture();
+        shadowInstance.Hframes = Sprite.Hframes;
+        shadowInstance.Vframes = Sprite.Vframes;
+        shadowInstance.Frame = Sprite.Frame;
+        shadowInstance.Texture = Sprite.Texture;
         GetTree().CurrentScene.CallDeferred("add_child", shadowInstance);
+    }
+
+    public void CastAttackHit()
+    {
+        entitySoundPlayer.PlayAttackSound(AttackType.SLASH);
+
+        var bodies = hitArea.GetOverlappingBodies();
+
+        var weapon = _body.Retrieve(PlayerBody.ItemType.WEAPON);
+        double damage = 0;
+
+        if (weapon is not null)
+        {
+            var payload = weapon.MeleeWeapon.DamageBlueprint.CreatePayload();
+
+            foreach (var damageEntry in payload)
+            {
+                damage += damageEntry.Value;
+            }
+        }
+
+        bool successfulHit = false;
+        foreach (var body in bodies)
+        {
+            if (body is IHittable lifeHolder)
+            {
+                HitPayload hitPayload = new()
+                {
+                    Damage = damage,
+                    Force = new(LastDirectionHorizontal * 64.0f, -64.0f),
+                    Position = body.Position,
+                    Attack = AttackType.SLASH,
+                };
+                lifeHolder.Hit(hitPayload);
+                EmitSignal(SignalName.Attacked, hitPayload);
+                successfulHit = true;
+            }
+        }
+        if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
     }
 
     public void StartForwardSlash()
@@ -249,13 +281,24 @@ public partial class Player : CharacterBody2D
     {
         CreateJumpFallParticles();
         entitySoundPlayer.Jump();
-        View.Jump();
+        if (!IsAttacking) View.Jump();
         return JumpVelocity;
+    }
+
+    public void Attack()
+    {
+        // if (!IsOnFloor()) return;
+        View.Attack();
+    }
+
+    public void SetShadowActive(bool active)
+    {
+        ShadowsActive = active;
     }
 
     private void CreateJumpFallParticles()
     {
-        var instance = jumpFallParticlesPacked.Instantiate<GpuParticles2D>();
+        var instance = packedSceneDB.JumpFallParticles.Instantiate<GpuParticles2D>();
         instance.Position = Position + Vector2.Down * 8f;
         instance.Restart();
         GetTree().CurrentScene.CallDeferred("add_child", instance);
@@ -279,57 +322,26 @@ public partial class Player : CharacterBody2D
         return damage;
     }
 
-    private void Attack()
-    {
-        var bodies = hitArea.GetOverlappingBodies();
-
-        var weapon = _body.Retrieve(PlayerBody.ItemType.WEAPON);
-        double damage = 0;
-
-        if (weapon is not null)
-        {
-            var payload = weapon.MeleeWeapon.DamageBlueprint.CreatePayload();
-
-            foreach (var damageEntry in payload)
-            {
-                damage += damageEntry.Value;
-            }
-        }
-
-        bool successfulHit = false;
-        foreach (var body in bodies)
-        {
-            if (body is IHittable lifeHolder)
-            {
-                HitPayload hitPayload = new()
-                {
-                    Damage = damage,
-                    Force = new(LastDirectionHorizontal * 64.0f, -64.0f),
-                    Position = body.Position,
-                    Attack = AttackType.SLASH,
-                };
-                lifeHolder.Hit(hitPayload);
-                EmitSignal(SignalName.Attacked, hitPayload);
-                successfulHit = true;
-            }
-        }
-        if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
-    }
-
     private void OnDeath()
     {
         SetProcess(false);
         SetPhysicsProcess(false);
-        AnimatedSprite.Hide();
-    }
-
-    private bool IsAttackAnimation()
-    {
-        return attackAnimations.Contains(AnimatedSprite.Animation.ToString());
+        Sprite.Hide();
     }
 
     private bool Flipped()
     {
         return LastDirectionHorizontal <= 0.0f;
+    }
+
+    private void CreateSkills()
+    {
+        _skills = new(new(this))
+        {
+            HasMana = Mana.Has,
+            UseMana = Mana.Use,
+        };
+
+        _skills.Start();
     }
 }

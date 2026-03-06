@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://4lfktvuew2u"]
+
+[ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="1_hhde3"]
+[ext_resource type="Texture2D" uid="uid://rgn5gcxxvk1c" path="res://Sprites/UI/base_ui.png" id="2_ycbaw"]
+[ext_resource type="Script" uid="uid://b4m3ofbgyycyh" path="res://Source/UI/SkillsUI.cs" id="3_6nsna"]
+[ext_resource type="Theme" uid="uid://ck52c6bde70xn" path="res://Resources/Themes/gothic_label.tres" id="3_acd26"]
+[ext_resource type="Texture2D" uid="uid://x8po6fmlpaja" path="res://Sprites/UI/line_selected.png" id="4_264d1"]
+[ext_resource type="Theme" uid="uid://b0egmcm5766g0" path="res://Resources/Themes/small_text.tres" id="5_264d1"]
+[ext_resource type="PackedScene" uid="uid://ddnbapb4ldc1" path="res://Scenes/UI/skill_slot.tscn" id="6_a4cmq"]
+[ext_resource type="Texture2D" uid="uid://cy6n7247qlido" path="res://Sprites/Skills/forward_slash_skill_slot.png" id="7_a4cmq"]
+[ext_resource type="Texture2D" uid="uid://dvuuafndynjhu" path="res://Sprites/Skills/skill_slot_select.png" id="9_a4cmq"]
+[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="10_6nsna"]
+[ext_resource type="LabelSettings" uid="uid://buys6db88srop" path="res://Resources/LabelSettings/boxy.tres" id="11_7a4tv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dohx2"]
+texture = ExtResource("2_ycbaw")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="Theme" id="Theme_crlwb"]
+default_font = ExtResource("1_hhde3")
+default_font_size = 8
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_hhde3")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_dohx2")
+
+[node name="Skills" type="Control" unique_id=1636244461 node_paths=PackedStringArray("fireball", "forwardSlash", "selectedSkillRect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_crlwb")
+script = ExtResource("3_6nsna")
+fireball = NodePath("MarginContainer/Control/SkillsContainer/VBoxContainer/GridContainer4/FireballSkill")
+forwardSlash = NodePath("MarginContainer/Control/SkillsContainer/VBoxContainer/GridContainer2/ForwardSkill")
+selectedSkillRect = NodePath("SelectSkill")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=223430931]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=79065538]
+layout_mode = 2
+
+[node name="SkillsContainer" type="PanelContainer" parent="MarginContainer/Control" unique_id=311211316]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/SkillsContainer" unique_id=1247538590]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=695487473]
+layout_mode = 2
+theme = ExtResource("3_acd26")
+text = "Skills"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=430166046]
+layout_mode = 2
+texture = ExtResource("4_264d1")
+
+[node name="MoonPath" type="Label" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=388670669]
+layout_mode = 2
+theme = ExtResource("5_264d1")
+text = "Moon path"
+uppercase = true
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=49140682]
+layout_mode = 2
+columns = 8
+
+[node name="WarriorPath" type="Label" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=471109826]
+layout_mode = 2
+theme = ExtResource("5_264d1")
+text = "Warrior"
+uppercase = true
+
+[node name="GridContainer2" type="GridContainer" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=179023660]
+layout_mode = 2
+columns = 8
+
+[node name="ForwardSkill" parent="MarginContainer/Control/SkillsContainer/VBoxContainer/GridContainer2" unique_id=895458444 instance=ExtResource("6_a4cmq")]
+layout_mode = 2
+texture = ExtResource("7_a4cmq")
+
+[node name="RoguePath" type="Label" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=181240307]
+layout_mode = 2
+theme = ExtResource("5_264d1")
+text = "Rogue"
+uppercase = true
+
+[node name="GridContainer3" type="GridContainer" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=1222327132]
+layout_mode = 2
+columns = 8
+
+[node name="Label2" type="Label" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=838004942]
+layout_mode = 2
+theme = ExtResource("5_264d1")
+text = "MAGE"
+uppercase = true
+
+[node name="GridContainer4" type="GridContainer" parent="MarginContainer/Control/SkillsContainer/VBoxContainer" unique_id=632976560]
+layout_mode = 2
+columns = 8
+
+[node name="FireballSkill" parent="MarginContainer/Control/SkillsContainer/VBoxContainer/GridContainer4" unique_id=1504852020 instance=ExtResource("6_a4cmq")]
+layout_mode = 2
+
+[node name="SkillDetails" type="PanelContainer" parent="MarginContainer/Control" unique_id=178685682]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/SkillDetails" unique_id=518475349]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control/SkillDetails/VBoxContainer" unique_id=230604017]
+layout_mode = 2
+theme = ExtResource("3_acd26")
+text = "Details"
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/Control/SkillDetails/VBoxContainer" unique_id=1659208990]
+layout_mode = 2
+texture = ExtResource("4_264d1")
+
+[node name="Label3" type="Label" parent="MarginContainer/Control/SkillDetails/VBoxContainer" unique_id=629963101]
+layout_mode = 2
+theme = ExtResource("5_264d1")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis ligula non arcu accumsan finibus vulputate vel erat. Phasellus rutrum pretium porttitor."
+autowrap_mode = 2
+
+[node name="SelectSkill" type="TextureRect" parent="." unique_id=434838612]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("9_a4cmq")
+
+[node name="QuickSlotSelect" type="ColorRect" parent="." unique_id=1087585388]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54509807)
+
+[node name="QuickSlotPanel" type="PanelContainer" parent="QuickSlotSelect" unique_id=709143568]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuickSlotSelect/QuickSlotPanel" unique_id=375457753]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer" unique_id=228711821]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer2" unique_id=1550760847]
+layout_mode = 2
+text = "Assign to quick slot"
+label_settings = ExtResource("10_6nsna")
+
+[node name="TextureRect4" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer2" unique_id=1878082045]
+layout_mode = 2
+texture = ExtResource("7_a4cmq")
+
+[node name="TextureRect2" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer" unique_id=1457530879]
+layout_mode = 2
+texture = ExtResource("4_264d1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer" unique_id=1972066996]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1831113515]
+layout_mode = 2
+texture = ExtResource("7_a4cmq")
+
+[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer/TextureRect" unique_id=1822778093]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "A"
+label_settings = ExtResource("11_7a4tv")
+
+[node name="TextureRect2" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=738540554]
+layout_mode = 2
+texture = ExtResource("7_a4cmq")
+
+[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer/TextureRect2" unique_id=1713836818]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "S"
+label_settings = ExtResource("11_7a4tv")
+
+[node name="TextureRect3" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1651236032]
+layout_mode = 2
+texture = ExtResource("7_a4cmq")
+
+[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer/TextureRect3" unique_id=820505426]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "D"
+label_settings = ExtResource("11_7a4tv")
+
+[node name="SelectQuickSlot" type="TextureRect" parent="." unique_id=1749589121]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("9_a4cmq")

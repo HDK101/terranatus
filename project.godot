@@ -34,6 +34,12 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="Terranatus"
 
+[editor]
+
+movie_writer/movie_file="/home/lucashym/Projects/terranatus/Videos/ingamerecord.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=165
+
 [global_group]
 
 ENEMY=""

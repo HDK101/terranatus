@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://2txley03tqjk" path="res://Resources/grasslands_tile_set.tres" id="1_ssntf"]
 [ext_resource type="Script" uid="uid://dkyq0bb1y6vck" path="res://Source/GameManager.cs" id="2_62am4"]
 [ext_resource type="Texture2D" uid="uid://vg4xq2wgbieu" path="res://Sprites/mana_bar.png" id="2_hrjpy"]
-[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/in_game_theme.tres" id="3_ar8se"]
+[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/Themes/in_game_theme.tres" id="3_ar8se"]
 [ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/UI/GameHud.cs" id="3_iw0lp"]
 [ext_resource type="Texture2D" uid="uid://baiy21twajstl" path="res://Sprites/background_trees_front.png" id="4_55aq7"]
 [ext_resource type="Texture2D" uid="uid://ogs745gqa3kj" path="res://Sprites/background_trees_back.png" id="4_tbblf"]
@@ -37,9 +37,9 @@
 [ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="25_feyw5"]
 [ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="25_pkurl"]
 [ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="26_q3vwd"]
+[ext_resource type="PackedScene" uid="uid://bkgjf8j38s83k" path="res://Scenes/skill_in_game_slot.tscn" id="27_3i6n3"]
 [ext_resource type="Texture2D" uid="uid://cc5nl7yi8fkk" path="res://Sprites/default_attack_skill.png" id="27_7sovq"]
 [ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="27_pkurl"]
-[ext_resource type="Texture2D" uid="uid://bs1u8ilp3gu8s" path="res://Sprites/default_jump_skill.png" id="28_3i6n3"]
 [ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="29_6tamu"]
 [ext_resource type="Texture2D" uid="uid://cwnwx1m0ka0m0" path="res://Sprites/Skills/fireball_skill_ingame.png" id="29_65n2t"]
 [ext_resource type="Texture2D" uid="uid://ct6odxyff6m2v" path="res://Sprites/UI/weapon_equip_slot.png" id="29_868j4"]
@@ -58,6 +58,7 @@
 [ext_resource type="Texture2D" uid="uid://dd4efw6iiqk78" path="res://Sprites/Portrait/aemilia_34_view_portrait.png" id="45_ygyvt"]
 [ext_resource type="Texture2D" uid="uid://crnb3n40wynsq" path="res://Sprites/forest_background.png" id="46_7jpoy"]
 [ext_resource type="FontFile" uid="uid://dqh623r5j7kns" path="res://Fonts/Seraphimb1.ttf" id="46_hwnf3"]
+[ext_resource type="PackedScene" uid="uid://4lfktvuew2u" path="res://Scenes/UI/skills.tscn" id="49_65n2t"]
 [ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="54_hs3dq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hwnf3"]
@@ -69,10 +70,6 @@ font_size = 8
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.5294118)
 shadow_offset = Vector2(0, 0.9)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7sovq"]
-font = ExtResource("15_4n6jn")
-font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_dr5a8"]
 font = ExtResource("16_773fv")
@@ -342,71 +339,35 @@ offset_top = -32.0
 offset_right = 32.0
 grow_vertical = 0
 
-[node name="Jump" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=306783224]
+[node name="JumpSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=811176460 instance=ExtResource("27_3i6n3")]
 layout_mode = 0
-offset_left = 6.0
-offset_right = 32.0
-offset_bottom = 26.0
-texture = ExtResource("28_3i6n3")
-
-[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Jump" unique_id=1687869910]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 16.0
+offset_left = 0.0
 offset_right = 26.0
-offset_bottom = 26.0
-text = "Z"
-label_settings = SubResource("LabelSettings_7sovq")
 
-[node name="DefaultAttack" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1283703208]
+[node name="AttackSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1693940697 instance=ExtResource("27_3i6n3")]
 layout_mode = 0
-offset_left = 36.0
-offset_right = 62.0
-offset_bottom = 26.0
+offset_left = 35.0
+offset_right = 61.0
 texture = ExtResource("27_7sovq")
+Button = 1
 
-[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/DefaultAttack" unique_id=33142819]
+[node name="SkillOneSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1882491947 instance=ExtResource("27_3i6n3")]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 16.0
-offset_right = 26.0
-offset_bottom = 26.0
-text = "X"
-label_settings = SubResource("LabelSettings_7sovq")
-
-[node name="Skill1" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1748374934]
-layout_mode = 0
-offset_left = 6.0
+offset_left = 0.0
 offset_top = -29.0
-offset_right = 32.0
-offset_bottom = -3.0
-texture = ExtResource("29_65n2t")
-
-[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Skill1" unique_id=568309345]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 16.0
 offset_right = 26.0
-offset_bottom = 26.0
-text = "A"
-label_settings = SubResource("LabelSettings_7sovq")
+offset_bottom = -3.0
+texture = ExtResource("30_dgkwl")
+Button = 2
 
-[node name="Skill2" type="TextureRect" parent="GameHUD/MainUI/SkillButtons" unique_id=1373760188]
+[node name="SkillTwoSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1250261798 instance=ExtResource("27_3i6n3")]
 layout_mode = 0
 offset_left = 35.0
 offset_top = -29.0
 offset_right = 61.0
 offset_bottom = -3.0
-texture = ExtResource("30_dgkwl")
-
-[node name="Label" type="Label" parent="GameHUD/MainUI/SkillButtons/Skill2" unique_id=79559165]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 16.0
-offset_right = 26.0
-offset_bottom = 26.0
-text = "S"
-label_settings = SubResource("LabelSettings_7sovq")
+texture = ExtResource("29_65n2t")
+Button = 3
 
 [node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("profile", "menuButtons", "inventory", "background", "itemDetails")]
 process_mode = 3
@@ -456,15 +417,17 @@ layout_mode = 2
 
 [node name="MenuButton" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
 layout_mode = 2
-Text = "Inventory"
 
 [node name="MenuButton2" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
 layout_mode = 2
-Text = "Character"
+AssignedButton = 2
+
+[node name="MenuButton4" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
+layout_mode = 2
 
 [node name="MenuButton3" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
 layout_mode = 2
-Text = "System"
+AssignedButton = 3
 
 [node name="Profile" type="VBoxContainer" parent="GameHUD/Menu" unique_id=1839354880]
 layout_mode = 1
@@ -809,6 +772,10 @@ label_settings = SubResource("LabelSettings_vdw86")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
+
+[node name="Skills" parent="GameHUD/Menu" unique_id=1636244461 node_paths=PackedStringArray("player") instance=ExtResource("49_65n2t")]
+layout_mode = 1
+player = NodePath("../../../Entities/Player")
 
 [node name="Dialog" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "nameText", "portraitRect", "dialogBox")]
 process_mode = 3

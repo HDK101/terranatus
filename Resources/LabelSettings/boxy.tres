@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://buys6db88srop"]
+
+[ext_resource type="FontFile" uid="uid://dm1wut0w8eoa6" path="res://Fonts/boxy_new.png" id="1_druxk"]
+
+[resource]
+font = ExtResource("1_druxk")
+font_size = 8

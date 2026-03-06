@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ddnbapb4ldc1"]
+
+[ext_resource type="Texture2D" uid="uid://bjlrl2hyy87mq" path="res://Sprites/Skills/fireball_skill1.png" id="1_ec34q"]
+[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="2_ity51"]
+[ext_resource type="Script" uid="uid://bk2t5lhja8nnq" path="res://Source/UI/SkillSlot.cs" id="2_maxf2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4cmq"]
+font = ExtResource("2_ity51")
+font_size = 8
+
+[node name="SkillSlot" type="TextureRect" unique_id=895458444]
+texture = ExtResource("1_ec34q")
+script = ExtResource("2_maxf2")
+
+[node name="LevelLabel" type="Label" parent="." unique_id=538262921]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_a4cmq")
+horizontal_alignment = 2

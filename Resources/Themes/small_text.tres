@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://b0egmcm5766g0"]
+
+[ext_resource type="FontFile" uid="uid://dlchcv8v7sx5t" path="res://Fonts/Varnished (White).fnt" id="1_0jv0o"]
+
+[resource]
+default_font = ExtResource("1_0jv0o")
+default_font_size = 16

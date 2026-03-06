@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bkgjf8j38s83k"]
+
+[ext_resource type="Texture2D" uid="uid://bs1u8ilp3gu8s" path="res://Sprites/default_jump_skill.png" id="1_jg2js"]
+[ext_resource type="Script" uid="uid://dgs4ydkpf6uyu" path="res://Source/UI/InGameSkillSlot.cs" id="2_stifn"]
+[ext_resource type="Texture2D" uid="uid://bng5msi1iuxar" path="res://Sprites/skill_use1.png" id="3_0o0ve"]
+[ext_resource type="Texture2D" uid="uid://su4w40avivyg" path="res://Sprites/skill_use2.png" id="4_y4ptc"]
+[ext_resource type="Texture2D" uid="uid://cja5f0347flub" path="res://Sprites/skill_use3.png" id="5_kno87"]
+[ext_resource type="Texture2D" uid="uid://bk4kayq2vn1qr" path="res://Sprites/skill_base.png" id="6_rpsh7"]
+[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="7_5w4r3"]
+
+[sub_resource type="Animation" id="Animation_0dqb8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UseEffect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_ebxge"]
+resource_name = "use"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UseEffect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.099999994, 0.14999999, 0.2, 0.25, 0.29999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("3_0o0ve"), ExtResource("4_y4ptc"), ExtResource("5_kno87"), ExtResource("4_y4ptc"), ExtResource("3_0o0ve"), null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmiap"]
+_data = {
+&"RESET": SubResource("Animation_0dqb8"),
+&"use": SubResource("Animation_ebxge")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_7sovq"]
+font = ExtResource("7_5w4r3")
+font_size = 8
+
+[node name="SkillInGameSlot" type="TextureRect" unique_id=811176460]
+offset_left = 6.0
+offset_right = 32.0
+offset_bottom = 26.0
+texture = ExtResource("1_jg2js")
+script = ExtResource("2_stifn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2079007147]
+libraries/ = SubResource("AnimationLibrary_kmiap")
+
+[node name="Base" type="TextureRect" parent="." unique_id=1274992660]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("6_rpsh7")
+
+[node name="UseEffect" type="TextureRect" parent="." unique_id=937051228]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="." unique_id=350644329]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 26.0
+offset_bottom = 26.0
+text = "Z"
+label_settings = SubResource("LabelSettings_7sovq")

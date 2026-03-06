@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://ck52c6bde70xn"]
+
+[ext_resource type="FontFile" uid="uid://2pfc4t0xicm7" path="res://Fonts/Corvid Conspirator (White).fnt" id="1_440la"]
+
+[resource]
+default_font = ExtResource("1_440la")
+default_font_size = 16

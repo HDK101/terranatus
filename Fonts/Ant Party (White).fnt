@@ -1,5 +1,5 @@
-info face="Ant Party (White)" size=32 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
-common lineHeight=8 base=26 scaleW=48 scaleH=49 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+info face="Ant Party (White)" size=16 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=8 base=16 scaleW=48 scaleH=49 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
 page id=0 file="Ant Party (White).png"
 chars count=95
 char id=65 x=16 y=21 width=4 height=5 xoffset=0 yoffset=3 xadvance=5 page=0 chnl=0 letter="A"

@@ -34,4 +34,9 @@ public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : 
     {
         stateMachine.Travel("Jump");
     }
+
+    public void Fall()
+    {
+        stateMachine.Travel("Fall");
+    }
 }

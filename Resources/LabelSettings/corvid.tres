@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://baxobu4ljate8"]
+
+[ext_resource type="FontFile" uid="uid://2pfc4t0xicm7" path="res://Fonts/Corvid Conspirator (White).fnt" id="1_jgmhq"]
+
+[resource]
+font = ExtResource("1_jgmhq")
