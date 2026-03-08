@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Slot: RefCounted
+public partial class Slot : RefCounted
 {
     [Signal]
     public delegate void DepletedEventHandler();

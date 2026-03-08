@@ -77,7 +77,7 @@ public partial class GameHud : CanvasLayer
         player.QuickSlots.SlotOne.Change += () => inGameQuickSlots.SlotOne.Update(player.QuickSlots.SlotOne);
         player.QuickSlots.SlotTwo.Change += () => inGameQuickSlots.SlotTwo.Update(player.QuickSlots.SlotTwo);
         player.QuickSlots.SlotThree.Change += () => inGameQuickSlots.SlotThree.Update(player.QuickSlots.SlotThree);
-        
+
         player.QuickSlots.SlotOne.Used += inGameQuickSlots.SlotOne.Use;
         player.QuickSlots.SlotTwo.Used += inGameQuickSlots.SlotTwo.Use;
         player.QuickSlots.SlotThree.Used += inGameQuickSlots.SlotThree.Use;

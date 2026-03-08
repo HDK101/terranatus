@@ -167,7 +167,7 @@ public partial class InventoryUI : Control, MenuElement
             categoryIndex = (int)Category.WEAPONS;
         }
 
-        switch(CurrentCategory)
+        switch (CurrentCategory)
         {
             case Category.ARMORS:
                 ChangeSlots(player.Inventory.ListArmorsPagination());
@@ -248,21 +248,21 @@ public partial class InventoryUI : Control, MenuElement
 
     public void ShowElement()
     {
-		SetProcess(true);
-		SetProcessInput(true);
+        SetProcess(true);
+        SetProcessInput(true);
 
-		MenuElementUtils.SlideIn(this);
-		Show();
+        MenuElementUtils.SlideIn(this);
+        Show();
 
         Active = true;
     }
 
     public void HideElement()
     {
-		MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
+        MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
 
-		SetProcess(false);
-		SetProcessInput(false);
+        SetProcess(false);
+        SetProcessInput(false);
 
         Active = false;
     }

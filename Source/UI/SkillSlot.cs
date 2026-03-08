@@ -10,7 +10,7 @@ public partial class SkillSlot : TextureRect
         levelLabel = GetNode<Label>("LevelLabel");
     }
 
-	public void Update(int level)
+    public void Update(int level)
     {
         levelLabel.Text = level.ToString();
     }

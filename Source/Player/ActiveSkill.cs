@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class ActiveSkill: Skill
+public abstract partial class ActiveSkill : Skill
 {
     public delegate void WasCastEventHandler();
 

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class MenuV2: Control, MenuElement
+public partial class MenuV2 : Control, MenuElement
 {
     public enum Tab
     {
@@ -28,7 +28,7 @@ public partial class MenuV2: Control, MenuElement
     [Export]
     public Control Inventory { get; private set; }
     [Export]
-    public Control Skill { get; private set;}
+    public Control Skill { get; private set; }
     [Export]
     public Control Character { get; private set; }
 
@@ -57,7 +57,7 @@ public partial class MenuV2: Control, MenuElement
         characterButton.Unselect();
         systemButton.Unselect();
 
-        buttons = new ()
+        buttons = new()
         {
             {Tab.INVENTORY, inventoryButton},
             {Tab.SKILL, skillsButton},

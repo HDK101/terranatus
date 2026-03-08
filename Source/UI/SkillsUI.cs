@@ -4,158 +4,160 @@ using System.Collections.Generic;
 
 public partial class SkillsUI : Control, MenuElement
 {
-	public enum Path
-	{
-		MOON = 0,
-		WARRIOR = 1,
-		ROGUE = 2,
-		MAGE = 3,
-		MAX = 4,
-	}
+    public enum Path
+    {
+        MOON = 0,
+        WARRIOR = 1,
+        ROGUE = 2,
+        MAGE = 3,
+        MAX = 4,
+    }
 
-	[Signal]
-	public delegate void AssignEventHandler(SkillButton button, ActiveSkill activeSkill);
+    [Signal]
+    public delegate void AssignEventHandler(SkillButton button, ActiveSkill activeSkill);
 
-	[Export]
-	private SkillSlot fireball;
-	[Export]
-	private SkillSlot forwardSlash;
-	[Export]
-	private Player player;
+    [Export]
+    private SkillSlot fireball;
+    [Export]
+    private SkillSlot forwardSlash;
+    [Export]
+    private Player player;
 
-	[Export]
-	private TextureRect selectedSkillRect;
+    [Export]
+    private TextureRect selectedSkillRect;
 
-	private Path currentPath = Path.MOON;
+    private Path currentPath = Path.MOON;
 
-	private int selectedSkillIndex = 0;
+    private int selectedSkillIndex = 0;
 
-	private List<SkillSlot> moonPath = [];
-	private List<SkillSlot> warriorPath = [];
-	private List<SkillSlot> roguePath = [];
-	private List<SkillSlot> magePath = [];
+    private List<SkillSlot> moonPath = [];
+    private List<SkillSlot> warriorPath = [];
+    private List<SkillSlot> roguePath = [];
+    private List<SkillSlot> magePath = [];
 
-	private Dictionary<Path, int> pathSizes;
+    private Dictionary<Path, int> pathSizes;
 
-	public override async void _Ready()
-	{
-		await ToSignal(player, Node.SignalName.Ready);
-		Start();
-	}
+	private 
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("ui_up"))
-		{
-			ChangePath((int)currentPath - 1);
-		}
-		else if (@event.IsActionPressed("ui_down"))
-		{
-			ChangePath((int)currentPath + 1);
-		}
+    public override async void _Ready()
+    {
+        await ToSignal(player, Node.SignalName.Ready);
+        Start();
+    }
 
-		if (@event.IsActionPressed("ui_left"))
-		{
-			ChangeSelectedSkill(selectedSkillIndex - 1);
-		}
-		else if (@event.IsActionPressed("ui_right"))
-		{
-			ChangeSelectedSkill(selectedSkillIndex + 1);
-		}
-	}
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_up"))
+        {
+            ChangePath((int)currentPath - 1);
+        }
+        else if (@event.IsActionPressed("ui_down"))
+        {
+            ChangePath((int)currentPath + 1);
+        }
 
-	public void ShowElement()
-	{
-		SetProcess(true);
-		SetProcessInput(true);
+        if (@event.IsActionPressed("ui_left"))
+        {
+            ChangeSelectedSkill(selectedSkillIndex - 1);
+        }
+        else if (@event.IsActionPressed("ui_right"))
+        {
+            ChangeSelectedSkill(selectedSkillIndex + 1);
+        }
+    }
 
-		MenuElementUtils.SlideIn(this);
-		Show();
-	}
+    public void ShowElement()
+    {
+        SetProcess(true);
+        SetProcessInput(true);
 
-	public void HideElement()
-	{
-		MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
+        MenuElementUtils.SlideIn(this);
+        Show();
+    }
 
-		SetProcess(false);
-		SetProcessInput(false);
-	}
+    public void HideElement()
+    {
+        MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
 
-	private void ChangeSelectedSkill(int index)
-	{
-		int pathSize = pathSizes[currentPath];
-		selectedSkillIndex = (pathSize + (index % pathSize)) % pathSize;
+        SetProcess(false);
+        SetProcessInput(false);
+    }
 
-		MoveSkillRect(selectedSkillIndex);
-	}
+    private void ChangeSelectedSkill(int index)
+    {
+        int pathSize = pathSizes[currentPath];
+        selectedSkillIndex = (pathSize + (index % pathSize)) % pathSize;
 
-	private void MoveSkillRect(int index)
-	{
-		List<SkillSlot> skillSlots = null;
-		if (currentPath == Path.WARRIOR)
-		{
-			skillSlots = warriorPath;
-		}
-		else if (currentPath == Path.MAGE)
-		{
-			skillSlots = magePath;
-		}
-		else if (currentPath == Path.ROGUE)
-		{
-			skillSlots = roguePath;
-		}
-		else if (currentPath == Path.MOON)
-		{
-			skillSlots = moonPath;
-		}
-		Vector2 selectedPosition = skillSlots[index].GlobalPosition;
-		Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
-		tween.TweenProperty(selectedSkillRect, "position", selectedPosition, 0.25f);
-	}
+        MoveSkillRect(selectedSkillIndex);
+    }
 
-	private void ChangePath(int index)
-	{
-		int currentPathIndex = index;
-		int pathLength = (int)Path.MAX;
-		int newPathIndex = (pathLength + (currentPathIndex % pathLength)) % pathLength;
+    private void MoveSkillRect(int index)
+    {
+        List<SkillSlot> skillSlots = null;
+        if (currentPath == Path.WARRIOR)
+        {
+            skillSlots = warriorPath;
+        }
+        else if (currentPath == Path.MAGE)
+        {
+            skillSlots = magePath;
+        }
+        else if (currentPath == Path.ROGUE)
+        {
+            skillSlots = roguePath;
+        }
+        else if (currentPath == Path.MOON)
+        {
+            skillSlots = moonPath;
+        }
+        Vector2 selectedPosition = skillSlots[index].GlobalPosition;
+        Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
+        tween.TweenProperty(selectedSkillRect, "position", selectedPosition, 0.25f);
+    }
 
-		currentPath = (Path)newPathIndex;
+    private void ChangePath(int index)
+    {
+        int currentPathIndex = index;
+        int pathLength = (int)Path.MAX;
+        int newPathIndex = (pathLength + (currentPathIndex % pathLength)) % pathLength;
 
-		selectedSkillIndex = 0;
-		MoveSkillRect(0);
-	}
+        currentPath = (Path)newPathIndex;
 
-	private void Start()
-	{
-		warriorPath = [forwardSlash];
-		moonPath = [forwardSlash];
-		roguePath = [fireball];
-		magePath = [fireball];
+        selectedSkillIndex = 0;
+        MoveSkillRect(0);
+    }
 
-		var skills = player.Skills;
-		skills.Fireball.LevelUp += fireball.Update;
-		skills.ForwardSlash.LevelUp += forwardSlash.Update;
+    private void Start()
+    {
+        warriorPath = [forwardSlash];
+        moonPath = [forwardSlash];
+        roguePath = [fireball];
+        magePath = [fireball];
 
-		forwardSlash.Update(skills.ForwardSlash.Level);
-		fireball.Update(skills.Fireball.Level);
+        var skills = player.Skills;
+        skills.Fireball.LevelUp += fireball.Update;
+        skills.ForwardSlash.LevelUp += forwardSlash.Update;
 
-		pathSizes = new()
-		{
-			{Path.MOON, moonPath.Count},
-			{Path.WARRIOR, warriorPath.Count},
-			{Path.ROGUE, roguePath.Count},
-			{Path.MAGE, magePath.Count},
-		};
+        forwardSlash.Update(skills.ForwardSlash.Level);
+        fireball.Update(skills.Fireball.Level);
 
-		CallDeferred(nameof(InitSelectSkill));
+        pathSizes = new()
+        {
+            {Path.MOON, moonPath.Count},
+            {Path.WARRIOR, warriorPath.Count},
+            {Path.ROGUE, roguePath.Count},
+            {Path.MAGE, magePath.Count},
+        };
 
-		SetProcess(false);
-		SetProcessInput(false);
-	}
+        CallDeferred(nameof(InitSelectSkill));
 
-	private void InitSelectSkill()
-	{
-		selectedSkillRect.Position = moonPath[0].GlobalPosition;
-		GD.Print(moonPath[0].Position);
-	}
+        SetProcess(false);
+        SetProcessInput(false);
+    }
+
+    private void InitSelectSkill()
+    {
+        selectedSkillRect.Position = moonPath[0].GlobalPosition;
+        GD.Print(moonPath[0].Position);
+    }
 }

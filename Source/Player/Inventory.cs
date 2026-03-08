@@ -86,16 +86,17 @@ public partial class Inventory : RefCounted
             {
                 int difference = attemptedQuantity - blueprint.MaxQuantity;
                 int toFillSlot = blueprint.MaxQuantity - previousQuantity;
-                
+
                 Slot anotherSlot = new();
                 possibleSlot.Increase(toFillSlot);
                 anotherSlot.Insert(blueprint, difference);
 
                 slots.Add(anotherSlot);
-            } else
+            }
+            else
             {
                 possibleSlot.Increase(quantity);
-            } 
+            }
 
             return;
         }

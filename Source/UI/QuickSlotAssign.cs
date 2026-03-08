@@ -3,8 +3,8 @@ using System;
 
 public partial class QuickSlotAssign : TextureRect
 {
-	[Export]
-	private SkillButton button;
+    [Export]
+    private SkillButton button;
 
-	
+
 }

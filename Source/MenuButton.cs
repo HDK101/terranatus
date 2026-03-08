@@ -12,7 +12,7 @@ public partial class MenuButton : Control
         SKILLS,
         SYSTEM,
     }
-    
+
     [Export]
     public Button AssignedButton { get; set; }
 
