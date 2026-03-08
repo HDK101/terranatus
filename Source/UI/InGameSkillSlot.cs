@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class InGameSkillSlot : TextureRect
@@ -16,11 +15,14 @@ public partial class InGameSkillSlot : TextureRect
 	[Export]
 	public SkillButton Button;
 
-	public record SkillButtonAction(SkillButton Button, string Action);
 	private AnimationPlayer animationPlayer;
 	private string currentAction;
 
 	private float defaultY;
+
+	private TextureRect consumableRect;
+	private TextureRect consumableInnerRect;
+	private Label quantityLabel;
 
 	private readonly Dictionary<SkillButton, string> buttonActions = new() {
 		{ SkillButton.JUMP, "jump" },
@@ -38,6 +40,10 @@ public partial class InGameSkillSlot : TextureRect
 		currentAction = buttonActions[Button];
 
 		GetNode<Label>("Label").Text = Utils.InputAction.GetPrimaryInputKeyText(currentAction);
+	
+		consumableRect = GetNode<TextureRect>("ConsumableFrame");
+		consumableInnerRect = GetNode<TextureRect>("ConsumableFrame/TextureRect");
+		quantityLabel = GetNode<Label>("QuantityLabel");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -46,6 +52,24 @@ public partial class InGameSkillSlot : TextureRect
 		if (@event.IsActionPressed(action))
 		{
 			Use();
+		}
+	}
+
+	public void Update(QuickSlot quickSlot)
+	{
+		GD.Print("Quick slot UI Update");
+
+		consumableRect.Visible = false;
+		quantityLabel.Text = "";
+
+		if (quickSlot.Type == QuickSlot.SlotType.SKILL)
+		{
+			Texture = quickSlot.Texture;
+		} else if (quickSlot.Type == QuickSlot.SlotType.CONSUMABLE)
+		{
+			consumableRect.Visible = true;
+			consumableInnerRect.Texture = quickSlot.Texture;
+			quantityLabel.Text = quickSlot.Slot.Quantity.ToString();
 		}
 	}
 

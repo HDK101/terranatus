@@ -24,13 +24,13 @@ public partial class GameManager : Node
 
     public void Pause()
     {
-        gameHud.Menu.ShowUI();
+        gameHud.Menu.ShowElement();
         GetTree().Paused = true;
     }
 
     public void Resume()
     {
-        gameHud.Menu.HideUI();
+        gameHud.Menu.HideElement();
         GetTree().Paused = false;
     }
 }

@@ -18,27 +18,19 @@
 [ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
 [ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="7_rcdsp"]
 [ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
-[ext_resource type="Script" uid="uid://dw2unj3p5t6md" path="res://Source/UI/MenuButtons.cs" id="13_yem81"]
-[ext_resource type="Script" uid="uid://bnl01th6phnfe" path="res://Source/UI/Menu.cs" id="14_q3vwd"]
 [ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="14_ygyvt"]
 [ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_4n6jn"]
-[ext_resource type="Texture2D" uid="uid://8mjok5gga1mq" path="res://Sprites/base_ui.png" id="15_sclw5"]
 [ext_resource type="Texture2D" uid="uid://do80vbu5ovyae" path="res://Sprites/UI/exp_bar_progress.png" id="15_ygyvt"]
 [ext_resource type="Texture2D" uid="uid://7wd4tt2ehua8" path="res://Sprites/UI/exp_bar_frame.png" id="16_7ae67"]
-[ext_resource type="FontFile" uid="uid://cd55prohd0132" path="res://Fonts/16bfZX.ttf" id="16_773fv"]
 [ext_resource type="Texture2D" uid="uid://dpq7ly68wlrfb" path="res://Sprites/UI/level_up_base.png" id="16_gxotq"]
 [ext_resource type="PackedScene" uid="uid://c3mbg1oouw2js" path="res://Scenes/slime.tscn" id="17_1kmfr"]
 [ext_resource type="Script" uid="uid://pboj5bclte7h" path="res://Source/UI/LevelUpNotification.cs" id="17_4n6jn"]
-[ext_resource type="Texture2D" uid="uid://x8h2k1ox1ini" path="res://Sprites/UI/mini_bars.png" id="17_x3573"]
 [ext_resource type="Script" uid="uid://dc1yliuj7jpnb" path="res://Source/UI/EXPBar.cs" id="18_7ae67"]
-[ext_resource type="Texture2D" uid="uid://d3u4qi6yfwtq0" path="res://Sprites/UI/mini_health_bar.png" id="18_goep2"]
-[ext_resource type="Texture2D" uid="uid://b56e7t2slxxwy" path="res://Sprites/UI/mini_mana_bar.png" id="19_dwcc8"]
-[ext_resource type="Texture2D" uid="uid://62fjx427q14v" path="res://Sprites/UI/base_header.png" id="25_5efe1"]
 [ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="25_feyw5"]
-[ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="25_pkurl"]
 [ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="26_q3vwd"]
 [ext_resource type="PackedScene" uid="uid://bkgjf8j38s83k" path="res://Scenes/skill_in_game_slot.tscn" id="27_3i6n3"]
 [ext_resource type="Texture2D" uid="uid://cc5nl7yi8fkk" path="res://Sprites/default_attack_skill.png" id="27_7sovq"]
+[ext_resource type="Script" uid="uid://8ro5xc35oks" path="res://Source/UI/InGameQuickSlots.cs" id="27_fv26l"]
 [ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="27_pkurl"]
 [ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="29_6tamu"]
 [ext_resource type="Texture2D" uid="uid://cwnwx1m0ka0m0" path="res://Sprites/Skills/fireball_skill_ingame.png" id="29_65n2t"]
@@ -46,18 +38,25 @@
 [ext_resource type="Texture2D" uid="uid://dv1xsufb8duxk" path="res://Sprites/Skills/forward_slash_skill_ingame.png" id="30_dgkwl"]
 [ext_resource type="Texture2D" uid="uid://ct4ier8tpoe0w" path="res://Sprites/UI/armor_equip_slot.png" id="30_ma7yk"]
 [ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
-[ext_resource type="FontFile" uid="uid://db2kmm7kc5wsv" path="res://Fonts/Abaddon Light.ttf" id="32_ma7yk"]
+[ext_resource type="Script" uid="uid://buklehx5qpknd" path="res://Source/UI/MenuV2.cs" id="32_fv26l"]
 [ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/Dialog.cs" id="33_7jpoy"]
+[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="33_fv26l"]
+[ext_resource type="Texture2D" uid="uid://etrrqgnaywkq" path="res://Sprites/UI/top_bar_health_under.png" id="34_7k8pp"]
 [ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
 [ext_resource type="PackedScene" uid="uid://cf2xowkrvj8wq" path="res://Scenes/UI/menu_button.tscn" id="34_fv26l"]
+[ext_resource type="Texture2D" uid="uid://eso8c8plctfr" path="res://Sprites/UI/top_bar_health_progress.png" id="35_djowa"]
+[ext_resource type="Texture2D" uid="uid://cg6slgmppyimg" path="res://Sprites/UI/top_bar_mana_under.png" id="37_7k8pp"]
 [ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="37_f3vpf"]
 [ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="37_sphie"]
+[ext_resource type="Texture2D" uid="uid://cw8fx4cjk23vn" path="res://Sprites/UI/top_bar_mana_progress.png" id="38_djowa"]
 [ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="39_ygyvt"]
 [ext_resource type="Script" uid="uid://cv44117x3ot7r" path="res://Source/UI/GameHudAudioPlayer.cs" id="42_d1rw2"]
+[ext_resource type="PackedScene" uid="uid://cy7a6eucvoo5q" path="res://Scenes/UI/item_slot.tscn" id="42_dgkwl"]
 [ext_resource type="PackedScene" uid="uid://b2euac84uhc1i" path="res://Scenes/player.tscn" id="43_sphie"]
 [ext_resource type="Texture2D" uid="uid://dd4efw6iiqk78" path="res://Sprites/Portrait/aemilia_34_view_portrait.png" id="45_ygyvt"]
 [ext_resource type="Texture2D" uid="uid://crnb3n40wynsq" path="res://Sprites/forest_background.png" id="46_7jpoy"]
 [ext_resource type="FontFile" uid="uid://dqh623r5j7kns" path="res://Fonts/Seraphimb1.ttf" id="46_hwnf3"]
+[ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="47_3i6n3"]
 [ext_resource type="PackedScene" uid="uid://4lfktvuew2u" path="res://Scenes/UI/skills.tscn" id="49_65n2t"]
 [ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="54_hs3dq"]
 
@@ -70,21 +69,6 @@ font_size = 8
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.5294118)
 shadow_offset = Vector2(0, 0.9)
-
-[sub_resource type="LabelSettings" id="LabelSettings_dr5a8"]
-font = ExtResource("16_773fv")
-
-[sub_resource type="LabelSettings" id="LabelSettings_x3573"]
-font_size = 9
-outline_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
-shadow_size = 0
-shadow_color = Color(0.05490196, 0.02745098, 0.105882354, 1)
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vdw86"]
-line_spacing = 0.0
-font = ExtResource("32_ma7yk")
-font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1rw2"]
 font = ExtResource("46_hwnf3")
@@ -172,7 +156,7 @@ layer = 2
 follow_viewport_enabled = true
 script = ExtResource("1_drh5t")
 
-[node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_levelUpNotification", "_combo", "_dialogBox", "_menu", "player", "audioPlayer")]
+[node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_levelUpNotification", "_combo", "_dialogBox", "_menu", "player", "audioPlayer", "inGameQuickSlots")]
 script = ExtResource("3_iw0lp")
 _levelUpNotification = NodePath("MainUI/LevelUpNotification")
 _combo = NodePath("MainUI/Combo")
@@ -180,8 +164,10 @@ _dialogBox = NodePath("Dialog")
 _menu = NodePath("Menu")
 player = NodePath("../Entities/Player")
 audioPlayer = NodePath("GameHUDAudioPlayer")
+inGameQuickSlots = NodePath("MainUI/QuickSlots")
 
 [node name="MainUI" type="Control" parent="GameHUD" unique_id=706352056]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -329,48 +315,57 @@ grow_vertical = 2
 text = "Level Up!"
 label_settings = SubResource("LabelSettings_gxotq")
 
-[node name="SkillButtons" type="Control" parent="GameHUD/MainUI" unique_id=1045076172]
+[node name="QuickSlots" type="MarginContainer" parent="GameHUD/MainUI" unique_id=1658883765 node_paths=PackedStringArray("SlotOne", "SlotTwo", "SlotThree")]
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -32.0
-offset_right = 32.0
+offset_top = -57.0
+offset_right = 90.0
 grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("27_fv26l")
+SlotOne = NodePath("VBoxContainer/Slots/SkillOneSlot")
+SlotTwo = NodePath("VBoxContainer/Slots/SkillTwoSlot")
+SlotThree = NodePath("VBoxContainer/Slots/SkillTwoSlot2")
 
-[node name="JumpSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=811176460 instance=ExtResource("27_3i6n3")]
-layout_mode = 0
-offset_left = 0.0
-offset_right = 26.0
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/MainUI/QuickSlots" unique_id=885165619]
+layout_mode = 2
 
-[node name="AttackSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1693940697 instance=ExtResource("27_3i6n3")]
-layout_mode = 0
-offset_left = 35.0
-offset_right = 61.0
-texture = ExtResource("27_7sovq")
-Button = 1
+[node name="Slots" type="HBoxContainer" parent="GameHUD/MainUI/QuickSlots/VBoxContainer" unique_id=1183515750]
+layout_mode = 2
 
-[node name="SkillOneSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1882491947 instance=ExtResource("27_3i6n3")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = -29.0
-offset_right = 26.0
-offset_bottom = -3.0
+[node name="SkillOneSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1882491947 instance=ExtResource("27_3i6n3")]
+layout_mode = 2
 texture = ExtResource("30_dgkwl")
 Button = 2
 
-[node name="SkillTwoSlot" parent="GameHUD/MainUI/SkillButtons" unique_id=1250261798 instance=ExtResource("27_3i6n3")]
-layout_mode = 0
-offset_left = 35.0
-offset_top = -29.0
-offset_right = 61.0
-offset_bottom = -3.0
+[node name="SkillTwoSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1250261798 instance=ExtResource("27_3i6n3")]
+layout_mode = 2
 texture = ExtResource("29_65n2t")
 Button = 3
 
-[node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("profile", "menuButtons", "inventory", "background", "itemDetails")]
+[node name="SkillTwoSlot2" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1264703886 instance=ExtResource("27_3i6n3")]
+layout_mode = 2
+texture = ExtResource("29_65n2t")
+Button = 4
+
+[node name="MainButtons" type="HBoxContainer" parent="GameHUD/MainUI/QuickSlots/VBoxContainer" unique_id=939515404]
+layout_mode = 2
+
+[node name="JumpSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=811176460 instance=ExtResource("27_3i6n3")]
+layout_mode = 2
+
+[node name="AttackSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=1693940697 instance=ExtResource("27_3i6n3")]
+layout_mode = 2
+texture = ExtResource("27_7sovq")
+Button = 1
+
+[node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("Inventory", "Skill", "Character", "Background", "inventoryButton", "skillsButton", "characterButton", "systemButton")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -378,12 +373,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ar8se")
-script = ExtResource("14_q3vwd")
-profile = NodePath("Profile")
-menuButtons = NodePath("Buttons")
-inventory = NodePath("Inventory")
-background = NodePath("Background")
-itemDetails = NodePath("ItemDetails")
+script = ExtResource("32_fv26l")
+Inventory = NodePath("Inventory")
+Skill = NodePath("Skills")
+Character = NodePath("Inventory")
+Background = NodePath("Background")
+inventoryButton = NodePath("BottomBar/HBoxContainer/MenuButton")
+skillsButton = NodePath("BottomBar/HBoxContainer/MenuButton2")
+characterButton = NodePath("BottomBar/HBoxContainer/MenuButton4")
+systemButton = NodePath("BottomBar/HBoxContainer/MenuButton3")
 
 [node name="Background" type="ColorRect" parent="GameHUD/Menu" unique_id=1419311277]
 layout_mode = 1
@@ -394,200 +392,185 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Buttons" type="PanelContainer" parent="GameHUD/Menu" unique_id=1268984708 node_paths=PackedStringArray("InventoryButton", "CharacterButton", "SystemButton")]
+[node name="TopBar" type="ColorRect" parent="GameHUD/Menu" unique_id=735169419]
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -27.0
-offset_right = 82.0
-offset_bottom = 46.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("13_yem81")
-InventoryButton = NodePath("VBoxContainer/MenuButton")
-CharacterButton = NodePath("VBoxContainer/MenuButton2")
-SystemButton = NodePath("VBoxContainer/MenuButton3")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Buttons" unique_id=1600903215]
-layout_mode = 2
-
-[node name="MenuButton" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
-layout_mode = 2
-
-[node name="MenuButton2" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
-layout_mode = 2
-AssignedButton = 2
-
-[node name="MenuButton4" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
-layout_mode = 2
-
-[node name="MenuButton3" parent="GameHUD/Menu/Buttons/VBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
-layout_mode = 2
-AssignedButton = 3
-
-[node name="Profile" type="VBoxContainer" parent="GameHUD/Menu" unique_id=1839354880]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -66.0
-offset_bottom = 66.0
-grow_vertical = 2
-alignment = 1
-
-[node name="Control" type="Control" parent="GameHUD/Menu/Profile" unique_id=76276110]
-visible = false
-custom_minimum_size = Vector2(64, 96)
-layout_mode = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="GameHUD/Menu/Profile/Control" unique_id=371556352]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("15_sclw5")
-patch_margin_left = 14
-patch_margin_top = 14
-patch_margin_right = 14
-patch_margin_bottom = 14
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Profile/Control" unique_id=1347490313]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 11.0
-offset_right = -4.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="GameHUD/Menu/Profile/Control/VBoxContainer" unique_id=2036844855]
-layout_mode = 2
-text = "Tamara
-STR: 12
-DEX: 12"
-label_settings = SubResource("LabelSettings_dr5a8")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Profile" unique_id=448986446]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/Profile/VBoxContainer" unique_id=1027151415]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("17_x3573")
-stretch_mode = 2
-
-[node name="HealthProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/Profile/VBoxContainer/TextureRect" unique_id=310593408]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 63.0
-offset_bottom = 4.0
-value = 50.0
-texture_progress = ExtResource("18_goep2")
-
-[node name="ManaProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/Profile/VBoxContainer/TextureRect" unique_id=1281896950]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 63.0
-offset_bottom = 8.0
-value = 50.0
-texture_progress = ExtResource("19_dwcc8")
-
-[node name="ExpText" type="Label" parent="GameHUD/Menu/Profile" unique_id=2147109881]
-layout_mode = 2
-text = "EXP: 1050/2000"
-label_settings = SubResource("LabelSettings_x3573")
-
-[node name="Inventory" type="Control" parent="GameHUD/Menu" unique_id=1447225998 node_paths=PackedStringArray("player", "headerLabel", "leftArrow", "rightArrow", "gridContainer", "selectedOverlay")]
-custom_minimum_size = Vector2(160, 108)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -48.5
-offset_right = 169.0
-offset_bottom = 59.5
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("25_feyw5")
-player = NodePath("../../../Entities/Player")
-headerLabel = NodePath("VBoxContainer/Header/HBoxContainer/Label")
-leftArrow = NodePath("VBoxContainer/Header/HBoxContainer/LeftArrow")
-rightArrow = NodePath("VBoxContainer/Header/HBoxContainer/RightArrow")
-gridContainer = NodePath("VBoxContainer/GridItems/HBoxContainer/GridContainer")
-selectedOverlay = NodePath("VBoxContainer/GridItems/SelectedOverlay")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory" unique_id=1974137368]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 4
-
-[node name="Header" type="NinePatchRect" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=195348213]
-custom_minimum_size = Vector2(32, 16)
-layout_mode = 2
-texture = ExtResource("25_5efe1")
-patch_margin_left = 16
-patch_margin_right = 16
-axis_stretch_horizontal = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Header" unique_id=1535130499]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/TopBar" unique_id=791758897]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -4.0
-offset_right = 25.0
-offset_bottom = 4.0
+offset_left = -122.0
+offset_top = -8.0
+offset_right = 122.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Health" type="HBoxContainer" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1837906664]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=922019546]
+layout_mode = 2
+text = "HP"
+label_settings = ExtResource("33_fv26l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=310593408]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+texture_under = ExtResource("34_7k8pp")
+texture_progress = ExtResource("35_djowa")
+
+[node name="Value" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=1118655277]
+layout_mode = 2
+text = "10/10"
+label_settings = ExtResource("33_fv26l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mana" type="HBoxContainer" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=613005569]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=139992377]
+layout_mode = 2
+text = "MP"
+label_settings = ExtResource("33_fv26l")
+
+[node name="ManaProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=1281896950]
+layout_mode = 2
+size_flags_vertical = 4
+value = 50.0
+texture_under = ExtResource("37_7k8pp")
+texture_progress = ExtResource("38_djowa")
+
+[node name="Label2" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=442594422]
+layout_mode = 2
+text = "10/10"
+label_settings = ExtResource("33_fv26l")
+
+[node name="BottomBar" type="ColorRect" parent="GameHUD/Menu" unique_id=86040859]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/BottomBar" unique_id=1663690778]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=766581060]
+[node name="MenuButton" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+
+[node name="MenuButton2" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+AssignedButton = 2
+
+[node name="MenuButton4" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+AssignedButton = 1
+
+[node name="MenuButton3" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
+layout_mode = 2
+AssignedButton = 3
+
+[node name="Inventory" type="Control" parent="GameHUD/Menu" unique_id=1447225998 node_paths=PackedStringArray("player", "headerLabel", "leftArrow", "rightArrow", "gridContainer", "selectedOverlay")]
+custom_minimum_size = Vector2(160, 108)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_feyw5")
+player = NodePath("../../../Entities/Player")
+headerLabel = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Label")
+leftArrow = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/LeftArrow")
+rightArrow = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/RightArrow")
+gridContainer = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer")
+selectedOverlay = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/SelectedOverlay")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameHUD/Menu/Inventory" unique_id=1238253142]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Control" type="Control" parent="GameHUD/Menu/Inventory/MarginContainer" unique_id=1042361302]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control" unique_id=1974137368]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 54.0
+offset_right = 168.0
+offset_bottom = 178.0
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer" unique_id=2003634835]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer" unique_id=581627747]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1535130499]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=766581060]
 layout_mode = 2
 texture = ExtResource("27_pkurl")
-stretch_mode = 2
+stretch_mode = 3
 flip_h = true
 
-[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=1732495883]
+[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1732495883]
 layout_mode = 2
 text = "Weapons"
+label_settings = ExtResource("33_fv26l")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Header/HBoxContainer" unique_id=549659304]
+[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=549659304]
 layout_mode = 2
 texture = ExtResource("27_pkurl")
-stretch_mode = 2
+stretch_mode = 3
 
-[node name="GridItems" type="Control" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=1892384825]
+[node name="GridItems" type="Control" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1892384825]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems" unique_id=1662917861]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems" unique_id=1662917861]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -595,41 +578,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=1615648409]
+[node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer" unique_id=1615648409]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("27_pkurl")
 stretch_mode = 2
 flip_h = true
 
-[node name="GridContainer" type="GridContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=1782254161]
+[node name="GridContainer" type="GridContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer" unique_id=1782254161]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 7
 
-[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=821741257]
+[node name="ItemSlot" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1515014712 instance=ExtResource("42_dgkwl")]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=2107109315]
 layout_mode = 2
 texture = ExtResource("26_q3vwd")
 
-[node name="TextureRect2" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=2107109315]
+[node name="TextureRect3" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=991936211]
 layout_mode = 2
 texture = ExtResource("26_q3vwd")
 
-[node name="TextureRect3" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=991936211]
+[node name="TextureRect9" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=426660605]
 layout_mode = 2
 texture = ExtResource("26_q3vwd")
 
-[node name="TextureRect9" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=426660605]
+[node name="TextureRect10" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1178228269]
 layout_mode = 2
 texture = ExtResource("26_q3vwd")
 
-[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems/HBoxContainer" unique_id=986829566]
+[node name="TextureRect11" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1186384945]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect12" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1719753168]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect13" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1886057110]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect14" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=769670167]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect15" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1343661447]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect16" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=842811009]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect17" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1967299970]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect18" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1822519157]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="TextureRect19" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1683356668]
+layout_mode = 2
+texture = ExtResource("26_q3vwd")
+
+[node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer" unique_id=986829566]
 layout_mode = 2
 size_flags_vertical = 4
 texture = ExtResource("27_pkurl")
 stretch_mode = 2
 
-[node name="SelectedOverlay" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/GridItems" unique_id=2037088094]
+[node name="SelectedOverlay" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems" unique_id=2037088094]
 visible = false
 layout_mode = 0
 offset_left = 9.0
@@ -637,148 +659,79 @@ offset_right = 25.0
 offset_bottom = 16.0
 texture = ExtResource("29_6tamu")
 
-[node name="Equip" type="VBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer" unique_id=1448293862]
+[node name="PanelContainer2" type="PanelContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer" unique_id=1878850044]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="EquipHeader" type="NinePatchRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip" unique_id=2008336114]
-custom_minimum_size = Vector2(96, 16)
-layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("25_5efe1")
-patch_margin_left = 16
-patch_margin_right = 16
-axis_stretch_horizontal = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipHeader" unique_id=1719811737]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -4.0
-offset_right = 25.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipHeader/HBoxContainer" unique_id=279114682]
-layout_mode = 2
-text = "Equip"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="EquipItems" type="HBoxContainer" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip" unique_id=960844856]
+[node name="Equip" type="VBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2" unique_id=1448293862]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="WeaponSlot" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1063340821]
+[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip" unique_id=279114682]
 layout_mode = 2
-texture = ExtResource("29_868j4")
-
-[node name="WeaponSlot2" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1463159145]
-layout_mode = 2
-texture = ExtResource("30_ma7yk")
-
-[node name="WeaponSlot3" type="TextureRect" parent="GameHUD/Menu/Inventory/VBoxContainer/Equip/EquipItems" unique_id=1232054264]
-layout_mode = 2
-texture = ExtResource("31_vdw86")
-
-[node name="ItemDetails" type="Control" parent="GameHUD/Menu" unique_id=850293287]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -64.0
-offset_right = -12.0
-offset_bottom = 64.0
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/ItemDetails" unique_id=78134099]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackButton" type="VBoxContainer" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=1681870098]
-custom_minimum_size = Vector2(40, 11)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 2
-
-[node name="BackButton" type="HBoxContainer" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton" unique_id=618060533]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton/BackButton" unique_id=1679618048]
-layout_mode = 2
-texture = ExtResource("27_pkurl")
-flip_h = true
-
-[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton/BackButton" unique_id=808344448]
-layout_mode = 2
-text = "Back"
-uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer/BackButton" unique_id=189826372]
-layout_mode = 2
-texture = ExtResource("25_pkurl")
-
-[node name="ItemHeader" type="NinePatchRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=390155592]
-custom_minimum_size = Vector2(96, 16)
-layout_mode = 2
-texture = ExtResource("25_5efe1")
-patch_margin_left = 16
-patch_margin_right = 16
-axis_stretch_horizontal = 1
-
-[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/ItemHeader" unique_id=1847807970]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 4.0
-offset_right = 66.0
-offset_bottom = 12.0
-text = "ITEM"
+text = "Equip"
+label_settings = ExtResource("33_fv26l")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="GameHUD/Menu/ItemDetails/VBoxContainer" unique_id=1535095948]
-custom_minimum_size = Vector2(112, 0)
+[node name="EquipItems" type="HBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip" unique_id=960844856]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-color = Color(0.05490196, 0.02745098, 0.105882354, 0.3372549)
+size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="GameHUD/Menu/ItemDetails/VBoxContainer/ColorRect" unique_id=695528683]
+[node name="WeaponSlot" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1063340821]
+layout_mode = 2
+texture = ExtResource("29_868j4")
+
+[node name="WeaponSlot2" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1463159145]
+layout_mode = 2
+texture = ExtResource("30_ma7yk")
+
+[node name="WeaponSlot3" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1232054264]
+layout_mode = 2
+texture = ExtResource("31_vdw86")
+
+[node name="ItemDetails" type="PanelContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control" unique_id=151499340]
+custom_minimum_size = Vector2(128, 148)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -4.5
-offset_bottom = 4.5
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -70.0
+offset_bottom = 70.0
+grow_horizontal = 0
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/ItemDetails" unique_id=78134099]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/ItemDetails/VBoxContainer" unique_id=1847807970]
+layout_mode = 2
+text = "ITEM"
+label_settings = ExtResource("33_fv26l")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Label2" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/ItemDetails/VBoxContainer" unique_id=695528683]
+layout_mode = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec."
-label_settings = SubResource("LabelSettings_vdw86")
+label_settings = ExtResource("47_3i6n3")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="Skills" parent="GameHUD/Menu" unique_id=1636244461 node_paths=PackedStringArray("player") instance=ExtResource("49_65n2t")]
+visible = false
 layout_mode = 1
 player = NodePath("../../../Entities/Player")
 
 [node name="Dialog" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "nameText", "portraitRect", "dialogBox")]
 process_mode = 3
+visible = false
 custom_minimum_size = Vector2(320, 68)
 layout_mode = 3
 anchors_preset = 15

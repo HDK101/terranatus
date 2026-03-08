@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://unljkpc0sus1" path="res://Source/MenuButton.cs" id="1_56pne"]
 [ext_resource type="FontFile" uid="uid://2pfc4t0xicm7" path="res://Fonts/Corvid Conspirator (White).fnt" id="1_rjie7"]
-[ext_resource type="Texture2D" uid="uid://cu85yjya5l2r7" path="res://Sprites/UI/arrow_select.png" id="2_k5i4o"]
 [ext_resource type="Texture2D" uid="uid://x8po6fmlpaja" path="res://Sprites/UI/line_selected.png" id="3_k5i4o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fv26l"]
@@ -19,33 +18,23 @@ script = ExtResource("1_56pne")
 
 [node name="Label" type="Label" parent="." unique_id=1889370882]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -52.0
+offset_left = -26.0
 offset_top = -8.0
+offset_right = 26.0
 offset_bottom = 8.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
+text = "Inventory"
 label_settings = SubResource("LabelSettings_fv26l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Arrow" type="TextureRect" parent="." unique_id=1761759942]
-visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -5.0
-offset_right = 4.0
-offset_bottom = 3.0
-grow_vertical = 2
-texture = ExtResource("2_k5i4o")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=642677483]
+[node name="UnderLine" type="NinePatchRect" parent="." unique_id=642677483]
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 1
 anchors_preset = 12

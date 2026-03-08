@@ -7,7 +7,7 @@ public partial class GameHud : CanvasLayer
     public HealthBar HealthBar => _healthBar;
     public ManaBar ManaBar => _manaBar;
     public EXPBar EXPBar => _expBar;
-    public Menu Menu => _menu;
+    public MenuV2 Menu => _menu;
     public Combo Combo => _combo;
     public LevelUpNotification LevelUpNotification => _levelUpNotification;
 
@@ -26,7 +26,7 @@ public partial class GameHud : CanvasLayer
     private Dialog _dialogBox;
 
     [Export]
-    private Menu _menu;
+    private MenuV2 _menu;
 
     [Export]
     private Player player;
@@ -34,7 +34,10 @@ public partial class GameHud : CanvasLayer
     [Export]
     private GameHudAudioPlayer audioPlayer;
 
-    public override void _Ready()
+    [Export]
+    private InGameQuickSlots inGameQuickSlots;
+
+    public async override void _Ready()
     {
         DialogDB dialogDB = GetNode<DialogDB>("/root/DialogDB");
         DialogTree tree = dialogDB.RetrieveTree("BASIC_TREE");
@@ -70,5 +73,19 @@ public partial class GameHud : CanvasLayer
 
         _menu.Change += audioPlayer.PlayChange;
         _menu.Accept += audioPlayer.PlayAccept;
+
+        player.QuickSlots.SlotOne.Change += () => inGameQuickSlots.SlotOne.Update(player.QuickSlots.SlotOne);
+        player.QuickSlots.SlotTwo.Change += () => inGameQuickSlots.SlotTwo.Update(player.QuickSlots.SlotTwo);
+        player.QuickSlots.SlotThree.Change += () => inGameQuickSlots.SlotThree.Update(player.QuickSlots.SlotThree);
+        
+        player.QuickSlots.SlotOne.Used += inGameQuickSlots.SlotOne.Use;
+        player.QuickSlots.SlotTwo.Used += inGameQuickSlots.SlotTwo.Use;
+        player.QuickSlots.SlotThree.Used += inGameQuickSlots.SlotThree.Use;
+
+        await ToSignal(player, Node.SignalName.Ready);
+
+        inGameQuickSlots.SlotOne.Update(player.QuickSlots.SlotOne);
+        inGameQuickSlots.SlotTwo.Update(player.QuickSlots.SlotTwo);
+        inGameQuickSlots.SlotThree.Update(player.QuickSlots.SlotThree);
     }
 }

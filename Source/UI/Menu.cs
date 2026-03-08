@@ -16,6 +16,7 @@ public partial class Menu : Control
         NONE,
         PROFILE,
         INVENTORY,
+        SKILLS,
     }
 
     [Signal]
@@ -39,6 +40,9 @@ public partial class Menu : Control
     [Export]
     private Control itemDetails;
 
+    [Export]
+    private SkillsUI skillsUI;
+
     private int selectedIndex = 0;
     private bool active = false;
     private StateVisible stateVisible = StateVisible.NONE;
@@ -49,6 +53,12 @@ public partial class Menu : Control
         menuButtons.InventoryButton.Trigger += () =>
         {
             ChangeState(StateVisible.INVENTORY);
+            EmitSignal(SignalName.Accept);
+        };
+
+        menuButtons.SkillsButtons.Trigger += () =>
+        {
+            ChangeState(StateVisible.SKILLS);
             EmitSignal(SignalName.Accept);
         };
     }
@@ -97,6 +107,14 @@ public partial class Menu : Control
         var tweenButtons = CreateDefaultTween();
         tweenProfile.TweenProperty(profile, "position:x", 4.0f, 0.5f);
         tweenButtons.TweenProperty(menuButtons, "position:x", screenSize.X - menuButtonsSize.X - 8f, 0.5f);
+    }
+
+    private void ShowSkills()
+    {
+    }
+
+    private void HideSkills()
+    {
     }
 
     public void HideProfile()
@@ -162,6 +180,7 @@ public partial class Menu : Control
             FadeInBackground();
             HideInventory();
             HideItemDetails();
+            HideSkills();
             menuButtons.ShowButtons();
         }
         else if (state == StateVisible.INVENTORY)
@@ -170,7 +189,17 @@ public partial class Menu : Control
             ShowInventory();
             ShowItemDetails();
             HideProfile();
+            HideSkills();
             menuButtons.HideButtons();
+        }
+        else if (state == StateVisible.SKILLS)
+        {
+            active = false;
+            HideInventory();
+            HideItemDetails();
+            HideProfile();
+            menuButtons.HideButtons();
+            ShowSkills();
         }
         else
         {
@@ -179,6 +208,7 @@ public partial class Menu : Control
             HideInventory();
             HideItemDetails();
             FadeOutBackground();
+            HideSkills();
             menuButtons.HideButtons();
         }
 

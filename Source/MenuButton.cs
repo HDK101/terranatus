@@ -18,14 +18,14 @@ public partial class MenuButton : Control
 
     public Action Trigger { get; set; }
 
-    private TextureRect arrow;
+    private Control underLine;
     private Label label;
     private bool selected = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        arrow = GetNode<TextureRect>("Arrow");
+        underLine = GetNode<Control>("UnderLine");
         label = GetNode<Label>("Label");
         InitializeText();
     }
@@ -40,13 +40,17 @@ public partial class MenuButton : Control
 
     public void Select()
     {
-        arrow.Show();
+        Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic).SetParallel();
+        tween.TweenProperty(underLine, "modulate", new Color(1.0f, 1.0f, 1.0f, 1.0f), 0.5f);
+        tween.TweenProperty(underLine, "size:x", 64.0f, 0.5f);
         selected = true;
     }
 
     public void Unselect()
     {
-        arrow.Hide();
+        Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic).SetParallel();
+        tween.TweenProperty(underLine, "modulate", new Color(0.1f, 0.1f, 0.4f, 0.0f), 0.5f);
+        tween.TweenProperty(underLine, "size:x", 0.0f, 0.5f);
         selected = false;
     }
 

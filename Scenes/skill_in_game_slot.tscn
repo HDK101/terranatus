@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://su4w40avivyg" path="res://Sprites/skill_use2.png" id="4_y4ptc"]
 [ext_resource type="Texture2D" uid="uid://cja5f0347flub" path="res://Sprites/skill_use3.png" id="5_kno87"]
 [ext_resource type="Texture2D" uid="uid://bk4kayq2vn1qr" path="res://Sprites/skill_base.png" id="6_rpsh7"]
-[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="7_5w4r3"]
+[ext_resource type="LabelSettings" uid="uid://buys6db88srop" path="res://Resources/LabelSettings/boxy.tres" id="7_jg2js"]
+[ext_resource type="Texture2D" uid="uid://bv5c45muygp6f" path="res://Sprites/quick_slot_base.png" id="8_0o0ve"]
+[ext_resource type="Texture2D" uid="uid://cfrektk7wntfy" path="res://Sprites/Items/item216.png" id="8_stifn"]
 
 [sub_resource type="Animation" id="Animation_0dqb8"]
 length = 0.001
@@ -46,10 +48,6 @@ _data = {
 &"use": SubResource("Animation_ebxge")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_7sovq"]
-font = ExtResource("7_5w4r3")
-font_size = 8
-
 [node name="SkillInGameSlot" type="TextureRect" unique_id=811176460]
 offset_left = 6.0
 offset_right = 32.0
@@ -71,6 +69,25 @@ layout_mode = 0
 offset_right = 26.0
 offset_bottom = 26.0
 
+[node name="ConsumableFrame" type="TextureRect" parent="." unique_id=792479455]
+visible = false
+clip_children = 2
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("8_0o0ve")
+
+[node name="TextureRect" type="TextureRect" parent="ConsumableFrame" unique_id=1683351425]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_stifn")
+
 [node name="Label" type="Label" parent="." unique_id=350644329]
 layout_mode = 0
 offset_left = 17.0
@@ -78,4 +95,15 @@ offset_top = 16.0
 offset_right = 26.0
 offset_bottom = 26.0
 text = "Z"
-label_settings = SubResource("LabelSettings_7sovq")
+label_settings = ExtResource("7_jg2js")
+
+[node name="QuantityLabel" type="Label" parent="." unique_id=680182063]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+text = "Z"
+label_settings = ExtResource("7_jg2js")

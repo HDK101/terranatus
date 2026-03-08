@@ -77,12 +77,17 @@ public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
 
         if (Input.IsActionJustPressed("skill_one") && player.IsOnFloor() && !player.IsAttacking)
         {
-            player.Skills.ForwardSlash.Cast(new());
+            player.QuickSlots.SlotOne.Use();
         }
 
         if (Input.IsActionJustPressed("skill_two") && !player.IsAttacking)
         {
-            player.Skills.Fireball.Cast(new());
+            player.QuickSlots.SlotTwo.Use();
+        }
+
+        if (Input.IsActionJustPressed("skill_three") && !player.IsAttacking)
+        {
+            player.QuickSlots.SlotThree.Use();
         }
     }
 

@@ -7,6 +7,8 @@ public partial class MenuButtons : Control
     [Export]
     public MenuButton InventoryButton { get; set; }
     [Export]
+    public MenuButton SkillsButtons { get; set; }
+    [Export]
     public MenuButton CharacterButton { get; set; }
     [Export]
     public MenuButton SystemButton { get; set; }
@@ -15,7 +17,7 @@ public partial class MenuButtons : Control
 
     public override void _Ready()
     {
-        Buttons = [InventoryButton, CharacterButton, SystemButton];
+        Buttons = [InventoryButton, SkillsButtons, CharacterButton, SystemButton];
     }
 
     public void ShowButtons()

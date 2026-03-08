@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
-public partial class InventoryUI : Control
+public partial class InventoryUI : Control, MenuElement
 {
     public bool Active = false;
 
@@ -46,6 +46,8 @@ public partial class InventoryUI : Control
     private State state = State.HEADER;
     private int selectedSlotIndex = 0;
 
+    private PackedScene packedItemSlot;
+
     public override void _Input(InputEvent inputEvent)
     {
         if (!Active) return;
@@ -63,7 +65,22 @@ public partial class InventoryUI : Control
 
     public override async void _Ready()
     {
+        packedItemSlot = GD.Load<PackedScene>("res://Scenes/UI/item_slot.tscn");
         player.Ready += Initialize;
+
+        player.Inventory.ConsumablesChange += () =>
+        {
+            if (CurrentCategory == Category.CONSUMABLES)
+            {
+                slots = player.Inventory.ListConsumablesPagination();
+                ShowItems();
+
+                if (slots.Count == 0)
+                {
+                    ChangeCategory((int)Category.WEAPONS);
+                }
+            }
+        };
     }
 
     private void ShowItems()
@@ -75,17 +92,15 @@ public partial class InventoryUI : Control
 
         foreach (var slot in slots)
         {
-            TextureRect textureRect = new()
-            {
-                Texture = slot.Blueprint.Texture
-            };
-            gridContainer.AddChild(textureRect);
+            ItemSlot itemSlot = packedItemSlot.Instantiate<ItemSlot>();
+            itemSlot.Update(slot);
+            gridContainer.AddChild(itemSlot);
         }
     }
 
     private void MoveSelectOverlay()
     {
-        if (selectedSlotIndex < 0 || selectedSlotIndex >= Inventory.DEFAULT_PAGE_SIZE) return;
+        if (slots.Count == 0 || selectedSlotIndex < 0 || selectedSlotIndex >= Inventory.DEFAULT_PAGE_SIZE) return;
 
         var child = gridContainer.GetChild(selectedSlotIndex);
 
@@ -118,6 +133,12 @@ public partial class InventoryUI : Control
         ShowItems();
     }
 
+    private void ChangeSlots(List<Slot> slotsTarget)
+    {
+        slots = slotsTarget;
+        ShowItems();
+    }
+
     private void HandleHeader(InputEvent inputEvent)
     {
         if (inputEvent.IsActionPressed("ui_up") || inputEvent.IsActionPressed("ui_down"))
@@ -146,6 +167,19 @@ public partial class InventoryUI : Control
             categoryIndex = (int)Category.WEAPONS;
         }
 
+        switch(CurrentCategory)
+        {
+            case Category.ARMORS:
+                ChangeSlots(player.Inventory.ListArmorsPagination());
+                break;
+            case Category.CONSUMABLES:
+                ChangeSlots(player.Inventory.ListConsumablesPagination());
+                break;
+            case Category.WEAPONS:
+                ChangeSlots(player.Inventory.ListWeaponsPagination());
+                break;
+        }
+
         headerLabel.Text = GetCategoryText();
     }
 
@@ -153,6 +187,11 @@ public partial class InventoryUI : Control
     {
         bool movedVertical = false;
         bool movedHorizontal = false;
+
+        if (inputEvent.IsActionPressed("ui_accept") && CurrentCategory == Category.CONSUMABLES)
+        {
+            player.Inventory.UseConsumable(slots[selectedSlotIndex]);
+        }
 
         if (inputEvent.IsActionPressed("ui_up"))
         {
@@ -198,15 +237,33 @@ public partial class InventoryUI : Control
 
     private string GetCategoryText()
     {
-        switch (CurrentCategory)
+        return CurrentCategory switch
         {
-            case Category.WEAPONS:
-                return "Weapons";
-            case Category.ARMORS:
-                return "Armors";
-            case Category.CONSUMABLES:
-                return "Consumables";
-        }
-        return "";
+            Category.WEAPONS => "Weapons",
+            Category.ARMORS => "Armors",
+            Category.CONSUMABLES => "Consumables",
+            _ => "",
+        };
+    }
+
+    public void ShowElement()
+    {
+		SetProcess(true);
+		SetProcessInput(true);
+
+		MenuElementUtils.SlideIn(this);
+		Show();
+
+        Active = true;
+    }
+
+    public void HideElement()
+    {
+		MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
+
+		SetProcess(false);
+		SetProcessInput(false);
+
+        Active = false;
     }
 }

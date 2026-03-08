@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class SkillsUI : Control
+public partial class SkillsUI : Control, MenuElement
 {
 	public enum Path
 	{
@@ -64,6 +64,23 @@ public partial class SkillsUI : Control
 		}
 	}
 
+	public void ShowElement()
+	{
+		SetProcess(true);
+		SetProcessInput(true);
+
+		MenuElementUtils.SlideIn(this);
+		Show();
+	}
+
+	public void HideElement()
+	{
+		MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
+
+		SetProcess(false);
+		SetProcessInput(false);
+	}
+
 	private void ChangeSelectedSkill(int index)
 	{
 		int pathSize = pathSizes[currentPath];
@@ -106,8 +123,6 @@ public partial class SkillsUI : Control
 
 		selectedSkillIndex = 0;
 		MoveSkillRect(0);
-
-		GD.Print(currentPath);
 	}
 
 	private void Start()
@@ -133,6 +148,9 @@ public partial class SkillsUI : Control
 		};
 
 		CallDeferred(nameof(InitSelectSkill));
+
+		SetProcess(false);
+		SetProcessInput(false);
 	}
 
 	private void InitSelectSkill()

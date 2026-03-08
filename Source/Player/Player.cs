@@ -31,6 +31,7 @@ public partial class Player : CharacterBody2D
     public Mana Mana { get; init; } = new(5);
     public Inventory Inventory { get; } = new();
     public Experience Experience { get; } = new();
+    public QuickSlots QuickSlots { get; } = new();
     public PlayerBody Body => _body;
     public Vector2 Direction { get; set; }
     public CharacterSprite Sprite { get; private set; }
@@ -102,6 +103,7 @@ public partial class Player : CharacterBody2D
             if (body is DroppableItem droppableItem)
             {
                 var item = droppableItem.CurrentItem;
+                Inventory.Add(item.Blueprint, item.Quantity);
                 body.QueueFree();
                 EmitSignal(SignalName.ItemPicked, item.Blueprint, item.Quantity);
             }
@@ -113,17 +115,19 @@ public partial class Player : CharacterBody2D
         Inventory.Add(shortSwordBlueprint, 1);
         Inventory.Add(apple, 1);
 
+        Inventory.ConsumableUseFunc = (blueprint) =>
+        {
+            GD.Print("USE!!!");
+            GD.Print(blueprint);
+            return true;
+        };
+
         Life.Death += OnDeath;
 
-        stateManager = new();
-        AddChild(stateManager);
-        stateManager.ChangeState(new PlayerDefaultState(new(this)));
-
-        AddChild(shadowTimer);
-        shadowTimer.Start(0.05);
-        shadowTimer.Timeout += CreateShadow;
-
+        CreateStateManager();
+        StartShadowTimer();
         CreateSkills();
+        CreateQuickSlots();
 
         Experience.Change += entitySoundPlayer.PlayPickEXP;
     }
@@ -343,5 +347,30 @@ public partial class Player : CharacterBody2D
         };
 
         _skills.Start();
+    }
+
+    private void CreateStateManager()
+    {
+        stateManager = new();
+        AddChild(stateManager);
+        stateManager.ChangeState(new PlayerDefaultState(new(this)));
+    }
+
+    private void CreateQuickSlots()
+    {
+        QuickSlots.SlotOne.ConsumableUse += Inventory.UseConsumable;
+        QuickSlots.SlotTwo.ConsumableUse += Inventory.UseConsumable;
+        QuickSlots.SlotThree.ConsumableUse += Inventory.UseConsumable;
+
+        QuickSlots.SlotOne.ActiveSkill = Skills.Fireball;
+        QuickSlots.SlotTwo.ActiveSkill = Skills.ForwardSlash;
+        QuickSlots.SlotThree.Slot = Inventory.Consumables[0];
+    }
+
+    private void StartShadowTimer()
+    {
+        AddChild(shadowTimer);
+        shadowTimer.Start(0.05);
+        shadowTimer.Timeout += CreateShadow;
     }
 }

@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ha74ayb21sc1"]
+
+[ext_resource type="FontFile" uid="uid://dlchcv8v7sx5t" path="res://Fonts/Varnished (White).fnt" id="1_hs8lq"]
+
+[resource]
+font = ExtResource("1_hs8lq")
