@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class ItemDrop: Resource
+public partial class ItemDrop : Resource
 {
     [Export]
     public float Weight { get; set; } = 1.0f;

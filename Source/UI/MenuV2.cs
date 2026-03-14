@@ -155,7 +155,8 @@ public partial class MenuV2 : Control, MenuElement
 
     public void OnPause(bool paused)
     {
-        if (paused) {
+        if (paused)
+        {
             ShowElement();
             return;
         }

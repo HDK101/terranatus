@@ -78,7 +78,7 @@ public partial class QuickSlotSelect : ColorRect, MenuElement
     private void ChangeIndex(int amount)
     {
         quickSlotIndex = (quickSlots.Count + ((quickSlotIndex + amount) % quickSlots.Count)) % quickSlots.Count;
-    
+
         menuAudioPlayer.PlayChange();
 
         Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);

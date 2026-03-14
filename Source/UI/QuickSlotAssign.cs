@@ -29,7 +29,8 @@ public partial class QuickSlotAssign : TextureRect
         if (slot.Type == QuickSlot.SlotType.SKILL)
         {
             Texture = slot.MenuTexture;
-        } else if (slot.Type == QuickSlot.SlotType.CONSUMABLE)
+        }
+        else if (slot.Type == QuickSlot.SlotType.CONSUMABLE)
         {
             consumableFrame.Show();
             consumableInnerTexture.Texture = slot.MenuTexture;

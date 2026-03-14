@@ -26,7 +26,8 @@ public partial class PlayerRespawningState(WeakReference<Player> playerRef) : IS
             player.Show();
             player.View.StartSleeping();
             player.EntitySoundPlayer.PlayEnergyCharging();
-            player.GetTree().CreateTimer(3.5).Timeout += () => {
+            player.GetTree().CreateTimer(3.5).Timeout += () =>
+            {
                 player.EntitySoundPlayer.PlayEnergyCharge();
                 player.View.Respawning();
             };

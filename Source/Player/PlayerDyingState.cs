@@ -30,7 +30,8 @@ public class PlayerDyingState(WeakReference<Player> playerRef) : IState
             player.RespawnParticles.Restart();
             player.View.Dying();
             player.EntitySoundPlayer.PlayEnergyCharging();
-            player.GetTree().CreateTimer(BASE_DEATH_TIME).Timeout += () => {
+            player.GetTree().CreateTimer(BASE_DEATH_TIME).Timeout += () =>
+            {
                 player.EntitySoundPlayer.PlayEnergyCharge();
                 player.View.HideCharacter();
             };

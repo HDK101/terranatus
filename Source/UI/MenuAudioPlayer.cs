@@ -2,12 +2,12 @@ using Godot;
 using System;
 
 public partial class MenuAudioPlayer : Node
-{	
-	private AudioStreamPlayer audioStreamPlayer;
+{
+    private AudioStreamPlayer audioStreamPlayer;
     private SoundDB soundDB;
 
-	public override void _Ready()
-	{
+    public override void _Ready()
+    {
         soundDB = GetNode<SoundDB>("/root/SoundDB");
         audioStreamPlayer = new()
         {
@@ -15,7 +15,7 @@ public partial class MenuAudioPlayer : Node
             Bus = "SFX"
         };
 
-		AddChild(audioStreamPlayer);
+        AddChild(audioStreamPlayer);
         audioStreamPlayer.Play();
     }
 

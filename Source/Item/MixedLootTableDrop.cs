@@ -10,6 +10,9 @@ public partial class MixedLootTableDrop : Resource
     public ArrayLootTableDrop RareLootDrop;
 
     [Export]
+    public ArrayLootTableDrop UniqueLootDrop;
+
+    [Export]
     public float DefaultChanceRareInDecimal = 0.10f;
 
     [Export]
@@ -24,11 +27,11 @@ public partial class MixedLootTableDrop : Resource
 
         if (randomDecimal >= commonLootChance && randomDecimal < rareLootThreshold)
         {
-
+            return RareLootDrop.Drop(rng);
         }
         else if (randomDecimal >= rareLootThreshold)
         {
-
+            return UniqueLootDrop.Drop(rng);
         }
 
         return CommonLootDrop.Drop(rng);
