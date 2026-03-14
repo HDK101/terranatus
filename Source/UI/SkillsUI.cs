@@ -13,6 +13,12 @@ public partial class SkillsUI : Control, MenuElement
         MAX = 4,
     }
 
+    public enum State
+    {
+        LIST,
+        QUICK_SLOT,
+    }
+
     [Signal]
     public delegate void AssignEventHandler(SkillButton button, ActiveSkill activeSkill);
 
@@ -28,41 +34,70 @@ public partial class SkillsUI : Control, MenuElement
 
     private Path currentPath = Path.MOON;
 
-    private int selectedSkillIndex = 0;
 
     private List<SkillSlot> moonPath = [];
     private List<SkillSlot> warriorPath = [];
     private List<SkillSlot> roguePath = [];
     private List<SkillSlot> magePath = [];
 
+    private int selectedSkillIndex = 0;
     private Dictionary<Path, int> pathSizes;
 
-	private 
+    private ActiveSkill currentSkill;
+
+    private QuickSlotSelect quickSlotSelect;
+
+    private List<SkillSlot> currentSkillSlots = null;
+
+    private State state = State.LIST;
+
+    private MenuAudioPlayer menuAudioPlayer;
 
     public override async void _Ready()
     {
+        menuAudioPlayer = new();
+        AddChild(menuAudioPlayer);
+
         await ToSignal(player, Node.SignalName.Ready);
         Start();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_up"))
+        switch (state)
+        {
+            case State.LIST:
+                Input(@event);
+                break;
+            case State.QUICK_SLOT:
+                quickSlotSelect.Input(@event);
+                break;
+        }
+    }
+
+    public void Input(InputEvent inputEvent)
+    {
+        if (inputEvent.IsActionPressed("ui_up"))
         {
             ChangePath((int)currentPath - 1);
         }
-        else if (@event.IsActionPressed("ui_down"))
+        else if (inputEvent.IsActionPressed("ui_down"))
         {
             ChangePath((int)currentPath + 1);
         }
 
-        if (@event.IsActionPressed("ui_left"))
+        if (inputEvent.IsActionPressed("ui_left"))
         {
             ChangeSelectedSkill(selectedSkillIndex - 1);
         }
-        else if (@event.IsActionPressed("ui_right"))
+        else if (inputEvent.IsActionPressed("ui_right"))
         {
             ChangeSelectedSkill(selectedSkillIndex + 1);
+        }
+
+        if (inputEvent.IsActionPressed("ui_accept"))
+        {
+            ShowQuickSlotSelect();
         }
     }
 
@@ -71,7 +106,10 @@ public partial class SkillsUI : Control, MenuElement
         SetProcess(true);
         SetProcessInput(true);
 
-        MenuElementUtils.SlideIn(this);
+        state = State.LIST;
+
+        selectedSkillRect.Hide();
+        MenuElementUtils.SlideIn(this).Chain().TweenCallback(Callable.From(InitSelectSkill));
         Show();
     }
 
@@ -79,8 +117,26 @@ public partial class SkillsUI : Control, MenuElement
     {
         MenuElementUtils.SlideOut(this).Chain().TweenCallback(Callable.From(Hide));
 
+        quickSlotSelect.HideElement();
+
+        state = State.LIST;
+
         SetProcess(false);
         SetProcessInput(false);
+    }
+
+    private void ShowQuickSlotSelect()
+    {
+        quickSlotSelect.CurrentSkill = currentSkillSlots[selectedSkillIndex].Skill;
+        quickSlotSelect.ShowElement();
+
+        quickSlotSelect.SlotOne.UpdateTexture(player.QuickSlots.SlotOne);
+        quickSlotSelect.SlotTwo.UpdateTexture(player.QuickSlots.SlotTwo);
+        quickSlotSelect.SlotThree.UpdateTexture(player.QuickSlots.SlotThree);
+
+        state = State.QUICK_SLOT;
+
+        menuAudioPlayer.PlayAccept();
     }
 
     private void ChangeSelectedSkill(int index)
@@ -93,26 +149,25 @@ public partial class SkillsUI : Control, MenuElement
 
     private void MoveSkillRect(int index)
     {
-        List<SkillSlot> skillSlots = null;
         if (currentPath == Path.WARRIOR)
         {
-            skillSlots = warriorPath;
+            currentSkillSlots = warriorPath;
         }
         else if (currentPath == Path.MAGE)
         {
-            skillSlots = magePath;
+            currentSkillSlots = magePath;
         }
         else if (currentPath == Path.ROGUE)
         {
-            skillSlots = roguePath;
+            currentSkillSlots = roguePath;
         }
         else if (currentPath == Path.MOON)
         {
-            skillSlots = moonPath;
+            currentSkillSlots = moonPath;
         }
-        Vector2 selectedPosition = skillSlots[index].GlobalPosition;
+        Vector2 selectedPosition = currentSkillSlots[index].GlobalPosition;
         Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
-        tween.TweenProperty(selectedSkillRect, "position", selectedPosition, 0.25f);
+        tween.TweenProperty(selectedSkillRect, "global_position", selectedPosition, 0.15f);
     }
 
     private void ChangePath(int index)
@@ -125,10 +180,17 @@ public partial class SkillsUI : Control, MenuElement
 
         selectedSkillIndex = 0;
         MoveSkillRect(0);
+
+        menuAudioPlayer.PlayChange();
     }
 
     private void Start()
     {
+        quickSlotSelect = GetNode<QuickSlotSelect>("QuickSlotSelect");
+
+        forwardSlash.Skill = player.Skills.ForwardSlash;
+        fireball.Skill = player.Skills.Fireball;
+
         warriorPath = [forwardSlash];
         moonPath = [forwardSlash];
         roguePath = [fireball];
@@ -149,15 +211,27 @@ public partial class SkillsUI : Control, MenuElement
             {Path.MAGE, magePath.Count},
         };
 
-        CallDeferred(nameof(InitSelectSkill));
+        quickSlotSelect.SlotOne.Assigned += () => AssignSkillToSlot(player.QuickSlots.SlotOne);
+        quickSlotSelect.SlotTwo.Assigned += () => AssignSkillToSlot(player.QuickSlots.SlotTwo);
+        quickSlotSelect.SlotThree.Assigned += () => AssignSkillToSlot(player.QuickSlots.SlotThree);
 
         SetProcess(false);
         SetProcessInput(false);
     }
 
+    private void AssignSkillToSlot(QuickSlot slot)
+    {
+        slot.ActiveSkill = currentSkillSlots[selectedSkillIndex].Skill;
+        state = State.LIST;
+    }
+
     private void InitSelectSkill()
     {
-        selectedSkillRect.Position = moonPath[0].GlobalPosition;
-        GD.Print(moonPath[0].Position);
+        selectedSkillRect.Show();
+        selectedSkillRect.Modulate = new Color(selectedSkillRect.Modulate, 0.0f);
+        Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
+
+        tween.TweenProperty(selectedSkillRect, "modulate:a", 1.0f, 0.1f);
+        MoveSkillRect(0);
     }
 }

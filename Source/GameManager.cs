@@ -1,8 +1,12 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class GameManager : Node
 {
+    [Signal]
+    public delegate void PausedEventHandler(bool paused);
+
     [Export]
     private Node entities;
 
@@ -15,22 +19,14 @@ public partial class GameManager : Node
     {
         if (@event.IsActionPressed("pause"))
         {
-            paused = !paused;
-
-            if (paused) Pause();
-            else if (!paused) Resume();
+            Pause();
         }
     }
 
     public void Pause()
     {
-        gameHud.Menu.ShowElement();
-        GetTree().Paused = true;
-    }
-
-    public void Resume()
-    {
-        gameHud.Menu.HideElement();
-        GetTree().Paused = false;
+        paused = !paused;
+        GetTree().Paused = paused;
+        EmitSignal(SignalName.Paused, paused);
     }
 }

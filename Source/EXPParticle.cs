@@ -9,8 +9,12 @@ public partial class EXPParticle : Area2D
     private readonly float DEFAULT_SPEED_THRESHOLD = 256.0f;
     private readonly float INITIAL_SPEED_BASE = 64.0f;
 
+    private Sprite2D sprite;
+
     private Vector2 initialDirection = Vector2.Zero;
     private float initialSpeed = 128.0f;
+
+    private bool done = false;
 
     public override void _Ready()
     {
@@ -18,6 +22,8 @@ public partial class EXPParticle : Area2D
 
         initialDirection = Vector2.FromAngle(RNG.RandfRange(0.0f, Mathf.Pi * 2));
         initialSpeed = INITIAL_SPEED_BASE + RNG.RandfRange(0.0f, INITIAL_SPEED_BASE);
+
+        sprite = GetNode<Sprite2D>("Sprite2D");
 
         Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
         tween.TweenProperty(this, nameof(initialSpeed), 0.0f, 1.0f);
@@ -34,10 +40,13 @@ public partial class EXPParticle : Area2D
 
     private void OnBodyEntered(Node2D body)
     {
-        if (body == Player)
+        if (body == Player && !done)
         {
+            done = true;
             Player.Experience.Gain(EXP);
-            QueueFree();
+            Tween tween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic);
+            tween.TweenProperty(sprite, "scale", Vector2.Zero, 0.5f);
+            tween.TweenCallback(Callable.From(QueueFree));
         }
     }
 }

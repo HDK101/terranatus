@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b5i4lkri2qe7h" path="res://Sprites/bar_frame_up.png" id="7_5efe1"]
 [ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
 [ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="7_rcdsp"]
+[ext_resource type="Script" uid="uid://7anne2ic1g8i" path="res://Source/UI/MainUI.cs" id="10_7k8pp"]
 [ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
 [ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="14_ygyvt"]
 [ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_4n6jn"]
@@ -40,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
 [ext_resource type="Script" uid="uid://buklehx5qpknd" path="res://Source/UI/MenuV2.cs" id="32_fv26l"]
 [ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/Dialog.cs" id="33_7jpoy"]
+[ext_resource type="Script" uid="uid://dnq5sac6dpkj6" path="res://Source/UI/MenuStatBar.cs" id="33_7k8pp"]
 [ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="33_fv26l"]
 [ext_resource type="Texture2D" uid="uid://etrrqgnaywkq" path="res://Sprites/UI/top_bar_health_under.png" id="34_7k8pp"]
 [ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
@@ -59,6 +61,22 @@
 [ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="47_3i6n3"]
 [ext_resource type="PackedScene" uid="uid://4lfktvuew2u" path="res://Scenes/UI/skills.tscn" id="49_65n2t"]
 [ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="54_hs3dq"]
+[ext_resource type="PackedScene" uid="uid://dmsw1r8ytyi24" path="res://Scenes/ParticlesEffect/particle_effect_one.tscn" id="60_65n2t"]
+[ext_resource type="Script" uid="uid://de8ki1twh4m4v" path="res://Source/MusicPlayer.cs" id="60_djowa"]
+[ext_resource type="PackedScene" uid="uid://c717yeux31aib" path="res://Scenes/ParticlesEffect/glow_explosion.tscn" id="61_dgkwl"]
+
+[sub_resource type="Environment" id="Environment_3i6n3"]
+background_mode = 3
+ambient_light_source = 1
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 8.0
+glow_strength = 1.5
+glow_blend_mode = 0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 1.0
+glow_map_strength = 0.0
+adjustment_brightness = 0.57
 
 [sub_resource type="LabelSettings" id="LabelSettings_hwnf3"]
 font = ExtResource("15_4n6jn")
@@ -106,6 +124,9 @@ player = NodePath("Entities/Player")
 floatingNumbers = NodePath("FloatingNumbers")
 enemies = [NodePath("Entities/Slime")]
 gameHud = NodePath("GameHUD")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=514278649]
+environment = SubResource("Environment_3i6n3")
 
 [node name="BackgroundDeep" type="Parallax2D" parent="." unique_id=1102784234]
 modulate = Color(0.49, 0.49, 0.49, 1)
@@ -167,7 +188,7 @@ audioPlayer = NodePath("GameHUDAudioPlayer")
 inGameQuickSlots = NodePath("MainUI/QuickSlots")
 
 [node name="MainUI" type="Control" parent="GameHUD" unique_id=706352056]
-visible = false
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,6 +196,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ar8se")
+script = ExtResource("10_7k8pp")
 
 [node name="TextureRect" type="TextureRect" parent="GameHUD/MainUI" unique_id=1553557013]
 layout_mode = 0
@@ -363,7 +385,7 @@ layout_mode = 2
 texture = ExtResource("27_7sovq")
 Button = 1
 
-[node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("Inventory", "Skill", "Character", "Background", "inventoryButton", "skillsButton", "characterButton", "systemButton")]
+[node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("player", "Inventory", "Skill", "Character", "Background", "TopBar", "BottomBar", "inventoryButton", "skillsButton", "characterButton", "systemButton", "healthBar", "manaBar")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -374,14 +396,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ar8se")
 script = ExtResource("32_fv26l")
+player = NodePath("../../Entities/Player")
 Inventory = NodePath("Inventory")
 Skill = NodePath("Skills")
 Character = NodePath("Inventory")
 Background = NodePath("Background")
-inventoryButton = NodePath("BottomBar/HBoxContainer/MenuButton")
-skillsButton = NodePath("BottomBar/HBoxContainer/MenuButton2")
-characterButton = NodePath("BottomBar/HBoxContainer/MenuButton4")
-systemButton = NodePath("BottomBar/HBoxContainer/MenuButton3")
+TopBar = NodePath("TopBar")
+BottomBar = NodePath("BottomBar")
+inventoryButton = NodePath("TopBar/HBoxContainer/MenuButton")
+skillsButton = NodePath("TopBar/HBoxContainer/MenuButton2")
+characterButton = NodePath("TopBar/HBoxContainer/MenuButton4")
+systemButton = NodePath("TopBar/HBoxContainer/MenuButton3")
+healthBar = NodePath("BottomBar/HBoxContainer/Health")
+manaBar = NodePath("BottomBar/HBoxContainer/Mana")
 
 [node name="Background" type="ColorRect" parent="GameHUD/Menu" unique_id=1419311277]
 layout_mode = 1
@@ -392,7 +419,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TopBar" type="ColorRect" parent="GameHUD/Menu" unique_id=735169419]
+[node name="BottomBar" type="ColorRect" parent="GameHUD/Menu" unique_id=735169419]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 1
 anchors_preset = 12
@@ -403,7 +430,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/TopBar" unique_id=791758897]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/BottomBar" unique_id=791758897]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -418,17 +445,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Health" type="HBoxContainer" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1837906664]
+[node name="Health" type="HBoxContainer" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1837906664]
 layout_mode = 2
+script = ExtResource("33_7k8pp")
 
-[node name="Label" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=922019546]
+[node name="Label" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Health" unique_id=922019546]
 layout_mode = 2
 text = "HP"
 label_settings = ExtResource("33_fv26l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=310593408]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/BottomBar/HBoxContainer/Health" unique_id=310593408]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -436,34 +464,35 @@ value = 50.0
 texture_under = ExtResource("34_7k8pp")
 texture_progress = ExtResource("35_djowa")
 
-[node name="Value" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Health" unique_id=1118655277]
+[node name="Value" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Health" unique_id=1118655277]
 layout_mode = 2
 text = "10/10"
 label_settings = ExtResource("33_fv26l")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Mana" type="HBoxContainer" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=613005569]
+[node name="Mana" type="HBoxContainer" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=613005569]
 layout_mode = 2
+script = ExtResource("33_7k8pp")
 
-[node name="Label" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=139992377]
+[node name="Label" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=139992377]
 layout_mode = 2
 text = "MP"
 label_settings = ExtResource("33_fv26l")
 
-[node name="ManaProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=1281896950]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=1281896950]
 layout_mode = 2
 size_flags_vertical = 4
 value = 50.0
 texture_under = ExtResource("37_7k8pp")
 texture_progress = ExtResource("38_djowa")
 
-[node name="Label2" type="Label" parent="GameHUD/Menu/TopBar/HBoxContainer/Mana" unique_id=442594422]
+[node name="Value" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=442594422]
 layout_mode = 2
 text = "10/10"
 label_settings = ExtResource("33_fv26l")
 
-[node name="BottomBar" type="ColorRect" parent="GameHUD/Menu" unique_id=86040859]
+[node name="TopBar" type="ColorRect" parent="GameHUD/Menu" unique_id=86040859]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 1
 anchors_preset = 10
@@ -471,7 +500,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/BottomBar" unique_id=1663690778]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameHUD/Menu/TopBar" unique_id=1663690778]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -480,18 +509,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MenuButton" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
+[node name="MenuButton" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
 layout_mode = 2
 
-[node name="MenuButton2" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
+[node name="MenuButton2" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
 layout_mode = 2
 AssignedButton = 2
 
-[node name="MenuButton4" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
+[node name="MenuButton4" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
 layout_mode = 2
 AssignedButton = 1
 
-[node name="MenuButton3" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
+[node name="MenuButton3" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
 layout_mode = 2
 AssignedButton = 3
 
@@ -731,7 +760,6 @@ player = NodePath("../../../Entities/Player")
 
 [node name="Dialog" type="Control" parent="GameHUD" unique_id=844530523 node_paths=PackedStringArray("dialogText", "nameText", "portraitRect", "dialogBox")]
 process_mode = 3
-visible = false
 custom_minimum_size = Vector2(320, 68)
 layout_mode = 3
 anchors_preset = 15
@@ -855,9 +883,10 @@ bus = &"SFX"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=240127051]
 process_mode = 3
 stream = ExtResource("54_hs3dq")
-autoplay = true
+volume_db = -30.0
 bus = &"Music"
 parameters/looping = true
+script = ExtResource("60_djowa")
 
 [node name="ForegroundFog" type="Parallax2D" parent="." unique_id=444385624]
 repeat_size = Vector2(320, 240)
@@ -867,3 +896,16 @@ repeat_times = 25
 material = SubResource("ShaderMaterial_rcdsp")
 position = Vector2(160, 121)
 texture = ExtResource("7_rcdsp")
+
+[node name="GlowExplosion" parent="." unique_id=254045007 instance=ExtResource("61_dgkwl")]
+visible = false
+position = Vector2(194.31824, 119.59581)
+
+[node name="ParticleEffectOne" parent="." unique_id=405320520 instance=ExtResource("60_65n2t")]
+visible = false
+position = Vector2(135, 100)
+
+[connection signal="Paused" from="GameManager" to="GameHUD/MainUI" method="OnPause"]
+[connection signal="Paused" from="GameManager" to="GameHUD/Menu" method="OnPause"]
+[connection signal="Death" from="Entities/Player" to="MusicPlayer" method="PlayFadeOut"]
+[connection signal="Respawned" from="Entities/Player" to="MusicPlayer" method="PlayFadeIn"]

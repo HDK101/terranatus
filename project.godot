@@ -26,9 +26,7 @@ PackedSceneDB="*uid://c0fsr1q81kmp8"
 
 window/size/viewport_width=320
 window/size/viewport_height=240
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
@@ -152,4 +150,3 @@ next_menu={
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0.22352941, 0.12156863, 0.12941177, 1)
-2d/snap/snap_2d_transforms_to_pixel=true

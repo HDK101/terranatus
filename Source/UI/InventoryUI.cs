@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public partial class InventoryUI : Control, MenuElement
 {
-    public bool Active = false;
+    #region Enums
 
     private enum State
     {
@@ -18,39 +18,60 @@ public partial class InventoryUI : Control, MenuElement
         ARMORS = 2,
     }
 
-    private int GridColumns => gridContainer.Columns;
+    #endregion
 
+    #region Category
     private Category CurrentCategory => (Category)categoryIndex;
 
     private int categoryIndex = 0;
+    #endregion
 
+    [ExportCategory("In game")]
     [Export]
     private Player player;
 
+    [ExportCategory("UI")]
     [Export]
     private Label headerLabel;
 
+    [ExportCategory("UI")]
     [Export]
     private TextureRect leftArrow;
 
+    [ExportCategory("UI")]
     [Export]
     private TextureRect rightArrow;
 
+    [ExportCategory("UI")]
     [Export]
     private GridContainer gridContainer;
 
+    [ExportCategory("UI")]
     [Export]
     private TextureRect selectedOverlay;
 
+    #region Nodes
+
     private List<Slot> slots;
+    private MenuAudioPlayer menuAudioPlayer;
+
+    #endregion
+
+    #region State
+
     private State state = State.HEADER;
     private int selectedSlotIndex = 0;
 
+    #endregion
+
+    #region Packed
     private PackedScene packedItemSlot;
+    #endregion
+
 
     public override void _Input(InputEvent inputEvent)
     {
-        if (!Active) return;
+        if (!Visible) return;
 
         switch (state)
         {
@@ -68,6 +89,9 @@ public partial class InventoryUI : Control, MenuElement
         packedItemSlot = GD.Load<PackedScene>("res://Scenes/UI/item_slot.tscn");
         player.Ready += Initialize;
 
+        menuAudioPlayer = new();
+        AddChild(menuAudioPlayer);
+
         player.Inventory.ConsumablesChange += () =>
         {
             if (CurrentCategory == Category.CONSUMABLES)
@@ -81,6 +105,9 @@ public partial class InventoryUI : Control, MenuElement
                 }
             }
         };
+
+        SetProcess(false);
+        SetProcessInput(false);
     }
 
     private void ShowItems()
@@ -144,14 +171,17 @@ public partial class InventoryUI : Control, MenuElement
         if (inputEvent.IsActionPressed("ui_up") || inputEvent.IsActionPressed("ui_down"))
         {
             SelectItems();
+            menuAudioPlayer.PlayChange();
         }
         else if (inputEvent.IsActionPressed("ui_left"))
         {
             ChangeCategory(categoryIndex - 1);
+            menuAudioPlayer.PlayChange();
         }
         else if (inputEvent.IsActionPressed("ui_right"))
         {
             ChangeCategory(categoryIndex + 1);
+            menuAudioPlayer.PlayChange();
         }
     }
 
@@ -191,27 +221,32 @@ public partial class InventoryUI : Control, MenuElement
         if (inputEvent.IsActionPressed("ui_accept") && CurrentCategory == Category.CONSUMABLES)
         {
             player.Inventory.UseConsumable(slots[selectedSlotIndex]);
+            menuAudioPlayer.PlayChange();
         }
 
         if (inputEvent.IsActionPressed("ui_up"))
         {
-            selectedSlotIndex -= GridColumns;
+            selectedSlotIndex -= gridContainer.Columns;
             movedVertical = true;
+            menuAudioPlayer.PlayChange();
         }
         else if (inputEvent.IsActionPressed("ui_down"))
         {
-            selectedSlotIndex += GridColumns;
+            selectedSlotIndex += gridContainer.Columns;
             movedVertical = true;
+            menuAudioPlayer.PlayChange();
         }
         else if (inputEvent.IsActionPressed("ui_left"))
         {
             selectedSlotIndex -= 1;
             movedHorizontal = true;
+            menuAudioPlayer.PlayChange();
         }
         else if (inputEvent.IsActionPressed("ui_right"))
         {
             selectedSlotIndex += 1;
             movedHorizontal = true;
+            menuAudioPlayer.PlayChange();
         }
 
         if (movedHorizontal)
@@ -253,8 +288,6 @@ public partial class InventoryUI : Control, MenuElement
 
         MenuElementUtils.SlideIn(this);
         Show();
-
-        Active = true;
     }
 
     public void HideElement()
@@ -263,7 +296,5 @@ public partial class InventoryUI : Control, MenuElement
 
         SetProcess(false);
         SetProcessInput(false);
-
-        Active = false;
     }
 }

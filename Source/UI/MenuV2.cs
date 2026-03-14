@@ -25,6 +25,11 @@ public partial class MenuV2 : Control, MenuElement
     [Signal]
     public delegate void AcceptEventHandler();
 
+    [ExportGroup("In game")]
+    [Export]
+    private Player player;
+
+    [ExportGroup("UI")]
     [Export]
     public Control Inventory { get; private set; }
     [Export]
@@ -36,6 +41,12 @@ public partial class MenuV2 : Control, MenuElement
     public ColorRect Background { get; private set; }
 
     [Export]
+    public Control TopBar { get; private set; }
+
+    [Export]
+    public Control BottomBar { get; private set; }
+
+    [Export]
     private MenuButton inventoryButton;
     [Export]
     private MenuButton skillsButton;
@@ -43,6 +54,12 @@ public partial class MenuV2 : Control, MenuElement
     private MenuButton characterButton;
     [Export]
     private MenuButton systemButton;
+
+    [Export]
+    private MenuStatBar healthBar;
+
+    [Export]
+    private MenuStatBar manaBar;
 
     private Dictionary<Tab, MenuButton> buttons;
 
@@ -57,6 +74,8 @@ public partial class MenuV2 : Control, MenuElement
         characterButton.Unselect();
         systemButton.Unselect();
 
+        InitializeHealthAndManaBars();
+
         buttons = new()
         {
             {Tab.INVENTORY, inventoryButton},
@@ -64,6 +83,9 @@ public partial class MenuV2 : Control, MenuElement
             {Tab.CHARACTER, characterButton},
             {Tab.SYSTEM, systemButton},
         };
+
+        SetProcess(false);
+        SetProcessInput(false);
     }
 
     public override void _Input(InputEvent @event)
@@ -93,7 +115,7 @@ public partial class MenuV2 : Control, MenuElement
     public void ChangeTab(Tab tab)
     {
         blocked = true;
-        GetTree().CreateTimer(0.7).Timeout += () => blocked = false;
+        GetTree().CreateTimer(0.4).Timeout += () => blocked = false;
 
         if (tab != currentTab) HideCurrentTab();
 
@@ -131,20 +153,67 @@ public partial class MenuV2 : Control, MenuElement
         }
     }
 
+    public void OnPause(bool paused)
+    {
+        if (paused) {
+            ShowElement();
+            return;
+        }
+        HideElement();
+    }
+
     public void ShowElement()
     {
+        Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
+
         SetProcessInput(true);
         Show();
         ChangeTab(Tab.INVENTORY);
         FadeInBackground();
+        Tween barTween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic).SetParallel();
+        barTween.TweenProperty(TopBar, "position:y", 0.0f, 0.2f);
+        barTween.TweenProperty(BottomBar, "position:y", viewportSize.Y - BottomBar.Size.Y, 0.2f);
+        EmitSignal(SignalName.UIVisible);
+
+        SetProcess(true);
+        SetProcessInput(true);
     }
 
     public void HideElement()
     {
+        Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
         var tween = FadeOutBackground();
-        ChangeTab(Tab.INVENTORY);
+        HideCurrentTab();
+
+        Tween barTween = CreateTween().SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Cubic).SetParallel();
+        barTween.TweenProperty(TopBar, "position:y", -TopBar.Size.Y, 0.2f);
+        barTween.TweenProperty(BottomBar, "position:y", viewportSize.Y, 0.2f);
+
         tween.TweenCallback(Callable.From(Hide));
         tween.TweenCallback(Callable.From(() => SetProcessInput(false)));
+
+        EmitSignal(SignalName.UIHidden);
+
+        SetProcess(false);
+        SetProcessInput(false);
+    }
+
+    private void InitializeHealthAndManaBars()
+    {
+        player.Life.Change += UpdateLife;
+        player.Mana.Change += UpdateMana;
+        UpdateLife();
+        UpdateMana();
+    }
+
+    private void UpdateLife()
+    {
+        healthBar.Update(player.Life.Value, player.Life.MaxValue);
+    }
+
+    private void UpdateMana()
+    {
+        manaBar.Update(player.Mana.Value, player.Mana.MaxValue);
     }
 
     private void FadeInBackground()

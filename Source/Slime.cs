@@ -79,7 +79,7 @@ public partial class Slime : Enemy
         moveTimer.Timeout += RandomlyJump;
         moveTimer.Start(3.0);
 
-        EXPReward = 870;
+        EXPReward = 20;
 
         lifeBar.Position = new(0f, -8f);
     }

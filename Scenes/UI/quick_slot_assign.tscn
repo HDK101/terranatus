@@ -3,10 +3,37 @@
 [ext_resource type="Texture2D" uid="uid://cy6n7247qlido" path="res://Sprites/Skills/forward_slash_skill_slot.png" id="1_fmlve"]
 [ext_resource type="LabelSettings" uid="uid://buys6db88srop" path="res://Resources/LabelSettings/boxy.tres" id="2_878kt"]
 [ext_resource type="Script" uid="uid://blp1lx0wkppeg" path="res://Source/UI/QuickSlotAssign.cs" id="2_fwu4m"]
+[ext_resource type="Texture2D" uid="uid://c8vn2hcsx0ebb" path="res://Sprites/UI/menu_slot_base.png" id="4_fwu4m"]
 
 [node name="QuickSlotAssign" type="TextureRect" unique_id=1976549185]
 texture = ExtResource("1_fmlve")
 script = ExtResource("2_fwu4m")
+
+[node name="ConsumableFrame" type="TextureRect" parent="." unique_id=1404196595]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fwu4m")
+
+[node name="TextureRect" type="TextureRect" parent="ConsumableFrame" unique_id=180838484]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="." unique_id=971306464]
 layout_mode = 1

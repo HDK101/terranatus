@@ -31,6 +31,7 @@ public partial class QuickSlot : RefCounted
 
             slot = null;
             Type = SlotType.SKILL;
+            EmitSignal(SignalName.Change);
         }
     }
 
@@ -42,10 +43,11 @@ public partial class QuickSlot : RefCounted
             slot.QuantityChange += OnSlotQuantityChange;
             activeSkill = null;
             Type = SlotType.CONSUMABLE;
+            EmitSignal(SignalName.Change);
         }
     }
 
-    public Texture2D Texture
+    public Texture2D InGameTexture
     {
         get
         {
@@ -55,7 +57,19 @@ public partial class QuickSlot : RefCounted
                 SlotType.SKILL => activeSkill.QuickSlotTexture,
                 _ => null,
             };
+        }
+    }
 
+    public Texture2D MenuTexture
+    {
+        get
+        {
+            return Type switch
+            {
+                SlotType.CONSUMABLE => slot.Blueprint.Texture,
+                SlotType.SKILL => activeSkill.MenuTexture,
+                _ => null,
+            };
         }
     }
 

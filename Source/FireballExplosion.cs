@@ -11,6 +11,7 @@ public partial class FireballExplosion : GpuParticles2D
     {
         Restart();
         GetNode<GpuParticles2D>("SmokeExplosion").Restart();
+        GetNode<GpuParticles2D>("ShockwaveExplosion").Restart();
         pointLight = GetNode<PointLight2D>("PointLight2D");
         audioStreamPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
 

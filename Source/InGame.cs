@@ -19,11 +19,7 @@ public partial class InGame : Node2D
     [Export]
     private GameHud gameHud;
 
-    private PackedScene packedFlyingCorpse;
-    private PackedScene packedDroppableItem;
-    private PackedScene packedSlash;
-    private PackedScene packedPunch;
-    private PackedScene packedEXP;
+    private PackedSceneDB packedSceneDB;
 
     private Texture2D appleTexture;
 
@@ -42,11 +38,7 @@ public partial class InGame : Node2D
         audioStreamPlayer.Play();
 
         soundDB = GetNode<SoundDB>("/root/SoundDB");
-        packedFlyingCorpse = GD.Load<PackedScene>("res://Scenes/flying_corpse.tscn");
-        packedDroppableItem = GD.Load<PackedScene>("res://Scenes/droppable_item.tscn");
-        packedSlash = GD.Load<PackedScene>("res://Scenes/slash.tscn");
-        packedPunch = GD.Load<PackedScene>("res://Scenes/punch.tscn");
-        packedEXP = GD.Load<PackedScene>("res://Scenes/exp_particle.tscn");
+        packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
         appleTexture = GD.Load<Texture2D>("res://Sprites/Items/item216.png");
         gameHud = GetNode<GameHud>("GameHUD");
         InitializeEnemies();
@@ -61,7 +53,7 @@ public partial class InGame : Node2D
 
     private void CreateCorpse(Enemy enemy)
     {
-        var corpseInstance = packedFlyingCorpse.Instantiate<FlyingCorpse>();
+        var corpseInstance = packedSceneDB.FlyingCorpse.Instantiate<FlyingCorpse>();
         corpseInstance.Texture = enemy.CurrentTexture;
         corpseInstance.Position = enemy.Position;
         corpseInstance.RotationForceInRadians = Random.Shared.NextDouble() * Math.PI;
@@ -99,7 +91,7 @@ public partial class InGame : Node2D
     {
         if (hitPayload.Attack == AttackType.PUNCH)
         {
-            var punchInstance = packedPunch.Instantiate<HitEffect>();
+            var punchInstance = packedSceneDB.Punch.Instantiate<HitEffect>();
             punchInstance.Position = hitPayload.Position;
             targetScene.AddChild(punchInstance);
         }
@@ -116,17 +108,25 @@ public partial class InGame : Node2D
         PlaySound2D(soundDB.EnemyDeathRandomizer, enemy.Position);
 
         CreateEXP(enemy);
+        CreateGlowExplosion(enemy);
 
         var items = enemy.ToDropItems();
         foreach (var item in items)
         {
-            var itemInstance = packedDroppableItem.Instantiate<DroppableItem>();
+            var itemInstance = packedSceneDB.DroppableItem.Instantiate<DroppableItem>();
             itemInstance.PreStart(enemy.Position, item, 1);
             targetScene.AddChild(itemInstance);
             itemInstance.Picked += () => PlaySound(soundDB.PickupRandomizer);
         }
 
         enemy.QueueFree();
+    }
+
+    private void CreateGlowExplosion(Enemy enemy)
+    {
+        GlowExplosion glowExplosion = packedSceneDB.GlowingParticlesExplosion.Instantiate<GlowExplosion>();
+        glowExplosion.Position = enemy.Position;
+        AddChild(glowExplosion);
     }
 
     private void CreateEXP(Enemy enemy)
@@ -137,7 +137,7 @@ public partial class InGame : Node2D
         {
             int currentReward = totalReward < 10 ? totalReward : 10;
             totalReward -= currentReward;
-            EXPParticle expParticle = packedEXP.Instantiate<EXPParticle>();
+            EXPParticle expParticle = packedSceneDB.EXP.Instantiate<EXPParticle>();
             expParticle.Position = enemy.Position;
             expParticle.Player = player;
             expParticle.EXP = currentReward;
@@ -153,7 +153,7 @@ public partial class InGame : Node2D
         if (payload.Attack == AttackType.SLASH)
         {
             floatingNumbers.CreateDamage(payload.Position, payload.Damage);
-            var slashInstance = packedSlash.Instantiate<HitEffect>();
+            var slashInstance = packedSceneDB.Slash.Instantiate<HitEffect>();
             slashInstance.Position = payload.Position;
             targetScene.AddChild(slashInstance);
         }

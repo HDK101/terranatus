@@ -8,11 +8,21 @@ public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : 
 
     private AnimationNodeStateMachinePlayback stateMachine;
 
-    public void Start()
+    public void StartIdle()
     {
-        GD.Print(animationTree);
         stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
         stateMachine.Start("Idle");
+    }
+
+    public void StartSleeping()
+    {
+        stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
+        stateMachine.Start("Sleeping");
+    }
+
+    public void Dying()
+    {
+        stateMachine.Travel("Dying");
     }
 
     public void Attack()
@@ -30,6 +40,11 @@ public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : 
         stateMachine.Travel("Walk");
     }
 
+    public void Respawning()
+    {
+        stateMachine.Travel("Respawning");
+    }
+
     public void Jump()
     {
         stateMachine.Travel("Jump");
@@ -38,5 +53,10 @@ public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : 
     public void Fall()
     {
         stateMachine.Travel("Fall");
+    }
+
+    public void HideCharacter()
+    {
+        sprite.Hide();
     }
 }

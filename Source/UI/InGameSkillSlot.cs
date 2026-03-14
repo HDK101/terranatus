@@ -57,19 +57,17 @@ public partial class InGameSkillSlot : TextureRect
 
     public void Update(QuickSlot quickSlot)
     {
-        GD.Print("Quick slot UI Update");
-
         consumableRect.Visible = false;
         quantityLabel.Text = "";
 
         if (quickSlot.Type == QuickSlot.SlotType.SKILL)
         {
-            Texture = quickSlot.Texture;
+            Texture = quickSlot.InGameTexture;
         }
         else if (quickSlot.Type == QuickSlot.SlotType.CONSUMABLE)
         {
             consumableRect.Visible = true;
-            consumableInnerRect.Texture = quickSlot.Texture;
+            consumableInnerRect.Texture = quickSlot.InGameTexture;
             quantityLabel.Text = quickSlot.Slot.Quantity.ToString();
         }
     }

@@ -52,6 +52,7 @@ public partial class GameHud : CanvasLayer
         _healthBar.Update(player.Life.Value, player.Life.MaxValue);
         _manaBar.Update(player.Mana.Value, player.Mana.MaxValue);
         _expBar.Update(player.Experience.EXP, player.Experience.GetEXPCeil());
+        
         player.Life.Change += () =>
         {
             _healthBar.Update(player.Life.Value, player.Life.MaxValue);

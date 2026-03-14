@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class EntitySoundPlayer : MultipleAudioPlayer2D
 {
@@ -21,6 +22,11 @@ public partial class EntitySoundPlayer : MultipleAudioPlayer2D
                 PlayStream(soundDB.PunchRandomizer);
                 break;
         }
+    }
+
+    public void PlayEnergyCharge()
+    {
+        PlayStream(soundDB.EnergyChargeSound);
     }
 
     public void PlayForwardSlash()
@@ -46,5 +52,10 @@ public partial class EntitySoundPlayer : MultipleAudioPlayer2D
     public void Jump()
     {
         PlayStream(soundDB.JumpRandomizer);
+    }
+
+    public void PlayEnergyCharging()
+    {
+        PlayStream(soundDB.EnergyChargingSound);
     }
 }

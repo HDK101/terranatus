@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bpmxxjaj0fsdg"]
+
+[ext_resource type="Texture2D" uid="uid://cey66idw1nb" path="res://Resources/Textures/particle_ring_texture.tres" id="1_6bi5h"]
+
+[sub_resource type="Curve" id="Curve_o3bpl"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hbskt"]
+curve = SubResource("Curve_o3bpl")
+
+[sub_resource type="Curve" id="Curve_6bi5h"]
+_limits = [0.0, 8.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 8), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o3bpl"]
+curve = SubResource("Curve_6bi5h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hbskt"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.04
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_o3bpl")
+color = Color(0.98, 0.76570666, 0.57820004, 1)
+alpha_curve = SubResource("CurveTexture_hbskt")
+
+[node name="ShockwaveExplosion" type="GPUParticles2D" unique_id=1683116764]
+emitting = false
+amount = 1
+texture = ExtResource("1_6bi5h")
+lifetime = 0.3
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_hbskt")

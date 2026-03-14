@@ -3,6 +3,7 @@ using System;
 
 public partial class SkillSlot : TextureRect
 {
+    public ActiveSkill Skill { get; set; }
     private Label levelLabel;
 
     public override void _Ready()

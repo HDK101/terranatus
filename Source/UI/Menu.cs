@@ -128,7 +128,6 @@ public partial class Menu : Control
     public void ShowInventory()
     {
         var tween = CreateDefaultTween();
-        tween.TweenProperty(inventory, "position:x", 156.0f, 0.5f).Finished += () => inventory.Active = true;
     }
     public void HideInventory()
     {

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://7njolayrxm8y"]
 
 [ext_resource type="Script" uid="uid://crbc2hqkh1s3n" path="res://Source/Fireball.cs" id="1_ne4qj"]
-[ext_resource type="Texture2D" uid="uid://boo4kd4tnw8mm" path="res://Sprites/fireball_particle.png" id="2_hcgvv"]
+[ext_resource type="Texture2D" uid="uid://dmaxc3feiiye4" path="res://Sprites/ParticleTexture/smoke3_20.png" id="2_cpagb"]
 [ext_resource type="Texture2D" uid="uid://8i04n5rovsls" path="res://Sprites/fireball.png" id="3_cpagb"]
+[ext_resource type="PackedScene" uid="uid://dmsw1r8ytyi24" path="res://Scenes/ParticlesEffect/particle_effect_one.tscn" id="3_hcgvv"]
 
 [sub_resource type="Gradient" id="Gradient_ygyvt"]
 interpolation_mode = 1
@@ -15,6 +16,8 @@ gradient = SubResource("Gradient_ygyvt")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h3yyx"]
 
 [sub_resource type="Curve" id="Curve_ygyvt"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -67,71 +70,13 @@ angular_velocity_curve = SubResource("CurveTexture_gxotq")
 orbit_velocity_min = 9.49949e-08
 orbit_velocity_max = 9.49949e-08
 gravity = Vector3(0, 10, 0)
+scale_min = 0.02
+scale_max = 0.02
 scale_curve = SubResource("CurveTexture_rcdsp")
 scale_over_velocity_max = 1000.0
 scale_over_velocity_curve = SubResource("CurveTexture_3i6n3")
 color_ramp = SubResource("GradientTexture1D_hwnf3")
 emission_curve = SubResource("CurveTexture_tbblf")
-hue_variation_min = -2.2351742e-08
-hue_variation_max = -2.2351742e-08
-turbulence_enabled = true
-
-[sub_resource type="Curve" id="Curve_gxotq"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -0.7078651), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_4n6jn"]
-curve = SubResource("Curve_gxotq")
-
-[sub_resource type="Gradient" id="Gradient_4n6jn"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.4125, 0.8)
-colors = PackedColorArray(0.9647059, 0.9882353, 0.18431373, 1, 1, 0.42745098, 0, 1, 1, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7ae67"]
-gradient = SubResource("Gradient_4n6jn")
-
-[sub_resource type="Curve" id="Curve_4n6jn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_7ae67"]
-curve = SubResource("Curve_4n6jn")
-
-[sub_resource type="Curve" id="Curve_7ae67"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.4274168, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_hwnf3"]
-curve = SubResource("Curve_7ae67")
-
-[sub_resource type="Curve" id="Curve_hwnf3"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_hs3dq"]
-curve = SubResource("Curve_hwnf3")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4n6jn"]
-lifetime_randomness = 0.5
-particle_flag_disable_z = true
-angle_min = -263.6
-angle_max = 115.70001
-spread = 180.0
-initial_velocity_min = 8.929999
-initial_velocity_max = 56.55
-angular_velocity_min = -128.57
-angular_velocity_max = 44.999985
-angular_velocity_curve = SubResource("CurveTexture_4n6jn")
-orbit_velocity_min = 9.49949e-08
-orbit_velocity_max = 9.49949e-08
-gravity = Vector3(0, 10, 0)
-scale_curve = SubResource("CurveTexture_hwnf3")
-scale_over_velocity_max = 1000.0
-scale_over_velocity_curve = SubResource("CurveTexture_hs3dq")
-color_ramp = SubResource("GradientTexture1D_7ae67")
-emission_curve = SubResource("CurveTexture_7ae67")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 turbulence_enabled = true
@@ -180,18 +125,14 @@ blend_mode = 2
 texture = SubResource("GradientTexture2D_gxotq")
 
 [node name="SmokeParticles" type="GPUParticles2D" parent="." unique_id=939239953]
+material = SubResource("CanvasItemMaterial_h3yyx")
 amount = 128
-texture = ExtResource("2_hcgvv")
+texture = ExtResource("2_cpagb")
 lifetime = 0.5
 randomness = 0.5
 process_material = SubResource("ParticleProcessMaterial_65n2t")
 
-[node name="FireballParticles" type="GPUParticles2D" parent="." unique_id=1996853574]
-amount = 128
-texture = ExtResource("2_hcgvv")
-lifetime = 0.1
-randomness = 0.5
-process_material = SubResource("ParticleProcessMaterial_4n6jn")
+[node name="FireballParticles" parent="." unique_id=405320520 instance=ExtResource("3_hcgvv")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1855516600]
 sprite_frames = SubResource("SpriteFrames_hs3dq")

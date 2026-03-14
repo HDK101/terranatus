@@ -5,10 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://d14nd0tsbdqtd" path="res://Sprites/aemilia_naked_fall_v2.png" id="3_qqcod"]
 [ext_resource type="Texture2D" uid="uid://b2pxhyveurn0l" path="res://Sprites/aemilia_naked_idle.png" id="4_igrcy"]
 [ext_resource type="Texture2D" uid="uid://e1pk84rrax2o" path="res://Sprites/aemilia_naked_jump_v2.png" id="5_qqcod"]
+[ext_resource type="Texture2D" uid="uid://b5f3ju8dxem1u" path="res://Sprites/aemilia_naked_respawn.png" id="6_pu2lt"]
 [ext_resource type="Texture2D" uid="uid://b6wtfgkwc6118" path="res://Sprites/aemilia_naked_walk.png" id="6_qqcod"]
 [ext_resource type="Script" uid="uid://bhwadyacai7n0" path="res://Source/CharacterSprite.cs" id="7_7dp3o"]
+[ext_resource type="PackedScene" uid="uid://2itwnlw6tf25" path="res://Scenes/ParticlesEffect/gather_energy_particles.tscn" id="7_tx1dd"]
 [ext_resource type="Script" uid="uid://cw2bhjrtta4wy" path="res://Source/Player/PlayerCamera.cs" id="8_h4iuc"]
 [ext_resource type="Script" uid="uid://b5rwe25xq1ndg" path="res://Source/EntitySoundPlayer.cs" id="11_gymyn"]
+[ext_resource type="Texture2D" uid="uid://cg5gcqn88w5dq" path="res://Resources/Textures/particle_gradient_texture.tres" id="11_pu2lt"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qqcod"]
 animation = &"naked_attack_sword_1"
@@ -23,6 +26,9 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_qqcod")
 nodes/Animation/position = Vector2(-220, 80)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7dp3o"]
+animation = &"naked_death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_olqyp"]
 animation = &"naked_fall"
 
@@ -33,11 +39,16 @@ advance_on_start = true
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6n3p"]
 animation = &"naked_jump"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pu2lt"]
+animation = &"naked_respawn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ukyrk"]
+animation = &"sleeping"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fs7ks"]
 animation = &"naked_walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fs7ks"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpjfl"]
 advance_expression = "IsWalking == true"
@@ -68,26 +79,41 @@ advance_expression = "IsWalking == false && IsJumping == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y6uwr"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7dp3o"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ukyrk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4iuc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fd4e3"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wpjfl"]
 states/AttackSword/node = SubResource("AnimationNodeBlendTree_fs7ks")
 states/AttackSword/position = Vector2(624, 185)
+states/Dying/node = SubResource("AnimationNodeAnimation_7dp3o")
+states/Dying/position = Vector2(245, 193)
 states/Fall/node = SubResource("AnimationNodeAnimation_olqyp")
 states/Fall/position = Vector2(475, 232)
 states/Idle/node = SubResource("AnimationNodeAnimation_igrcy")
-states/Idle/position = Vector2(374, 113)
+states/Idle/position = Vector2(363, 113)
 states/Jump/node = SubResource("AnimationNodeAnimation_l6n3p")
 states/Jump/position = Vector2(363, 207)
-states/Start/position = Vector2(210, 113)
+states/Respawning/node = SubResource("AnimationNodeAnimation_pu2lt")
+states/Respawning/position = Vector2(395, -26)
+states/Sleeping/node = SubResource("AnimationNodeAnimation_ukyrk")
+states/Sleeping/position = Vector2(245, -13)
+states/Start/position = Vector2(183, 93)
 states/Walk/node = SubResource("AnimationNodeAnimation_fs7ks")
 states/Walk/position = Vector2(515, 47)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fs7ks"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_wpjfl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_bi64h"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_2ijsl"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_p1odr"), "Idle", "AttackSword", SubResource("AnimationNodeStateMachineTransition_l6n3p"), "AttackSword", "Idle", SubResource("AnimationNodeStateMachineTransition_olqyp"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_0gysh"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_vfarp"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_y6uwr")]
-graph_offset = Vector2(-64, -54)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_fs7ks"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_wpjfl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_bi64h"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_2ijsl"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_p1odr"), "Idle", "AttackSword", SubResource("AnimationNodeStateMachineTransition_l6n3p"), "AttackSword", "Idle", SubResource("AnimationNodeStateMachineTransition_olqyp"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_0gysh"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_vfarp"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_y6uwr"), "Respawning", "Idle", SubResource("AnimationNodeStateMachineTransition_7dp3o"), "Start", "Sleeping", SubResource("AnimationNodeStateMachineTransition_ukyrk"), "Sleeping", "Respawning", SubResource("AnimationNodeStateMachineTransition_h4iuc"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_fd4e3")]
+graph_offset = Vector2(-241, -24)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qqcod"]
-graph_offset = Vector2(-361.26105, 54.40097)
 nodes/output/position = Vector2(560, 160)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_wpjfl")
-nodes/StateMachine/position = Vector2(-100, 120)
+nodes/StateMachine/position = Vector2(120, 80)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [sub_resource type="Animation" id="Animation_qqcod"]
@@ -127,6 +153,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_igrcy"]
@@ -223,6 +285,94 @@ tracks/5/keys = {
 "method": &"SetShadowActive"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ukyrk"]
+resource_name = "naked_death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_pu2lt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.06666667, 2),
+"transitions": PackedFloat32Array(8.282109, 1),
+"update": 0,
+"values": [Color(18.892157, 18.892157, 18.892157, 1), Color(18.892157, 18.892157, 18.892157, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.26794335, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3)]
+}
 
 [sub_resource type="Animation" id="Animation_wpjfl"]
 resource_name = "naked_fall"
@@ -263,6 +413,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_l6n3p"]
@@ -306,6 +468,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [11]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_olqyp"]
 resource_name = "naked_jump"
@@ -346,6 +520,82 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gymyn"]
+resource_name = "naked_respawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_pu2lt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(18.892157, 18.892157, 18.892157, 1), Color(18.892157, 18.892157, 18.892157, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_fs7ks"]
@@ -389,19 +639,51 @@ tracks/2/keys = {
 "update": 1,
 "values": [7]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pu2lt"]
+resource_name = "sleeping"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.01, 0.01)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fs7ks"]
 _data = {
 &"RESET": SubResource("Animation_qqcod"),
 &"naked_attack_sword_1": SubResource("Animation_igrcy"),
+&"naked_death": SubResource("Animation_ukyrk"),
 &"naked_fall": SubResource("Animation_wpjfl"),
 &"naked_idle": SubResource("Animation_l6n3p"),
 &"naked_jump": SubResource("Animation_olqyp"),
-&"naked_walk": SubResource("Animation_fs7ks")
+&"naked_respawn": SubResource("Animation_gymyn"),
+&"naked_walk": SubResource("Animation_fs7ks"),
+&"sleeping": SubResource("Animation_pu2lt")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pu2lt"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5eh6y"]
-size = Vector2(22, 24)
+size = Vector2(22, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tikr8"]
 size = Vector2(24, 24)
@@ -425,6 +707,25 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gymyn"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_pu2lt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.47849464, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ukyrk"]
+curve = SubResource("Curve_pu2lt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ukyrk"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.14999999
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_ukyrk")
+
 [node name="Player" type="CharacterBody2D" unique_id=79551072]
 process_mode = 1
 collision_mask = 9
@@ -438,7 +739,10 @@ parameters/StateMachine/AttackSword/TimeScale/scale = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1883853658]
 libraries/ = SubResource("AnimationLibrary_fs7ks")
 
+[node name="RespawnParticles" parent="." unique_id=213121497 instance=ExtResource("7_tx1dd")]
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054821244]
+material = SubResource("CanvasItemMaterial_pu2lt")
 hframes = 11
 script = ExtResource("7_7dp3o")
 
@@ -475,7 +779,6 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_8erm5")
 
 [node name="ItemArea" type="Area2D" parent="." unique_id=2045353153]
-visible = false
 collision_layer = 0
 collision_mask = 16
 
@@ -489,3 +792,8 @@ script = ExtResource("11_gymyn")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1282998109]
 blend_mode = 2
 texture = SubResource("GradientTexture2D_ukyrk")
+
+[node name="EnergyOrb" type="GPUParticles2D" parent="." unique_id=563944222]
+material = SubResource("CanvasItemMaterial_gymyn")
+texture = ExtResource("11_pu2lt")
+process_material = SubResource("ParticleProcessMaterial_ukyrk")

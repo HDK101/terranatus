@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://rfmer8sr0evh" path="res://Sprites/exp_particle.png" id="1_ffu6s"]
 [ext_resource type="Script" uid="uid://d1lm40cldcyun" path="res://Source/EXPParticle.cs" id="2_fjvwf"]
+[ext_resource type="Texture2D" uid="uid://cg5gcqn88w5dq" path="res://Resources/Textures/particle_gradient_texture.tres" id="3_l0ota"]
 
 [sub_resource type="Gradient" id="Gradient_fjvwf"]
 interpolation_mode = 1
@@ -60,18 +61,30 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjvwf"]
 radius = 4.1231055
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xx8ms"]
+blend_mode = 1
+
 [node name="EXPParticle" type="Area2D" unique_id=338294427]
 script = ExtResource("2_fjvwf")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=531265502]
+visible = false
 color = Color(1, 0.8396666, 0.26, 1)
 energy = 2.0
 texture = SubResource("GradientTexture2D_l0ota")
 
 [node name="EXPParticle" type="AnimatedSprite2D" parent="." unique_id=3524878]
+visible = false
+modulate = Color(18.892157, 17.784662, 12.247182, 1)
 sprite_frames = SubResource("SpriteFrames_r6sgf")
 autoplay = "default"
 frame_progress = 0.4813211
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846454920]
 shape = SubResource("CircleShape2D_fjvwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1622633348]
+modulate = Color(4.415934, 4.415934, 4.415934, 1)
+material = SubResource("CanvasItemMaterial_xx8ms")
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_l0ota")

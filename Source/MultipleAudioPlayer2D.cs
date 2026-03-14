@@ -8,7 +8,10 @@ public abstract partial class MultipleAudioPlayer2D : AudioStreamPlayer2D
 
     public override void _Ready()
     {
-        Stream = new AudioStreamPolyphonic();
+        Stream = new AudioStreamPolyphonic()
+        {
+            Polyphony = 32,
+        };
         Start();
         Play();
     }

@@ -14,6 +14,13 @@ public partial class SoundDB : Node
     public AudioStreamRandomizer PickEXPRandomizer { get; private set; }
     public AudioStreamRandomizer JumpRandomizer { get; private set; }
 
+    public AudioStream EnergyChargeSound { get; private set; }
+    public AudioStream EnergyChargingSound { get; private set; }
+
+    public AudioStream UIChange { get; private set; }
+    public AudioStream UIAccept { get; private set; }
+    public AudioStream UIPause { get; private set; }
+
     public override void _Ready()
     {
         SlashRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Attack/slash_randomizer.tres");
@@ -26,5 +33,10 @@ public partial class SoundDB : Node
         PickupRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/UI/pickup_randomizer.tres");
         PickEXPRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Misc/pick_exp_randomizer.tres");
         JumpRandomizer = GD.Load<AudioStreamRandomizer>("res://Sounds/Player/jump_randomizer.tres");
+        EnergyChargeSound = GD.Load<AudioStream>("res://Sounds/Energy/SFX_ANIME_Rise_and_Shine_Screechy_001.wav");
+        EnergyChargingSound = GD.Load<AudioStream>("res://Sounds/Energy/Magic Sound Effects - LightMagic - HealingLoop_03.wav");
+        UIChange = GD.Load<AudioStream>("res://Sounds/UI/change.wav");
+        UIAccept = GD.Load<AudioStream>("res://Sounds/UI/accept.wav");
+        UIPause = GD.Load<AudioStream>("res://Sounds/UI/pause.wav");
     }
 }

@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
@@ -14,6 +12,9 @@ public partial class Player : CharacterBody2D
     }
 
     [Signal]
+    public delegate void DeathEventHandler();
+
+    [Signal]
     public delegate void SuccessfulHitEventHandler();
 
     [Signal]
@@ -25,10 +26,13 @@ public partial class Player : CharacterBody2D
     [Signal]
     public delegate void DamagedEventHandler(HitPayload payload);
 
+    [Signal]
+    public delegate void RespawnedEventHandler();
+
     public bool ShadowsActive { get; set; } = false;
 
-    public Life Life { get; init; } = new(5.0);
-    public Mana Mana { get; init; } = new(5);
+    public Life Life { get; init; } = new(1.0);
+    public Mana Mana { get; init; } = new(100);
     public Inventory Inventory { get; } = new();
     public Experience Experience { get; } = new();
     public QuickSlots QuickSlots { get; } = new();
@@ -37,6 +41,8 @@ public partial class Player : CharacterBody2D
     public CharacterSprite Sprite { get; private set; }
     public Area2D HitArea { get => hitArea; }
     public Area2D ForwardSlashArea { get => forwardSlashArea; }
+    public GpuParticles2D RespawnParticles { get; private set; }
+    public GpuParticles2D EnergyOrbParticles { get; private set; }
     public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
     public Skills Skills => _skills;
     public bool IsWalking => Velocity.X != 0;
@@ -44,7 +50,10 @@ public partial class Player : CharacterBody2D
     public bool IsJumping => Velocity.Y > 0;
     public bool IsAttacking { get; private set; } = false;
 
-    public PlayerView View { get; set; }
+    public PlayerView View { get; private set; }
+    public EntitySoundPlayer EntitySoundPlayer { get; private set; }
+    public PackedSceneDB PackedSceneDB { get; private set; }
+
     private readonly PlayerBody _body = new();
     private PlayerCamera camera;
     private StateManager stateManager;
@@ -62,16 +71,11 @@ public partial class Player : CharacterBody2D
     private Area2D forwardSlashArea;
     private Area2D itemArea;
 
-    private EntitySoundPlayer entitySoundPlayer;
-
     private float lastDirectionHorizontal = 1.0f;
 
     private ItemBlueprint shortSwordBlueprint;
 
-    private PackedScene bigSlashPacked;
     private PackedScene shadowPacked;
-
-    private PackedSceneDB packedSceneDB;
 
     private readonly string[] attackAnimations = [
         "aemilia_naked_attack_sword1",
@@ -82,8 +86,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
-        bigSlashPacked = GD.Load<PackedScene>("res://Scenes/big_slash.tscn");
+        PackedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
         shadowPacked = GD.Load<PackedScene>("res://Scenes/shadow.tscn");
 
         ItemDB itemDB = GetNode<ItemDB>("/root/ItemDB");
@@ -92,11 +95,12 @@ public partial class Player : CharacterBody2D
         Sprite = GetNode<CharacterSprite>("Sprite2D");
         hitArea = GetNode<Area2D>("HitArea");
         forwardSlashArea = GetNode<Area2D>("ForwardSlashArea");
-        entitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
+        EntitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
         itemArea = GetNode<Area2D>("ItemArea");
         camera = GetNode<PlayerCamera>("Camera2D");
+        RespawnParticles = GetNode<GpuParticles2D>("RespawnParticles");
+        EnergyOrbParticles = GetNode<GpuParticles2D>("EnergyOrb");
         View = new(GetNode<AnimationTree>("AnimationTree"), Sprite);
-        View.Start();
 
         itemArea.BodyEntered += (body) =>
         {
@@ -129,11 +133,13 @@ public partial class Player : CharacterBody2D
         CreateSkills();
         CreateQuickSlots();
 
-        Experience.Change += entitySoundPlayer.PlayPickEXP;
+        Experience.Change += EntitySoundPlayer.PlayPickEXP;
     }
 
     public void Hit(HitPayload hitPayload)
     {
+        if (Life.IsDead) return;
+
         Life.Hit(hitPayload.Damage);
         Sprite.Hit();
         camera.Hit(hitPayload.Force.X);
@@ -147,7 +153,7 @@ public partial class Player : CharacterBody2D
 
     public void PlayForwardSlashAnimation()
     {
-        View.Attack();
+        View.Jump();
     }
 
     public void StartAttackOffset()
@@ -193,7 +199,7 @@ public partial class Player : CharacterBody2D
 
     public void CastAttackHit()
     {
-        entitySoundPlayer.PlayAttackSound(AttackType.SLASH);
+        EntitySoundPlayer.PlayAttackSound(AttackType.SLASH);
 
         var bodies = hitArea.GetOverlappingBodies();
 
@@ -261,22 +267,27 @@ public partial class Player : CharacterBody2D
         }
         if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
 
-        var bigSlashInstance = bigSlashPacked.Instantiate<AnimatedSprite2D>();
+        var bigSlashInstance = PackedSceneDB.BigSlash.Instantiate<SlashEffect>();
         AddChild(bigSlashInstance);
         bigSlashInstance.FlipH = Flipped();
+        bigSlashInstance.Play();
 
-        bigSlashInstance.Position = new(LastDirectionHorizontal * 10.0f, 0.0f);
+        GD.Print(bigSlashInstance.Position);
+        GD.Print(bigSlashInstance.GlobalPosition);
+        GD.Print(bigSlashInstance.GetParent());
 
-        entitySoundPlayer.PlayForwardSlash();
+        //bigSlashInstance.Position = new(LastDirectionHorizontal * 10.0f, 0.0f);
+
+        EntitySoundPlayer.PlayForwardSlash();
     }
 
     public void CastFireball()
     {
-        var fireballInstance = packedSceneDB.Fireball.Instantiate<Fireball>();
+        var fireballInstance = PackedSceneDB.Fireball.Instantiate<Fireball>();
         fireballInstance.Position = Position;
         fireballInstance.Direction = LastDirectionHorizontal;
 
-        entitySoundPlayer.PlayFireRelease();
+        EntitySoundPlayer.PlayFireRelease();
 
         GetTree().CurrentScene.CallDeferred("add_child", fireballInstance);
     }
@@ -284,7 +295,7 @@ public partial class Player : CharacterBody2D
     public float Jump()
     {
         CreateJumpFallParticles();
-        entitySoundPlayer.Jump();
+        EntitySoundPlayer.Jump();
         if (!IsAttacking) View.Jump();
         return JumpVelocity;
     }
@@ -302,7 +313,7 @@ public partial class Player : CharacterBody2D
 
     private void CreateJumpFallParticles()
     {
-        var instance = packedSceneDB.JumpFallParticles.Instantiate<GpuParticles2D>();
+        var instance = PackedSceneDB.JumpFallParticles.Instantiate<GpuParticles2D>();
         instance.Position = Position + Vector2.Down * 8f;
         instance.Restart();
         GetTree().CurrentScene.CallDeferred("add_child", instance);
@@ -328,9 +339,8 @@ public partial class Player : CharacterBody2D
 
     private void OnDeath()
     {
-        SetProcess(false);
-        SetPhysicsProcess(false);
-        Sprite.Hide();
+        stateManager.ChangeState(new PlayerDyingState(new(this)));
+        EmitSignal(SignalName.Death);
     }
 
     private bool Flipped()
@@ -353,7 +363,7 @@ public partial class Player : CharacterBody2D
     {
         stateManager = new();
         AddChild(stateManager);
-        stateManager.ChangeState(new PlayerDefaultState(new(this)));
+        stateManager.ChangeState(new PlayerRespawningState(new(this)));
     }
 
     private void CreateQuickSlots()

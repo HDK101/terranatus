@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c0poike5dkr7c"]
+
+[ext_resource type="Script" uid="uid://cmegrgny58pdt" path="res://Source/Effect/SlashEffect.cs" id="1_ivb8y"]
+[ext_resource type="Texture2D" uid="uid://cut48cu6bi4yf" path="res://Sprites/Effect/slash_trail1.png" id="1_k7jo4"]
+[ext_resource type="Texture2D" uid="uid://ddv5u4vy30urk" path="res://Sprites/Effect/slash_trail.png" id="1_yw175"]
+
+[sub_resource type="Shader" id="Shader_gu6gc"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.stable.mono's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D noise_decay;
+uniform sampler2D slash_trail_over;
+uniform float offset;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV + vec2(offset, 0.0f));
+	vec4 slash_color = texture(slash_trail_over, UV + vec2(offset, 0.0f));
+	//vec4 color = texture(TEXTURE, UV);
+	float noise_value = texture(noise_decay, UV).r;
+	
+	vec4 color;
+	color = mix(mix(texture_color * 0.6f, slash_color, slash_color.a), vec4(vec3(1.0f), 0.0f), round(noise_value + offset - 0.5f));
+	//color.a = alpha * round(noise_value - offset + 0.25f);
+	
+	COLOR = color;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yw175"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yw175"]
+width = 1024
+noise = SubResource("FastNoiseLite_yw175")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gngs2"]
+shader = SubResource("Shader_gu6gc")
+shader_parameter/noise_decay = SubResource("NoiseTexture2D_yw175")
+shader_parameter/slash_trail_over = ExtResource("1_k7jo4")
+shader_parameter/offset = 0.0
+
+[sub_resource type="Curve" id="Curve_k7jo4"]
+_data = [Vector2(0, 0), 0.0, 7.4594927, 0, 0, Vector2(0.5084033, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="SlashEffect" type="Line2D" unique_id=944679730]
+material = SubResource("ShaderMaterial_gngs2")
+rotation = 1.5707964
+points = PackedVector2Array(0, 24, 1.7655497, 23.93497, 3.521531, 23.740236, 5.2584295, 23.416851, 6.9668326, 22.966568, 8.637482, 22.391827, 10.261322, 21.695744, 11.829557, 20.882088, 13.333686, 19.95527, 14.765558, 18.920315, 16.117416, 17.782825, 17.381931, 16.548973, 18.55225, 15.225439, 19.622036, 13.819396, 20.585487, 12.338465, 21.437384, 10.790671, 22.173107, 9.184402, 22.788677, 7.52836, 23.28075, 5.831526, 23.646664, 4.1030846, 23.884434, 2.3524084, 23.992771, 0.58898723, 23.97109, -1.1776258, 23.819508, -2.937857, 23.538845, -4.682168, 23.130625, -6.4011054, 22.597057, -8.085358, 21.941032, -9.725795, 21.16611, -11.313524, 20.276487, -12.839941, 19.276981, -14.296785, 18.173012, -15.676148, 16.970562, -16.970562, 15.676144, -18.173016, 14.29678, -19.276983, 12.839939, -20.276487, 11.313524, -21.16611, 9.725789, -21.941034, 8.085356, -22.59706, 6.4011054, -23.130625, 4.6821623, -23.538847, 2.9378567, -23.819508, 1.1776197, -23.97109, -0.5889875, -23.992771, -2.3524144, -23.884434, -4.103088, -23.646664, -5.831526, -23.28075, -7.528368, -22.788673, -9.184402, -22.173107, -10.790676, -21.43738, -12.338465, -20.585487, -13.819401, -19.622032, -15.225441, -18.55225, -16.548975, -17.38193, -17.782833, -16.117409, -18.920315, -14.765558, -19.955275, -13.33368, -20.882088, -11.829556, -21.69574, -10.261329, -22.391827, -8.637483, -22.966568, -6.9668293, -23.416853, -5.258422, -23.740236, -3.5215297, -23.93497, -1.7655427, -24, 2.8619712e-07)
+width = 16.0
+width_curve = SubResource("Curve_k7jo4")
+texture = ExtResource("1_yw175")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 1
+antialiased = true
+script = ExtResource("1_ivb8y")

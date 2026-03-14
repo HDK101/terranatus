@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c717yeux31aib"]
+
+[ext_resource type="Texture2D" uid="uid://bsfjj0r2s4aob" path="res://Sprites/ParticleTexture/grain_texture.png" id="1_coc1t"]
+[ext_resource type="Script" uid="uid://40sjqr0xmm66" path="res://Source/GlowExplosion.cs" id="2_coc1t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pdi53"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_pdi53"]
+_data = [Vector2(0.74731183, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3d8ds"]
+curve = SubResource("Curve_pdi53")
+
+[sub_resource type="Gradient" id="Gradient_pdi53"]
+offsets = PackedFloat32Array(0, 0.6125)
+colors = PackedColorArray(13.863529, 15.120686, 18.892157, 1, 0.45999998, 0.65800005, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3d8ds"]
+gradient = SubResource("Gradient_pdi53")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_coc1t"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 5, 0)
+linear_accel_min = -240.0
+linear_accel_max = -240.0
+scale_min = 0.01
+scale_max = 0.04
+color_initial_ramp = SubResource("GradientTexture1D_3d8ds")
+alpha_curve = SubResource("CurveTexture_3d8ds")
+
+[node name="GlowExplosion" type="GPUParticles2D" unique_id=254045007]
+material = SubResource("CanvasItemMaterial_pdi53")
+amount = 16
+texture = ExtResource("1_coc1t")
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_coc1t")
+script = ExtResource("2_coc1t")

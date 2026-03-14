@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://dvuuafndynjhu" path="res://Sprites/Skills/skill_slot_select.png" id="9_a4cmq"]
 [ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="10_6nsna"]
 [ext_resource type="Script" uid="uid://dj4klnchacqt8" path="res://Source/UI/QuickSlotSelect.cs" id="10_rv6vc"]
-[ext_resource type="LabelSettings" uid="uid://buys6db88srop" path="res://Resources/LabelSettings/boxy.tres" id="11_7a4tv"]
 [ext_resource type="PackedScene" uid="uid://b4nuybas4g7as" path="res://Scenes/UI/quick_slot_assign.tscn" id="12_08nrc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dohx2"]
@@ -165,11 +164,11 @@ autowrap_mode = 2
 
 [node name="SelectSkill" type="TextureRect" parent="." unique_id=434838612]
 layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 24.0
+offset_bottom = 24.0
 texture = ExtResource("9_a4cmq")
 
-[node name="QuickSlotSelect" type="ColorRect" parent="." unique_id=1087585388]
+[node name="QuickSlotSelect" type="ColorRect" parent="." unique_id=1087585388 node_paths=PackedStringArray("SlotOne", "SlotTwo", "SlotThree", "slotSelectRect")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -179,6 +178,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.54509807)
 script = ExtResource("10_rv6vc")
+SlotOne = NodePath("QuickSlotPanel/VBoxContainer/HBoxContainer/QuickSlotAssign")
+SlotTwo = NodePath("QuickSlotPanel/VBoxContainer/HBoxContainer/QuickSlotAssign2")
+SlotThree = NodePath("QuickSlotPanel/VBoxContainer/HBoxContainer/QuickSlotAssign3")
+slotSelectRect = NodePath("SelectQuickSlot")
 
 [node name="QuickSlotPanel" type="PanelContainer" parent="QuickSlotSelect" unique_id=709143568]
 layout_mode = 1
@@ -219,44 +222,17 @@ alignment = 1
 
 [node name="QuickSlotAssign" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1976549185 instance=ExtResource("12_08nrc")]
 layout_mode = 2
+button = 2
 
-[node name="TextureRect2" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=738540554]
+[node name="QuickSlotAssign2" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1426284523 instance=ExtResource("12_08nrc")]
 layout_mode = 2
-texture = ExtResource("7_a4cmq")
+button = 3
 
-[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer/TextureRect2" unique_id=1713836818]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "S"
-label_settings = ExtResource("11_7a4tv")
-
-[node name="TextureRect3" type="TextureRect" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1651236032]
+[node name="QuickSlotAssign3" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer" unique_id=1025148766 instance=ExtResource("12_08nrc")]
 layout_mode = 2
-texture = ExtResource("7_a4cmq")
+button = 4
 
-[node name="Label" type="Label" parent="QuickSlotSelect/QuickSlotPanel/VBoxContainer/HBoxContainer/TextureRect3" unique_id=820505426]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -8.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "D"
-label_settings = ExtResource("11_7a4tv")
-
-[node name="SelectQuickSlot" type="TextureRect" parent="." unique_id=1749589121]
+[node name="SelectQuickSlot" type="TextureRect" parent="QuickSlotSelect" unique_id=1749589121]
 layout_mode = 0
 offset_right = 24.0
 offset_bottom = 24.0
