@@ -412,6 +412,7 @@ texture = ExtResource("27_7sovq")
 Button = 1
 
 [node name="TransitionRect" type="ColorRect" parent="GameHUD/MainUI" unique_id=1473504637]
+visible = false
 material = SubResource("ShaderMaterial_0dqb8")
 layout_mode = 1
 anchors_preset = 15

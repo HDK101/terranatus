@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://v273u7vokqbr"]
+
+[ext_resource type="Script" uid="uid://b677exu8nqijp" path="res://Source/Effect/LightEffect.cs" id="1_ht8hk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ktuc0"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ht8hk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5260417, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.953125, 0.953125, 0.953125, 0.953125, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dx01y"]
+gradient = SubResource("Gradient_ht8hk")
+width = 256
+height = 256
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="LightEffect" type="Polygon2D" unique_id=1291036104]
+material = SubResource("CanvasItemMaterial_ktuc0")
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_dx01y")
+polygon = PackedVector2Array(0, 0, 0, 69, 22, 64)
+uv = PackedVector2Array(141.10738, -205.355, 27.293068, 324.9411, 204.62042, 322.8025)
+script = ExtResource("1_ht8hk")

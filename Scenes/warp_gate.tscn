@@ -1,7 +1,50 @@
 [gd_scene format=3 uid="uid://cdnpnkbxha51j"]
 
-[ext_resource type="Texture2D" uid="uid://cg5gcqn88w5dq" path="res://Resources/Textures/particle_gradient_texture.tres" id="1_bdxan"]
 [ext_resource type="Texture2D" uid="uid://d4ejhrufwcr" path="res://Sprites/stone_gate.png" id="1_m10ms"]
+[ext_resource type="Texture2D" uid="uid://cwpha0s0dxx1n" path="res://Sprites/ParticleTexture/textures/64/alpha/spotlight_5.png" id="2_6xmy5"]
+[ext_resource type="Shader" uid="uid://cwe8ogb8nkiww" path="res://Resources/Shaders/aura_glow.gdshader" id="3_6xmy5"]
+
+[sub_resource type="Gradient" id="Gradient_6xmy5"]
+offsets = PackedFloat32Array(0.47674417, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3yhlo"]
+gradient = SubResource("Gradient_6xmy5")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_3yhlo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6xmy5"]
+noise_type = 3
+frequency = 0.0064
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3yhlo"]
+noise = SubResource("FastNoiseLite_6xmy5")
+color_ramp = SubResource("Gradient_3yhlo")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3yhlo"]
+shader = ExtResource("3_6xmy5")
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_3yhlo")
+shader_parameter/circle_gradient = SubResource("GradientTexture2D_3yhlo")
+shader_parameter/multiplier = 1.0
+
+[sub_resource type="Gradient" id="Gradient_yqf0p"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7107843)
+colors = PackedColorArray(0.48000002, 0.5146667, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w253g"]
+gradient = SubResource("Gradient_yqf0p")
+width = 640
+height = 640
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6xmy5"]
 blend_mode = 1
@@ -14,6 +57,7 @@ point_count = 2
 curve = SubResource("Curve_3yhlo")
 
 [sub_resource type="Gradient" id="Gradient_w253g"]
+colors = PackedColorArray(0.28440002, 0.29826, 0.36, 1, 0.65999997, 0.7223333, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6wcts"]
 gradient = SubResource("Gradient_w253g")
@@ -21,10 +65,12 @@ gradient = SubResource("Gradient_w253g")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w6k2q"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(20, 1, 1)
+emission_box_extents = Vector3(16, 1, 1)
+angle_min = -179.99998
+angle_max = 180.00002
 gravity = Vector3(0, -98, 0)
-scale_min = 0.02
-scale_max = 0.02
+scale_min = 0.19999999
+scale_max = 0.19999999
 color_initial_ramp = SubResource("GradientTexture1D_6wcts")
 alpha_curve = SubResource("CurveTexture_yqf0p")
 
@@ -46,10 +92,16 @@ fill_to = Vector2(1, 1)
 collision_layer = 8
 collision_mask = 0
 
+[node name="AuraGlow" type="Sprite2D" parent="." unique_id=22287191]
+material = SubResource("ShaderMaterial_3yhlo")
+position = Vector2(0, 2.9999995)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_w253g")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=278321351]
 material = SubResource("CanvasItemMaterial_6xmy5")
-amount = 16
-texture = ExtResource("1_bdxan")
+amount = 64
+texture = ExtResource("2_6xmy5")
 process_material = SubResource("ParticleProcessMaterial_w6k2q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1004420295]
@@ -62,5 +114,5 @@ shape = SubResource("RectangleShape2D_bdxan")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1835840158]
 position = Vector2(1, -117)
 color = Color(10.9900255, 12.702154, 18.892157, 1)
-energy = 0.05
+energy = 0.0
 texture = SubResource("GradientTexture2D_sndup")

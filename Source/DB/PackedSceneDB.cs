@@ -14,6 +14,7 @@ public partial class PackedSceneDB : Node
     public PackedScene GlowingParticlesExplosion { get; private set; }
     public PackedScene GlowingParticlesRespawnExplosion { get; private set; }
     public PackedScene DeathBigGlowExplosion { get; private set; }
+    public PackedScene BigWhiteExplosion { get; private set; }
     public PackedScene BigSlash { get; private set; }
 
     public override void _Ready()
@@ -29,6 +30,7 @@ public partial class PackedSceneDB : Node
         GlowingParticlesExplosion = GD.Load<PackedScene>("res://Scenes/ParticlesEffect/glow_explosion.tscn");
         GlowingParticlesRespawnExplosion = GD.Load<PackedScene>("res://Scenes/ParticlesEffect/respawn_glow_explosion.tscn");
         DeathBigGlowExplosion = GD.Load<PackedScene>("res://Scenes/ParticlesEffect/death_big_glow_explosion.tscn");
+        BigWhiteExplosion = GD.Load<PackedScene>("res://Scenes/Effects/big_white_explosion.tscn");
         BigSlash = GD.Load<PackedScene>("res://Scenes/Effects/slash_effect.tscn");
     }
 }

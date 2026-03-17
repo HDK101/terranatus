@@ -43,6 +43,7 @@ public partial class Player : CharacterBody2D
     public Area2D ForwardSlashArea { get => forwardSlashArea; }
     public GpuParticles2D RespawnParticles { get; private set; }
     public GpuParticles2D EnergyOrbParticles { get; private set; }
+    public LightsEffect LightsEffect { get; private set; }
     public float LastDirectionHorizontal { get => lastDirectionHorizontal; set => lastDirectionHorizontal = value; }
     public Skills Skills => _skills;
     public bool IsWalking => Velocity.X != 0;
@@ -100,6 +101,7 @@ public partial class Player : CharacterBody2D
         camera = GetNode<PlayerCamera>("Camera2D");
         RespawnParticles = GetNode<GpuParticles2D>("RespawnParticles");
         EnergyOrbParticles = GetNode<GpuParticles2D>("EnergyOrb");
+        LightsEffect = GetNode<LightsEffect>("LightsEffect");
         View = new(GetNode<AnimationTree>("AnimationTree"), Sprite);
 
         itemArea.BodyEntered += (body) =>

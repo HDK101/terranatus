@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bhwadyacai7n0" path="res://Source/CharacterSprite.cs" id="7_7dp3o"]
 [ext_resource type="PackedScene" uid="uid://2itwnlw6tf25" path="res://Scenes/ParticlesEffect/gather_energy_particles.tscn" id="7_tx1dd"]
 [ext_resource type="Script" uid="uid://cw2bhjrtta4wy" path="res://Source/Player/PlayerCamera.cs" id="8_h4iuc"]
+[ext_resource type="PackedScene" uid="uid://1d5eqr53k358" path="res://Scenes/Effects/lights_effect.tscn" id="8_ukyrk"]
 [ext_resource type="Script" uid="uid://b5rwe25xq1ndg" path="res://Source/EntitySoundPlayer.cs" id="11_gymyn"]
 [ext_resource type="Texture2D" uid="uid://cg5gcqn88w5dq" path="res://Resources/Textures/particle_gradient_texture.tres" id="11_pu2lt"]
 
@@ -732,6 +733,8 @@ parameters/StateMachine/AttackSword/TimeScale/scale = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1883853658]
 libraries/ = SubResource("AnimationLibrary_fs7ks")
+
+[node name="LightsEffect" parent="." unique_id=63311081 instance=ExtResource("8_ukyrk")]
 
 [node name="RespawnParticles" parent="." unique_id=213121497 instance=ExtResource("7_tx1dd")]
 

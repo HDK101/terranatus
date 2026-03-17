@@ -23,6 +23,7 @@ public partial class PlayerRespawningState(WeakReference<Player> playerRef) : IS
         if (playerRef.TryGetTarget(out Player player))
         {
             player.RespawnParticles.Restart();
+            player.LightsEffect.Play();
             player.Show();
             player.View.StartSleeping();
             player.EntitySoundPlayer.PlayEnergyCharging();
@@ -30,12 +31,17 @@ public partial class PlayerRespawningState(WeakReference<Player> playerRef) : IS
             {
                 player.EntitySoundPlayer.PlayEnergyCharge();
                 player.View.Respawning();
+                player.LightsEffect.Stop();
             };
             player.GetTree().CreateTimer(3.6).Timeout += () =>
             {
                 var explosionInstance = player.PackedSceneDB.GlowingParticlesRespawnExplosion.Instantiate<GpuParticles2D>();
                 explosionInstance.OneShot = true;
                 player.AddChild(explosionInstance);
+
+                var bigExplosionInstance = player.PackedSceneDB.BigWhiteExplosion.Instantiate<BigWhiteExplosion>();
+                player.AddChild(bigExplosionInstance);
+
                 nextState = new PlayerDefaultState(playerRef);
                 player.RespawnParticles.Emitting = false;
                 player.EnergyOrbParticles.Emitting = false;

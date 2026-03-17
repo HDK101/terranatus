@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://1d5eqr53k358"]
+
+[ext_resource type="Script" uid="uid://dy13yvgucmem5" path="res://Source/Effect/LightsEffect.cs" id="1_f4etd"]
+[ext_resource type="PackedScene" uid="uid://v273u7vokqbr" path="res://Scenes/Effects/light_effect.tscn" id="2_y5qa2"]
+
+[node name="LightsEffect" type="Node2D" unique_id=63311081 node_paths=PackedStringArray("lights")]
+script = ExtResource("1_f4etd")
+lights = [NodePath("LightEffect"), NodePath("LightEffect2"), NodePath("LightEffect3")]
+
+[node name="LightEffect" parent="." unique_id=1291036104 instance=ExtResource("2_y5qa2")]
+
+[node name="LightEffect2" parent="." unique_id=1408061551 instance=ExtResource("2_y5qa2")]
+
+[node name="LightEffect3" parent="." unique_id=168832284 instance=ExtResource("2_y5qa2")]
