@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cdnpnkbxha51j"]
+
+[ext_resource type="Texture2D" uid="uid://cg5gcqn88w5dq" path="res://Resources/Textures/particle_gradient_texture.tres" id="1_bdxan"]
+[ext_resource type="Texture2D" uid="uid://d4ejhrufwcr" path="res://Sprites/stone_gate.png" id="1_m10ms"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6xmy5"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_3yhlo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yqf0p"]
+curve = SubResource("Curve_3yhlo")
+
+[sub_resource type="Gradient" id="Gradient_w253g"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6wcts"]
+gradient = SubResource("Gradient_w253g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w6k2q"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 1, 1)
+gravity = Vector3(0, -98, 0)
+scale_min = 0.02
+scale_max = 0.02
+color_initial_ramp = SubResource("GradientTexture1D_6wcts")
+alpha_curve = SubResource("CurveTexture_yqf0p")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdxan"]
+size = Vector2(43, 6)
+
+[sub_resource type="Gradient" id="Gradient_pce0m"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sndup"]
+gradient = SubResource("Gradient_pce0m")
+width = 48
+height = 240
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[node name="WarpGate" type="StaticBody2D" unique_id=1566959842 groups=["WARP"]]
+collision_layer = 8
+collision_mask = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=278321351]
+material = SubResource("CanvasItemMaterial_6xmy5")
+amount = 16
+texture = ExtResource("1_bdxan")
+process_material = SubResource("ParticleProcessMaterial_w6k2q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1004420295]
+texture = ExtResource("1_m10ms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=805589444]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_bdxan")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1835840158]
+position = Vector2(1, -117)
+color = Color(10.9900255, 12.702154, 18.892157, 1)
+energy = 0.05
+texture = SubResource("GradientTexture2D_sndup")

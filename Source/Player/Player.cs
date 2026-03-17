@@ -31,7 +31,7 @@ public partial class Player : CharacterBody2D
 
     public bool ShadowsActive { get; set; } = false;
 
-    public Life Life { get; init; } = new(1.0);
+    public Life Life { get; init; } = new(10);
     public Mana Mana { get; init; } = new(100);
     public Inventory Inventory { get; } = new();
     public Experience Experience { get; } = new();

@@ -6,10 +6,24 @@ public partial class ItemNotification : TextureRect
     private Label quantityLabel;
     private TextureRect itemRect;
 
+    private Timer timer;
+    private Vector2 screenSize;
+
     public override void _Ready()
     {
+        screenSize = GetViewportRect().Size;
         quantityLabel = GetNode<Label>("HBoxContainer/Label");
         itemRect = GetNode<TextureRect>("HBoxContainer/TextureRect");
+        timer = new()
+        {
+            OneShot = true,
+        };
+        AddChild(timer);
+        timer.Timeout += () =>
+        {
+            var tween = CreateDefaultTween();
+            tween.TweenProperty(this, "position:x", screenSize.X + Size.X, 0.5f);
+        };
     }
 
     public void ShowItem(ItemBlueprint item, int quantity)
@@ -17,15 +31,13 @@ public partial class ItemNotification : TextureRect
         Show();
         quantityLabel.Text = $"{quantity} x ";
         itemRect.Texture = item.Texture;
+
+        Position = new Vector2(screenSize.X + Size.X, Position.Y);
+
         var tween = CreateDefaultTween();
+        tween.TweenProperty(this, "position:x", screenSize.X - Size.X, 0.5f);
 
-        tween.TweenProperty(this, "position:x", Position.X - Size.X, 0.5f);
-
-        GetTree().CreateTimer(3.0).Timeout += () =>
-        {
-            var tween = CreateDefaultTween();
-            tween.TweenProperty(this, "position:x", Position.X + Size.X, 0.5f);
-        };
+        timer.Start(3.0);
     }
 
     private Tween CreateDefaultTween()

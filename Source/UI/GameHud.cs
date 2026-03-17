@@ -10,6 +10,7 @@ public partial class GameHud : CanvasLayer
     public MenuV2 Menu => _menu;
     public Combo Combo => _combo;
     public LevelUpNotification LevelUpNotification => _levelUpNotification;
+    public TransitionRect TransitionRect => _transitionRect;
 
     private ItemNotification _itemNotification;
     private HealthBar _healthBar;
@@ -37,6 +38,9 @@ public partial class GameHud : CanvasLayer
     [Export]
     private InGameQuickSlots inGameQuickSlots;
 
+    [Export]
+    private TransitionRect _transitionRect;
+
     public async override void _Ready()
     {
         DialogDB dialogDB = GetNode<DialogDB>("/root/DialogDB");
@@ -48,6 +52,7 @@ public partial class GameHud : CanvasLayer
         _manaBar = GetNode<ManaBar>("MainUI/ManaBar");
         _expBar = GetNode<EXPBar>("MainUI/EXPBar");
         _itemNotification = GetNode<ItemNotification>("MainUI/ItemNotification");
+        _transitionRect = GetNode<TransitionRect>("MainUI/TransitionRect");
 
         _healthBar.Update(player.Life.Value, player.Life.MaxValue);
         _manaBar.Update(player.Mana.Value, player.Mana.MaxValue);

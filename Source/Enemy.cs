@@ -6,13 +6,20 @@ public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
     [Signal]
     public delegate void DamagedEventHandler(HitPayload payload);
     public Player Player { get; set; }
-    public Life Life { get; set; } = new(3.0);
+    public Life Life { get; set; } = new(3);
     public EntitySoundPlayer EntitySoundPlayer { get; protected set; }
     public abstract Texture2D CurrentTexture { get; }
 
     public int EXPReward { get; protected set; }
+    protected MixedLootTableDrop LootTableDrop { get; set; }
+    protected QuantityLootDrop QuantityLootDrop { get; set; }
+    protected RandomNumberGenerator RandomNumberGenerator { get; set; }
 
     protected EnemyLifeBar lifeBar;
+
+
+    
+
 
     public override void _Ready()
     {
@@ -20,6 +27,8 @@ public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
         lifeBar = packedLifeBar.Instantiate<EnemyLifeBar>();
         AddChild(lifeBar);
         EntitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
+        RandomNumberGenerator = new();
+        RandomNumberGenerator.Randomize();
         Start();
     }
 
@@ -37,9 +46,17 @@ public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
     public abstract void Start();
     public abstract void PostHit(HitPayload payload);
 
-    public virtual List<ItemBlueprint> ToDropItems()
+    public virtual List<(ItemBlueprint blueprint, int quantity)> ToDropItems()
     {
-        return [];
+        int quantity = QuantityLootDrop.Random(RandomNumberGenerator);
+        List<(ItemBlueprint blueprint, int quantity)> drops = [];
+        for (int i = 0; i < quantity; i++)
+        {
+            var drop = LootTableDrop.Drop(RandomNumberGenerator);
+            var itemQuantity = drop.RandomQuantity(RandomNumberGenerator);
+            drops.Add((drop.Blueprint, itemQuantity));
+        }
+        return drops;
     }
 
     protected bool IsPlayerNear(float distance)

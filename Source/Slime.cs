@@ -82,11 +82,13 @@ public partial class Slime : Enemy
         EXPReward = 20;
 
         lifeBar.Position = new(0f, -8f);
-    }
 
-    public override List<ItemBlueprint> ToDropItems()
-    {
-        return [apple];
+        QuantityLootDrop = new()
+        {
+            Min = 0,
+            Max = 3,
+        };
+        LootTableDrop = GetNode<LootTableDB>("/root/LootTableDB").DefaultLootDrop;
     }
 
     public override void _Process(double delta)

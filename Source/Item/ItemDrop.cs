@@ -14,4 +14,9 @@ public partial class ItemDrop : Resource
 
     [Export]
     public ItemBlueprint Blueprint { get; set; }
+
+    public int RandomQuantity(RandomNumberGenerator rng)
+    {
+        return rng.RandiRange(Min, Max);
+    }
 }

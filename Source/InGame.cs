@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class InGame : Node2D
 {
@@ -28,7 +30,7 @@ public partial class InGame : Node2D
     private RandomNumberGenerator rng = new();
     private AudioStreamPlayer audioStreamPlayer;
 
-    // Called when the node enters the scene tree for the first time.
+
     public override void _Ready()
     {
         rng.Randomize();
@@ -41,14 +43,48 @@ public partial class InGame : Node2D
         packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
         appleTexture = GD.Load<Texture2D>("res://Sprites/Items/item216.png");
         gameHud = GetNode<GameHud>("GameHUD");
-        InitializeEnemies();
         InitializePlayer();
+        InitializeWarpGates();
+
+        gameHud.TransitionRect.FadeOut();
+
+        player.Death += OnPlayerDeath; 
     }
 
     public void Delay()
     {
         GetTree().Paused = true;
         GetTree().CreateTimer(0.1).Timeout += () => GetTree().Paused = false;
+    }
+
+    public void OnPlayerDeath()
+    {
+        GetTree().CreateTimer(3.5).Timeout += gameHud.TransitionRect.FadeIn;
+
+        GetTree().CreateTimer(5.5).Timeout += () =>
+        {
+            GetTree().ReloadCurrentScene();
+        };
+    }
+
+    public void OnEnemyCreate(Enemy enemy)
+    {
+        enemy.Damaged += payload => OnEnemyHit(enemy, payload);
+        enemy.Player = player;
+        enemy.Life.Death += () => CallDeferred(nameof(OnEnemyDeath), enemy);
+        CallDeferred("add_child", enemy);
+    }
+
+    private void InitializeWarpGates()
+    {
+        List<WarpGate> nodes = [.. GetTree().GetNodesInGroup("WARP").OfType<WarpGate>()];
+
+        GD.Print(nodes);
+
+        foreach (WarpGate warpGate in nodes)
+        {
+            warpGate.Player = player;
+        }
     }
 
     private void CreateCorpse(Enemy enemy)
@@ -69,16 +105,6 @@ public partial class InGame : Node2D
         player.ItemPicked += OnPickItem;
         player.Experience.Leveled += gameHud.LevelUpNotification.Notificate;
         player.SuccessfulHit += Delay;
-    }
-
-    private void InitializeEnemies()
-    {
-        foreach (var enemy in enemies)
-        {
-            enemy.Damaged += payload => OnEnemyHit(enemy, payload);
-            enemy.Player = player;
-            enemy.Life.Death += () => CallDeferred(nameof(OnEnemyDeath), enemy);
-        }
     }
 
     private void OnPickItem(ItemBlueprint itemBlueprint, int quantity)
@@ -110,11 +136,11 @@ public partial class InGame : Node2D
         CreateEXP(enemy);
         CreateGlowExplosion(enemy);
 
-        var items = enemy.ToDropItems();
-        foreach (var item in items)
+        var itemTuples = enemy.ToDropItems();
+        foreach (var (blueprint, quantity) in itemTuples)
         {
             var itemInstance = packedSceneDB.DroppableItem.Instantiate<DroppableItem>();
-            itemInstance.PreStart(enemy.Position, item, 1);
+            itemInstance.PreStart(enemy.Position, blueprint, quantity);
             targetScene.AddChild(itemInstance);
             itemInstance.Picked += () => PlaySound(soundDB.PickupRandomizer);
         }

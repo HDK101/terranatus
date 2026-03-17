@@ -238,17 +238,11 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"StartAttackOffset"
-}, {
-"args": [],
 "method": &"CastAttackHit"
-}, {
-"args": [],
-"method": &"ResetViewOffset"
 }]
 }
 tracks/4/type = "method"
@@ -743,6 +737,7 @@ libraries/ = SubResource("AnimationLibrary_fs7ks")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054821244]
 material = SubResource("CanvasItemMaterial_pu2lt")
+offset = Vector2(0, -8)
 hframes = 11
 script = ExtResource("7_7dp3o")
 

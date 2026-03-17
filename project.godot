@@ -15,12 +15,17 @@ run/main_scene="res://Scenes/in_game.tscn"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dfstn5x5trtlw"
+
 [autoload]
 
 ItemDB="*uid://dp0xlyo5wdogs"
 DialogDB="*uid://c2kx5xuyf34qq"
 SoundDB="*uid://bkiqocmii8ice"
 PackedSceneDB="*uid://c0fsr1q81kmp8"
+LootTableDB="*uid://vfukyxaq82vf"
 
 [display]
 
@@ -41,6 +46,7 @@ movie_writer/fps=165
 [global_group]
 
 ENEMY=""
+WARP=""
 
 [gui]
 
@@ -149,4 +155,4 @@ next_menu={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.22352941, 0.12156863, 0.12941177, 1)
+environment/defaults/default_clear_color=Color(0.05490196, 0.02745098, 0.105882354, 1)

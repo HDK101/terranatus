@@ -4,19 +4,19 @@ using Godot;
 public partial class MixedLootTableDrop : Resource
 {
     [Export]
-    public ArrayLootTableDrop CommonLootDrop;
+    public ArrayLootTableDrop CommonLootDrop { get; set; }
 
     [Export]
-    public ArrayLootTableDrop RareLootDrop;
+    public ArrayLootTableDrop RareLootDrop { get; set; }
 
     [Export]
-    public ArrayLootTableDrop UniqueLootDrop;
+    public ArrayLootTableDrop UniqueLootDrop { get; set; }
 
     [Export]
-    public float DefaultChanceRareInDecimal = 0.10f;
+    public float DefaultChanceRareInDecimal { get; set; } = 0.10f;
 
     [Export]
-    public float DefaultChanceUniqueInDecimal = 0.02f;
+    public float DefaultChanceUniqueInDecimal { get; set; } = 0.02f;
 
     public ItemDrop Drop(RandomNumberGenerator rng)
     {
