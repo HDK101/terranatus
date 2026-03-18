@@ -26,6 +26,8 @@ DialogDB="*uid://c2kx5xuyf34qq"
 SoundDB="*uid://bkiqocmii8ice"
 PackedSceneDB="*uid://c0fsr1q81kmp8"
 LootTableDB="*uid://vfukyxaq82vf"
+WarpDB="*uid://pmfawvksi3wo"
+GameStats="*uid://d33r3aqh1uwcd"
 
 [display]
 

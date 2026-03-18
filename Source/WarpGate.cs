@@ -4,8 +4,10 @@ using System.Drawing;
 
 public partial class WarpGate : StaticBody2D
 {
-
 	public Player Player { get; set; }
+
+	[Export]
+	public WarpLocation WarpLocation { get; private set; }
 
 	private readonly float distanceThreshold = 64.0f;
 	private GpuParticles2D particles;

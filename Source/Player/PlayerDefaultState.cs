@@ -127,19 +127,18 @@ public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
     private static void MovementSetPositions(Player player)
     {
         var direction = player.Direction;
-        float lastDirectionHorizontal = player.LastDirectionHorizontal;
         if (direction.X < 0.0f)
         {
-            lastDirectionHorizontal = -1.0f;
+            player.LookDirection.Direction = PlayerDirection.DirectionEnum.LEFT;
         }
         else if (direction.X > 0.0f)
         {
-            lastDirectionHorizontal = 1.0f;
+            player.LookDirection.Direction = PlayerDirection.DirectionEnum.RIGHT;
         }
 
-        player.LastDirectionHorizontal = lastDirectionHorizontal;
-        player.HitArea.Position = new(20f * lastDirectionHorizontal, 0.0f);
-        player.ForwardSlashArea.Position = new(20f * lastDirectionHorizontal, 0.0f);
+        float dir = player.LookDirection.ValueDirection;
+        player.HitArea.Position = new(20f * dir, 0.0f);
+        player.ForwardSlashArea.Position = new(20f * dir, 0.0f);
     }
 
     public void Start()

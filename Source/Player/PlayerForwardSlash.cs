@@ -36,7 +36,7 @@ public partial class PlayerForwardSlash(WeakReference<Player> playerRef) : RefCo
         direction = InitialDirection;
         if (playerRef.TryGetTarget(out var player))
         {
-            player.ShadowsActive = true;
+            player.View.ShadowsActive = true;
             player.PlayForwardSlashAnimation();
             var tween = player.CreateTween();
             tween.SetPauseMode(Tween.TweenPauseMode.Process);
@@ -51,7 +51,7 @@ public partial class PlayerForwardSlash(WeakReference<Player> playerRef) : RefCo
     {
         if (playerRef.TryGetTarget(out var player))
         {
-            player.ShadowsActive = false;
+            player.View.ShadowsActive = false;
             player.ForwardSlashAttack();
         }
 

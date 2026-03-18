@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2euac84uhc1i"]
 
 [ext_resource type="Script" uid="uid://cfc34f46adxkm" path="res://Source/Player/Player.cs" id="1_8erm5"]
+[ext_resource type="Script" uid="uid://dvjh8m1r6rlrg" path="res://Source/Player/PlayerView.cs" id="2_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://bndvnmjbalqjb" path="res://Sprites/aemilia_naked_attack.png" id="2_qqcod"]
 [ext_resource type="Texture2D" uid="uid://d14nd0tsbdqtd" path="res://Sprites/aemilia_naked_fall_v2.png" id="3_qqcod"]
 [ext_resource type="Texture2D" uid="uid://b2pxhyveurn0l" path="res://Sprites/aemilia_naked_idle.png" id="4_igrcy"]
@@ -726,6 +727,9 @@ process_mode = 1
 collision_mask = 9
 script = ExtResource("1_8erm5")
 
+[node name="View" type="Node2D" parent="." unique_id=1502662934]
+script = ExtResource("2_7dp3o")
+
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1726953365]
 tree_root = SubResource("AnimationNodeBlendTree_qqcod")
 anim_player = NodePath("../AnimationPlayer")
@@ -748,7 +752,6 @@ script = ExtResource("7_7dp3o")
 shape = SubResource("RectangleShape2D_5eh6y")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=588943684]
-position = Vector2(1, 0)
 limit_left = 0
 limit_top = 0
 limit_right = 1000

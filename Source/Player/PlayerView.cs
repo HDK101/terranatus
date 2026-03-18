@@ -1,28 +1,76 @@
 using Godot;
 using System;
 
-public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : RefCounted
+public partial class PlayerView() : Node2D
 {
-    public bool FlipH { get => sprite.FlipH; set => sprite.FlipH = value; }
-    public Vector2 SpriteOffset { get => sprite.Offset; set => sprite.Offset = value; }
+    public AnimationTree AnimationTree { get; set; }
+    public Sprite2D Sprite { get; set; }
+    public PlayerDirection Direction { get; set; }
+    public bool FlipH { get => Sprite.FlipH; set => Sprite.FlipH = value; }
+    public Vector2 SpriteOffset { get => Sprite.Offset; set => Sprite.Offset = value; }
+    public bool ShadowsActive { get; set; } = false;
+
+    public GpuParticles2D RespawnParticles { get; private set; }
+    public GpuParticles2D EnergyOrbParticles { get; private set; }
+    public LightsEffect LightsEffect { get; private set; }
+
 
     private AnimationNodeStateMachinePlayback stateMachine;
 
+    private PackedScene shadowPacked;
+
+    private PackedSceneDB packedSceneDB;
+
+    private Timer shadowTimer = new();
+
+    public override void _Ready()
+    {
+        shadowPacked = GD.Load<PackedScene>("res://Scenes/shadow.tscn");
+        packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
+        AddChild(shadowTimer);
+        StartShadowTimer();
+
+        RespawnParticles = GetNode<GpuParticles2D>("RespawnParticles");
+        EnergyOrbParticles = GetNode<GpuParticles2D>("EnergyOrb");
+        LightsEffect = GetNode<LightsEffect>("LightsEffect");
+    }
+
+    public override void _Process(double delta)
+    {
+    }
+
+    public void CreateShadow()
+    {
+        if (!ShadowsActive) return;
+
+        var shadowInstance = shadowPacked.Instantiate<Shadow>();
+        shadowInstance.Offset = Sprite.Offset;
+        shadowInstance.Position = Position;
+        shadowInstance.FlipH = Direction.Flipped();
+        shadowInstance.InitialColor = new(1.0f, 0.7f, 1.0f, 0.4f);
+        shadowInstance.Hframes = Sprite.Hframes;
+        shadowInstance.Vframes = Sprite.Vframes;
+        shadowInstance.Frame = Sprite.Frame;
+        shadowInstance.Texture = Sprite.Texture;
+        GetTree().CurrentScene.CallDeferred("add_child", shadowInstance);
+    }
+
     public void StartIdle()
     {
-        stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
+        stateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/StateMachine/playback");
         stateMachine.Start("Idle");
     }
 
     public void StartSleeping()
     {
-        stateMachine = (AnimationNodeStateMachinePlayback)animationTree.Get("parameters/StateMachine/playback");
+        stateMachine = (AnimationNodeStateMachinePlayback)AnimationTree.Get("parameters/StateMachine/playback");
         stateMachine.Start("Sleeping");
     }
 
     public void Dying()
     {
         stateMachine.Travel("Dying");
+        RespawnParticles.Restart();
     }
 
     public void Attack()
@@ -57,6 +105,40 @@ public partial class PlayerView(AnimationTree animationTree, Sprite2D sprite) : 
 
     public void HideCharacter()
     {
-        sprite.Hide();
+        Sprite.Hide();
+    }
+
+    public void StartShadowTimer()
+    {
+        shadowTimer.Start(0.05);
+        shadowTimer.Timeout += CreateShadow;
+    }
+
+    public void CreateJumpFallParticles()
+    {
+        var instance = packedSceneDB.JumpFallParticles.Instantiate<GpuParticles2D>();
+        instance.Position = GlobalPosition + Vector2.Down * 8f;
+        instance.Restart();
+        GetTree().CurrentScene.CallDeferred("add_child", instance);
+    }
+
+    public void DeathExplosion()
+    {
+        var explosionInstance = packedSceneDB.GlowingParticlesRespawnExplosion.Instantiate<GpuParticles2D>();
+        explosionInstance.OneShot = true;
+
+        var bigExplosionInstance = packedSceneDB.DeathBigGlowExplosion.Instantiate<GpuParticles2D>();
+        bigExplosionInstance.OneShot = true;
+
+        AddChild(explosionInstance);
+        AddChild(bigExplosionInstance);
+
+        RespawnParticles.Emitting = false;
+    }
+
+    internal void StartRespawn()
+    {
+        RespawnParticles.Restart();
+        LightsEffect.Play();
     }
 }

@@ -79,8 +79,6 @@ public partial class InGame : Node2D
     {
         List<WarpGate> nodes = [.. GetTree().GetNodesInGroup("WARP").OfType<WarpGate>()];
 
-        GD.Print(nodes);
-
         foreach (WarpGate warpGate in nodes)
         {
             warpGate.Player = player;

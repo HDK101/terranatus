@@ -22,9 +22,7 @@ public partial class PlayerRespawningState(WeakReference<Player> playerRef) : IS
     {
         if (playerRef.TryGetTarget(out Player player))
         {
-            player.RespawnParticles.Restart();
-            player.LightsEffect.Play();
-            player.Show();
+            player.View.StartRespawn();
             player.View.StartSleeping();
             player.EntitySoundPlayer.PlayEnergyCharging();
             player.GetTree().CreateTimer(3.5).Timeout += () =>

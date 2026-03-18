@@ -70,6 +70,7 @@
 [ext_resource type="Script" uid="uid://cbtqwjwgo1o21" path="res://Source/MonsterSpawner.cs" id="65_q8hda"]
 [ext_resource type="Script" uid="uid://dmpxkdfjifvpt" path="res://Source/Enemy/EnemyBlueprint.cs" id="66_lqbfu"]
 [ext_resource type="Script" uid="uid://05prwhgkkpn7" path="res://Source/WarpGate.cs" id="68_jgqf7"]
+[ext_resource type="Script" uid="uid://enexvkv2ipu4" path="res://Source/WarpLocation.cs" id="69_04hdd"]
 [ext_resource type="PackedScene" uid="uid://cdnpnkbxha51j" path="res://Scenes/warp_gate.tscn" id="70_kmiap"]
 
 [sub_resource type="Environment" id="Environment_3i6n3"]
@@ -78,8 +79,9 @@ ambient_light_source = 1
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 8.0
-glow_strength = 1.5
-glow_blend_mode = 0
+glow_strength = 2.0
+glow_blend_mode = 2
+glow_hdr_threshold = 0.75
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 1.0
 glow_map_strength = 0.0
@@ -137,6 +139,10 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcdsp"]
 shader = ExtResource("6_55aq7")
 shader_parameter/fog_texture = SubResource("NoiseTexture2D_7sovq")
+
+[sub_resource type="Resource" id="Resource_njli1"]
+script = ExtResource("69_04hdd")
+metadata/_custom_type_script = "uid://enexvkv2ipu4"
 
 [sub_resource type="Resource" id="Resource_k75r7"]
 script = ExtResource("66_lqbfu")
@@ -945,6 +951,7 @@ position = Vector2(135, 100)
 [node name="WarpGate" parent="." unique_id=1566959842 instance=ExtResource("70_kmiap")]
 position = Vector2(426, 140)
 script = ExtResource("68_jgqf7")
+WarpLocation = SubResource("Resource_njli1")
 
 [node name="MonsterSpawner" type="Node2D" parent="." unique_id=328214288]
 position = Vector2(223, 102)
