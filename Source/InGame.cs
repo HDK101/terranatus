@@ -107,7 +107,7 @@ public partial class InGame : Node2D
     {
         WarpGate lastWarpGate = warpGates.Find(warpGate => warpGate.WarpLocation.IsSameWarp(gameStats.LastWarp));
 
-        player.Respawn(lastWarpGate.Position - Vector2.One * 8.0f);
+        player.Respawn(lastWarpGate.Position + Vector2.Up * 16.0f);
 
         player.Combat.Attacked += OnPlayerAttack;
         player.Damaged += payload => CallDeferred(nameof(OnPlayerHit), payload);
@@ -196,10 +196,11 @@ public partial class InGame : Node2D
 
     private void PlaySound2D(AudioStream stream, Vector2 position)
     {
-        var audioStreamPlayer = new AudioStreamPlayer2D()
+        var audioStreamPlayer = new AudioStreamPlayer2D
         {
             Stream = stream,
             GlobalPosition = position,
+            Bus = "SFX"
         };
         audioStreamPlayer.Finished += audioStreamPlayer.QueueFree;
         targetScene.AddChild(audioStreamPlayer);

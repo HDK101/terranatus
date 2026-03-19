@@ -46,7 +46,7 @@ public partial class PlayerView() : Node2D
 
         var shadowInstance = shadowPacked.Instantiate<Shadow>();
         shadowInstance.Offset = Sprite.Offset;
-        shadowInstance.Position = Position;
+        shadowInstance.Position = GlobalPosition;
         shadowInstance.FlipH = Direction.Flipped();
         shadowInstance.InitialColor = new(1.0f, 0.7f, 1.0f, 0.4f);
         shadowInstance.Hframes = Sprite.Hframes;

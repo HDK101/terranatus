@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dqkwutw6j0x4j"]
+
+[ext_resource type="FontFile" uid="uid://bkurtggiy40gu" path="res://Fonts/Gotfridus-aYg4m.ttf" id="1_xvkl5"]
+
+[resource]
+font = ExtResource("1_xvkl5")
+font_size = 32
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.49019608)
+shadow_offset = Vector2(0, 1)

@@ -104,7 +104,7 @@ public partial class Player : CharacterBody2D
         };
         Combat.Direction = LookDirection;
         Combat.Body = Body;
-        Combat.Attacked += payload => EntitySoundPlayer.PlayAttackSound(payload.Attack);
+        Combat.AttackedType += EntitySoundPlayer.PlayAttackSound;
         Combat.UsedForwardSlash += EntitySoundPlayer.PlayForwardSlash;
         Combat.HasCastFireball += EntitySoundPlayer.PlayFireRelease;
     }

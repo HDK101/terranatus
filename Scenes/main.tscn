@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cvlq68xdawsdb"]
+
+[ext_resource type="PackedScene" uid="uid://cq14efv7nxh1q" path="res://Scenes/deep_forest.tscn" id="1_jjgbg"]
+[ext_resource type="Texture2D" uid="uid://dc8nam2g7a2x8" path="res://Sprites/UI/gothic_ornament.png" id="2_bo1nx"]
+[ext_resource type="LabelSettings" uid="uid://dqkwutw6j0x4j" path="res://Fonts/gothic_font.tres" id="3_8gbba"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8gbba"]
+
+[node name="Main" type="Node2D" unique_id=721330897]
+
+[node name="MainCanvas" type="CanvasLayer" parent="." unique_id=1353970975]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainCanvas" unique_id=569882926]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MainCanvas/SubViewportContainer" unique_id=1480723820]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+sdf_oversize = 0
+oversampling = false
+size = Vector2i(1440, 810)
+size_2d_override = Vector2i(480, 270)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Main" parent="MainCanvas/SubViewportContainer/SubViewport" unique_id=959927448 instance=ExtResource("1_jjgbg")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1998050365]
+
+[node name="Control" type="Control" parent="UI" unique_id=988625880]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -301.0
+offset_right = 393.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="GothicOrnament" type="ColorRect" parent="UI/Control" unique_id=2097200526]
+material = SubResource("CanvasItemMaterial_8gbba")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.057090033, 0.028599998, 0.11, 0.70980394)
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/GothicOrnament" unique_id=1318481899]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="UI/Control/GothicOrnament/MarginContainer" unique_id=1501158695]
+layout_mode = 2
+
+[node name="TopLeft" type="TextureRect" parent="UI/Control/GothicOrnament/MarginContainer/Control" unique_id=443455796]
+texture_filter = 2
+layout_mode = 1
+offset_right = 200.0
+offset_bottom = 200.0
+texture = ExtResource("2_bo1nx")
+
+[node name="TopRight" type="TextureRect" parent="UI/Control/GothicOrnament/MarginContainer/Control" unique_id=1527973955]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+texture = ExtResource("2_bo1nx")
+flip_h = true
+
+[node name="BottomRight" type="TextureRect" parent="UI/Control/GothicOrnament/MarginContainer/Control" unique_id=497308774]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_bo1nx")
+flip_h = true
+flip_v = true
+
+[node name="BottomLeft" type="TextureRect" parent="UI/Control/GothicOrnament/MarginContainer/Control" unique_id=275824798]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 200.0
+grow_vertical = 0
+texture = ExtResource("2_bo1nx")
+flip_v = true
+
+[node name="Label" type="Label" parent="UI/Control" unique_id=343214861]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.5
+offset_top = -18.5
+offset_right = 191.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Greetings Dark One"
+label_settings = ExtResource("3_8gbba")

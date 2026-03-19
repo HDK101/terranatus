@@ -18,14 +18,12 @@ public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
     protected EnemyLifeBar lifeBar;
 
 
-    
-
-
     public override void _Ready()
     {
         var packedLifeBar = GD.Load<PackedScene>("res://Scenes/enemy_life_bar.tscn");
         lifeBar = packedLifeBar.Instantiate<EnemyLifeBar>();
         AddChild(lifeBar);
+        lifeBar.Update(Life.Value, Life.MaxValue);
         EntitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
         RandomNumberGenerator = new();
         RandomNumberGenerator.Randomize();
@@ -34,9 +32,9 @@ public abstract partial class Enemy : CharacterBody2D, ILifeHolder, IHittable
 
     public virtual void Hit(HitPayload payload)
     {
-        lifeBar.Update(Life.Value, Life.MaxValue);
         Life.Hit(payload.Damage);
         PostHit(payload);
+        lifeBar.Update(Life.Value, Life.MaxValue);
         EmitSignal(SignalName.Damaged, payload);
 
         Modulate = Color.Color8(255, 128, 128);

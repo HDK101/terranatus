@@ -6,6 +6,9 @@ public partial class PlayerCombat: Node2D
     public delegate void AttackedEventHandler(HitPayload payload);
 
     [Signal]
+    public delegate void AttackedTypeEventHandler(AttackType type);
+
+    [Signal]
     public delegate void UsedForwardSlashEventHandler();
 
     [Signal]
@@ -49,6 +52,7 @@ public partial class PlayerCombat: Node2D
         }
 
         bool successfulHit = false;
+        
         foreach (var body in bodies)
         {
             if (body is IHittable lifeHolder)
@@ -60,12 +64,13 @@ public partial class PlayerCombat: Node2D
                     Position = body.Position,
                     Attack = AttackType.SLASH,
                 };
-                lifeHolder.Hit(hitPayload);
                 EmitSignal(SignalName.Attacked, hitPayload);
+                lifeHolder.Hit(hitPayload);
                 successfulHit = true;
             }
         }
         if (successfulHit) EmitSignal(SignalName.SuccessfulHit);
+        EmitSignal(SignalName.AttackedType, (int)AttackType.SLASH);
     }
 
     public void ForwardSlashAttack()

@@ -7,7 +7,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1b32c"]
 shader = ExtResource("3_p5skp")
-shader_parameter/ratio = 1.0
 
 [node name="EnemyLifeBar" type="Sprite2D" unique_id=279991189]
 texture = ExtResource("1_lopxb")
@@ -15,4 +14,5 @@ script = ExtResource("2_8vcvo")
 
 [node name="Progress" type="Sprite2D" parent="." unique_id=1823585870]
 material = SubResource("ShaderMaterial_1b32c")
+instance_shader_parameters/ratio = 0.0
 texture = ExtResource("4_1bwgj")

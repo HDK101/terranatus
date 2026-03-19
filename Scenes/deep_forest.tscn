@@ -1,86 +1,84 @@
 [gd_scene format=4 uid="uid://cq14efv7nxh1q"]
 
-[ext_resource type="Script" uid="uid://ikqovafevqmw" path="res://Source/InGame.cs" id="1_8udo0"]
-[ext_resource type="Script" uid="uid://c3vkax515ryrk" path="res://Source/FloatingNumbers.cs" id="1_drh5t"]
-[ext_resource type="Texture2D" uid="uid://dm5tb1hlyrkq5" path="res://Sprites/health_bar.png" id="1_r382v"]
-[ext_resource type="TileSet" uid="uid://2txley03tqjk" path="res://Resources/grasslands_tile_set.tres" id="1_ssntf"]
-[ext_resource type="Script" uid="uid://dkyq0bb1y6vck" path="res://Source/GameManager.cs" id="2_62am4"]
-[ext_resource type="Texture2D" uid="uid://vg4xq2wgbieu" path="res://Sprites/mana_bar.png" id="2_hrjpy"]
-[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/Themes/in_game_theme.tres" id="3_ar8se"]
-[ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/UI/GameHud.cs" id="3_iw0lp"]
-[ext_resource type="Texture2D" uid="uid://baiy21twajstl" path="res://Sprites/background_trees_front.png" id="4_55aq7"]
-[ext_resource type="Texture2D" uid="uid://ogs745gqa3kj" path="res://Sprites/background_trees_back.png" id="4_tbblf"]
-[ext_resource type="Texture2D" uid="uid://04fd3ym7m2vq" path="res://Sprites/background_grass_front.png" id="5_55aq7"]
-[ext_resource type="Texture2D" uid="uid://cshtj24vgk66k" path="res://Sprites/UI/portrait_hud.png" id="6_3hbvq"]
-[ext_resource type="Shader" uid="uid://w0anryoqcag6" path="res://Resources/Shaders/fog_shader.gdshader" id="6_55aq7"]
-[ext_resource type="PackedScene" uid="uid://d3lmp7rtr5guf" path="res://Scenes/item_notification.tscn" id="6_ar8se"]
-[ext_resource type="Texture2D" uid="uid://b5i4lkri2qe7h" path="res://Sprites/bar_frame_up.png" id="7_5efe1"]
-[ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="7_biwig"]
-[ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="7_rcdsp"]
-[ext_resource type="Script" uid="uid://7anne2ic1g8i" path="res://Source/UI/MainUI.cs" id="10_7k8pp"]
-[ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="10_q3vwd"]
-[ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="14_ygyvt"]
-[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_4n6jn"]
-[ext_resource type="Texture2D" uid="uid://do80vbu5ovyae" path="res://Sprites/UI/exp_bar_progress.png" id="15_ygyvt"]
-[ext_resource type="Texture2D" uid="uid://7wd4tt2ehua8" path="res://Sprites/UI/exp_bar_frame.png" id="16_7ae67"]
-[ext_resource type="Texture2D" uid="uid://dpq7ly68wlrfb" path="res://Sprites/UI/level_up_base.png" id="16_gxotq"]
-[ext_resource type="PackedScene" uid="uid://c3mbg1oouw2js" path="res://Scenes/slime.tscn" id="17_1kmfr"]
-[ext_resource type="Script" uid="uid://pboj5bclte7h" path="res://Source/UI/LevelUpNotification.cs" id="17_4n6jn"]
-[ext_resource type="Script" uid="uid://dc1yliuj7jpnb" path="res://Source/UI/EXPBar.cs" id="18_7ae67"]
-[ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="25_feyw5"]
-[ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="26_q3vwd"]
-[ext_resource type="PackedScene" uid="uid://bkgjf8j38s83k" path="res://Scenes/skill_in_game_slot.tscn" id="27_3i6n3"]
-[ext_resource type="Texture2D" uid="uid://cc5nl7yi8fkk" path="res://Sprites/default_attack_skill.png" id="27_7sovq"]
-[ext_resource type="Script" uid="uid://8ro5xc35oks" path="res://Source/UI/InGameQuickSlots.cs" id="27_fv26l"]
-[ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="27_pkurl"]
-[ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="29_6tamu"]
-[ext_resource type="Texture2D" uid="uid://cwnwx1m0ka0m0" path="res://Sprites/Skills/fireball_skill_ingame.png" id="29_65n2t"]
-[ext_resource type="Texture2D" uid="uid://ct6odxyff6m2v" path="res://Sprites/UI/weapon_equip_slot.png" id="29_868j4"]
-[ext_resource type="Texture2D" uid="uid://dv1xsufb8duxk" path="res://Sprites/Skills/forward_slash_skill_ingame.png" id="30_dgkwl"]
-[ext_resource type="Texture2D" uid="uid://ct4ier8tpoe0w" path="res://Sprites/UI/armor_equip_slot.png" id="30_ma7yk"]
-[ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="31_vdw86"]
-[ext_resource type="Script" uid="uid://buklehx5qpknd" path="res://Source/UI/MenuV2.cs" id="32_fv26l"]
-[ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/Dialog.cs" id="33_7jpoy"]
-[ext_resource type="Script" uid="uid://dnq5sac6dpkj6" path="res://Source/UI/MenuStatBar.cs" id="33_7k8pp"]
-[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="33_fv26l"]
-[ext_resource type="Shader" uid="uid://qs8iu11of6gi" path="res://Resources/Shaders/transition.gdshader" id="33_k75r7"]
-[ext_resource type="Texture2D" uid="uid://b7kjhf3xd062j" path="res://Sprites/transition_texture.png" id="34_0dqb8"]
-[ext_resource type="Texture2D" uid="uid://etrrqgnaywkq" path="res://Sprites/UI/top_bar_health_under.png" id="34_7k8pp"]
-[ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="34_d1rw2"]
-[ext_resource type="PackedScene" uid="uid://cf2xowkrvj8wq" path="res://Scenes/UI/menu_button.tscn" id="34_fv26l"]
-[ext_resource type="Texture2D" uid="uid://eso8c8plctfr" path="res://Sprites/UI/top_bar_health_progress.png" id="35_djowa"]
-[ext_resource type="Script" uid="uid://cyistk5euxj6y" path="res://Source/HUD/TransitionRect.cs" id="35_ebxge"]
-[ext_resource type="Texture2D" uid="uid://cg6slgmppyimg" path="res://Sprites/UI/top_bar_mana_under.png" id="37_7k8pp"]
-[ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="37_f3vpf"]
-[ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="37_sphie"]
-[ext_resource type="Texture2D" uid="uid://cw8fx4cjk23vn" path="res://Sprites/UI/top_bar_mana_progress.png" id="38_djowa"]
-[ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="39_ygyvt"]
-[ext_resource type="Script" uid="uid://cv44117x3ot7r" path="res://Source/UI/GameHudAudioPlayer.cs" id="42_d1rw2"]
-[ext_resource type="PackedScene" uid="uid://cy7a6eucvoo5q" path="res://Scenes/UI/item_slot.tscn" id="42_dgkwl"]
-[ext_resource type="PackedScene" uid="uid://b2euac84uhc1i" path="res://Scenes/player.tscn" id="43_sphie"]
-[ext_resource type="Texture2D" uid="uid://dd4efw6iiqk78" path="res://Sprites/Portrait/aemilia_34_view_portrait.png" id="45_ygyvt"]
-[ext_resource type="Texture2D" uid="uid://crnb3n40wynsq" path="res://Sprites/forest_background.png" id="46_7jpoy"]
-[ext_resource type="FontFile" uid="uid://dqh623r5j7kns" path="res://Fonts/Seraphimb1.ttf" id="46_hwnf3"]
-[ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="47_3i6n3"]
-[ext_resource type="PackedScene" uid="uid://4lfktvuew2u" path="res://Scenes/UI/skills.tscn" id="49_65n2t"]
-[ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="54_hs3dq"]
-[ext_resource type="PackedScene" uid="uid://dmsw1r8ytyi24" path="res://Scenes/ParticlesEffect/particle_effect_one.tscn" id="60_65n2t"]
-[ext_resource type="Script" uid="uid://de8ki1twh4m4v" path="res://Source/MusicPlayer.cs" id="60_djowa"]
-[ext_resource type="PackedScene" uid="uid://c717yeux31aib" path="res://Scenes/ParticlesEffect/glow_explosion.tscn" id="61_dgkwl"]
-[ext_resource type="Script" uid="uid://cbtqwjwgo1o21" path="res://Source/MonsterSpawner.cs" id="65_q8hda"]
-[ext_resource type="Script" uid="uid://dmpxkdfjifvpt" path="res://Source/Enemy/EnemyBlueprint.cs" id="66_lqbfu"]
-[ext_resource type="Script" uid="uid://05prwhgkkpn7" path="res://Source/WarpGate.cs" id="68_jgqf7"]
-[ext_resource type="Script" uid="uid://enexvkv2ipu4" path="res://Source/WarpLocation.cs" id="69_04hdd"]
-[ext_resource type="PackedScene" uid="uid://cdnpnkbxha51j" path="res://Scenes/warp_gate.tscn" id="70_kmiap"]
+[ext_resource type="Script" uid="uid://ikqovafevqmw" path="res://Source/InGame.cs" id="1_e5peh"]
+[ext_resource type="Texture2D" uid="uid://crnb3n40wynsq" path="res://Sprites/forest_background.png" id="2_f6rfp"]
+[ext_resource type="Texture2D" uid="uid://ogs745gqa3kj" path="res://Sprites/background_trees_back.png" id="3_sasc4"]
+[ext_resource type="Texture2D" uid="uid://baiy21twajstl" path="res://Sprites/background_trees_front.png" id="4_pfx1i"]
+[ext_resource type="Texture2D" uid="uid://04fd3ym7m2vq" path="res://Sprites/background_grass_front.png" id="5_fg68e"]
+[ext_resource type="Script" uid="uid://dkyq0bb1y6vck" path="res://Source/GameManager.cs" id="6_jekl6"]
+[ext_resource type="Script" uid="uid://c3vkax515ryrk" path="res://Source/FloatingNumbers.cs" id="7_v1mrv"]
+[ext_resource type="Script" uid="uid://dj1kdwynj6bhb" path="res://Source/UI/GameHud.cs" id="8_fd3ed"]
+[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/Themes/in_game_theme.tres" id="9_qnggo"]
+[ext_resource type="Script" uid="uid://7anne2ic1g8i" path="res://Source/UI/MainUI.cs" id="10_tab3y"]
+[ext_resource type="Texture2D" uid="uid://cshtj24vgk66k" path="res://Sprites/UI/portrait_hud.png" id="11_1tvlp"]
+[ext_resource type="Texture2D" uid="uid://b5i4lkri2qe7h" path="res://Sprites/bar_frame_up.png" id="12_wl4bb"]
+[ext_resource type="Texture2D" uid="uid://dm5tb1hlyrkq5" path="res://Sprites/health_bar.png" id="13_6h1fc"]
+[ext_resource type="Script" uid="uid://bnukgrpal2saj" path="res://Source/HealthBar.cs" id="14_vxl7x"]
+[ext_resource type="FontFile" uid="uid://c01ogiy2kxx8y" path="res://Fonts/boxy_selected_chars.png" id="15_ihvwq"]
+[ext_resource type="Texture2D" uid="uid://docwwvf8c56es" path="res://Sprites/bar_frame_down.png" id="16_k8rh3"]
+[ext_resource type="Texture2D" uid="uid://vg4xq2wgbieu" path="res://Sprites/mana_bar.png" id="17_55idt"]
+[ext_resource type="Script" uid="uid://dpr0fd1bwgo7u" path="res://Source/UI/ManaBar.cs" id="18_87bhu"]
+[ext_resource type="Texture2D" uid="uid://7wd4tt2ehua8" path="res://Sprites/UI/exp_bar_frame.png" id="19_33qc4"]
+[ext_resource type="Texture2D" uid="uid://do80vbu5ovyae" path="res://Sprites/UI/exp_bar_progress.png" id="20_e6rcu"]
+[ext_resource type="Script" uid="uid://dc1yliuj7jpnb" path="res://Source/UI/EXPBar.cs" id="21_p4gyq"]
+[ext_resource type="PackedScene" uid="uid://d3lmp7rtr5guf" path="res://Scenes/item_notification.tscn" id="22_32dfi"]
+[ext_resource type="Script" uid="uid://cad40bck5wugg" path="res://Source/UI/Combo.cs" id="23_cf2bd"]
+[ext_resource type="Texture2D" uid="uid://m5hw0n2lal05" path="res://Sprites/UI/combo_notification.png" id="24_lpdpw"]
+[ext_resource type="Script" uid="uid://dcdxvrw22ck4i" path="res://Source/UI/ComboNumbers.cs" id="25_jrou0"]
+[ext_resource type="Texture2D" uid="uid://dpq7ly68wlrfb" path="res://Sprites/UI/level_up_base.png" id="26_j2g22"]
+[ext_resource type="Script" uid="uid://pboj5bclte7h" path="res://Source/UI/LevelUpNotification.cs" id="27_phube"]
+[ext_resource type="Script" uid="uid://8ro5xc35oks" path="res://Source/UI/InGameQuickSlots.cs" id="28_t014q"]
+[ext_resource type="PackedScene" uid="uid://bkgjf8j38s83k" path="res://Scenes/skill_in_game_slot.tscn" id="29_nb1ia"]
+[ext_resource type="Texture2D" uid="uid://dv1xsufb8duxk" path="res://Sprites/Skills/forward_slash_skill_ingame.png" id="30_3ahwd"]
+[ext_resource type="Texture2D" uid="uid://cwnwx1m0ka0m0" path="res://Sprites/Skills/fireball_skill_ingame.png" id="31_b4xsn"]
+[ext_resource type="Texture2D" uid="uid://cc5nl7yi8fkk" path="res://Sprites/default_attack_skill.png" id="32_ot5ec"]
+[ext_resource type="Shader" uid="uid://qs8iu11of6gi" path="res://Resources/Shaders/transition.gdshader" id="33_aok0f"]
+[ext_resource type="Texture2D" uid="uid://b7kjhf3xd062j" path="res://Sprites/transition_texture.png" id="34_64lof"]
+[ext_resource type="Script" uid="uid://cyistk5euxj6y" path="res://Source/HUD/TransitionRect.cs" id="35_b4mik"]
+[ext_resource type="Script" uid="uid://buklehx5qpknd" path="res://Source/UI/MenuV2.cs" id="36_urine"]
+[ext_resource type="Script" uid="uid://dnq5sac6dpkj6" path="res://Source/UI/MenuStatBar.cs" id="37_5vy51"]
+[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="38_o2owy"]
+[ext_resource type="Texture2D" uid="uid://etrrqgnaywkq" path="res://Sprites/UI/top_bar_health_under.png" id="39_ylsbi"]
+[ext_resource type="Texture2D" uid="uid://eso8c8plctfr" path="res://Sprites/UI/top_bar_health_progress.png" id="40_ceghn"]
+[ext_resource type="Texture2D" uid="uid://cg6slgmppyimg" path="res://Sprites/UI/top_bar_mana_under.png" id="41_3h4bx"]
+[ext_resource type="Texture2D" uid="uid://cw8fx4cjk23vn" path="res://Sprites/UI/top_bar_mana_progress.png" id="42_xg142"]
+[ext_resource type="PackedScene" uid="uid://cf2xowkrvj8wq" path="res://Scenes/UI/menu_button.tscn" id="43_rlvxq"]
+[ext_resource type="Script" uid="uid://pqg3xq67cx3d" path="res://Source/UI/InventoryUI.cs" id="44_0fjpc"]
+[ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="45_gdwd6"]
+[ext_resource type="PackedScene" uid="uid://cy7a6eucvoo5q" path="res://Scenes/UI/item_slot.tscn" id="46_cmq5c"]
+[ext_resource type="Texture2D" uid="uid://dnurvt5okcuux" path="res://Sprites/Items/item11.png" id="47_7t1gx"]
+[ext_resource type="Texture2D" uid="uid://bua2l6v1els3p" path="res://Sprites/UI/item_slot_selected.png" id="48_mfvrx"]
+[ext_resource type="Texture2D" uid="uid://ct6odxyff6m2v" path="res://Sprites/UI/weapon_equip_slot.png" id="49_ilwxp"]
+[ext_resource type="Texture2D" uid="uid://ct4ier8tpoe0w" path="res://Sprites/UI/armor_equip_slot.png" id="50_xjjvj"]
+[ext_resource type="Texture2D" uid="uid://dfvi3of7efri1" path="res://Sprites/UI/ring_equip_slot.png" id="51_jab21"]
+[ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="52_8dylv"]
+[ext_resource type="PackedScene" uid="uid://4lfktvuew2u" path="res://Scenes/UI/skills.tscn" id="53_qv1an"]
+[ext_resource type="Script" uid="uid://xjd6108hi13p" path="res://Source/UI/Dialog.cs" id="54_ja2pg"]
+[ext_resource type="FontFile" uid="uid://dqh623r5j7kns" path="res://Fonts/Seraphimb1.ttf" id="55_0wopu"]
+[ext_resource type="Texture2D" uid="uid://ii5dwj6c56pe" path="res://Sprites/UI/name_container.png" id="56_na2ur"]
+[ext_resource type="Texture2D" uid="uid://dd4efw6iiqk78" path="res://Sprites/Portrait/aemilia_34_view_portrait.png" id="57_rlvdk"]
+[ext_resource type="Script" uid="uid://cv44117x3ot7r" path="res://Source/UI/GameHudAudioPlayer.cs" id="58_t6wb6"]
+[ext_resource type="TileSet" uid="uid://2txley03tqjk" path="res://Resources/grasslands_tile_set.tres" id="59_fvjqb"]
+[ext_resource type="PackedScene" uid="uid://b2euac84uhc1i" path="res://Scenes/player.tscn" id="60_b05pg"]
+[ext_resource type="AudioStream" uid="uid://bu2wnd5uj2fcr" path="res://Musics/Rain_Words.mp3" id="61_bdqux"]
+[ext_resource type="Script" uid="uid://de8ki1twh4m4v" path="res://Source/MusicPlayer.cs" id="62_e1jjv"]
+[ext_resource type="Shader" uid="uid://w0anryoqcag6" path="res://Resources/Shaders/fog_shader.gdshader" id="63_stool"]
+[ext_resource type="Texture2D" uid="uid://b0epi1su4ar2x" path="res://Sprites/white_background.png" id="64_ci23i"]
+[ext_resource type="PackedScene" uid="uid://c717yeux31aib" path="res://Scenes/ParticlesEffect/glow_explosion.tscn" id="65_myryv"]
+[ext_resource type="PackedScene" uid="uid://dmsw1r8ytyi24" path="res://Scenes/ParticlesEffect/particle_effect_one.tscn" id="66_bpr0e"]
+[ext_resource type="PackedScene" uid="uid://cdnpnkbxha51j" path="res://Scenes/warp_gate.tscn" id="67_14mkc"]
+[ext_resource type="Script" uid="uid://05prwhgkkpn7" path="res://Source/WarpGate.cs" id="68_l78ku"]
+[ext_resource type="Script" uid="uid://enexvkv2ipu4" path="res://Source/WarpLocation.cs" id="69_hfu3o"]
+[ext_resource type="Script" uid="uid://cbtqwjwgo1o21" path="res://Source/MonsterSpawner.cs" id="70_adgm5"]
+[ext_resource type="PackedScene" uid="uid://c3mbg1oouw2js" path="res://Scenes/slime.tscn" id="71_qxkn4"]
+[ext_resource type="Script" uid="uid://dmpxkdfjifvpt" path="res://Source/Enemy/EnemyBlueprint.cs" id="72_130ps"]
 
 [sub_resource type="Environment" id="Environment_3i6n3"]
 background_mode = 3
 ambient_light_source = 1
 glow_enabled = true
 glow_normalized = true
-glow_intensity = 8.0
-glow_strength = 2.0
-glow_blend_mode = 2
+glow_intensity = 4.0
 glow_hdr_threshold = 0.75
 glow_hdr_scale = 4.0
 glow_hdr_luminance_cap = 1.0
@@ -88,7 +86,7 @@ glow_map_strength = 0.0
 adjustment_brightness = 0.57
 
 [sub_resource type="LabelSettings" id="LabelSettings_hwnf3"]
-font = ExtResource("15_4n6jn")
+font = ExtResource("15_ihvwq")
 font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_gxotq"]
@@ -103,16 +101,16 @@ shadow_offset = Vector2(0, 0.9)
 gradient = SubResource("Gradient_ebxge")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0dqb8"]
-shader = ExtResource("33_k75r7")
+shader = ExtResource("33_aok0f")
 shader_parameter/progress = 0.0
 shader_parameter/width = 1.0
-shader_parameter/tile_texture = ExtResource("34_0dqb8")
+shader_parameter/tile_texture = ExtResource("34_64lof")
 shader_parameter/tile_pixel_size = 64.0
 shader_parameter/tile_grown_scale = 2.000000095
 shader_parameter/transition_texture = SubResource("GradientTexture2D_kmiap")
 
 [sub_resource type="LabelSettings" id="LabelSettings_d1rw2"]
-font = ExtResource("46_hwnf3")
+font = ExtResource("55_0wopu")
 
 [sub_resource type="Gradient" id="Gradient_7ae67"]
 interpolation_mode = 1
@@ -137,20 +135,20 @@ noise = SubResource("FastNoiseLite_rcdsp")
 seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcdsp"]
-shader = ExtResource("6_55aq7")
+shader = ExtResource("63_stool")
 shader_parameter/fog_texture = SubResource("NoiseTexture2D_7sovq")
 
 [sub_resource type="Resource" id="Resource_njli1"]
-script = ExtResource("69_04hdd")
+script = ExtResource("69_hfu3o")
 metadata/_custom_type_script = "uid://enexvkv2ipu4"
 
 [sub_resource type="Resource" id="Resource_k75r7"]
-script = ExtResource("66_lqbfu")
-packedEnemy = ExtResource("17_1kmfr")
+script = ExtResource("72_130ps")
+packedEnemy = ExtResource("71_qxkn4")
 metadata/_custom_type_script = "uid://dmpxkdfjifvpt"
 
-[node name="InGame" type="Node2D" unique_id=959927448 node_paths=PackedStringArray("targetScene", "player", "floatingNumbers", "enemies", "gameHud")]
-script = ExtResource("1_8udo0")
+[node name="DeepForest" type="Node2D" unique_id=959927448 node_paths=PackedStringArray("targetScene", "player", "floatingNumbers", "enemies", "gameHud")]
+script = ExtResource("1_e5peh")
 targetScene = NodePath(".")
 player = NodePath("Entities/Player")
 floatingNumbers = NodePath("FloatingNumbers")
@@ -169,7 +167,7 @@ repeat_times = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundDeep" unique_id=2051838500]
 position = Vector2(160, 120)
-texture = ExtResource("46_7jpoy")
+texture = ExtResource("2_f6rfp")
 
 [node name="BackgroundTreesBack" type="Parallax2D" parent="." unique_id=1152696650]
 scroll_scale = Vector2(0.2, 0)
@@ -178,7 +176,7 @@ repeat_times = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundTreesBack" unique_id=487270316]
 position = Vector2(160, 120)
-texture = ExtResource("4_tbblf")
+texture = ExtResource("3_sasc4")
 
 [node name="BackgroundTreesFront" type="Parallax2D" parent="." unique_id=590971373]
 scroll_scale = Vector2(0.4, 0)
@@ -187,7 +185,7 @@ repeat_times = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundTreesFront" unique_id=1687341184]
 position = Vector2(160, 120)
-texture = ExtResource("4_55aq7")
+texture = ExtResource("4_pfx1i")
 
 [node name="BackgroundGrassFront" type="Parallax2D" parent="." unique_id=449900396]
 scroll_scale = Vector2(0.6, 0)
@@ -196,21 +194,21 @@ repeat_times = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundGrassFront" unique_id=823200137]
 position = Vector2(160, 120)
-texture = ExtResource("5_55aq7")
+texture = ExtResource("5_fg68e")
 
 [node name="GameManager" type="Node" parent="." unique_id=500470528 node_paths=PackedStringArray("entities", "gameHud")]
 process_mode = 3
-script = ExtResource("2_62am4")
+script = ExtResource("6_jekl6")
 entities = NodePath("../Entities")
 gameHud = NodePath("../GameHUD")
 
 [node name="FloatingNumbers" type="CanvasLayer" parent="." unique_id=1684106791]
 layer = 2
 follow_viewport_enabled = true
-script = ExtResource("1_drh5t")
+script = ExtResource("7_v1mrv")
 
 [node name="GameHUD" type="CanvasLayer" parent="." unique_id=107181458 node_paths=PackedStringArray("_levelUpNotification", "_combo", "_dialogBox", "_menu", "player", "audioPlayer", "inGameQuickSlots")]
-script = ExtResource("3_iw0lp")
+script = ExtResource("8_fd3ed")
 _levelUpNotification = NodePath("MainUI/LevelUpNotification")
 _combo = NodePath("MainUI/Combo")
 _dialogBox = NodePath("Dialog")
@@ -227,8 +225,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_ar8se")
-script = ExtResource("10_7k8pp")
+theme = ExtResource("9_qnggo")
+script = ExtResource("10_tab3y")
 
 [node name="TextureRect" type="TextureRect" parent="GameHUD/MainUI" unique_id=1553557013]
 layout_mode = 0
@@ -236,7 +234,7 @@ offset_left = 15.0
 offset_top = 9.0
 offset_right = 39.0
 offset_bottom = 33.0
-texture = ExtResource("6_3hbvq")
+texture = ExtResource("11_1tvlp")
 
 [node name="HealthBar" type="TextureProgressBar" parent="GameHUD/MainUI" unique_id=529685301]
 layout_mode = 1
@@ -245,9 +243,9 @@ offset_top = 14.0
 offset_right = 151.0
 offset_bottom = 21.0
 value = 100.0
-texture_over = ExtResource("7_5efe1")
-texture_progress = ExtResource("1_r382v")
-script = ExtResource("7_biwig")
+texture_over = ExtResource("12_wl4bb")
+texture_progress = ExtResource("13_6h1fc")
+script = ExtResource("14_vxl7x")
 
 [node name="Label" type="Label" parent="GameHUD/MainUI/HealthBar" unique_id=620297076]
 layout_mode = 0
@@ -264,9 +262,9 @@ offset_top = 21.0
 offset_right = 156.0
 offset_bottom = 33.0
 value = 100.0
-texture_over = ExtResource("10_q3vwd")
-texture_progress = ExtResource("2_hrjpy")
-script = ExtResource("14_ygyvt")
+texture_over = ExtResource("16_k8rh3")
+texture_progress = ExtResource("17_55idt")
+script = ExtResource("18_87bhu")
 
 [node name="Label" type="Label" parent="GameHUD/MainUI/ManaBar" unique_id=1277931544]
 layout_mode = 0
@@ -284,9 +282,9 @@ offset_top = 51.0
 offset_right = 147.0
 offset_bottom = 56.0
 value = 50.0
-texture_over = ExtResource("16_7ae67")
-texture_progress = ExtResource("15_ygyvt")
-script = ExtResource("18_7ae67")
+texture_over = ExtResource("19_33qc4")
+texture_progress = ExtResource("20_e6rcu")
+script = ExtResource("21_p4gyq")
 
 [node name="Label" type="Label" parent="GameHUD/MainUI/EXPBar" unique_id=1559745204]
 layout_mode = 0
@@ -296,7 +294,7 @@ offset_right = 75.0
 text = "EXP:123"
 label_settings = SubResource("LabelSettings_hwnf3")
 
-[node name="ItemNotification" parent="GameHUD/MainUI" unique_id=1671357759 instance=ExtResource("6_ar8se")]
+[node name="ItemNotification" parent="GameHUD/MainUI" unique_id=1671357759 instance=ExtResource("22_32dfi")]
 layout_mode = 1
 offset_left = 0.0
 offset_top = -16.0
@@ -312,13 +310,13 @@ offset_left = -64.0
 offset_top = -32.0
 offset_bottom = 32.0
 grow_vertical = 2
-theme = ExtResource("3_ar8se")
-script = ExtResource("37_sphie")
+theme = ExtResource("9_qnggo")
+script = ExtResource("23_cf2bd")
 comboNumbers = NodePath("Numbers")
 
 [node name="TextureRect" type="TextureRect" parent="GameHUD/MainUI/Combo" unique_id=383630659]
 layout_mode = 2
-texture = ExtResource("37_f3vpf")
+texture = ExtResource("24_lpdpw")
 
 [node name="Label" type="Label" parent="GameHUD/MainUI/Combo/TextureRect" unique_id=343139270]
 layout_mode = 0
@@ -332,7 +330,7 @@ uppercase = true
 [node name="Numbers" type="Control" parent="GameHUD/MainUI/Combo" unique_id=201210544]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-script = ExtResource("39_ygyvt")
+script = ExtResource("25_jrou0")
 
 [node name="LevelUpNotification" type="NinePatchRect" parent="GameHUD/MainUI" unique_id=1869497156]
 modulate = Color(1, 1, 1, 0)
@@ -348,10 +346,10 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("16_gxotq")
+texture = ExtResource("26_j2g22")
 patch_margin_left = 20
 patch_margin_right = 20
-script = ExtResource("17_4n6jn")
+script = ExtResource("27_phube")
 
 [node name="Label" type="Label" parent="GameHUD/MainUI/LevelUpNotification" unique_id=1218081728]
 layout_mode = 1
@@ -380,7 +378,7 @@ offset_right = 90.0
 grow_vertical = 0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_bottom = 4
-script = ExtResource("27_fv26l")
+script = ExtResource("28_t014q")
 SlotOne = NodePath("VBoxContainer/Slots/SkillOneSlot")
 SlotTwo = NodePath("VBoxContainer/Slots/SkillTwoSlot")
 SlotThree = NodePath("VBoxContainer/Slots/SkillTwoSlot2")
@@ -391,34 +389,33 @@ layout_mode = 2
 [node name="Slots" type="HBoxContainer" parent="GameHUD/MainUI/QuickSlots/VBoxContainer" unique_id=1183515750]
 layout_mode = 2
 
-[node name="SkillOneSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1882491947 instance=ExtResource("27_3i6n3")]
+[node name="SkillOneSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1882491947 instance=ExtResource("29_nb1ia")]
 layout_mode = 2
-texture = ExtResource("30_dgkwl")
+texture = ExtResource("30_3ahwd")
 Button = 2
 
-[node name="SkillTwoSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1250261798 instance=ExtResource("27_3i6n3")]
+[node name="SkillTwoSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1250261798 instance=ExtResource("29_nb1ia")]
 layout_mode = 2
-texture = ExtResource("29_65n2t")
+texture = ExtResource("31_b4xsn")
 Button = 3
 
-[node name="SkillTwoSlot2" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1264703886 instance=ExtResource("27_3i6n3")]
+[node name="SkillTwoSlot2" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/Slots" unique_id=1264703886 instance=ExtResource("29_nb1ia")]
 layout_mode = 2
-texture = ExtResource("29_65n2t")
+texture = ExtResource("31_b4xsn")
 Button = 4
 
 [node name="MainButtons" type="HBoxContainer" parent="GameHUD/MainUI/QuickSlots/VBoxContainer" unique_id=939515404]
 layout_mode = 2
 
-[node name="JumpSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=811176460 instance=ExtResource("27_3i6n3")]
+[node name="JumpSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=811176460 instance=ExtResource("29_nb1ia")]
 layout_mode = 2
 
-[node name="AttackSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=1693940697 instance=ExtResource("27_3i6n3")]
+[node name="AttackSlot" parent="GameHUD/MainUI/QuickSlots/VBoxContainer/MainButtons" unique_id=1693940697 instance=ExtResource("29_nb1ia")]
 layout_mode = 2
-texture = ExtResource("27_7sovq")
+texture = ExtResource("32_ot5ec")
 Button = 1
 
 [node name="TransitionRect" type="ColorRect" parent="GameHUD/MainUI" unique_id=1473504637]
-visible = false
 material = SubResource("ShaderMaterial_0dqb8")
 layout_mode = 1
 anchors_preset = 15
@@ -426,7 +423,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("35_ebxge")
+script = ExtResource("35_b4mik")
 
 [node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("player", "Inventory", "Skill", "Character", "Background", "TopBar", "BottomBar", "inventoryButton", "skillsButton", "characterButton", "systemButton", "healthBar", "manaBar")]
 process_mode = 3
@@ -437,8 +434,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_ar8se")
-script = ExtResource("32_fv26l")
+theme = ExtResource("9_qnggo")
+script = ExtResource("36_urine")
 player = NodePath("../../Entities/Player")
 Inventory = NodePath("Inventory")
 Skill = NodePath("Skills")
@@ -490,12 +487,12 @@ theme_override_constants/separation = 16
 
 [node name="Health" type="HBoxContainer" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=1837906664]
 layout_mode = 2
-script = ExtResource("33_7k8pp")
+script = ExtResource("37_5vy51")
 
 [node name="Label" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Health" unique_id=922019546]
 layout_mode = 2
 text = "HP"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -504,36 +501,36 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 value = 50.0
-texture_under = ExtResource("34_7k8pp")
-texture_progress = ExtResource("35_djowa")
+texture_under = ExtResource("39_ylsbi")
+texture_progress = ExtResource("40_ceghn")
 
 [node name="Value" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Health" unique_id=1118655277]
 layout_mode = 2
 text = "10/10"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Mana" type="HBoxContainer" parent="GameHUD/Menu/BottomBar/HBoxContainer" unique_id=613005569]
 layout_mode = 2
-script = ExtResource("33_7k8pp")
+script = ExtResource("37_5vy51")
 
 [node name="Label" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=139992377]
 layout_mode = 2
 text = "MP"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=1281896950]
 layout_mode = 2
 size_flags_vertical = 4
 value = 50.0
-texture_under = ExtResource("37_7k8pp")
-texture_progress = ExtResource("38_djowa")
+texture_under = ExtResource("41_3h4bx")
+texture_progress = ExtResource("42_xg142")
 
 [node name="Value" type="Label" parent="GameHUD/Menu/BottomBar/HBoxContainer/Mana" unique_id=442594422]
 layout_mode = 2
 text = "10/10"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 
 [node name="TopBar" type="ColorRect" parent="GameHUD/Menu" unique_id=86040859]
 custom_minimum_size = Vector2(0, 16)
@@ -552,18 +549,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="MenuButton" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=494356487 instance=ExtResource("34_fv26l")]
+[node name="MenuButton" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=494356487 instance=ExtResource("43_rlvxq")]
 layout_mode = 2
 
-[node name="MenuButton2" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=132303195 instance=ExtResource("34_fv26l")]
+[node name="MenuButton2" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=132303195 instance=ExtResource("43_rlvxq")]
 layout_mode = 2
 AssignedButton = 2
 
-[node name="MenuButton4" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1110856338 instance=ExtResource("34_fv26l")]
+[node name="MenuButton4" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1110856338 instance=ExtResource("43_rlvxq")]
 layout_mode = 2
 AssignedButton = 1
 
-[node name="MenuButton3" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1298099779 instance=ExtResource("34_fv26l")]
+[node name="MenuButton3" parent="GameHUD/Menu/TopBar/HBoxContainer" unique_id=1298099779 instance=ExtResource("43_rlvxq")]
 layout_mode = 2
 AssignedButton = 3
 
@@ -575,7 +572,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("25_feyw5")
+script = ExtResource("44_0fjpc")
 player = NodePath("../../../Entities/Player")
 headerLabel = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Label")
 leftArrow = NodePath("MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/LeftArrow")
@@ -620,21 +617,21 @@ alignment = 1
 
 [node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=766581060]
 layout_mode = 2
-texture = ExtResource("27_pkurl")
+texture = ExtResource("45_gdwd6")
 stretch_mode = 3
 flip_h = true
 
 [node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1732495883]
 layout_mode = 2
 text = "Weapons"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=549659304]
 layout_mode = 2
-texture = ExtResource("27_pkurl")
+texture = ExtResource("45_gdwd6")
 stretch_mode = 3
 
 [node name="GridItems" type="Control" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1892384825]
@@ -653,7 +650,7 @@ grow_vertical = 2
 [node name="LeftArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer" unique_id=1615648409]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("27_pkurl")
+texture = ExtResource("45_gdwd6")
 stretch_mode = 2
 flip_h = true
 
@@ -662,65 +659,65 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 7
 
-[node name="ItemSlot" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1515014712 instance=ExtResource("42_dgkwl")]
+[node name="ItemSlot" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1515014712 instance=ExtResource("46_cmq5c")]
 layout_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=2107109315]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect3" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=991936211]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect9" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=426660605]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect10" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1178228269]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect11" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1186384945]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect12" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1719753168]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect13" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1886057110]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect14" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=769670167]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect15" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1343661447]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect16" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=842811009]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect17" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1967299970]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect18" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1822519157]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="TextureRect19" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer/GridContainer" unique_id=1683356668]
 layout_mode = 2
-texture = ExtResource("26_q3vwd")
+texture = ExtResource("47_7t1gx")
 
 [node name="RightArrow" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems/HBoxContainer" unique_id=986829566]
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("27_pkurl")
+texture = ExtResource("45_gdwd6")
 stretch_mode = 2
 
 [node name="SelectedOverlay" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer/VBoxContainer/GridItems" unique_id=2037088094]
@@ -729,7 +726,7 @@ layout_mode = 0
 offset_left = 9.0
 offset_right = 25.0
 offset_bottom = 16.0
-texture = ExtResource("29_6tamu")
+texture = ExtResource("48_mfvrx")
 
 [node name="PanelContainer2" type="PanelContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer" unique_id=1878850044]
 layout_mode = 2
@@ -742,7 +739,7 @@ size_flags_horizontal = 4
 [node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip" unique_id=279114682]
 layout_mode = 2
 text = "Equip"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -753,15 +750,15 @@ size_flags_horizontal = 4
 
 [node name="WeaponSlot" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1063340821]
 layout_mode = 2
-texture = ExtResource("29_868j4")
+texture = ExtResource("49_ilwxp")
 
 [node name="WeaponSlot2" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1463159145]
 layout_mode = 2
-texture = ExtResource("30_ma7yk")
+texture = ExtResource("50_xjjvj")
 
 [node name="WeaponSlot3" type="TextureRect" parent="GameHUD/Menu/Inventory/MarginContainer/Control/VBoxContainer/PanelContainer2/Equip/EquipItems" unique_id=1232054264]
 layout_mode = 2
-texture = ExtResource("31_vdw86")
+texture = ExtResource("51_jab21")
 
 [node name="ItemDetails" type="PanelContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control" unique_id=151499340]
 custom_minimum_size = Vector2(128, 148)
@@ -783,7 +780,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/ItemDetails/VBoxContainer" unique_id=1847807970]
 layout_mode = 2
 text = "ITEM"
-label_settings = ExtResource("33_fv26l")
+label_settings = ExtResource("38_o2owy")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -791,12 +788,12 @@ uppercase = true
 [node name="Label2" type="Label" parent="GameHUD/Menu/Inventory/MarginContainer/Control/ItemDetails/VBoxContainer" unique_id=695528683]
 layout_mode = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec."
-label_settings = ExtResource("47_3i6n3")
+label_settings = ExtResource("52_8dylv")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="Skills" parent="GameHUD/Menu" unique_id=1636244461 node_paths=PackedStringArray("player") instance=ExtResource("49_65n2t")]
+[node name="Skills" parent="GameHUD/Menu" unique_id=1636244461 node_paths=PackedStringArray("player") instance=ExtResource("53_qv1an")]
 visible = false
 layout_mode = 1
 player = NodePath("../../../Entities/Player")
@@ -810,8 +807,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_ar8se")
-script = ExtResource("33_7jpoy")
+theme = ExtResource("9_qnggo")
+script = ExtResource("54_ja2pg")
 dialogText = NodePath("DialogBox/ColorRect/RichTextLabel")
 nameText = NodePath("DialogBox/NinePatchRect/Label")
 portraitRect = NodePath("PortraitRect")
@@ -844,7 +841,7 @@ offset_left = 126.0
 offset_top = 5.0
 offset_right = 315.0
 offset_bottom = 52.0
-theme_override_fonts/normal_font = ExtResource("46_hwnf3")
+theme_override_fonts/normal_font = ExtResource("55_0wopu")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave]Well now[/wave], i don't know what militia you're from, but i advise you to back down, this is the dominion's armada in the name of..."
@@ -859,7 +856,7 @@ anchor_right = 1.0
 offset_left = -85.0
 offset_bottom = 15.0
 grow_horizontal = 0
-texture = ExtResource("34_d1rw2")
+texture = ExtResource("56_na2ur")
 patch_margin_left = 4
 patch_margin_right = 18
 
@@ -887,21 +884,21 @@ anchor_bottom = 1.0
 offset_left = -100.0
 offset_top = -100.0
 grow_vertical = 0
-texture = ExtResource("45_ygyvt")
+texture = ExtResource("57_rlvdk")
 
 [node name="GameHUDAudioPlayer" type="AudioStreamPlayer" parent="GameHUD" unique_id=1621495307]
 process_mode = 3
 bus = &"SFX"
 playback_type = 1
-script = ExtResource("42_d1rw2")
+script = ExtResource("58_t6wb6")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1607952946]
 tile_map_data = PackedByteArray("AAADAAgAAQADAAIAAAADAAkAAQABAAEAAAADAAoAAQABAAEAAAADAAsAAQABAAEAAAADAAwAAQABAAEAAAADAA0AAQABAAEAAAADAA4AAQABAAEAAAAEAAkAAQABAAEAAAAEAAoAAQABAAEAAAAEAAsAAQABAAEAAAAEAAwAAQABAAEAAAAEAA0AAQABAAEAAAAEAA4AAQABAAEAAAAFAAkAAQADAAIAAAAFAAoAAQABAAEAAAAFAAsAAQABAAEAAAAFAAwAAQABAAEAAAAFAA0AAQABAAEAAAAFAA4AAQABAAEAAAAGAAkAAQABAAAAAAAGAAoAAQABAAEAAAAGAAsAAQABAAEAAAAGAAwAAQABAAEAAAAGAA0AAQABAAEAAAAGAA4AAQABAAEAAAAHAAkAAQABAAAAAAAHAAoAAQABAAEAAAAHAAsAAQABAAEAAAAHAAwAAQABAAEAAAAHAA0AAQABAAEAAAAHAA4AAQABAAEAAAAIAAkAAQABAAAAAAAIAAoAAQABAAEAAAAIAAsAAQABAAEAAAAIAAwAAQABAAEAAAAIAA0AAQABAAEAAAAIAA4AAQABAAEAAAAJAAkAAQACAAAAAAAJAAoAAQADAAIAAAAJAAsAAQABAAEAAAAJAAwAAQABAAEAAAAJAA0AAQABAAEAAAAJAA4AAQABAAEAAAAKAAoAAQACAAAAAAAKAAsAAQACAAEAAAAKAAwAAQADAAIAAAAKAA0AAQABAAEAAAAKAA4AAQABAAEAAAALAAwAAQABAAAAAAALAA0AAQABAAEAAAALAA4AAQABAAEAAAAMAAwAAQABAAAAAAAMAA0AAQABAAEAAAAMAA4AAQABAAEAAAANAAwAAQABAAAAAAANAA0AAQABAAEAAAANAA4AAQABAAEAAAAOAAsAAQAAAAAAAAAOAAwAAQAEAAIAAAAOAA0AAQABAAEAAAAOAA4AAQABAAEAAAAPAAsAAQAEAAIAAAAPAAwAAQABAAEAAAAPAA0AAQABAAEAAAAPAA4AAQABAAEAAAAQAAwAAQABAAEAAAAQAA0AAQABAAEAAAARAAwAAQABAAEAAAARAA0AAQABAAEAAAAQAAsAAQABAAEAAAAQAA4AAQABAAEAAAARAAsAAQABAAEAAAARAA4AAQABAAEAAAASAAsAAQABAAEAAAASAAwAAQABAAEAAAASAA0AAQABAAEAAAASAA4AAQABAAEAAAATAAsAAQABAAEAAAATAAwAAQABAAEAAAATAA0AAQABAAEAAAATAA4AAQABAAEAAAAUAAwAAQABAAEAAAAUAA0AAQABAAEAAAAVAAwAAQABAAEAAAAVAA0AAQABAAEAAAAQAAoAAQABAAEAAAAQAAkAAQAEAAIAAAAVAA8AAQABAAIAAAAVAA4AAQABAAEAAAAVAAsAAQABAAEAAAAVAAoAAQABAAEAAAAVAAkAAQADAAIAAAAVAAgAAQACAAEAAAAVAAcAAQACAAAAAAAUAA8AAQABAAIAAAAUAA4AAQABAAEAAAAUAAsAAQABAAEAAAAUAAoAAQABAAEAAAAUAAkAAQABAAEAAAAUAAgAAQABAAEAAAAUAAcAAQABAAAAAAATAA8AAQABAAIAAAATAAoAAQABAAEAAAATAAkAAQABAAEAAAATAAgAAQABAAEAAAATAAcAAQABAAAAAAASAA8AAQABAAIAAAASAAoAAQABAAEAAAASAAkAAQABAAEAAAASAAgAAQAEAAIAAAASAAcAAQAAAAAAAAARAA8AAQABAAIAAAARAAoAAQABAAEAAAARAAkAAQABAAEAAAARAAgAAQABAAAAAAAQAA8AAQABAAIAAAAQAAgAAQAAAAAAAAAPAA8AAQABAAIAAAAOAA8AAQABAAIAAAANAA8AAQABAAIAAAAMAA8AAQABAAIAAAALAA8AAQABAAIAAAAKAA8AAQABAAIAAAAJAA8AAQABAAIAAAAIAA8AAQABAAIAAAAHAA8AAQABAAIAAAAGAA8AAQABAAIAAAAFAA8AAQABAAIAAAAEAA8AAQABAAIAAAADAA8AAQABAAIAAAADAAcAAQACAAAAAAACAA8AAQABAAIAAAACAA4AAQABAAEAAAACAA0AAQABAAEAAAACAAwAAQABAAEAAAACAAsAAQABAAEAAAACAAoAAQABAAEAAAACAAkAAQABAAEAAAACAAgAAQABAAEAAAACAAcAAQADAAIAAAABAA8AAQABAAIAAAABAA4AAQABAAEAAAABAA0AAQABAAEAAAABAAwAAQABAAEAAAABAAsAAQABAAEAAAABAAoAAQABAAEAAAABAAkAAQABAAEAAAABAAgAAQABAAEAAAABAAcAAQABAAEAAAAAAA8AAQAAAAIAAAAAAA4AAQAAAAEAAAAAAA0AAQAAAAEAAAAAAAwAAQAAAAEAAAAAAAsAAQAAAAEAAAAAAAoAAQAAAAEAAAAAAAkAAQAAAAEAAAAAAAgAAQAAAAEAAAAAAAcAAQAAAAEAAAAdAA4AAQABAAEAAAAdAA0AAQABAAEAAAAdAAwAAQABAAEAAAAdAAsAAQADAAIAAAAdAAoAAQACAAEAAAAdAAkAAQACAAAAAAAcAA4AAQABAAEAAAAcAA0AAQABAAEAAAAcAAwAAQABAAEAAAAcAAsAAQABAAEAAAAcAAoAAQABAAEAAAAcAAkAAQABAAAAAAAbAA4AAQABAAEAAAAbAA0AAQABAAEAAAAbAAwAAQABAAEAAAAbAAsAAQABAAEAAAAbAAoAAQABAAEAAAAbAAkAAQABAAAAAAAaAA4AAQABAAEAAAAaAA0AAQABAAEAAAAaAAwAAQABAAEAAAAaAAsAAQABAAEAAAAaAAoAAQABAAEAAAAaAAkAAQABAAAAAAAZAA4AAQABAAEAAAAZAA0AAQABAAEAAAAZAAwAAQABAAEAAAAZAAsAAQABAAEAAAAZAAoAAQABAAEAAAAZAAkAAQABAAAAAAAYAA4AAQABAAEAAAAYAA0AAQABAAEAAAAYAAwAAQABAAEAAAAYAAsAAQABAAEAAAAYAAoAAQABAAEAAAAYAAkAAQABAAAAAAAXAA4AAQABAAEAAAAXAA0AAQABAAEAAAAXAAwAAQABAAEAAAAXAAsAAQABAAEAAAAXAAoAAQABAAEAAAAXAAkAAQABAAAAAAAWAA4AAQABAAEAAAAWAA0AAQABAAEAAAAWAAwAAQABAAEAAAAWAAsAAQABAAEAAAAWAAoAAQABAAEAAAAWAAkAAQABAAAAAAABAAYAAQABAAEAAAABAAUAAQABAAEAAAABAAQAAQABAAEAAAABAAMAAQABAAEAAAABAAIAAQABAAEAAAABAAEAAQABAAEAAAABAAAAAQABAAEAAAAAAAYAAQAAAAEAAAAAAAUAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAAAAQAAAAEAAAACAAYAAQACAAEAAAACAAUAAQACAAEAAAACAAQAAQACAAEAAAACAAMAAQACAAEAAAACAAIAAQACAAEAAAACAAEAAQACAAEAAAACAAAAAQACAAEAAAACAP//AQACAAEAAAACAP7/AQACAAEAAAACAP3/AQACAAAAAAABAP//AQABAAEAAAABAP7/AQABAAEAAAABAP3/AQABAAAAAAAAAP//AQAAAAEAAAAAAP7/AQAAAAEAAAAAAP3/AQAAAAAAAAAnAAwAAQABAAEAAAAnAAsAAQABAAEAAAAmAAwAAQABAAEAAAAmAAsAAQABAAEAAAAlAAwAAQABAAEAAAAlAAsAAQABAAEAAAAkAAwAAQABAAEAAAAkAAsAAQABAAEAAAAjAAwAAQABAAEAAAAjAAsAAQABAAEAAAAiAAwAAQABAAEAAAAiAAsAAQABAAEAAAAhAAwAAQABAAEAAAAhAAsAAQAEAAIAAAAgAAwAAQABAAEAAAAgAAsAAQABAAAAAAAfAAwAAQABAAEAAAAfAAsAAQABAAAAAAAeAAwAAQABAAEAAAAeAAsAAQABAAAAAAApAA8AAQABAAIAAAApAA4AAQABAAEAAAApAA0AAQABAAEAAAApAAwAAQADAAIAAAApAAsAAQACAAEAAAAoAA8AAQABAAIAAAAoAA4AAQABAAEAAAAoAA0AAQABAAEAAAAoAAwAAQABAAEAAAAoAAsAAQABAAEAAAAnAA8AAQABAAIAAAAnAA4AAQABAAEAAAAnAA0AAQABAAEAAAAmAA8AAQABAAIAAAAmAA4AAQABAAEAAAAmAA0AAQABAAEAAAAlAA8AAQABAAIAAAAlAA4AAQABAAEAAAAlAA0AAQABAAEAAAAkAA8AAQABAAIAAAAkAA4AAQABAAEAAAAkAA0AAQABAAEAAAAjAA8AAQABAAIAAAAjAA4AAQABAAEAAAAjAA0AAQABAAEAAAAiAA8AAQABAAIAAAAiAA4AAQABAAEAAAAiAA0AAQABAAEAAAAhAA8AAQABAAIAAAAhAA4AAQABAAEAAAAhAA0AAQABAAEAAAAgAA8AAQABAAIAAAAgAA4AAQABAAEAAAAgAA0AAQABAAEAAAAfAA8AAQABAAIAAAAfAA4AAQABAAEAAAAfAA0AAQABAAEAAAAeAA8AAQABAAIAAAAeAA4AAQABAAEAAAAeAA0AAQABAAEAAAAdAA8AAQABAAIAAAAcAA8AAQABAAIAAAAbAA8AAQABAAIAAAAaAA8AAQABAAIAAAAZAA8AAQABAAIAAAAYAA8AAQABAAIAAAAXAA8AAQABAAIAAAAWAA8AAQABAAIAAAAoAAoAAQABAAEAAAAoAAkAAQABAAAAAAAnAAoAAQABAAEAAAAnAAkAAQABAAAAAAAmAAoAAQABAAEAAAAmAAkAAQABAAAAAAAlAAoAAQABAAEAAAAlAAkAAQABAAAAAAAkAAoAAQABAAEAAAAkAAkAAQABAAAAAAAjAAoAAQABAAEAAAAjAAkAAQABAAAAAAAiAAoAAQABAAEAAAAiAAkAAQABAAAAAAAhAAoAAQAAAAEAAAAhAAkAAQAAAAAAAAApAAoAAQACAAEAAAApAAkAAQACAAAAAAA4AA8AAQACAAIAAAA4AA4AAQACAAEAAAA4AA0AAQACAAEAAAA4AAwAAQACAAAAAAA3AA8AAQABAAIAAAA3AA4AAQABAAEAAAA3AA0AAQABAAEAAAA3AAwAAQABAAAAAAA2AA8AAQABAAIAAAA2AA4AAQABAAEAAAA2AA0AAQABAAEAAAA2AAwAAQABAAAAAAA1AA8AAQABAAIAAAA1AA4AAQABAAEAAAA1AA0AAQABAAEAAAA1AAwAAQABAAAAAAA0AA8AAQABAAIAAAA0AA4AAQABAAEAAAA0AA0AAQABAAEAAAA0AAwAAQABAAAAAAAzAA8AAQABAAIAAAAzAA4AAQABAAEAAAAzAA0AAQABAAEAAAAzAAwAAQABAAAAAAAyAA8AAQABAAIAAAAyAA4AAQABAAEAAAAyAA0AAQABAAEAAAAyAAwAAQABAAAAAAAxAA8AAQABAAIAAAAxAA4AAQABAAEAAAAxAA0AAQABAAEAAAAxAAwAAQABAAAAAAAwAA8AAQABAAIAAAAwAA4AAQABAAEAAAAwAA0AAQABAAEAAAAwAAwAAQABAAAAAAAvAA8AAQABAAIAAAAvAA4AAQABAAEAAAAvAA0AAQABAAEAAAAvAAwAAQABAAAAAAAuAA8AAQABAAIAAAAuAA4AAQABAAEAAAAuAA0AAQABAAEAAAAuAAwAAQABAAAAAAAtAA8AAQABAAIAAAAtAA4AAQABAAEAAAAtAA0AAQABAAEAAAAtAAwAAQABAAAAAAAsAA8AAQABAAIAAAAsAA4AAQABAAEAAAAsAA0AAQABAAEAAAAsAAwAAQABAAAAAAArAA8AAQABAAIAAAArAA4AAQABAAEAAAArAA0AAQABAAEAAAArAAwAAQABAAAAAAAqAA8AAQABAAIAAAAqAA4AAQABAAEAAAAqAA0AAQABAAEAAAAqAAwAAQABAAAAAAAvAAsAAQAFAAIAAAAwAAsAAQADAAAAAAAyAAsAAQAHAAEAAAAzAAsAAQAIAAEAAAAxAAsAAQAEAAAAAAAlAAgAAQADAAAAAAAmAAgAAQADAAAAAAAhAAgAAQADAAAAAAAiAAgAAQAFAAEAAAAdAAgAAQADAAAAAAAaAAgAAQADAAAAAAAWAAgAAQAHAAAAAAATAAYAAQAHAAEAAAAUAAYAAQAIAAEAAAAFAAgAAQACAAAAAAAEAAgAAQABAAAAAAAPAAkAAQAAAAAAAAAPAAoAAQAAAAEAAAAMAAsAAQAFAAIAAAANAAsAAQADAAAAAAAHAAgAAQAIAAEAAAAEAAcAAQAEAAAAAAAFAAcAAQAEAAAAAAARAAcAAQAGAAEAAAAQAAcAAQAFAAEAAAAZAAgAAQAEAAAAAAAYAAgAAQAEAAAAAAAjAAgAAQAGAAEAAAAgAAoAAQAFAAIAAAAoAAgAAQAFAAIAAAAGAAgAAQAHAAEAAAArAAsAAQAHAAEAAAAsAAsAAQAIAAEAAAA2AAsAAQAHAAEAAAA3AAsAAQAIAAEAAAA0AAsAAQAFAAIAAAAiAAcAAQAFAAAAAAAjAAcAAQAGAAAAAAAQAAYAAQAFAAAAAAARAAYAAQAGAAAAAAA=")
-tile_set = ExtResource("1_ssntf")
+tile_set = ExtResource("59_fvjqb")
 
 [node name="GrassLayer" type="TileMapLayer" parent="." unique_id=1998691635]
 tile_map_data = PackedByteArray("AAAYAAgAAQABAAMAAAAZAAgAAQABAAMAAAAaAAgAAQABAAMAAAAbAAgAAQABAAMAAAAcAAgAAQABAAMAAAAdAAgAAQACAAMAAAAXAAgAAQAAAAMAAAAfAAoAAQABAAMAAAAgAAoAAQABAAMAAAAeAAoAAQABAAMAAAAiAAgAAQAAAAQAAAAjAAgAAQABAAQAAAAkAAgAAQABAAQAAAAlAAgAAQABAAQAAAAmAAgAAQACAAQAAAAGAAgAAQAAAAQAAAAHAAgAAQABAAQAAAAIAAgAAQACAAQAAAALAAsAAQAAAAQAAAAMAAsAAQABAAQAAAANAAsAAQACAAQAAAASAAYAAQAAAAMAAAATAAYAAQABAAMAAAAUAAYAAQACAAMAAAAEAAcAAQABAAQAAAAFAAcAAQACAAQAAAAqAAsAAQABAAMAAAArAAsAAQACAAMAAAAtAAsAAQAAAAQAAAAuAAsAAQABAAQAAAAvAAsAAQABAAQAAAAwAAsAAQABAAQAAAAxAAsAAQABAAQAAAAyAAsAAQABAAQAAAAzAAsAAQABAAQAAAA0AAsAAQACAAQAAAA=")
-tile_set = ExtResource("1_ssntf")
+tile_set = ExtResource("59_fvjqb")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1841871882]
 color = Color(0, 0.02745098, 0.54901963, 1)
@@ -917,7 +914,7 @@ texture = SubResource("GradientTexture2D_ukyrk")
 
 [node name="Entities" type="Node" parent="." unique_id=1790537701]
 
-[node name="Player" parent="Entities" unique_id=79551072 instance=ExtResource("43_sphie")]
+[node name="Player" parent="Entities" unique_id=79551072 instance=ExtResource("60_b05pg")]
 position = Vector2(149, 100)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=526926991]
@@ -925,11 +922,11 @@ bus = &"SFX"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=240127051]
 process_mode = 3
-stream = ExtResource("54_hs3dq")
+stream = ExtResource("61_bdqux")
 volume_db = -30.0
 bus = &"Music"
 parameters/looping = true
-script = ExtResource("60_djowa")
+script = ExtResource("62_e1jjv")
 
 [node name="ForegroundFog" type="Parallax2D" parent="." unique_id=444385624]
 repeat_size = Vector2(320, 240)
@@ -937,25 +934,24 @@ repeat_times = 25
 
 [node name="Fog" type="Sprite2D" parent="ForegroundFog" unique_id=664263605]
 material = SubResource("ShaderMaterial_rcdsp")
-position = Vector2(160, 121)
-texture = ExtResource("7_rcdsp")
+texture = ExtResource("64_ci23i")
 
-[node name="GlowExplosion" parent="." unique_id=254045007 instance=ExtResource("61_dgkwl")]
+[node name="GlowExplosion" parent="." unique_id=254045007 instance=ExtResource("65_myryv")]
 visible = false
 position = Vector2(194.31824, 119.59581)
 
-[node name="ParticleEffectOne" parent="." unique_id=405320520 instance=ExtResource("60_65n2t")]
+[node name="ParticleEffectOne" parent="." unique_id=405320520 instance=ExtResource("66_bpr0e")]
 visible = false
 position = Vector2(135, 100)
 
-[node name="WarpGate" parent="." unique_id=1566959842 instance=ExtResource("70_kmiap")]
+[node name="WarpGate" parent="." unique_id=1566959842 instance=ExtResource("67_14mkc")]
 position = Vector2(426, 140)
-script = ExtResource("68_jgqf7")
+script = ExtResource("68_l78ku")
 WarpLocation = SubResource("Resource_njli1")
 
 [node name="MonsterSpawner" type="Node2D" parent="." unique_id=328214288]
 position = Vector2(223, 102)
-script = ExtResource("65_q8hda")
+script = ExtResource("70_adgm5")
 Blueprints = Array[Object]([SubResource("Resource_k75r7")])
 MaxMonsters = 10
 Size = Vector2(32, 32)

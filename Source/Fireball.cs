@@ -52,10 +52,12 @@ public partial class Fireball : Area2D
 
         var instance = explosionPacked.Instantiate<FireballExplosion>();
 
-        RemoveChild(fireParticles);
-        RemoveChild(smokeParticles);
-
-        CallDeferred(nameof(DetachParticles));
+        if (fireParticles.GetParent<Fireball>() == this && smokeParticles.GetParent<Fireball>() == this)
+        {
+            RemoveChild(fireParticles);
+            RemoveChild(smokeParticles);
+            CallDeferred(nameof(DetachParticles));
+        }
         CallDeferred(nameof(CreateExplosion));
 
         QueueFree();
