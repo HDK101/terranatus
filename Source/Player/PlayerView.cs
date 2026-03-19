@@ -4,7 +4,7 @@ using System;
 public partial class PlayerView() : Node2D
 {
     public AnimationTree AnimationTree { get; set; }
-    public Sprite2D Sprite { get; set; }
+    public CharacterSprite Sprite { get; private set; }
     public PlayerDirection Direction { get; set; }
     public bool FlipH { get => Sprite.FlipH; set => Sprite.FlipH = value; }
     public Vector2 SpriteOffset { get => Sprite.Offset; set => Sprite.Offset = value; }
@@ -30,6 +30,7 @@ public partial class PlayerView() : Node2D
         AddChild(shadowTimer);
         StartShadowTimer();
 
+        Sprite = GetNode<CharacterSprite>("Sprite2D");
         RespawnParticles = GetNode<GpuParticles2D>("RespawnParticles");
         EnergyOrbParticles = GetNode<GpuParticles2D>("EnergyOrb");
         LightsEffect = GetNode<LightsEffect>("LightsEffect");
@@ -90,6 +91,7 @@ public partial class PlayerView() : Node2D
 
     public void Respawning()
     {
+        LightsEffect.Stop();
         stateMachine.Travel("Respawning");
     }
 
@@ -136,9 +138,15 @@ public partial class PlayerView() : Node2D
         RespawnParticles.Emitting = false;
     }
 
-    internal void StartRespawn()
+    public void StartRespawn()
     {
         RespawnParticles.Restart();
         LightsEffect.Play();
+    }
+
+    public void StopRespawn()
+    {
+        RespawnParticles.Emitting = false;
+        EnergyOrbParticles.Emitting = false;
     }
 }

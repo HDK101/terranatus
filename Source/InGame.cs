@@ -30,10 +30,15 @@ public partial class InGame : Node2D
     private RandomNumberGenerator rng = new();
     private AudioStreamPlayer audioStreamPlayer;
 
+    private GameStats gameStats;
+
+    private readonly List<WarpGate> warpGates = [];
 
     public override void _Ready()
     {
         rng.Randomize();
+
+        gameStats = GetNode<GameStats>("/root/GameStats");
 
         audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
         audioStreamPlayer.Stream = new AudioStreamPolyphonic();
@@ -43,8 +48,8 @@ public partial class InGame : Node2D
         packedSceneDB = GetNode<PackedSceneDB>("/root/PackedSceneDB");
         appleTexture = GD.Load<Texture2D>("res://Sprites/Items/item216.png");
         gameHud = GetNode<GameHud>("GameHUD");
-        InitializePlayer();
         InitializeWarpGates();
+        InitializePlayer();
 
         gameHud.TransitionRect.FadeOut();
 
@@ -83,6 +88,8 @@ public partial class InGame : Node2D
         {
             warpGate.Player = player;
         }
+
+        warpGates.AddRange(nodes);
     }
 
     private void CreateCorpse(Enemy enemy)
@@ -98,7 +105,11 @@ public partial class InGame : Node2D
 
     private void InitializePlayer()
     {
-        player.Attacked += OnPlayerAttack;
+        WarpGate lastWarpGate = warpGates.Find(warpGate => warpGate.WarpLocation.IsSameWarp(gameStats.LastWarp));
+
+        player.Respawn(lastWarpGate.Position - Vector2.One * 8.0f);
+
+        player.Combat.Attacked += OnPlayerAttack;
         player.Damaged += payload => CallDeferred(nameof(OnPlayerHit), payload);
         player.ItemPicked += OnPickItem;
         player.Experience.Leveled += gameHud.LevelUpNotification.Notificate;

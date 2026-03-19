@@ -137,8 +137,8 @@ public class PlayerDefaultState(WeakReference<Player> playerRef) : IState
         }
 
         float dir = player.LookDirection.ValueDirection;
-        player.HitArea.Position = new(20f * dir, 0.0f);
-        player.ForwardSlashArea.Position = new(20f * dir, 0.0f);
+        player.Combat.HitArea.Position = new(20f * dir, 0.0f);
+        player.Combat.ForwardSlashArea.Position = new(20f * dir, 0.0f);
     }
 
     public void Start()

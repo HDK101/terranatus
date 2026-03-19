@@ -52,7 +52,7 @@ public partial class PlayerForwardSlash(WeakReference<Player> playerRef) : RefCo
         if (playerRef.TryGetTarget(out var player))
         {
             player.View.ShadowsActive = false;
-            player.ForwardSlashAttack();
+            player.Combat.ForwardSlashAttack();
         }
 
         state = new PlayerDefaultState(playerRef);

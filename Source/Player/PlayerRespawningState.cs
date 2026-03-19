@@ -29,22 +29,24 @@ public partial class PlayerRespawningState(WeakReference<Player> playerRef) : IS
             {
                 player.EntitySoundPlayer.PlayEnergyCharge();
                 player.View.Respawning();
-                player.LightsEffect.Stop();
             };
             player.GetTree().CreateTimer(3.6).Timeout += () =>
             {
-                var explosionInstance = player.PackedSceneDB.GlowingParticlesRespawnExplosion.Instantiate<GpuParticles2D>();
-                explosionInstance.OneShot = true;
-                player.AddChild(explosionInstance);
-
-                var bigExplosionInstance = player.PackedSceneDB.BigWhiteExplosion.Instantiate<BigWhiteExplosion>();
-                player.AddChild(bigExplosionInstance);
-
                 nextState = new PlayerDefaultState(playerRef);
-                player.RespawnParticles.Emitting = false;
-                player.EnergyOrbParticles.Emitting = false;
+                player.View.StopRespawn();
+                CreateExplosion(player);
                 player.EmitSignal(Player.SignalName.Respawned);
             };
         }
+    }
+
+    private void CreateExplosion(Player player)
+    {
+        var explosionInstance = player.PackedSceneDB.GlowingParticlesRespawnExplosion.Instantiate<GpuParticles2D>();
+        explosionInstance.OneShot = true;
+        player.AddChild(explosionInstance);
+
+        var bigExplosionInstance = player.PackedSceneDB.BigWhiteExplosion.Instantiate<BigWhiteExplosion>();
+        player.AddChild(bigExplosionInstance);
     }
 }

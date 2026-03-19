@@ -3,7 +3,7 @@ using Godot;
 public partial class PlayerCombat: Node2D
 {
     [Signal]
-    public delegate void AttackedEventHandler(AttackType type);
+    public delegate void AttackedEventHandler(HitPayload payload);
 
     [Signal]
     public delegate void UsedForwardSlashEventHandler();
@@ -33,9 +33,6 @@ public partial class PlayerCombat: Node2D
 
     public void CastAttackHit()
     {
-        //EntitySoundPlayer.PlayAttackSound(AttackType.SLASH);
-        EmitSignal(SignalName.Attacked, (int)AttackType.SLASH);
-
         var bodies = HitArea.GetOverlappingBodies();
 
         var weapon = Body.Retrieve(PlayerBody.ItemType.WEAPON);
@@ -99,7 +96,6 @@ public partial class PlayerCombat: Node2D
         bigSlashInstance.FlipH = Direction.Flipped();
         bigSlashInstance.Play();
 
-        //EntitySoundPlayer.PlayForwardSlash();
         EmitSignal(SignalName.UsedForwardSlash);
     }
 
@@ -109,7 +105,7 @@ public partial class PlayerCombat: Node2D
         fireballInstance.Position = GlobalPosition;
         fireballInstance.Direction = Direction.ValueDirection;
 
-        //EntitySoundPlayer.PlayFireRelease();
+        EmitSignal(SignalName.HasCastFireball);
 
         GetTree().CurrentScene.CallDeferred("add_child", fireballInstance);
     }

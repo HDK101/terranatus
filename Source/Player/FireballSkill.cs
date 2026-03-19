@@ -17,7 +17,7 @@ public partial class FireballSkill : ActiveSkill
     {
         if (playerRef.TryGetTarget(out Player player))
         {
-            player.CastFireball();
+            player.Combat.CastFireball();
         }
     }
 }

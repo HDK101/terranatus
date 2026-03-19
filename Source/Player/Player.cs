@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Player : CharacterBody2D
 {
@@ -10,9 +11,6 @@ public partial class Player : CharacterBody2D
 
     [Signal]
     public delegate void ItemPickedEventHandler(ItemBlueprint blueprint, int quantity);
-
-    [Signal]
-    public delegate void AttackedEventHandler(HitPayload payload);
 
     [Signal]
     public delegate void DamagedEventHandler(HitPayload payload);
@@ -30,7 +28,6 @@ public partial class Player : CharacterBody2D
     public QuickSlots QuickSlots { get; } = new();
     public PlayerBody Body { get; } = new();
     public Vector2 Direction { get; set; }
-    public CharacterSprite Sprite { get; private set; }
     public Skills Skills { get; private set; }
 
     public PlayerDirection LookDirection { get; init; } = new();
@@ -63,28 +60,12 @@ public partial class Player : CharacterBody2D
         ItemDB itemDB = GetNode<ItemDB>("/root/ItemDB");
         ItemBlueprint apple = itemDB.Retrieve("APPLE");
         shortSwordBlueprint = GD.Load<ItemBlueprint>("res://Resources/Items/short_sword.tres");
-        Sprite = GetNode<CharacterSprite>("Sprite2D");
         EntitySoundPlayer = GetNode<EntitySoundPlayer>("EntitySoundPlayer");
         camera = GetNode<PlayerCamera>("Camera2D");
 
-        View = GetNode<PlayerView>("View");
-        View.Direction = LookDirection;
-        View.Sprite = Sprite;
-        View.AnimationTree = GetNode<AnimationTree>("AnimationTree");
+        StartView();
 
-        Combat = GetNode<PlayerCombat>("Combat");
-        Combat.ItemArea.BodyEntered += (body) =>
-        {
-            if (body is DroppableItem droppableItem)
-            {
-                var item = droppableItem.CurrentItem;
-                Inventory.Add(item.Blueprint, item.Quantity);
-                body.QueueFree();
-                EmitSignal(SignalName.ItemPicked, item.Blueprint, item.Quantity);
-            }
-        };
-        Combat.Direction = LookDirection;
-        Combat.Body = Body;
+        StartCombat();
 
         Body.Equip(PlayerBody.ItemType.WEAPON, shortSwordBlueprint);
 
@@ -108,12 +89,39 @@ public partial class Player : CharacterBody2D
         Experience.Change += EntitySoundPlayer.PlayPickEXP;
     }
 
+    private void StartCombat()
+    {
+        Combat = GetNode<PlayerCombat>("Combat");
+        Combat.ItemArea.BodyEntered += (body) =>
+        {
+            if (body is DroppableItem droppableItem)
+            {
+                var item = droppableItem.CurrentItem;
+                Inventory.Add(item.Blueprint, item.Quantity);
+                body.QueueFree();
+                EmitSignal(SignalName.ItemPicked, item.Blueprint, item.Quantity);
+            }
+        };
+        Combat.Direction = LookDirection;
+        Combat.Body = Body;
+        Combat.Attacked += payload => EntitySoundPlayer.PlayAttackSound(payload.Attack);
+        Combat.UsedForwardSlash += EntitySoundPlayer.PlayForwardSlash;
+        Combat.HasCastFireball += EntitySoundPlayer.PlayFireRelease;
+    }
+
+    private void StartView()
+    {
+        View = GetNode<PlayerView>("View");
+        View.Direction = LookDirection;
+        View.AnimationTree = GetNode<AnimationTree>("AnimationTree");
+    }
+
     public void Hit(HitPayload hitPayload)
     {
         if (Life.IsDead) return;
 
         Life.Hit(hitPayload.Damage);
-        Sprite.Hit();
+        View.Sprite.Hit();
         camera.Hit(hitPayload.Force.X);
         EmitSignal(SignalName.Damaged, hitPayload);
     }
@@ -154,9 +162,25 @@ public partial class Player : CharacterBody2D
         View.Attack();
     }
 
+    public void CastAttackHit()
+    {
+        Combat.CastAttackHit();
+    }
+
+    public void ForwardSlashAttack()
+    {
+        Combat.ForwardSlashAttack();
+    }
+
     public void SetShadowActive(bool active)
     {
         View.ShadowsActive = active;
+    }
+
+    public void Respawn(Vector2 position)
+    {
+        Position = position;
+        stateManager.ChangeState(new PlayerRespawningState(new(this)));
     }
 
     private void OnDeath()
@@ -180,7 +204,6 @@ public partial class Player : CharacterBody2D
     {
         stateManager = new();
         AddChild(stateManager);
-        stateManager.ChangeState(new PlayerRespawningState(new(this)));
     }
 
     private void CreateQuickSlots()
