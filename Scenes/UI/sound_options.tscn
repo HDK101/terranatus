@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://b2n3n2dtlperl"]
+
+[ext_resource type="Shader" uid="uid://csro17rsf4qb1" path="res://Resources/Shaders/screen_blur.gdshader" id="1_2aaip"]
+[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/Themes/in_game_theme.tres" id="1_b6e1o"]
+[ext_resource type="Script" uid="uid://td07kegbcyr1" path="res://Source/UI/SoundOptions.cs" id="2_2a1vt"]
+[ext_resource type="StyleBox" uid="uid://g0fqd858hslg" path="res://Resources/Style/options_panel_style.tres" id="3_psa6p"]
+[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="4_wbud6"]
+[ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="5_j8avs"]
+[ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="6_psa6p"]
+[ext_resource type="Script" uid="uid://ca2xtuis0nvr4" path="res://Source/UI/MusicVolumeSlider.cs" id="7_0j0mi"]
+[ext_resource type="Script" uid="uid://dtqfg85npb6cd" path="res://Source/UI/SfxVolumeSlider.cs" id="9_0j0mi"]
+[ext_resource type="Script" uid="uid://bymije313rbqr" path="res://Source/UI/BackButton.cs" id="9_hrxgv"]
+[ext_resource type="Texture2D" uid="uid://cu85yjya5l2r7" path="res://Sprites/UI/arrow_select.png" id="10_k0yq1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37xb5"]
+shader = ExtResource("1_2aaip")
+shader_parameter/offset = 10.0
+shader_parameter/color = Color(0.05490196, 0.02745098, 0.105882354, 1)
+
+[node name="SoundOptions" type="Control" unique_id=295294956 node_paths=PackedStringArray("musicVolumeSlider", "sfxVolumeSlider", "backButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b6e1o")
+script = ExtResource("2_2a1vt")
+musicVolumeSlider = NodePath("Items/VolumeItem")
+sfxVolumeSlider = NodePath("Items/SoundVolumeItem")
+backButton = NodePath("Items/BackButton")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=183522941]
+material = SubResource("ShaderMaterial_37xb5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05490196, 0.02745098, 0.105882354, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1015938742]
+visible = false
+layout_mode = 0
+offset_left = 59.0
+offset_top = 25.0
+offset_right = 152.0
+offset_bottom = 68.0
+theme_override_styles/panel = ExtResource("3_psa6p")
+
+[node name="Items" type="VBoxContainer" parent="." unique_id=1972438141]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.25
+offset_top = -26.5
+offset_right = 56.25
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Items" unique_id=696433857]
+layout_mode = 2
+text = "Sound Options"
+label_settings = ExtResource("4_wbud6")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Items" unique_id=256029840]
+layout_mode = 2
+texture = ExtResource("5_j8avs")
+
+[node name="VolumeItem" type="VBoxContainer" parent="Items" unique_id=738708462]
+layout_mode = 2
+script = ExtResource("7_0j0mi")
+
+[node name="Label" type="Label" parent="Items/VolumeItem" unique_id=745091030]
+layout_mode = 2
+text = "Music volume:"
+label_settings = ExtResource("6_psa6p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Items/VolumeItem" unique_id=353824576]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Items/VolumeItem/HBoxContainer" unique_id=1192615373]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+step = 2.0
+value = 50.0
+tick_count = 7
+ticks_on_borders = true
+ticks_position = 1
+
+[node name="Label" type="Label" parent="Items/VolumeItem/HBoxContainer" unique_id=1940989151]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "100%"
+label_settings = ExtResource("6_psa6p")
+horizontal_alignment = 2
+
+[node name="SoundVolumeItem" type="VBoxContainer" parent="Items" unique_id=580724351]
+layout_mode = 2
+script = ExtResource("9_0j0mi")
+
+[node name="Label" type="Label" parent="Items/SoundVolumeItem" unique_id=451393967]
+layout_mode = 2
+text = "Sound volume:"
+label_settings = ExtResource("6_psa6p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Items/SoundVolumeItem" unique_id=666514418]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Items/SoundVolumeItem/HBoxContainer" unique_id=656920747]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+value = 50.0
+tick_count = 7
+ticks_on_borders = true
+ticks_position = 1
+
+[node name="Label" type="Label" parent="Items/SoundVolumeItem/HBoxContainer" unique_id=76919756]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "100%"
+label_settings = ExtResource("6_psa6p")
+horizontal_alignment = 2
+
+[node name="BackButton" type="HBoxContainer" parent="Items" unique_id=2080533043]
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("9_hrxgv")
+
+[node name="Arrow" type="TextureRect" parent="Items/BackButton" unique_id=1362635802]
+layout_mode = 2
+texture = ExtResource("10_k0yq1")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Items/BackButton" unique_id=1791685345]
+layout_mode = 2
+text = "Back"
+label_settings = ExtResource("6_psa6p")

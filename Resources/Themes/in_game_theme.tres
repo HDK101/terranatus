@@ -1,7 +1,22 @@
 [gd_resource type="Theme" format=3 uid="uid://cxq0j2ycallbq"]
 
+[ext_resource type="Texture2D" uid="uid://cm0aqoff5cjs2" path="res://Sprites/UI/slider.png" id="1_aal7v"]
 [ext_resource type="FontFile" uid="uid://bljbeq1sjau2v" path="res://Fonts/dungeon-mode.ttf" id="1_qsscp"]
+[ext_resource type="Texture2D" uid="uid://g1ryaek3bepq" path="res://Sprites/UI/slider_highlight.png" id="2_8eqxc"]
 [ext_resource type="Texture2D" uid="uid://rgn5gcxxvk1c" path="res://Sprites/UI/base_ui.png" id="2_vqkj5"]
+[ext_resource type="Texture2D" uid="uid://b7eu4t4q4hsft" path="res://Sprites/UI/tick.png" id="3_a43gf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eqxc"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.95, 0.95, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a43gf"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8j4fr"]
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.39607844, 0.4509804, 0.57254905, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dohx2"]
 texture = ExtResource("2_vqkj5")
@@ -14,7 +29,13 @@ axis_stretch_horizontal = 1
 [resource]
 default_font = ExtResource("1_qsscp")
 default_font_size = 8
+HSlider/icons/grabber = ExtResource("1_aal7v")
+HSlider/icons/grabber_highlight = ExtResource("2_8eqxc")
+HSlider/icons/tick = ExtResource("3_a43gf")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_8eqxc")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_a43gf")
+HSlider/styles/slider = SubResource("StyleBoxFlat_8j4fr")
 Label/colors/font_color = Color(1, 1, 1, 1)
-Label/font_sizes/font_size = 8
+Label/font_sizes/font_size = 9
 Label/fonts/font = ExtResource("1_qsscp")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_dohx2")

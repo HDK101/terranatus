@@ -21,7 +21,8 @@ public partial class ItemDB : Node
 
         while (fileName != "")
         {
-            LoadFromPath(BASE_PATH + "/" + fileName);
+            if (fileName.EndsWith(".tres") || fileName.EndsWith(".tres.remap"))
+                LoadFromPath(BASE_PATH + "/" + fileName);
             fileName = dir.GetNext();
         }
     }
@@ -33,7 +34,8 @@ public partial class ItemDB : Node
 
     private void LoadFromPath(string path)
     {
-        ItemBlueprint blueprint = GD.Load<ItemBlueprint>(path);
+        string loadPath = path.EndsWith(".remap") ? path[..^6] : path;
+        ItemBlueprint blueprint = GD.Load<ItemBlueprint>(loadPath);
         _items.Add(blueprint.Id, blueprint);
     }
 }

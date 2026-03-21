@@ -1,0 +1,305 @@
+[gd_scene format=3 uid="uid://y8yq1qrm38ml"]
+
+[ext_resource type="Script" uid="uid://1elub6fy7r0d" path="res://Source/UI/StartMenu.cs" id="1_8sub0"]
+[ext_resource type="Texture2D" uid="uid://dqnnuy4w2ehn6" path="res://Sprites/UI/moonhowl_logo.png" id="1_a8s2h"]
+[ext_resource type="Shader" uid="uid://c3ulhktdrrbbq" path="res://Resources/Shaders/back_clouds.gdshader" id="1_ba0cd"]
+[ext_resource type="Shader" uid="uid://dnnigu5wi8ci8" path="res://Resources/Shaders/menu_logo.gdshader" id="2_mb8v8"]
+[ext_resource type="Script" uid="uid://dc4vyys46gh0" path="res://Source/UI/StartMenuButton.cs" id="2_uyfqq"]
+[ext_resource type="FontFile" uid="uid://viadp1dryot4" path="res://Fonts/OldWizard.ttf" id="3_uyfqq"]
+[ext_resource type="AudioStream" uid="uid://khavxjw77i4n" path="res://Musics/あなたと出逢えて.mp3" id="5_msd7l"]
+[ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="8_vaf30"]
+
+[sub_resource type="Environment" id="Environment_mb8v8"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.05
+glow_strength = 2.0
+glow_hdr_threshold = 0.9
+glow_hdr_scale = 1.0
+glow_hdr_luminance_cap = 10.0
+glow_map_strength = 0.86
+
+[sub_resource type="Gradient" id="Gradient_ba0cd"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mb8v8"]
+gradient = SubResource("Gradient_ba0cd")
+width = 320
+height = 240
+fill_from = Vector2(0, 0.86440676)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mb8v8"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8sub0"]
+width = 320
+height = 240
+noise = SubResource("FastNoiseLite_mb8v8")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msd7l"]
+shader = ExtResource("1_ba0cd")
+shader_parameter/progress = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_8sub0")
+shader_parameter/gradient_texture = SubResource("GradientTexture2D_mb8v8")
+shader_parameter/color = Color(0.12314845, 3.6868154e-05, 0.45457494, 1)
+
+[sub_resource type="Gradient" id="Gradient_wvas0"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uyfqq"]
+gradient = SubResource("Gradient_wvas0")
+width = 320
+height = 240
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j2jmx"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_j2jmx"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a8s2h"]
+gradient = SubResource("Gradient_j2jmx")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Curve" id="Curve_j2jmx"]
+_data = [Vector2(0, 0.75280905), 0.0, 0.0, 0, 0, Vector2(0.516129, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a8s2h"]
+curve = SubResource("Curve_j2jmx")
+
+[sub_resource type="Gradient" id="Gradient_a8s2h"]
+colors = PackedColorArray(0.19800018, 0.030000016, 0.75, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ba0cd"]
+gradient = SubResource("Gradient_a8s2h")
+
+[sub_resource type="Curve" id="Curve_mb8v8"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(0.10752688, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8sub0"]
+curve = SubResource("Curve_mb8v8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mb8v8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 0, 0)
+gravity = Vector3(0, -20, 0)
+linear_accel_min = -20.000002
+linear_accel_max = -20.000002
+linear_accel_curve = SubResource("CurveTexture_8sub0")
+radial_accel_min = 4.9999976
+radial_accel_max = 14.999997
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+scale_min = 0.01
+scale_max = 0.08
+color_initial_ramp = SubResource("GradientTexture1D_ba0cd")
+alpha_curve = SubResource("CurveTexture_a8s2h")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8sub0"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_msd7l"]
+width = 320
+height = 240
+noise = SubResource("FastNoiseLite_8sub0")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8sub0"]
+shader = ExtResource("2_mb8v8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_msd7l")
+shader_parameter/progress = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4i3i0"]
+
+[sub_resource type="Gradient" id="Gradient_u70u7"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.5392926, 0, 0, 0, 0.6627451, 0, 0, 0, 0.4548251, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qraoo"]
+gradient = SubResource("Gradient_u70u7")
+width = 96
+height = 96
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vaf30"]
+font = ExtResource("3_uyfqq")
+
+[node name="StartMenu" type="Node2D" unique_id=1008424737 node_paths=PackedStringArray("SmokeBackground", "GlowingParticles", "Logo", "Play", "Options", "Quit")]
+script = ExtResource("1_8sub0")
+SmokeBackground = NodePath("SmokeBackground")
+GlowingParticles = NodePath("GlowingParticles")
+Logo = NodePath("Logo")
+Play = NodePath("UI/Control/TextureRect/VBoxContainer/Start")
+Options = NodePath("UI/Control/TextureRect/VBoxContainer/Options")
+Quit = NodePath("UI/Control/TextureRect/VBoxContainer/Quit")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1194993255]
+environment = SubResource("Environment_mb8v8")
+
+[node name="SmokeBackground" type="Sprite2D" parent="." unique_id=1026899246]
+material = SubResource("ShaderMaterial_msd7l")
+texture = SubResource("GradientTexture2D_uyfqq")
+centered = false
+
+[node name="GlowingParticles" type="GPUParticles2D" parent="." unique_id=1356080060]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_j2jmx")
+position = Vector2(160, 250)
+amount = 32
+texture = SubResource("GradientTexture2D_a8s2h")
+lifetime = 8.0
+process_material = SubResource("ParticleProcessMaterial_mb8v8")
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=1043280481]
+material = SubResource("ShaderMaterial_8sub0")
+position = Vector2(160, 78)
+texture = ExtResource("1_a8s2h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1605665553]
+stream = ExtResource("5_msd7l")
+autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=99661387]
+
+[node name="Control" type="Control" parent="UI" unique_id=557389651]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control" unique_id=1675681552]
+material = SubResource("CanvasItemMaterial_4i3i0")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -96.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_qraoo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TextureRect" unique_id=304697276]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Start" type="Control" parent="UI/Control/TextureRect/VBoxContainer" unique_id=1128891753 node_paths=PackedStringArray("lineRect")]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_uyfqq")
+lineRect = NodePath("VBoxContainer/LineRect")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Start" unique_id=243896074]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Start/VBoxContainer" unique_id=1143328276]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Control/TextureRect/VBoxContainer/Start/VBoxContainer/HBoxContainer" unique_id=1328657689]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "Start"
+label_settings = SubResource("LabelSettings_vaf30")
+
+[node name="LineRect" type="TextureRect" parent="UI/Control/TextureRect/VBoxContainer/Start/VBoxContainer" unique_id=109654509]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_vaf30")
+expand_mode = 1
+
+[node name="Options" type="Control" parent="UI/Control/TextureRect/VBoxContainer" unique_id=1918234264 node_paths=PackedStringArray("lineRect")]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_uyfqq")
+lineRect = NodePath("VBoxContainer/LineRect")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Options" unique_id=165597449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Options/VBoxContainer" unique_id=2046611734]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Control/TextureRect/VBoxContainer/Options/VBoxContainer/HBoxContainer" unique_id=1614333309]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_vaf30")
+
+[node name="LineRect" type="TextureRect" parent="UI/Control/TextureRect/VBoxContainer/Options/VBoxContainer" unique_id=1488826982]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_vaf30")
+expand_mode = 1
+
+[node name="Quit" type="Control" parent="UI/Control/TextureRect/VBoxContainer" unique_id=60838220 node_paths=PackedStringArray("lineRect")]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_uyfqq")
+lineRect = NodePath("VBoxContainer/LineRect")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Quit" unique_id=2106763686]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TextureRect/VBoxContainer/Quit/VBoxContainer" unique_id=1928421153]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Control/TextureRect/VBoxContainer/Quit/VBoxContainer/HBoxContainer" unique_id=1320211277]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "Quit"
+label_settings = SubResource("LabelSettings_vaf30")
+
+[node name="LineRect" type="TextureRect" parent="UI/Control/TextureRect/VBoxContainer/Quit/VBoxContainer" unique_id=1885540615]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_vaf30")
+expand_mode = 1

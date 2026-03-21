@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://boeql7xw0pg01"]
+
+[ext_resource type="Theme" uid="uid://cxq0j2ycallbq" path="res://Resources/Themes/in_game_theme.tres" id="1_iyji5"]
+[ext_resource type="Script" uid="uid://ddph6jdijo6uw" path="res://Source/UI/SystemMenu.cs" id="2_4lfk3"]
+[ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="2_rfitc"]
+[ext_resource type="Texture2D" uid="uid://b8326ga0xajwe" path="res://Sprites/UI/line.png" id="3_rfitc"]
+[ext_resource type="Script" uid="uid://blrpwpirbopel" path="res://Source/UI/SystemItem.cs" id="4_6mkrj"]
+[ext_resource type="Texture2D" uid="uid://dsyk30ris7xcm" path="res://Sprites/UI/small_arrow_selected.png" id="5_4lfk3"]
+[ext_resource type="LabelSettings" uid="uid://ha74ayb21sc1" path="res://Resources/LabelSettings/small_text.tres" id="6_ljldg"]
+
+[node name="System" type="Control" unique_id=1510179561]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iyji5")
+script = ExtResource("2_4lfk3")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2082472910]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1645755053]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=926634583]
+layout_mode = 2
+text = "System"
+label_settings = ExtResource("2_rfitc")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1284969969]
+layout_mode = 2
+texture = ExtResource("3_rfitc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1387490136]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SystemItem" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1229594144]
+custom_minimum_size = Vector2(90, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("4_6mkrj")
+
+[node name="Arrow" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/SystemItem" unique_id=279326577]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 4.0
+grow_vertical = 2
+texture = ExtResource("5_4lfk3")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/SystemItem" unique_id=1210572126]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Controller Options"
+label_settings = ExtResource("6_ljldg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SystemItem2" type="Control" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1721840903]
+custom_minimum_size = Vector2(90, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Arrow" type="TextureRect" parent="PanelContainer/VBoxContainer/VBoxContainer/SystemItem2" unique_id=499972517]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 4.0
+grow_vertical = 2
+texture = ExtResource("5_4lfk3")
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/SystemItem2" unique_id=1843313769]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Controller Options"
+label_settings = ExtResource("6_ljldg")
+horizontal_alignment = 1
+vertical_alignment = 1

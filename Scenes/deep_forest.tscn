@@ -35,6 +35,7 @@
 [ext_resource type="Shader" uid="uid://qs8iu11of6gi" path="res://Resources/Shaders/transition.gdshader" id="33_aok0f"]
 [ext_resource type="Texture2D" uid="uid://b7kjhf3xd062j" path="res://Sprites/transition_texture.png" id="34_64lof"]
 [ext_resource type="Script" uid="uid://cyistk5euxj6y" path="res://Source/HUD/TransitionRect.cs" id="35_b4mik"]
+[ext_resource type="PackedScene" uid="uid://b2n3n2dtlperl" path="res://Scenes/UI/sound_options.tscn" id="36_t3d4t"]
 [ext_resource type="Script" uid="uid://buklehx5qpknd" path="res://Source/UI/MenuV2.cs" id="36_urine"]
 [ext_resource type="Script" uid="uid://dnq5sac6dpkj6" path="res://Source/UI/MenuStatBar.cs" id="37_5vy51"]
 [ext_resource type="LabelSettings" uid="uid://baxobu4ljate8" path="res://Resources/LabelSettings/corvid.tres" id="38_o2owy"]
@@ -425,6 +426,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("35_b4mik")
 
+[node name="SoundOptions" parent="GameHUD/MainUI" unique_id=295294956 instance=ExtResource("36_t3d4t")]
+visible = false
+layout_mode = 1
+
 [node name="Menu" type="Control" parent="GameHUD" unique_id=1813710418 node_paths=PackedStringArray("player", "Inventory", "Skill", "Character", "Background", "TopBar", "BottomBar", "inventoryButton", "skillsButton", "characterButton", "systemButton", "healthBar", "manaBar")]
 process_mode = 3
 visible = false
@@ -592,16 +597,18 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Control" type="Control" parent="GameHUD/Menu/Inventory/MarginContainer" unique_id=1042361302]
+[node name="Control" type="Control" parent="GameHUD/Menu/Inventory/MarginContainer" unique_id=200182123]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/Menu/Inventory/MarginContainer/Control" unique_id=1974137368]
 custom_minimum_size = Vector2(160, 0)
-layout_mode = 0
-offset_left = 8.0
-offset_top = 54.0
-offset_right = 168.0
-offset_bottom = 178.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -74.0
+offset_right = 160.0
+offset_bottom = 74.0
 grow_vertical = 2
 theme_override_constants/separation = 4
 
@@ -769,8 +776,8 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -70.0
-offset_bottom = 70.0
+offset_top = -74.0
+offset_bottom = 74.0
 grow_horizontal = 0
 grow_vertical = 2
 

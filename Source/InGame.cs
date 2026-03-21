@@ -160,7 +160,7 @@ public partial class InGame : Node2D
     private void CreateGlowExplosion(Enemy enemy)
     {
         GlowExplosion glowExplosion = packedSceneDB.GlowingParticlesExplosion.Instantiate<GlowExplosion>();
-        glowExplosion.Position = enemy.Position;
+        glowExplosion.Position = enemy.GlobalPosition;
         AddChild(glowExplosion);
     }
 
@@ -180,7 +180,7 @@ public partial class InGame : Node2D
             targetScene.AddChild(expParticle);
         }
 
-        floatingNumbers.CreateEXP(enemy.Position, enemy.EXPReward);
+        //floatingNumbers.CreateEXP(enemy.Position, enemy.EXPReward);
     }
 
     private void OnPlayerAttack(HitPayload payload)

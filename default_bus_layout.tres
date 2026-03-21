@@ -2,13 +2,8 @@
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
 resource_name = "Compressor"
-threshold = -5.0
-ratio = 2.0
+threshold = -60.0
 mix = 0.5
-
-[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_g28q7"]
-resource_name = "Compressor"
-threshold = -20.0
 
 [resource]
 bus/1/name = &"SFX"
@@ -25,11 +20,3 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = -4.7711377
 bus/2/send = &"Master"
-bus/3/name = &"ItemPick"
-bus/3/solo = false
-bus/3/mute = false
-bus/3/bypass_fx = false
-bus/3/volume_db = 0.0
-bus/3/send = &"Master"
-bus/3/effect/0/effect = SubResource("AudioEffectCompressor_g28q7")
-bus/3/effect/0/enabled = true
